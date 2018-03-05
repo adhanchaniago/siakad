@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2018 at 11:15 AM
+-- Generation Time: Mar 05, 2018 at 03:51 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -40,6 +40,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username`, `password`, `status`) VALUES
 ('admin', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
+('dosen', 'ce28eed1511f631af6b2a7bb0a85d636', 'dosen'),
 ('mhs', '0357a7592c4734a8b1e12bc48e29e9e9', 'mhs');
 
 --
