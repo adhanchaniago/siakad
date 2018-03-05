@@ -2,7 +2,7 @@
   <!-- content -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-6">
-                    <h2>Form Input Lembar Kerja Dosen</h2>
+                    <h2>Form Edit Lembar Kerja Dosen</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.html">This is</a>
@@ -167,7 +167,7 @@
     //     $('#nama_kegiatan4').removeClass('hidden');
     //   }
     // });
-    var kegiatan_num=2;
+    var kegiatan_num=1;
     function addActivity(){
     kegiatan_num++;
 var html = '<div class="form-group">'+
