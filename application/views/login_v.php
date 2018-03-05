@@ -18,7 +18,6 @@
 <body class="gray-bg">
     <div class="loginColumns animated fadeInDown">
         <div class="row">
-
             <div class="col-md-6">
                 <h2 class="font-bold">Welcome to PORTAL AKADEMIK</h2>
                 <p>
@@ -32,17 +31,34 @@
                 <p>
                     When an unknown printer took a galley of type and scrambled it to make a type specimen book.
                 </p>
+                <p>
+                    When an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </p>
+                <p>
+                    When an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </p>
+                <p>
+                    When an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                </p>
 
                 <p>
                     <small>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</small>
                 </p>
 
             </div>
-
+            <style media="screen">
+            .crop {
+              width: 79px;
+              height: auto;
+              overflow: hidden;
+            }
+            </style>
 
             <div class="col-md-6">
+              <center>
+              <img src="<?php echo base_url()."assets" ?>/img/logo-uin.png" class="crop" alt="logo-uin">
+            </center><br>
                 <div class="ibox-content">
-
                   <?php
                     if (isset($_POST['masuk'])){
                       $u = $this->input->post('usr');
@@ -65,7 +81,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-6 text-right">
+            <div class="col-md-12 text-right">
               <small>© 2018</small>
             </div>
         </div>
