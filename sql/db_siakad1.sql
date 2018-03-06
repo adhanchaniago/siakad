@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 06 Mar 2018 pada 19.20
+-- Generation Time: 06 Mar 2018 pada 19.41
 -- Versi Server: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -45,7 +45,8 @@ CREATE TABLE `m_dosen` (
 INSERT INTO `m_dosen` (`id`, `nip`, `nama`, `kontak`, `id_tipe`, `id_unit_kerja`, `id_jabatan`) VALUES
 (2, '1301178453', 'A. Agus', '082363242545', 1, 1, 1),
 (4, '12345', 'Arian', '', 2, NULL, NULL),
-(8, '21', 'asas', '', 2, 2, 2);
+(8, '21', 'asas', '', 2, 2, 2),
+(9, '1234566', 'Ridwan', '', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -262,7 +263,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `m_dosen`
 --
 ALTER TABLE `m_dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `m_jabatan_dosen`
@@ -298,7 +299,7 @@ ALTER TABLE `t_kategori_kegiatan_lkd`
 -- AUTO_INCREMENT for table `t_kegiatan_lkd`
 --
 ALTER TABLE `t_kegiatan_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

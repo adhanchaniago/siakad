@@ -48,14 +48,14 @@ class Datadosen extends CI_Controller {
 			$jabatan = null;
 		else
 			$jabatan = $this->input->post('jabatan');
-		
+
 		if($this->input->post('unit_kerja')=='')
 			$unit_kerja = null;
 		else
 			$unit_kerja = $this->input->post('unit_kerja');
-		
 
-		
+
+
 		$data = array(
 			'nama' => $this->input->post('nama'),
 			'nip' => $this->input->post('nip'),
@@ -84,19 +84,19 @@ class Datadosen extends CI_Controller {
 			$status = null;
 		else
 			$status = $this->input->post('status');
-		
+
 		if($this->input->post('jabatan')=='')
 			$jabatan = null;
 		else
 			$jabatan = $this->input->post('jabatan');
-		
+
 		if($this->input->post('unit_kerja')=='')
 			$unit_kerja = null;
 		else
 			$unit_kerja = $this->input->post('unit_kerja');
-		
 
-		
+
+
 		$data = array(
 			'nama' => $this->input->post('nama'),
 			'nip' => $this->input->post('nip'),

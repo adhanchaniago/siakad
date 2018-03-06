@@ -33,7 +33,7 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                
+
                 </table>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                                   echo "<option value='$row->id'>$row->nama</option>";
                                 }
                               ?>
-                              
+
                             </select>
                           </div>
                           <div class="form-group">
@@ -137,7 +137,7 @@
                                   echo "<option value='$row->id'>$row->nama</option>";
                                 }
                               ?>
-                              
+
                             </select>
                           </div>
                           <div class="form-group">
@@ -222,7 +222,7 @@
               });
   });
   $('#form').submit(function(){
-            
+
             var form = $('#form')[0]; // You need to use standart javascript object here
             var formData = new FormData(form);
             $.ajax({
@@ -249,11 +249,11 @@
               alert('gagal');
             }
             })
-          
+
             return false;
         });
   $('#formEdit').submit(function(){
-          
+
             var form = $('#formEdit')[0]; // You need to use standart javascript object here
             var formData = new FormData(form);
             formData.append('id',id_dosen);
@@ -281,7 +281,7 @@
         alert('gagal');
       }
             })
-          
+
             return false;
         });
   function reload_table()
@@ -334,5 +334,5 @@ function edit(id){
 
     }
 }
-  
+
 </script>

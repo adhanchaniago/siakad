@@ -38,8 +38,8 @@ class Datalkd extends CI_Controller {
 	function insertKategori(){
 		$this->load->model(array('LKD'));
 		$id = $this->input->post('id');
-		
-		
+
+
 		$data = array(
 			'nama' => $this->input->post('nama'),
 			'alias' => $this->input->post('alias'),
@@ -56,8 +56,8 @@ class Datalkd extends CI_Controller {
 	function updateKategori(){
 		$this->load->model(array('LKD'));
 		$id = $this->input->post('id');
-		
-		
+
+
 		$data = array(
 			'nama' => $this->input->post('nama'),
 			'alias' => $this->input->post('alias'),
@@ -79,7 +79,7 @@ class Datalkd extends CI_Controller {
 	function insertKegiatan(){
 		$this->load->model(array('LKD'));
 		$id = $this->input->post('id');
-		
+
 
 
 		$data = array(
@@ -98,8 +98,8 @@ class Datalkd extends CI_Controller {
 	function updateKegiatan(){
 		$this->load->model(array('LKD'));
 		$id = $this->input->post('id');
-		
-		
+
+
 
 		$data = array(
 			'nama' => $this->input->post('nama'),

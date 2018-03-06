@@ -39,7 +39,7 @@
                           <th>Action</th>
                       </tr>
                       </thead>
-                      
+
                       </table>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                             <th>Action</th>
                         </tr>
                         </thead>
-                        
+
                         </table>
                       </div>
                   </div>
@@ -294,7 +294,7 @@ function reload_kegiatan()
     $('#tablekegiatan').DataTable().ajax.reload(null,false); //reload datatable ajax
 }
 $('#formkt').submit(function(){
-            
+
             var form = $('#formkt')[0]; // You need to use standart javascript object here
             var formData = new FormData(form);
             $.ajax({
@@ -321,11 +321,11 @@ $('#formkt').submit(function(){
               alert('gagal');
             }
             })
-          
+
             return false;
         });
   $('#formEditkt').submit(function(){
-          
+
             var form = $('#formEditkt')[0]; // You need to use standart javascript object here
             var formData = new FormData(form);
             formData.append('id',id_kt);
@@ -344,7 +344,7 @@ $('#formkt').submit(function(){
                 $('#myModalEdit1').modal('hide');
                 reload_kategori();
                 }
-                
+
               },
             error: function(jqXHR, textStatus, errorThrown)
             {
@@ -354,7 +354,7 @@ $('#formkt').submit(function(){
         alert('gagal');
       }
             })
-          
+
             return false;
         });
   function editkt(id){
@@ -401,7 +401,7 @@ $('#formkt').submit(function(){
     }
 }
 $('#formkg').submit(function(){
-            
+
             var form = $('#formkg')[0]; // You need to use standart javascript object here
             var formData = new FormData(form);
             $.ajax({
@@ -428,11 +428,11 @@ $('#formkg').submit(function(){
               alert('gagal');
             }
             })
-          
+
             return false;
         });
   $('#formEditkg').submit(function(){
-          
+
             var form = $('#formEditkg')[0]; // You need to use standart javascript object here
             var formData = new FormData(form);
             formData.append('id',id_kg);
@@ -451,7 +451,7 @@ $('#formkg').submit(function(){
                 $('#myModalEdit2').modal('hide');
                 reload_kegiatan();
                 }
-                
+
               },
             error: function(jqXHR, textStatus, errorThrown)
             {
@@ -461,7 +461,7 @@ $('#formkg').submit(function(){
         alert('gagal');
       }
             })
-          
+
             return false;
         });
   function editkg(id){
