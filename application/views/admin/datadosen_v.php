@@ -43,7 +43,7 @@
                     <td>
                       <center>
                         <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' href='#'><span class='glyphicon glyphicon-edit'></span></a>
+                        <a class='btn btn-warning btn-xs' title='Edit Data' href='' data-toggle="modal" data-target="#myModalEdit"><span class='glyphicon glyphicon-edit'></span></a>
                         <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
                       </center>
                     </td>
@@ -72,8 +72,45 @@
                             <input type="text" class="form-control" placeholder="Masukkan Nama Dosen" required>
                           </div>
                           <div class="form-group">
-                            <label for="nohp">No. Kontak:</label>
-                            <input type="number" min="0" class="form-control" placeholder="Masukkan Nomor Kontak Dosen">
+                            <label for="nohp">Status:</label>
+                            <select type="text" class="form-control">
+                              <option>Dosen Tetap</option>
+                              <option>Dosen Luar Biasa</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal inmodal" id="myModalEdit" tabindex="-1" role="dialog"  aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content animated fadeInDown">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Dosen</h4>
+                            <small>Pastikan data yang diisi telah sesuai</small>
+                        </div>
+                        <div class="modal-body">
+                          <form class="form-horizontal">
+                          <div class="form-group">
+                            <label for="nip">NIP: <span style="color:red;">*</span></label>
+                            <input type="number" min="0" class="form-control" placeholder="Masukkan NIP Dosen" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="nama">Nama: <span style="color:red;">*</span></label>
+                            <input type="text" class="form-control" placeholder="Masukkan Nama Dosen" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="nohp">Status:</label>
+                            <select type="text" class="form-control">
+                              <option>Dosen Tetap</option>
+                              <option>Dosen Luar Biasa</option>
+                            </select>
                           </div>
                         </div>
                         <div class="modal-footer">
