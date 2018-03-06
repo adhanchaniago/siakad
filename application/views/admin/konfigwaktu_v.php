@@ -24,9 +24,6 @@
                   <div class="col-md-4">
                     <h3>Tabel Waktu</h3>
                   </div>
-                  <div class="col-md-2 pull-right">
-                    <a href="" data-toggle="modal" data-target="#modalTmbh1" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
-                  </div>
                 </div><br>
                     <div class="table-responsive">
                       <table class="table table-bordered" >
@@ -57,7 +54,7 @@
                           <td>37.5</td>
                           <td>
                             <center>
-                              <a class='btn btn-warning btn-xs' title='Edit Data' href='' data-toggle="modal" data-target="#modalEdit1"><span class='glyphicon glyphicon-edit'></span></a>
+                              <a class='btn btn-warning btn-xs' title='Edit Data' href='' data-toggle="modal" data-target="#modalEdit"><span class='glyphicon glyphicon-edit'></span></a>
                               <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
                             </center>
                           </td>
@@ -118,88 +115,56 @@
                 </div>
               <br>
             </div>
-
-            <div class="modal inmodal" id="modalTmbh1" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal inmodal" id="modalEdit" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeInDown">
                         <div class="modal-header">
-                            <h4 class="modal-title">Tambah Kategori Baru</h4>
+                            <h4 class="modal-title">Edit Data Jam Minimal</h4>
                             <small>Pastikan data yang diisi telah sesuai</small>
                         </div>
                         <div class="modal-body">
                           <form class="form-horizontal">
-                          <div class="form-group">
-                            <label for="kategori">Nama Kategori: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Kategori" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="alias">Alias: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan alias max 7 karakter" maxlength="7" required>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Tambah</button>
-                        </div>
-                      </form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal inmodal" id="modalTmbh2" tabindex="-1" role="dialog"  aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content animated fadeInDown">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Tambah Kegiatan Baru</h4>
-                            <small>Pastikan data yang diisi telah sesuai</small>
-                        </div>
-                        <div class="modal-body">
-                          <form class="form-horizontal">
-                          <div class="form-group">
-                            <label for="nama">Nama Kegiatan: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="kategori">Kategori: <span style="color:red;">*</span></label>
-                            <select type="text" class="form-control">
-                              <option>Pengajaran</option>
-                              <option>Pembimbingan</option>
-                              <option>Pengujian</option>
-                              <option>Penlitian dan Pengabdian</option>
-
-                            </select>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Tambah</button>
-                        </div>
-                      </form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal inmodal" id="modalEdit2" tabindex="-1" role="dialog"  aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content animated fadeInDown">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Edit Kegiatan</h4>
-                            <small>Pastikan data yang diisi telah sesuai</small>
-                        </div>
-                        <div class="modal-body">
-                          <form class="form-horizontal">
-                          <div class="form-group">
-                            <label for="nama">Nama Kegiatan: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="kategori">Kategori: <span style="color:red;">*</span></label>
-                            <select type="text" class="form-control">
-                              <option>Pengajaran</option>
-                              <option>Pembimbingan</option>
-                              <option>Pengujian</option>
-                              <option>Penlitian dan Pengabdian</option>
-
-                            </select>
-                          </div>
+                            <table class="table" style="margin-top:-10px;">
+                              <thead>
+                                <tr>
+                                  <th>Keterangan</th>
+                                  <th></th>
+                                  <th width="20%">Jam</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>Jam Hadir Minimal<span style="color:red;">*</span></td>
+                                  <td>:</td>
+                                  <td><input type="number" min="0" max="20" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                  <td>Pengajaran<span style="color:red;">*</span></td>
+                                  <td>:</td>
+                                  <td><input type="number" min="0" max="20" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                  <td>Pembimbingan<span style="color:red;">*</span></td>
+                                  <td>:</td>
+                                  <td><input type="number" min="0" max="20" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                  <td>Pengujian<span style="color:red;">*</span></td>
+                                  <td>:</td>
+                                  <td><input type="number" min="0" max="20" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                  <td>Penelitian dan Pengabdian<span style="color:red;">*</span></td>
+                                  <td>:</td>
+                                  <td><input type="number" min="0" max="20" class="form-control" required></td>
+                                </tr>
+                                <tr>
+                                  <td>Kegiatan Penunjang<span style="color:red;">*</span></td>
+                                  <td>:</td>
+                                  <td><input type="number" min="0" max="20" class="form-control" required></td>
+                                </tr>
+                              </tbody>
+                            </table>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>

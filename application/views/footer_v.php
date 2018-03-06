@@ -63,7 +63,7 @@ $("#yearpicker").datepicker( {
            $('.dataTables-example').DataTable({
                pageLength: 10,
                responsive: true,
-               dom: '<"html5buttons"B>lTfrtip',
+               dom: 'lTfrtip',
                buttons: [
                    { extend: 'copy'},
                    {extend: 'csv'},

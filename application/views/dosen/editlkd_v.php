@@ -58,66 +58,6 @@
                           </div>
                           <hr>
                         </div>
-
-                          <!-- <div class="form-group">
-                            <label class="col-lg-2 control-label">Kegiatan 2:</label>
-                              <div class="col-lg-6"><select id="kegiatan2" type="text" class="form-control">
-                                <option value="1" selected disabled>-Pilih Kegiatan-</option>
-                                <option value="1">Mengajar</option>
-                                <option value="1">Membimbing</option>
-                                <option value="1">Menguji</option>
-                                <option value="1">Tunjang</option>
-                                <option value="0">Lainnya</option>
-                              </select></div>
-                            </div>
-                            <div id="nama_kegiatan2" class="form-group hidden">
-                              <label class="col-lg-2 control-label">Nama Kegiatan:</label>
-                                <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan Lainnya..."></div>
-                              </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Waktu 2:</label>
-                                <div class="col-lg-6"><input type="text" class="form-control"></div>
-                              </div>
-                              <hr>
-                              <div class="form-group">
-                                <label class="col-lg-2 control-label">Kegiatan 3:</label>
-                                  <div class="col-lg-6"><select id="kegiatan3" type="text" class="form-control">
-                                    <option value="1" selected disabled>-Pilih Kegiatan-</option>
-                                    <option value="1">Mengajar</option>
-                                    <option value="1">Membimbing</option>
-                                    <option value="1">Menguji</option>
-                                    <option value="1">Tunjang</option>
-                                    <option value="0">Lainnya</option>
-                                  </select></div>
-                                </div>
-                                <div id="nama_kegiatan3" class="form-group">
-                                  <label class="col-lg-2 control-label">Nama Kegiatan:</label>
-                                    <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan Lainnya..."></div>
-                                  </div>
-                                <div class="form-group">
-                                  <label class="col-lg-2 control-label">Waktu 3:</label>
-                                    <div class="col-lg-6"><input type="text" class="form-control"></div>
-                                  </div>
-                                  <hr>
-                                  <div class="form-group">
-                                    <label class="col-lg-2 control-label">Kegiatan 4:</label>
-                                      <div class="col-lg-6"><select id="kegiatan4" type="text" class="form-control">
-                                        <option value="1" selected disabled>-Pilih Kegiatan-</option>
-                                        <option value="1">Mengajar</option>
-                                        <option value="1">Membimbing</option>
-                                        <option value="1">Menguji</option>
-                                        <option value="1">Tunjang</option>
-                                        <option value="0">Lainnya</option>
-                                      </select></div>
-                                    </div>
-                                    <div id="nama_kegiatan4" class="form-group">
-                                      <label class="col-lg-2 control-label">Nama Kegiatan:</label>
-                                        <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan Lainnya..."></div>
-                                      </div>
-                                    <div class="form-group">
-                                      <label class="col-lg-2 control-label">Waktu 4:</label>
-                                        <div class="col-lg-6"><input type="text" class="form-control"></div>
-                                      </div> -->
                         <div class="form-group">
                           <div class="col-lg-6 col-lg-offset-2">
                             <button type="button" class="btn btn-sm btn-success pull-right" name="button" onclick="addActivity()"><i class="fa fa-plus"></i> Kegiatan</button>

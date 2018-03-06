@@ -17,6 +17,8 @@ class Login extends CI_Controller {
 			$st = $this->session->userdata('status');
 			if ($st == 'admin')
 					header("location:".base_url().'admin/home');
+			else if($st == 'dekan')
+					header("location:".base_url().'dekan/home');
 			else if($st == 'dosen')
 					header("location:".base_url().'dosen/home');
 			else if($st == 'mhs')

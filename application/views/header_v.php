@@ -90,6 +90,8 @@
       $this->load->view('mahasiswa/sidebar_v');
     }elseif ($cek == 'dosen') {
       $this->load->view('dosen/sidebar_v');
+    }elseif ($cek == 'dekan') {
+      $this->load->view('dekan/sidebar_v');
     }
   ?>
 
