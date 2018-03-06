@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="title-action">
-                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#myModal4"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
             <div class="wrapper wrapper-content">
               <div class="ibox-content">
               <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover dataTables-example" >
+                <table id="mytable" class="table table-striped table-bordered table-hover" >
                 <thead>
                 <tr>
                     <th>No</th>
@@ -33,28 +33,13 @@
                     <th>Action</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr class="gradeX">
-                    <td>1</td>
-                    <td>12398</td>
-                    <td>Budi Santoso</td>
-                    <td>0851908198</td>
-                    <td>Dosen Tetap</td>
-                    <td>
-                      <center>
-                        <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' href='' data-toggle="modal" data-target="#myModalEdit"><span class='glyphicon glyphicon-edit'></span></a>
-                        <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
-                      </center>
-                    </td>
-                </tr>
-                </tbody>
+
                 </table>
                     </div>
                 </div>
             </div>
 
-            <div class="modal inmodal" id="myModal4" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal inmodal" id="myModal" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeInDown">
                         <div class="modal-header">
@@ -62,20 +47,47 @@
                             <small>Pastikan data yang diisi telah sesuai</small>
                         </div>
                         <div class="modal-body">
-                          <form class="form-horizontal">
+                          <form id="form" class="form-horizontal">
                           <div class="form-group">
                             <label for="nip">NIP: <span style="color:red;">*</span></label>
-                            <input type="number" min="0" class="form-control" placeholder="Masukkan NIP Dosen" required>
+                            <input type="number" min="0" name="nip" class="form-control" placeholder="Masukkan NIP Dosen" required>
                           </div>
                           <div class="form-group">
                             <label for="nama">Nama: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Dosen" required>
+                            <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Dosen" required>
                           </div>
                           <div class="form-group">
                             <label for="nohp">Status:</label>
-                            <select type="text" class="form-control">
-                              <option>Dosen Tetap</option>
-                              <option>Dosen Luar Biasa</option>
+                            <select name="status" type="text" class="form-control">
+                              <option value="">- Pilih Status -</option>
+                              <?php
+                                foreach ($tipe->result() as $row) {
+                                  echo "<option value='$row->id'>$row->nama</option>";
+                                }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="nohp">Jabatan Fungsional :</label>
+                            <select name="jabatan" type="text" class="form-control">
+                              <option value="">- Pilih Jabatan Fungsional -</option>
+                              <?php
+                                foreach ($jabatan->result() as $row) {
+                                  echo "<option value='$row->id'>$row->nama</option>";
+                                }
+                              ?>
+
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="nohp">Unit Kerja :</label>
+                            <select name="unit_kerja" type="text" class="form-control">
+                              <option value="">- Pilih Unit Kerja -</option>
+                              <?php
+                                foreach ($unit_kerja->result() as $row) {
+                                  echo "<option value='$row->id'>$row->nama</option>";
+                                }
+                              ?>
                             </select>
                           </div>
                         </div>
@@ -96,20 +108,47 @@
                             <small>Pastikan data yang diisi telah sesuai</small>
                         </div>
                         <div class="modal-body">
-                          <form class="form-horizontal">
+                          <form id="formEdit" class="form-horizontal">
                           <div class="form-group">
                             <label for="nip">NIP: <span style="color:red;">*</span></label>
-                            <input type="number" min="0" class="form-control" placeholder="Masukkan NIP Dosen" required>
+                            <input type="number" min="0" name="nip" id="nip" class="form-control" placeholder="Masukkan NIP Dosen" required>
                           </div>
                           <div class="form-group">
                             <label for="nama">Nama: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Dosen" required>
+                            <input type="text"  name="nama" id="nama" class="form-control" placeholder="Masukkan Nama Dosen" required>
                           </div>
                           <div class="form-group">
                             <label for="nohp">Status:</label>
-                            <select type="text" class="form-control">
-                              <option>Dosen Tetap</option>
-                              <option>Dosen Luar Biasa</option>
+                            <select name="status" id="status" type="text" class="form-control">
+                              <option value="">- Pilih Status -</option>
+                              <?php
+                                foreach ($tipe->result() as $row) {
+                                  echo "<option value='$row->id'>$row->nama</option>";
+                                }
+                              ?>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="nohp">Jabatan Fungsional :</label>
+                            <select name="jabatan" id="jabatan" type="text" class="form-control">
+                              <option value="">- Pilih Jabatan Fungsional -</option>
+                              <?php
+                                foreach ($jabatan->result() as $row) {
+                                  echo "<option value='$row->id'>$row->nama</option>";
+                                }
+                              ?>
+
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="nohp">Unit Kerja :</label>
+                            <select name="unit_kerja" id="unit_kerja" type="text" class="form-control">
+                              <option value="">- Pilih Unit Kerja -</option>
+                              <?php
+                                foreach ($unit_kerja->result() as $row) {
+                                  echo "<option value='$row->id'>$row->nama</option>";
+                                }
+                              ?>
                             </select>
                           </div>
                         </div>
@@ -121,3 +160,179 @@
                     </div>
                 </div>
             </div>
+<script type="text/javascript">
+  var id_dosen;
+
+  $(document).ready(function() {
+    $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
+              {
+                  return {
+                      "iStart": oSettings._iDisplayStart,
+                      "iEnd": oSettings.fnDisplayEnd(),
+                      "iLength": oSettings._iDisplayLength,
+                      "iTotal": oSettings.fnRecordsTotal(),
+                      "iFilteredTotal": oSettings.fnRecordsDisplay(),
+                      "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
+                      "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
+                  };
+              };
+
+              t = $("#mytable").dataTable({
+                  initComplete: function() {
+                      var api = this.api();
+                      $('#mytable_filter input')
+                              .off('.DT')
+                              .on('keyup.DT', function(e) {
+                                  if (e.keyCode == 13) {
+                                      api.search(this.value).draw();
+                          }
+                      });
+                  },
+                  oLanguage: {
+                      sProcessing: "loading..."
+                  },
+                  processing: true,
+                  serverSide: true,
+                  ajax: {"url": "<?php echo base_url("admin/Datadosen/json");?>", "type": "POST"},
+                  "columnDefs": [
+      {
+          "targets": [ -1 ], //last column
+          "orderable": false, //set not orderable
+      },
+      ],
+                  columns: [
+                      {
+                          "data": "id",
+                          "orderable": false
+                      },
+                      {"data": "nip"},
+                      {"data": "nama"},
+                      {"data": "kontak"},
+                      {"data": "status"},
+                      {"data": "view"}
+                  ],
+                  order: [[1, 'asc']],
+                  rowCallback: function(row, data, iDisplayIndex) {
+                      var info = this.fnPagingInfo();
+                      var page = info.iPage;
+                      var length = info.iLength;
+                      var index = page * length + (iDisplayIndex + 1);
+                      $('td:eq(0)', row).html(index);
+                  }
+              });
+  });
+  $('#form').submit(function(){
+
+            var form = $('#form')[0]; // You need to use standart javascript object here
+            var formData = new FormData(form);
+            $.ajax({
+              url: '<?php echo base_url("Admin/Datadosen/insert");?>',
+              data: formData,
+              type: 'POST',
+              // THIS MUST BE DONE FOR FILE UPLOADING
+              contentType: false,
+              processData: false,
+              dataType: "JSON",
+              success: function(data){
+                alert(data.message);
+                if(data.status=="berhasil"){
+                $('#form')[0].reset();
+                $('#myModal').modal('hide');
+                reload_table();
+                }
+              },
+                  error: function(jqXHR, textStatus, errorThrown)
+                  {
+              console.log(jqXHR);
+              console.log(textStatus);
+              console.log(errorThrown);
+              alert('gagal');
+            }
+            })
+
+            return false;
+        });
+  $('#formEdit').submit(function(){
+
+            var form = $('#formEdit')[0]; // You need to use standart javascript object here
+            var formData = new FormData(form);
+            formData.append('id',id_dosen);
+            $.ajax({
+              url: '<?php echo base_url("Admin/Datadosen/update");?>',
+              data: formData,
+              type: 'POST',
+              // THIS MUST BE DONE FOR FILE UPLOADING
+              contentType: false,
+              processData: false,
+              dataType: "JSON",
+              success: function(data){
+                alert(data.status);
+                if(data.status=="berhasil"){
+                $('#formEdit')[0].reset();
+                $('#myModalEdit').modal('hide');
+                reload_table();
+                }
+              },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+        console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+        alert('gagal');
+      }
+            })
+
+            return false;
+        });
+  function reload_table()
+{
+    $('#mytable').DataTable().ajax.reload(null,false); //reload datatable ajax
+}
+function edit(id){
+  id_dosen = id;
+   $.ajax({
+        url : "<?php echo site_url('Admin/Datadosen/getDosen')?>",
+        type: "POST",
+        data: {'id':id},
+        dataType: "JSON",
+        success: function(data)
+        {
+          $('#nama').val(data.nama);
+          $('#nip').val(data.nip);
+          $('#status').val(data.id_tipe);
+          $('#jabatan').val(data.id_jabatan);
+          $('#unit_kerja').val(data.id_unit_kerja);
+          $('#myModalEdit').modal('show');
+        },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+              console.log(jqXHR);
+        console.log(textStatus);
+        console.log(errorThrown);
+            }
+      });
+ }
+ function hapus(id){
+ if(confirm('Are you sure delete this data?'))
+    {
+        // ajax delete data to database
+        $.ajax({
+            url : "<?php echo site_url('Lak/Datakk/delete')?>",
+            type: "POST",
+            data: {'id':id},
+            success: function(data)
+            {
+              alert(data);
+              if(data=="berhasil")
+                reload_table();
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Terjadi kesalahan saat menghapus data, Periksa apakah KK ini digunakan pada tabel lain!');
+            }
+        });
+
+    }
+}
+
+</script>
