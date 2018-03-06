@@ -150,8 +150,6 @@
                     </li>
                 </ul>
             </li>
-
-
             <li>
                 <a href="<?php echo base_url()."logout" ?>">
                     <i class="fa fa-sign-out"></i> Log out

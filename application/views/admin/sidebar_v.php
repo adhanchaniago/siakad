@@ -233,6 +233,13 @@
                 </ul>
             </li>
             <li>
+                <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">LKD</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                  <li><a href="<?php echo base_url()."admin/datalkd"?>">Data Kegiatan</a></li>
+                  <li><a href="#">Konfigurasi Waktu</a></li>
+                </ul>
+            </li>
+            <li>
               <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Akun Saya</span></a>
             </li>
         </ul>

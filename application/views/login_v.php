@@ -90,7 +90,6 @@
             <div class="col-md-6">
                 Copyright @4nesia
             </div>
-
         </div>
     </div>
 
