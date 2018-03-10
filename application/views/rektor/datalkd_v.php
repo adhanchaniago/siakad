@@ -34,6 +34,18 @@
                     </select>
 
                   </div>
+                </div><div class=" col-md-3" style="margin-top:5px;margin-bottom:-10px;">
+                  <label for="semester">Filter Bulan</label>
+                  <div class="form-group">
+                    <select class="form-control">
+                      <option selected>Mei 2018</option>
+                      <option value="1">April 2018</option>
+                      <option value="1">Maret 2018</option>
+                      <option value="1">Februari 2018</option>
+                      <option value="1">Januari 2018</option>
+                    </select>
+
+                  </div>
                 </div>
               </div><br>
               <div class="table-responsive">
@@ -43,7 +55,7 @@
                     <th>No</th>
                     <th>NIP</th>
                     <th>Nama Lengkap</th>
-                    <th>Periode</th>
+                    <th>Bulan</th>
                     <th>Waktu Pengajuan</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -54,22 +66,9 @@
                     <td>1</td>
                     <td>12398</td>
                     <td>Budi Santoso</td>
-                    <td>05/03/2018 - 10/03/2018</td>
+                    <td>03/2018</td>
                     <td>06/03/2018 12:01 PM</td>
                     <td>Menunggu ACC</td>
-                    <td>
-                      <center>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' href='' data-toggle="modal" data-target="#myModalEdit"><span class='glyphicon glyphicon-edit'></span></a>
-                      </center>
-                    </td>
-                </tr>
-                <tr class="gradeX">
-                    <td>2</td>
-                    <td>12398</td>
-                    <td>Budi Santoso</td>
-                    <td>05/03/2018 - 10/03/2018</td>
-                    <td>06/03/2018 12:01 PM</td>
-                    <td>Telah diACC</td>
                     <td>
                       <center>
                         <a class='btn btn-warning btn-xs' title='Edit Data' href='' data-toggle="modal" data-target="#myModalEdit"><span class='glyphicon glyphicon-edit'></span></a>
@@ -93,100 +92,36 @@
                             <table class="table table-bordered">
                               <thead>
                                 <tr>
-                                  <th>No</th>
-                                  <th>Tanggal</th>
-                                  <th>Kegiatan</th>
-                                  <th>Waktu</th>
-                                  <th>Ajar</th>
-                                  <th>Bimbing</th>
-                                  <th>Uji</th>
-                                  <th>Litab</th>
-                                  <th>Tunjang</th>
-                                  <th>Jmlh</th>
+                                  <th rowspan="2" style="text-align:center;vertical-align:middle;width:10px;">No</th>
+                                  <th rowspan="2" style="text-align:center;vertical-align:middle;width:100px;">Nama/NIP/Jabatan</th>
+                                  <th>Minggu I</th>
+                                  <th>Minggu II</th>
+                                  <th>Minggu III</th>
+                                  <th>Minggu IV</th>
+                                  <th rowspan="2" style="text-align:center;vertical-align:middle;">Keterangan</th>
+                                </tr>
+                                <tr>
+                                  <td>Akumulasi Jam Kerja</td>
+                                  <td>Akumulasi Jam Kerja</td>
+                                  <td>Akumulasi Jam Kerja</td>
+                                  <td>Akumulasi Jam Kerja</td>
                                 </tr>
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td rowspan="3" style="text-align:center;vertical-align:middle;">1</td>
-                                  <td rowspan="3" style="text-align:center;vertical-align:middle;">20-01-2018</td>
-                                      <td>Menguji</td>
-                                      <td>10:00-12:30</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                      <td>2.5</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                      <td>-</td>
-
-                                    <tr>
-                                      <td>Membaca Jurnal</td>
-                                      <td>15:30-16:30</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                      <td>1</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                    </tr>
-                                    <tr>
-                                      <td>Membimbing</td>
-                                      <td>17:00-17:30</td>
-                                      <td>-</td>
-                                      <td>0.5</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                      <td>4</td>
-                                    </tr>
-                                </tr>
-                                <tr>
-                                  <td rowspan="2" style="text-align:center;vertical-align:middle;">2</td>
-                                  <td rowspan="2" style="text-align:center;vertical-align:middle;">27-01-2018</td>
-                                      <td>Mengajar</td>
-                                      <td>08:00-10:30</td>
-                                      <td>2.5</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                    <tr>
-                                      <td>Tunjang</td>
-                                      <td>15:30-16:30</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                      <td>-</td>
-                                      <td>1</td>
-                                      <td>3.5</td>
-                                    </tr>
-                                </tr>
-                                <tr>
-                                  <td colspan="4" style="text-align:center;vertical-align:middle;"><b>Jumlah</b></td>
-                                  <td>2.5</td>
-                                  <td>0.5</td>
-                                  <td>2.5</td>
                                   <td>1</td>
-                                  <td>1</td>
-                                  <td>7.5</td>
+                                  <td>Udin/NIP. 19630417199802011001/Lektor</td>
+                                  <td>37.5</td>
+                                  <td>37.5</td>
+                                  <td>37.5</td>
+                                  <td>37.5</td>
+                                  <td>Lengkap</td>
                                 </tr>
                               </tbody>
                             </table>
                             <center>
                               <button type="button" id="acc" class="btn btn-success" onclick="accept()"><i class="fa fa-check-circle"></i> ACC Kegiatan</button>
                               <button type="button" id="reset" class="btn btn-danger" onclick="accept()"><i class="fa fa-refresh"></i> Reset Kegiatan</button>
-                              <!-- <span id="accept" class="hidden">Telah di ACC</span> -->
-                              <!-- <table>
-                                <tr>
-                                  <td style="width:150px;align:center;"></td>
-                                  <td></td>
-                                </tr>
-                                <tr>
-                                  <td style="text-align:center;"></td>
-                                  <td></td>
-                                </tr>
-                              </table> -->
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-dismiss="modal">Kembali</button>

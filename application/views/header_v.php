@@ -27,7 +27,7 @@
     <link href="<?php echo base_url()."assets" ?>/css/plugins/footable/footable.core.css" rel="stylesheet">
 
     <!-- clockpicker -->
-    <link href="<?php echo base_url()."assets" ?>/css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+    <!-- <link href="/css/plugins/clockpicker/clockpicker.css" rel="stylesheet"> -->
 
     <link href="<?php echo base_url()."assets" ?>/css/animate.css" rel="stylesheet">
     <link href="<?php echo base_url()."assets" ?>/css/style.css" rel="stylesheet">
@@ -72,7 +72,7 @@
     <script src="<?php echo base_url()."assets" ?>/js/canvasjs-2.0.1/canvasjs.min.js"></script>
 
     <!-- Clock picker -->
-    <script src="<?php echo base_url()."assets" ?>/js/plugins/clockpicker/clockpicker.js"></script>
+    <!-- <script src="/js/plugins/clockpicker/clockpicker.js"></script> -->
 
     <!-- Vue.js -->
     <!-- <script src="https://unpkg.com/vue"></script> -->
@@ -81,6 +81,12 @@
 </head>
 
 <body class="">
+
+    <style>
+        iframe {
+             display: none !important;
+        }
+    </style>
 
   <?php
     $cek = $this->session->userdata('status');
@@ -92,6 +98,8 @@
       $this->load->view('dosen/sidebar_v');
     }elseif ($cek == 'dekan') {
       $this->load->view('dekan/sidebar_v');
+    }elseif ($cek == 'rektor') {
+      $this->load->view('rektor/sidebar_v');
     }
   ?>
 

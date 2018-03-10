@@ -19,6 +19,8 @@ class M_Login extends CI_Model {
           $this->session->set_userdata($sess);
           if($qad->status == 'admin'){
             header("location:".base_url().'admin/home');
+          }elseif ($qad->status == 'rektor') {
+            header("location:".base_url().'rektor/home');
           }elseif ($qad->status == 'dekan') {
             header("location:".base_url().'dekan/home');
           }elseif ($qad->status == 'dosen') {

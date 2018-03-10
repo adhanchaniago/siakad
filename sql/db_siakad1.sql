@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 06 Mar 2018 pada 19.41
--- Versi Server: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Mar 08, 2018 at 05:01 AM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_dosen`
+-- Table structure for table `m_dosen`
 --
 
 CREATE TABLE `m_dosen` (
@@ -39,19 +39,19 @@ CREATE TABLE `m_dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_dosen`
+-- Dumping data for table `m_dosen`
 --
 
 INSERT INTO `m_dosen` (`id`, `nip`, `nama`, `kontak`, `id_tipe`, `id_unit_kerja`, `id_jabatan`) VALUES
 (2, '1301178453', 'A. Agus', '082363242545', 1, 1, 1),
-(4, '12345', 'Arian', '', 2, NULL, NULL),
+(4, '12345', 'Arian Nur', '', 2, NULL, NULL),
 (8, '21', 'asas', '', 2, 2, 2),
 (9, '1234566', 'Ridwan', '', 1, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_jabatan_dosen`
+-- Table structure for table `m_jabatan_dosen`
 --
 
 CREATE TABLE `m_jabatan_dosen` (
@@ -60,7 +60,7 @@ CREATE TABLE `m_jabatan_dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_jabatan_dosen`
+-- Dumping data for table `m_jabatan_dosen`
 --
 
 INSERT INTO `m_jabatan_dosen` (`id`, `nama`) VALUES
@@ -72,7 +72,7 @@ INSERT INTO `m_jabatan_dosen` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_status_kegiatan_lkd`
+-- Table structure for table `m_status_kegiatan_lkd`
 --
 
 CREATE TABLE `m_status_kegiatan_lkd` (
@@ -81,7 +81,7 @@ CREATE TABLE `m_status_kegiatan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_status_kegiatan_lkd`
+-- Dumping data for table `m_status_kegiatan_lkd`
 --
 
 INSERT INTO `m_status_kegiatan_lkd` (`id`, `nama`) VALUES
@@ -91,7 +91,7 @@ INSERT INTO `m_status_kegiatan_lkd` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_tipe_dosen`
+-- Table structure for table `m_tipe_dosen`
 --
 
 CREATE TABLE `m_tipe_dosen` (
@@ -100,7 +100,7 @@ CREATE TABLE `m_tipe_dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_tipe_dosen`
+-- Dumping data for table `m_tipe_dosen`
 --
 
 INSERT INTO `m_tipe_dosen` (`id`, `nama`) VALUES
@@ -110,7 +110,7 @@ INSERT INTO `m_tipe_dosen` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_unit_kerja`
+-- Table structure for table `m_unit_kerja`
 --
 
 CREATE TABLE `m_unit_kerja` (
@@ -119,7 +119,7 @@ CREATE TABLE `m_unit_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_unit_kerja`
+-- Dumping data for table `m_unit_kerja`
 --
 
 INSERT INTO `m_unit_kerja` (`id`, `nama`) VALUES
@@ -129,7 +129,7 @@ INSERT INTO `m_unit_kerja` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_kategori_kegiatan_lkd`
+-- Table structure for table `t_kategori_kegiatan_lkd`
 --
 
 CREATE TABLE `t_kategori_kegiatan_lkd` (
@@ -139,7 +139,7 @@ CREATE TABLE `t_kategori_kegiatan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_kategori_kegiatan_lkd`
+-- Dumping data for table `t_kategori_kegiatan_lkd`
 --
 
 INSERT INTO `t_kategori_kegiatan_lkd` (`id`, `nama`, `alias`) VALUES
@@ -152,7 +152,7 @@ INSERT INTO `t_kategori_kegiatan_lkd` (`id`, `nama`, `alias`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_kegiatan_lkd`
+-- Table structure for table `t_kegiatan_lkd`
 --
 
 CREATE TABLE `t_kegiatan_lkd` (
@@ -163,7 +163,7 @@ CREATE TABLE `t_kegiatan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_kegiatan_lkd`
+-- Dumping data for table `t_kegiatan_lkd`
 --
 
 INSERT INTO `t_kegiatan_lkd` (`id`, `nama`, `id_kategori`, `id_status`) VALUES
@@ -179,7 +179,7 @@ INSERT INTO `t_kegiatan_lkd` (`id`, `nama`, `id_kategori`, `id_status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -189,11 +189,12 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`username`, `password`, `status`) VALUES
 ('admin', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
+('dekan', '3da2f457ad7c0edf1c94e1ea87b0818d', 'dekan'),
 ('dosen', 'ce28eed1511f631af6b2a7bb0a85d636', 'dosen'),
 ('mhs', '0357a7592c4734a8b1e12bc48e29e9e9', 'mhs');
 
@@ -275,7 +276,7 @@ ALTER TABLE `m_jabatan_dosen`
 -- AUTO_INCREMENT for table `m_status_kegiatan_lkd`
 --
 ALTER TABLE `m_status_kegiatan_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `m_tipe_dosen`
@@ -299,14 +300,14 @@ ALTER TABLE `t_kategori_kegiatan_lkd`
 -- AUTO_INCREMENT for table `t_kegiatan_lkd`
 --
 ALTER TABLE `t_kegiatan_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `m_dosen`
+-- Constraints for table `m_dosen`
 --
 ALTER TABLE `m_dosen`
   ADD CONSTRAINT `m_dosen_ibfk_1` FOREIGN KEY (`id_tipe`) REFERENCES `m_tipe_dosen` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -314,7 +315,7 @@ ALTER TABLE `m_dosen`
   ADD CONSTRAINT `m_dosen_ibfk_3` FOREIGN KEY (`id_unit_kerja`) REFERENCES `m_unit_kerja` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `t_kegiatan_lkd`
+-- Constraints for table `t_kegiatan_lkd`
 --
 ALTER TABLE `t_kegiatan_lkd`
   ADD CONSTRAINT `t_kegiatan_lkd_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `t_kategori_kegiatan_lkd` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,

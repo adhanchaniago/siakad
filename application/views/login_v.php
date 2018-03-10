@@ -16,6 +16,13 @@
 
 </head>
 <body class="gray-bg">
+
+  <style>
+      iframe {
+           display: none !important;
+      }
+  </style>
+
     <div class="loginColumns animated fadeInDown">
         <div class="row">
             <div class="col-md-6">

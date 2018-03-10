@@ -298,7 +298,7 @@ $('#formkt').submit(function(){
             var form = $('#formkt')[0]; // You need to use standart javascript object here
             var formData = new FormData(form);
             $.ajax({
-              url: '<?php echo base_url("Admin/Datalkd/insertKategori");?>',
+              url: '<?php echo base_url("admin/Datalkd/insertKategori");?>',
               data: formData,
               type: 'POST',
               // THIS MUST BE DONE FOR FILE UPLOADING
@@ -330,7 +330,7 @@ $('#formkt').submit(function(){
             var formData = new FormData(form);
             formData.append('id',id_kt);
             $.ajax({
-              url: '<?php echo base_url("Admin/Datalkd/updateKategori");?>',
+              url: '<?php echo base_url("admin/Datalkd/updateKategori");?>',
               data: formData,
               type: 'POST',
               // THIS MUST BE DONE FOR FILE UPLOADING
@@ -360,7 +360,7 @@ $('#formkt').submit(function(){
   function editkt(id){
   id_kt = id;
    $.ajax({
-        url : "<?php echo site_url('Admin/Datalkd/getKategori')?>",
+        url : "<?php echo base_url('admin/Datalkd/getKategori')?>",
         type: "POST",
         data: {'id':id},
         dataType: "JSON",
@@ -383,7 +383,7 @@ $('#formkt').submit(function(){
     {
         // ajax delete data to database
         $.ajax({
-            url : "<?php echo site_url('Lak/Datakk/delete')?>",
+            url : "<?php echo base_url('Lak/Datakk/delete')?>",
             type: "POST",
             data: {'id':id},
             success: function(data)
@@ -405,7 +405,7 @@ $('#formkg').submit(function(){
             var form = $('#formkg')[0]; // You need to use standart javascript object here
             var formData = new FormData(form);
             $.ajax({
-              url: '<?php echo base_url("Admin/Datalkd/insertKegiatan");?>',
+              url: '<?php echo base_url("admin/Datalkd/insertKegiatan");?>',
               data: formData,
               type: 'POST',
               // THIS MUST BE DONE FOR FILE UPLOADING
@@ -437,7 +437,7 @@ $('#formkg').submit(function(){
             var formData = new FormData(form);
             formData.append('id',id_kg);
             $.ajax({
-              url: '<?php echo base_url("Admin/Datalkd/updateKegiatan");?>',
+              url: '<?php echo base_url("admin/Datalkd/updateKegiatan");?>',
               data: formData,
               type: 'POST',
               // THIS MUST BE DONE FOR FILE UPLOADING
@@ -467,7 +467,7 @@ $('#formkg').submit(function(){
   function editkg(id){
   id_kg = id;
    $.ajax({
-        url : "<?php echo site_url('Admin/Datalkd/getKegiatan')?>",
+        url : "<?php echo base_url('admin/Datalkd/getKegiatan')?>",
         type: "POST",
         data: {'id':id},
         dataType: "JSON",
@@ -490,7 +490,7 @@ $('#formkg').submit(function(){
     {
         // ajax delete data to database
         $.ajax({
-            url : "<?php echo site_url('Lak/Datakk/delete')?>",
+            url : "<?php echo base_url('Lak/Datakk/delete')?>",
             type: "POST",
             data: {'id':id},
             success: function(data)

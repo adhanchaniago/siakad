@@ -1,4 +1,10 @@
 
+<!-- ClockPicker Stylesheet -->
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()."assets" ?>/dist/bootstrap-clockpicker.min.css">
+
+<!-- ClockPicker script -->
+<script type="text/javascript" src="<?php echo base_url()."assets" ?>/dist/bootstrap-clockpicker.min.js"></script>
+
   <!-- content -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-6">
@@ -48,17 +54,16 @@
                           <label class="col-lg-2 control-label">Waktu 1:</label>
                             <div class="col-lg-6 input-group">
                               <div class="col-lg-12">
-                              <input type="text" class="form-control clockpicker" data-autoclose="true" id="clockpicker1">
+                              <input type="text" class="form-control clockpicker" data-autoclose="true">
                             </div>
                               <span class="input-group-addon">s/d</span>
                               <div class="col-lg-12">
-                                <input type="text" class="form-control clockpicker" data-autoclose="true" id="clockpicker2">
+                                <input type="text" class="form-control clockpicker" data-autoclose="true">
                               </div>
                               </div>
                           </div>
                           <hr>
                         </div>
-
                           <!-- <div class="form-group">
                             <label class="col-lg-2 control-label">Kegiatan 2:</label>
                               <div class="col-lg-6"><select id="kegiatan2" type="text" class="form-control">
@@ -134,11 +139,8 @@
 
     <script type="text/javascript">
 
-    $('#clockpicker1').clockpicker({
-      minutestep:60
-    });
-    $('#clockpicker2').clockpicker({
-      minutestep:60
+    $('.clockpicker').clockpicker({
+      minutestep:30
     });
     // $('#kegiatan2').change(function(){
     //   kegiatan = $('#kegiatan2').val();
@@ -167,7 +169,7 @@
     //     $('#nama_kegiatan4').removeClass('hidden');
     //   }
     // });
-    var kegiatan_num=2;
+    var kegiatan_num=1;
     function addActivity(){
     kegiatan_num++;
 var html = '<div class="form-group">'+
@@ -197,5 +199,8 @@ var html = '<div class="form-group">'+
 
 
       $('#activities').append(html);
+      $('.clockpicker').clockpicker({
+        minutestep:30
+      });
     }
     </script>
