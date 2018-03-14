@@ -6,7 +6,7 @@ class Datadosen extends CI_Controller {
 	public function index()
 	{
 		$this->load->model(array('Dosen'));
-		$cek = $this->session->userdata('username');
+		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
 			$array=array('page'=>2);
 			$data['unit_kerja'] = $this->Dosen->getUnitKerja();

@@ -5,7 +5,7 @@ class Jadwalujian extends CI_Controller {
 
 	public function index()
 	{
-		$cek = $this->session->userdata('username');
+		$cek = $this->session->userdata('status');
 		if ($cek == 'mhs'){
 		$this->load->view('header_v');
 		$this->load->view('mahasiswa/jadwalujian_v');

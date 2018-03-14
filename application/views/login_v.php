@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Login SIAKAD</title>
-
+    <script src="<?php echo base_url()."assets" ?>/js/jquery-3.1.1.min.js"></script>
     <link href="<?php echo base_url(). "assets/css/bootstrap.min.css" ?>" rel="stylesheet">
     <link href="<?php echo base_url(). "assets/font-awesome/css/font-awesome.css" ?>" rel="stylesheet">
 
@@ -66,19 +66,13 @@
               <img src="<?php echo base_url()."assets" ?>/img/logo-uin.png" class="crop" alt="logo-uin">
             </center><br>
                 <div class="ibox-content">
-                  <?php
-                    if (isset($_POST['masuk'])){
-                      $u = $this->input->post('usr');
-                      $p = $this->input->post('pwd');
-                      $this->M_login->getLoginData($u,$p);
-                    }
-                  ?>
-                    <form class="m-t" action="" method="post">
+
+                    <form class="m-t" id="form">
                         <div class="form-group">
-                            <input type="text" name="usr" class="form-control" placeholder="Username" required="">
+                            <input type="text" id="username" name="usr" class="form-control" placeholder="Username" required="">
                         </div>
                         <div class="form-group">
-                            <input type="password" name="pwd" class="form-control" placeholder="Password" required="">
+                            <input type="password" id="password" name="pwd" class="form-control" placeholder="Password" required="">
                         </div>
                         <button type="submit" name="masuk" class="btn btn-primary block full-width m-b">Login</button>
 
@@ -103,3 +97,35 @@
 </body>
 
 </html>
+<script>
+  $('#form').submit(function(){
+    var formData = new FormData;
+    var username = $('#username').val();
+    var password = $('#password').val();
+    formData.append('username',username);
+    formData.append('password',password);
+    $.ajax({
+      url: '<?php echo base_url("Login/login");?>',
+      data: formData,
+      type: 'POST',
+      // THIS MUST BE DONE FOR FILE UPLOADING
+      contentType: false,
+      processData: false,
+      dataType: "JSON",
+      success: function(data){
+        if(data.status=='berhasil')
+          location.reload();
+        else
+          alert(data.message);
+      },
+    error: function(jqXHR, textStatus, errorThrown)
+    {
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    }
+          });
+
+    return false;
+  });
+</script>

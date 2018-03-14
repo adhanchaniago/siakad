@@ -5,7 +5,7 @@ class Datalkd extends CI_Controller {
 
 	public function index()
 	{
-		$cek = $this->session->userdata('username');
+		$cek = $this->session->userdata('status');
 		if ($cek == 'rektor'){
 		$this->load->view('header_v');
 		$this->load->view('rektor/datalkd_v');

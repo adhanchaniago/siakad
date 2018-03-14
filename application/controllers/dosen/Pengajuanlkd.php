@@ -5,7 +5,7 @@ class Pengajuanlkd extends CI_Controller {
 
 	public function index()
 	{
-		$cek = $this->session->userdata('username');
+		$cek = $this->session->userdata('status');
 		if ($cek == 'dosen'){
 		$this->load->view('header_v');
 		$this->load->view('dosen/pengajuanlkd_v');
@@ -17,7 +17,7 @@ class Pengajuanlkd extends CI_Controller {
 
 	public function edit()
 	{
-		$cek = $this->session->userdata('username');
+		$cek = $this->session->userdata('status');
 		if ($cek == 'dosen'){
 		$this->load->view('header_v');
 		$this->load->view('dosen/editlkd_v');

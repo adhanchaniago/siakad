@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$cek = $this->session->userdata('username');
+		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
 			$array=array('page'=>1);
 		$this->load->view('header_v',$array);

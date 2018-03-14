@@ -28,101 +28,40 @@
             <div class="wrapper wrapper-content" id="item">
             <div class="row">
               <div class="ibox-content col-lg-12">
-                <form class="form-horizontal">
+                <form id="form" class="form-horizontal">
                       <h2>Form</h2>
                       <div class="hr-line-dashed"></div>
                       <div class="form-group">
                         <label class="col-lg-2 control-label">Hari/Tanggal:</label>
-                          <div class="col-lg-6"><input type="text" id="datepicker" class="form-control"></div>
+                          <div class="col-lg-6"><input type="text" id="datepicker" class="form-control" required></div>
                         </div><hr >
                         <div id="activities">
                       <div class="form-group">
                         <label class="col-lg-2 control-label">Kegiatan 1:</label>
-                          <div class="col-lg-6"><select id="kegiatan1" type="text" class="form-control">
-                            <option value="1" selected disabled>-Pilih Kegiatan-</option>
-                            <option value="1">Mengajar</option>
-                            <option value="1">Membimbing</option>
-                            <option value="1">Menguji</option>
-                            <option value="1">Tunjang</option>
+                          <div class="col-lg-6">
+                            <select id="kegiatan1" name="kegiatan[]" class="form-control">
+                            <option value="" selected>-Pilih Kegiatan-</option>
+                            <?php foreach ($kegiatan->result() as $row) {
+                              echo "<option value='$row->id'>$row->nama</option>";
+                            } ?>
+
                           </select></div>
                         </div>
-                        <!-- <div id="nama_kegiatan1" class="form-group kegiatan">
-                          <label class="col-lg-2 control-label">Nama Kegiatan:</label>
-                            <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan Lainnya..."></div>
-                          </div> -->
                         <div class="form-group">
                           <label class="col-lg-2 control-label">Waktu 1:</label>
                             <div class="col-lg-6 input-group">
                               <div class="col-lg-12">
-                              <input type="text" class="form-control clockpicker" data-autoclose="true">
+                              <input type="text" name="waktu_awal[]" class="form-control clockpicker" data-autoclose="true" required readonly>
                             </div>
                               <span class="input-group-addon">s/d</span>
                               <div class="col-lg-12">
-                                <input type="text" class="form-control clockpicker" data-autoclose="true">
+                                <input type="text" name="waktu_akhir[]" class="form-control clockpicker" data-autoclose="true" required readonly>
                               </div>
                               </div>
                           </div>
                           <hr>
                         </div>
-                          <!-- <div class="form-group">
-                            <label class="col-lg-2 control-label">Kegiatan 2:</label>
-                              <div class="col-lg-6"><select id="kegiatan2" type="text" class="form-control">
-                                <option value="1" selected disabled>-Pilih Kegiatan-</option>
-                                <option value="1">Mengajar</option>
-                                <option value="1">Membimbing</option>
-                                <option value="1">Menguji</option>
-                                <option value="1">Tunjang</option>
-                                <option value="0">Lainnya</option>
-                              </select></div>
-                            </div>
-                            <div id="nama_kegiatan2" class="form-group hidden">
-                              <label class="col-lg-2 control-label">Nama Kegiatan:</label>
-                                <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan Lainnya..."></div>
-                              </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">Waktu 2:</label>
-                                <div class="col-lg-6"><input type="text" class="form-control"></div>
-                              </div>
-                              <hr>
-                              <div class="form-group">
-                                <label class="col-lg-2 control-label">Kegiatan 3:</label>
-                                  <div class="col-lg-6"><select id="kegiatan3" type="text" class="form-control">
-                                    <option value="1" selected disabled>-Pilih Kegiatan-</option>
-                                    <option value="1">Mengajar</option>
-                                    <option value="1">Membimbing</option>
-                                    <option value="1">Menguji</option>
-                                    <option value="1">Tunjang</option>
-                                    <option value="0">Lainnya</option>
-                                  </select></div>
-                                </div>
-                                <div id="nama_kegiatan3" class="form-group">
-                                  <label class="col-lg-2 control-label">Nama Kegiatan:</label>
-                                    <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan Lainnya..."></div>
-                                  </div>
-                                <div class="form-group">
-                                  <label class="col-lg-2 control-label">Waktu 3:</label>
-                                    <div class="col-lg-6"><input type="text" class="form-control"></div>
-                                  </div>
-                                  <hr>
-                                  <div class="form-group">
-                                    <label class="col-lg-2 control-label">Kegiatan 4:</label>
-                                      <div class="col-lg-6"><select id="kegiatan4" type="text" class="form-control">
-                                        <option value="1" selected disabled>-Pilih Kegiatan-</option>
-                                        <option value="1">Mengajar</option>
-                                        <option value="1">Membimbing</option>
-                                        <option value="1">Menguji</option>
-                                        <option value="1">Tunjang</option>
-                                        <option value="0">Lainnya</option>
-                                      </select></div>
-                                    </div>
-                                    <div id="nama_kegiatan4" class="form-group">
-                                      <label class="col-lg-2 control-label">Nama Kegiatan:</label>
-                                        <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Nama Kegiatan Lainnya..."></div>
-                                      </div>
-                                    <div class="form-group">
-                                      <label class="col-lg-2 control-label">Waktu 4:</label>
-                                        <div class="col-lg-6"><input type="text" class="form-control"></div>
-                                      </div> -->
+
                         <div class="form-group">
                           <div class="col-lg-6 col-lg-offset-2">
                             <button type="button" class="btn btn-sm btn-success pull-right" name="button" onclick="addActivity()"><i class="fa fa-plus"></i> Kegiatan</button>
@@ -170,28 +109,26 @@
     //   }
     // });
     var kegiatan_num=1;
+    var htm = $('#kegiatan1').html();
     function addActivity(){
     kegiatan_num++;
 var html = '<div class="form-group">'+
 '                        <label class="col-lg-2 control-label">Kegiatan '+kegiatan_num+':</label>'+
-'                          <div class="col-lg-6"><select id="kegiatan1" type="text" class="form-control">'+
-'                            <option value="1" selected disabled>-Pilih Kegiatan-</option>'+
-'                            <option value="1">Mengajar</option>'+
-'                            <option value="1">Membimbing</option>'+
-'                            <option value="1">Menguji</option>'+
-'                            <option value="1">Tunjang</option>'+
-'                          </select></div>'+
+'                          <div class="col-lg-6"><select name="kegiatan[]" class="form-control">';
+html+=htm;
+
+html +='                          </select></div>'+
 '                        </div>'+
 
 '                        <div class="form-group">'+
 '                          <label class="col-lg-2 control-label">Waktu '+kegiatan_num+':</label>'+
 '                            <div class="col-lg-6 input-group">'+
 '                              <div class="col-lg-12">'+
-'                              <input type="text" class="form-control clockpicker" data-autoclose="true">'+
+'                              <input type="text" name="waktu_awal[]" class="form-control clockpicker" data-autoclose="true" required readonly>'+
 '                            </div>'+
 '                              <span class="input-group-addon">s/d</span>'+
 '                              <div class="col-lg-12">'+
-'                                <input type="text" class="form-control clockpicker" data-autoclose="true">'+
+'                                <input type="text" name="waktu_akhir[]" class="form-control clockpicker" data-autoclose="true" required readonly>'+
 '                              </div>'+
 '                              </div>'+
 '                          </div>'+
@@ -202,5 +139,51 @@ var html = '<div class="form-group">'+
       $('.clockpicker').clockpicker({
         minutestep:30
       });
+
     }
+
+  $('#form').submit(function(){
+    var kegiatanArray = [];
+    var waktuAwalArray = [];
+    var waktuAkhirArray = [];
+    var tanggal = $('#datepicker').val();
+    $( "select[name='kegiatan[]']" ).each(function() {
+        kegiatanArray.push($( this ).val());
+    });
+    $( "input[name='waktu_awal[]']" ).each(function() {
+        waktuAwalArray.push($( this ).val());
+    });
+    $( "input[name='waktu_akhir[]']" ).each(function() {
+        waktuAkhirArray.push($( this ).val());
+    });
+    var formData = new FormData;
+    for(var i=0; i<kegiatanArray.length;i++){
+
+      formData.append('kegiatan[]',kegiatanArray[i]);
+      formData.append('waktu_awal[]',waktuAwalArray[i]);
+      formData.append('waktu_akhir[]',waktuAkhirArray[i]);
+    }
+    formData.append('tanggal',tanggal);
+
+    $.ajax({
+      url: '<?php echo base_url("dosen/Inputlkd/insert");?>',
+      data: formData,
+      type: 'POST',
+      // THIS MUST BE DONE FOR FILE UPLOADING
+      contentType: false,
+      processData: false,
+      //dataType: "JSON",
+      success: function(data){
+        alert(data);
+      },
+    error: function(jqXHR, textStatus, errorThrown)
+    {
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    }
+          });
+
+    return false;
+  });
     </script>

@@ -10,7 +10,7 @@ class Login extends CI_Controller {
 
 	public function index(){
 		$this->load->library('session');
-		$cek = $this->session->userdata('username');
+		$cek = $this->session->userdata('status');
 		if(empty($cek)) {
 			$this->load->view('login_v');
 		}else{
@@ -27,6 +27,25 @@ class Login extends CI_Controller {
 					header("location:".base_url().'mahasiswa/home');
 			else
 				header('location:'.base_url());
+		}
+
+	}
+	function login(){
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+
+		if(trim($username)=='' || $password==''){
+			echo json_encode(array('status'=>'gagal','message'=>'Data tidak boleh kosong!'));
+		}
+		else{
+			$this->load->model(array('LoginModel'));
+			$result = $this->LoginModel->login($username,$password);
+			if($result>0){
+				echo json_encode(array('status'=>'berhasil','message'=>'Berhasil login'));
+			}
+			else{
+				echo json_encode(array('status'=>'gagal','message'=>'Username atau password salah!'));
+			}
 		}
 	}
 }

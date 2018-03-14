@@ -6,7 +6,7 @@ class Datalkd extends CI_Controller {
 	public function index()
 	{
 		$this->load->model(array('LKD'));
-		$cek = $this->session->userdata('username');
+		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
 			$array=array('page'=>5);
 		$data['kategori'] = $this->LKD->getKategori();

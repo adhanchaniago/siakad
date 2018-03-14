@@ -1,7 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class LKD extends CI_Model {
-  private $tablename;
   function __construct(){
       parent::__construct();
       // $this->db1 = $this->load->database('db1', TRUE);
@@ -77,7 +76,7 @@ class LKD extends CI_Model {
           $this->db->update($tablename, $arraydata);
           return $this->db->affected_rows();
       }
-    
+
     /*
     public function getUnitKerja(){
       return $this->db->get('m_unit_kerja');
@@ -86,6 +85,96 @@ class LKD extends CI_Model {
       return $this->db->get('m_tipe_dosen');
     }
     */
+    public function cekPengajuan($date,$id_dosen){
+        $this->db->select('*');
+        $this->db->from('t_pengajuan_lkd t');
+        $this->db->where("('$date' BETWEEN t.tanggal_awal AND t.tanggal_akhir) AND id_dosen='$id_dosen'");
+        $query = $this->db->get();
+        if($query->num_rows()>0){
+          return $query->row()->id;
+        }
+        return 0;
+    }
+    public function cekHarian($parameter=array()){
+        $this->db->select('id');
+        $this->db->from('t_lkd_harian t');
+        $this->db->where($parameter);
+        $query = $this->db->get();
+        if($query->num_rows()>0){
+          return $query->row()->id;
+        }
+        return 0;
+    }
+    public function cekKegiatan($date,$id_harian){
+      $query = $this->db->query("select * from t_detail_lkd t where t.id_lkd_harian = $id_harian AND ('$date' BETWEEN t.jam_awal AND t.jam_akhir) and '$date' != t.jam_awal AND '$date' != t.jam_akhir");
+      return $query->num_rows();
+    }
+
+    public function insertPengajuan($arraydata = array() )
+ {
+   $tanggal = $arraydata['tanggal'];
+   $id_dosen = $arraydata['id_dosen'];
+   $this->db->query("INSERT INTO t_pengajuan_lkd(tanggal_awal,tanggal_akhir,id_dosen) VALUES ((SELECT DATE_ADD('$tanggal', INTERVAL - WEEKDAY('$tanggal') DAY)),(SELECT DATE_ADD('$tanggal', INTERVAL - WEEKDAY('$tanggal')+5 DAY)),$id_dosen)");
+   $last_recore = $this->db->insert_id();
+   return $last_recore;
+ }
+ public function updatePengajuan($parameterfilter=array(), $arraydata=array() )
+   {
+       $this->db->where($parameterfilter);
+       $this->db->update('t_pengajuan_lkd', $arraydata);
+       return $this->db->affected_rows();
+   }
+   public function deletePengajuan($parameter=array())
+   {
+       $this->db->delete('t_pengajuan_lkd', $parameter );
+       return $this->db->affected_rows();
+   }
+   public function getPengajuan($parameterfilter=array()){
+     return $this->db->get_where('t_pengajuan_lkd', $parameterfilter);
+   }
+
+   public function insertHarian($arraydata = array() )
+{
+  $this->db->insert('t_lkd_harian', $arraydata);
+  $last_recore = $this->db->insert_id();
+  return $last_recore;
+}
+public function updateHarian($parameterfilter=array(), $arraydata=array() )
+  {
+      $this->db->where($parameterfilter);
+      $this->db->update('t_lkd_harian', $arraydata);
+      return $this->db->affected_rows();
+  }
+  public function deleteHarian($parameter=array())
+  {
+      $this->db->delete('t_lkd_harian', $parameter );
+      return $this->db->affected_rows();
+  }
+  public function getHarian($parameterfilter=array()){
+    return $this->db->get_where('t_lkd_harian', $parameterfilter);
+  }
+
+  public function insertDetail($arraydata = array() )
+{
+ $this->db->insert('t_detail_lkd', $arraydata);
+ $last_recore = $this->db->insert_id();
+ return $last_recore;
+}
+public function updateDetail($parameterfilter=array(), $arraydata=array() )
+ {
+     $this->db->where($parameterfilter);
+     $this->db->update('t_detail_lkd', $arraydata);
+     return $this->db->affected_rows();
+ }
+ public function deleteDetail($parameter=array())
+ {
+     $this->db->delete('t_detail_lkd', $parameter );
+     return $this->db->affected_rows();
+ }
+ public function getDetail($parameterfilter=array()){
+   return $this->db->get_where('t_detail_lkd', $parameterfilter);
+ }
+
     function jsonKategori() {
         $this->datatables->select('kt.id, kt.nama, kt.alias');
         $this->datatables->from($this->tablekategori.' kt');

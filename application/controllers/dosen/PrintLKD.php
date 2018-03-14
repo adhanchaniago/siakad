@@ -9,7 +9,7 @@ class PrintLKD extends CI_Controller {
 		}
 		public function index()
 		{
-			$cek = $this->session->userdata('username');
+			$cek = $this->session->userdata('status');
 			if ($cek == 'dosen'){
 				$pdfname = 'scheduling_'.date('YmdHis').".pdf";
 
