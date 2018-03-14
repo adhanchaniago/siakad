@@ -105,8 +105,8 @@ class LKD extends CI_Model {
         }
         return 0;
     }
-    public function cekKegiatan($date,$id_harian){
-      $query = $this->db->query("select * from t_detail_lkd t where t.id_lkd_harian = $id_harian AND ('$date' BETWEEN t.jam_awal AND t.jam_akhir) and '$date' != t.jam_awal AND '$date' != t.jam_akhir");
+    public function cekKegiatan($jam_awal,$jam_akhir,$id_harian){
+      $query = $this->db->query("select * from t_detail_lkd t where t.id_lkd_harian = $id_harian AND ('$jam_awal' BETWEEN t.jam_awal AND t.jam_akhir OR '$jam_akhir' BETWEEN t.jam_awal AND t.jam_akhir) and '$jam_akhir' != t.jam_awal AND '$jam_awal' != t.jam_akhir");
       return $query->num_rows();
     }
 

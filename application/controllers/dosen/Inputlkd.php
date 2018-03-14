@@ -70,7 +70,7 @@ class Inputlkd extends CI_Controller {
 								return;
 							}
 						}
-						if($this->LKD->cekKegiatan($waktu_awal[$i],$id_harian)!=0 || $this->LKD->cekKegiatan($waktu_akhir[$i],$id_harian)!=0){
+						if($this->LKD->cekKegiatan($waktu_awal[$i],$waktu_akhir[$i],$id_harian)!=0){
 							echo json_encode(array('status'=>'gagal','message'=>"Periksa waktu ".($i+1).", waktu beririsan dengan kegiatan yang sudah ada!"));
 							$cek = false;
 
