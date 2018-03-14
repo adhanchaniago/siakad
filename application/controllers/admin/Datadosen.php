@@ -12,6 +12,7 @@ class Datadosen extends CI_Controller {
 			$data['unit_kerja'] = $this->Dosen->getUnitKerja();
 			$data['tipe'] = $this->Dosen->getTipe();
 			$data['jabatan'] = $this->Dosen->getJabatan();
+			$data['fakultas'] = $this->Dosen->getFakultas();
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datadosen_v',$data);
 		$this->load->view('footer_v');
@@ -30,9 +31,11 @@ class Datadosen extends CI_Controller {
 	function getDosen(){
 		$this->load->model(array('Dosen'));
 		$id = $_POST['id'];
-		$dosen = $this->Dosen->get(array('id'=>$id));
-		echo json_encode($dosen->row());
+		$pegawai = $this->Dosen->getPegawai(array('id'=>$id));
 
+		$dosen = $this->Dosen->get(array('id_pegawai'=>$id));
+
+		echo json_encode(array_merge($pegawai->row_array(),$dosen->row_array()));
 	}
 	function insert(){
 		$this->load->model(array('Dosen'));
@@ -54,23 +57,31 @@ class Datadosen extends CI_Controller {
 		else
 			$unit_kerja = $this->input->post('unit_kerja');
 
+		if($this->input->post('fakultas')=='')
+			$fakultas = null;
+		else
+			$fakultas = $this->input->post('fakultas');
 
-
-		$data = array(
+		$data_pegawai = array(
 			'nama' => $this->input->post('nama'),
 			'nip' => $this->input->post('nip'),
+		);
+		$data_dosen = array(
 			'id_tipe' => $status,
 			'id_jabatan' => $jabatan,
 			'id_unit_kerja' => $unit_kerja,
+			'id_fakultas' => $fakultas
 		);
-		if(trim($data['nama'])=='' || trim($data['nip'])==''){
+		if(trim($data_pegawai['nama'])=='' || trim($data_pegawai['nip'])==''){
 			echo json_encode(array('status'=>'gagal','message'=>'Data tidak boleh kosong!'));
 		}
-		else if(!is_numeric($data['nip'])){
+		else if(!is_numeric($data_pegawai['nip'])){
 			echo json_encode(array('status'=>'gagal','message'=>'NIP salah!'));
 		}
 		else{
-			$cek = $this->Dosen->insert($data);
+			$id = $this->Dosen->insertPegawai($data_pegawai);
+			$data_dosen['id_pegawai'] = $id;
+			$this->Dosen->insert($data_dosen);
 			echo json_encode(array('status'=>'berhasil','message'=>'Input berhasil!'));
 		}
 	}
@@ -95,20 +106,28 @@ class Datadosen extends CI_Controller {
 		else
 			$unit_kerja = $this->input->post('unit_kerja');
 
+		if($this->input->post('fakultas')=='')
+			$fakultas = null;
+		else
+			$fakultas = $this->input->post('fakultas');
 
 
-		$data = array(
-			'nama' => $this->input->post('nama'),
-			'nip' => $this->input->post('nip'),
-			'id_tipe' => $status,
-			'id_jabatan' => $jabatan,
-			'id_unit_kerja' => $unit_kerja,
-		);
-		if(!is_numeric($data['nip'])){
+			$data_pegawai = array(
+				'nama' => $this->input->post('nama'),
+				'nip' => $this->input->post('nip'),
+			);
+			$data_dosen = array(
+				'id_tipe' => $status,
+				'id_jabatan' => $jabatan,
+				'id_unit_kerja' => $unit_kerja,
+				'id_fakultas' => $fakultas
+			);
+		if(!is_numeric($data_pegawai['nip'])){
 			echo json_encode(array('status'=>'gagal','message'=>'NIP salah!'));
 		}
 		else{
-			$cek = $this->Dosen->update(array('id'=>$id),$data);
+			$cek = $this->Dosen->updatePegawai(array('id'=>$id),$data_pegawai);
+			$cek = $this->Dosen->update(array('id_pegawai'=>$id),$data_dosen);
 			echo json_encode(array('status'=>'berhasil','message'=>'Update berhasil!'));
 		}
 	}

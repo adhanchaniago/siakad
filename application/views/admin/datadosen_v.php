@@ -58,7 +58,7 @@
                           </div>
                           <div class="form-group">
                             <label for="nohp">Status:</label>
-                            <select name="status" type="text" class="form-control">
+                            <select name="status" class="form-control">
                               <option value="">- Pilih Status -</option>
                               <?php
                                 foreach ($tipe->result() as $row) {
@@ -69,7 +69,7 @@
                           </div>
                           <div class="form-group">
                             <label for="nohp">Jabatan Fungsional :</label>
-                            <select name="jabatan" type="text" class="form-control">
+                            <select name="jabatan" class="form-control">
                               <option value="">- Pilih Jabatan Fungsional -</option>
                               <?php
                                 foreach ($jabatan->result() as $row) {
@@ -81,7 +81,7 @@
                           </div>
                           <div class="form-group">
                             <label for="nohp">Unit Kerja :</label>
-                            <select name="unit_kerja" type="text" class="form-control">
+                            <select name="unit_kerja" class="form-control">
                               <option value="">- Pilih Unit Kerja -</option>
                               <?php
                                 foreach ($unit_kerja->result() as $row) {
@@ -89,6 +89,19 @@
                                 }
                               ?>
                             </select>
+
+                          </div>
+                          <div class="form-group">
+                            <label for="nohp">Fakultas :</label>
+                            <select name="fakultas" class="form-control">
+                              <option value="">- Pilih Fakultas -</option>
+                              <?php
+                                foreach ($fakultas->result() as $row) {
+                                  echo "<option value='$row->id'>$row->nama</option>";
+                                }
+                              ?>
+                            </select>
+
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -119,7 +132,7 @@
                           </div>
                           <div class="form-group">
                             <label for="nohp">Status:</label>
-                            <select name="status" id="status" type="text" class="form-control">
+                            <select name="status" id="status" class="form-control">
                               <option value="">- Pilih Status -</option>
                               <?php
                                 foreach ($tipe->result() as $row) {
@@ -130,7 +143,7 @@
                           </div>
                           <div class="form-group">
                             <label for="nohp">Jabatan Fungsional :</label>
-                            <select name="jabatan" id="jabatan" type="text" class="form-control">
+                            <select name="jabatan" id="jabatan" class="form-control">
                               <option value="">- Pilih Jabatan Fungsional -</option>
                               <?php
                                 foreach ($jabatan->result() as $row) {
@@ -142,7 +155,7 @@
                           </div>
                           <div class="form-group">
                             <label for="nohp">Unit Kerja :</label>
-                            <select name="unit_kerja" id="unit_kerja" type="text" class="form-control">
+                            <select name="unit_kerja" id="unit_kerja" class="form-control">
                               <option value="">- Pilih Unit Kerja -</option>
                               <?php
                                 foreach ($unit_kerja->result() as $row) {
@@ -150,6 +163,18 @@
                                 }
                               ?>
                             </select>
+                          </div>
+                          <div class="form-group">
+                            <label for="nohp">Fakultas :</label>
+                            <select name="fakultas" id="fakultas" class="form-control">
+                              <option value="">- Pilih Fakultas -</option>
+                              <?php
+                                foreach ($fakultas->result() as $row) {
+                                  echo "<option value='$row->id'>$row->nama</option>";
+                                }
+                              ?>
+                            </select>
+
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -161,7 +186,7 @@
                 </div>
             </div>
 <script type="text/javascript">
-  var id_dosen;
+  var id_dosen, id_pegawai;
 
   $(document).ready(function() {
     $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
@@ -256,7 +281,7 @@
 
             var form = $('#formEdit')[0]; // You need to use standart javascript object here
             var formData = new FormData(form);
-            formData.append('id',id_dosen);
+            formData.append('id',id_pegawai);
             $.ajax({
               url: '<?php echo base_url("Admin/Datadosen/update");?>',
               data: formData,
@@ -288,12 +313,12 @@
 {
     $('#mytable').DataTable().ajax.reload(null,false); //reload datatable ajax
 }
-function edit(id){
-  id_dosen = id;
+function edit(id_p){
+  id_pegawai = id_p;
    $.ajax({
         url : "<?php echo site_url('Admin/Datadosen/getDosen')?>",
         type: "POST",
-        data: {'id':id},
+        data: {'id':id_pegawai},
         dataType: "JSON",
         success: function(data)
         {
@@ -302,6 +327,7 @@ function edit(id){
           $('#status').val(data.id_tipe);
           $('#jabatan').val(data.id_jabatan);
           $('#unit_kerja').val(data.id_unit_kerja);
+          $('#fakultas').val(data.id_fakultas);
           $('#myModalEdit').modal('show');
         },
             error: function (jqXHR, textStatus, errorThrown)

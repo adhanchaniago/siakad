@@ -49,10 +49,36 @@ class LKD extends CI_Model {
       return $this->db->get_where($this->tablekegiatan, $parameterfilter);
     }
 
-    /*
-    public function getJabatan(){
-      return $this->db->get('m_jabatan_dosen');
+
+    public function getJabatan($parameter=array()){
+      $this->db->select('*');
+      $this->db->from('m_jabatan_dosen');
+      $this->db->order_by('id','ASC');
+      if($parameter!=null)
+        $this->db->where($parameter);
+      return $this->db->get('');
     }
+    public function getConfig($id_jabatan){
+      $this->db->select('*');
+      $this->db->from('t_config_lkd');
+      $this->db->where('id_jabatan',$id_jabatan);
+      $this->db->order_by('id_kategori','ASC');
+      return $this->db->get();
+    }
+    public function getKategoriSorted(){
+      $this->db->select('*');
+      $this->db->from($this->tablekategori);
+      $this->db->order_by('id','ASC');
+      return $this->db->get('');
+    }
+    public function update($tablename,$parameterfilter=array(), $arraydata=array() )
+      {
+          $this->db->where($parameterfilter);
+          $this->db->update($tablename, $arraydata);
+          return $this->db->affected_rows();
+      }
+    
+    /*
     public function getUnitKerja(){
       return $this->db->get('m_unit_kerja');
     }

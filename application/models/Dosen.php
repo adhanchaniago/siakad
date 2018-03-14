@@ -1,32 +1,55 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Dosen extends CI_Model {
-  private $tablename;
+  private $tablepegawai;
   function __construct(){
       parent::__construct();
       // $this->db1 = $this->load->database('db1', TRUE);
-      $this->tablename = 'm_dosen';
+      $this->tablepegawai = 't_pegawai';
+      $this->tabledosen = 't_dosen';
     }
-  public function insert($arraydata = array() )
+  public function insertPegawai($arraydata = array() )
   {
-    $this->db->insert($this->tablename, $arraydata);
+    $this->db->insert($this->tablepegawai, $arraydata);
     $last_recore = $this->db->insert_id();
     return $last_recore;
   }
-  public function update($parameterfilter=array(), $arraydata=array() )
+  public function updatePegawai($parameterfilter=array(), $arraydata=array() )
     {
         $this->db->where($parameterfilter);
-        $this->db->update($this->tablename, $arraydata);
+        $this->db->update($this->tablepegawai, $arraydata);
         return $this->db->affected_rows();
     }
-    public function delete($parameter=array())
+    public function deletePegawai($parameter=array())
     {
-        $this->db->delete($this->tablename, $parameter );
+        $this->db->delete($this->tablepegawai, $parameter );
         return $this->db->affected_rows();
     }
-    public function get($parameterfilter=array()){
-      return $this->db->get_where($this->tablename, $parameterfilter);
+    public function getPegawai($parameterfilter=array()){
+      return $this->db->get_where($this->tablepegawai, $parameterfilter);
     }
+
+    public function insert($arraydata = array() )
+    {
+      $this->db->insert($this->tabledosen, $arraydata);
+      $last_recore = $this->db->insert_id();
+      return $last_recore;
+    }
+    public function update($parameterfilter=array(), $arraydata=array() )
+      {
+          $this->db->where($parameterfilter);
+          $this->db->update($this->tabledosen, $arraydata);
+          return $this->db->affected_rows();
+      }
+      public function delete($parameter=array())
+      {
+          $this->db->delete($this->tabledosen, $parameter );
+          return $this->db->affected_rows();
+      }
+      public function get($parameterfilter=array()){
+        return $this->db->get_where($this->tabledosen, $parameterfilter);
+      }
+
     public function getJabatan(){
       return $this->db->get('m_jabatan_dosen');
     }
@@ -36,11 +59,16 @@ class Dosen extends CI_Model {
     public function getTipe(){
       return $this->db->get('m_tipe_dosen');
     }
+    public function getFakultas(){
+      return $this->db->get('t_fakultas');
+    }
     function json() {
-        $this->datatables->select('d.id, d.nip,d.nama, d.kontak, t.nama as status');
-        $this->datatables->from($this->tablename.' d');
+        $this->datatables->select('p.id, d.id as id_dosen, p.nip,p.nama, p.no_telp as kontak, t.nama as status');
+        $this->datatables->from($this->tablepegawai.' p');
+        $this->datatables->join($this->tabledosen.' d',' p.id = d.id_pegawai');
         $this->datatables->join('m_tipe_dosen t', 'd.id_tipe = t.id','left');
-        $this->datatables->add_column('view', '<center><button class=\'btn btn-primary btn-xs\' title=\'Lihat Data\'><span class=\'fa fa-eye\'></span></button> <button class=\'btn btn-success btn-xs\' value=\'$1\' onclick=\'edit(this.value)\' title=\'Edit Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></button> <button class=\'btn btn-danger btn-xs\' value=\'$1\' onclick=\'hapus(this.value)\' title=\'Hapus Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-remove\'></span></button></center>', 'id');
+
+        $this->datatables->add_column('view', '<center><button class=\'btn btn-primary btn-xs\' title=\'Lihat Data\'><span class=\'fa fa-eye\'></span></button> <button class=\'btn btn-success btn-xs\' onclick=\'edit($1)\' title=\'Edit Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></button> <button class=\'btn btn-danger btn-xs\' value=\'$1\' onclick=\'hapus(this.value)\' title=\'Hapus Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-remove\'></span></button></center>', 'id');
         return $this->datatables->generate();
     }
 }

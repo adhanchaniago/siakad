@@ -29,86 +29,54 @@
                       <table class="table table-bordered" >
                       <thead>
                       <tr>
-                          <th width="5%">No</th>
-                          <th width="10%">Jabatan Fungsional</th>
-                          <th width="10%">Jam Hadir Minimal</th>
-                          <th width="10%">Pengajaran</th>
-                          <th width="10%">Pembimbingan</th>
-                          <th width="10%">Pengujian</th>
-                          <th width="10%">Penelitian dan Pengabdian</th>
-                          <th width="10%">Kegiatan Penunjang</th>
-                          <th width="10%">Jumlah</th>
-                          <th width="10%">Action</th>
+                          <th width="5%"><center>No</center></th>
+                          <?php
+                          echo '<th width="'. 90/(count($kategori)+3).'%"><center>Jabatan Fungsional</center></th>
+                          <th width="'. 90/(count($kategori)+3).'%"><center>Jam Hadir Minimal</center></th>';
+                          foreach($kategori as $row){
+                            echo "<th width='". 90/(count($kategori)+3)."%'><center>$row->nama</center></th>";
+                          }
+                            echo '<th width="'. 90/(count($kategori)+3).'%"><center>Jumlah</center></th>
+                            <th width="5%"><center>Action</center></th>';
+                           ?>
+
+
+
+
                       </tr>
                       </thead>
                       <tbody>
-                      <tr class="gradeX">
-                          <td>1</td>
-                          <td>Asisten Ahli</td>
-                          <td>21</td>
-                          <td>7.5</td>
-                          <td>7.5</td>
-                          <td>6</td>
-                          <td>15.5</td>
-                          <td>1</td>
-                          <td>37.5</td>
-                          <td>
-                            <center>
-                              <a class='btn btn-warning btn-xs' title='Edit Data' href='' data-toggle="modal" data-target="#modalEdit"><span class='glyphicon glyphicon-edit'></span></a>
-                              <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
-                            </center>
-                          </td>
-                      </tr>
-                      <tr class="gradeX">
-                          <td>2</td>
-                          <td>Lektor</td>
-                          <td>17</td>
-                          <td>7.5</td>
-                          <td>5.5</td>
-                          <td>4</td>
-                          <td>19.5</td>
-                          <td>1</td>
-                          <td>37.5</td>
-                          <td>
-                            <center>
-                              <a class='btn btn-warning btn-xs' title='Edit Data' href='' data-toggle="modal" data-target="#modalEdit1"><span class='glyphicon glyphicon-edit'></span></a>
-                              <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
-                            </center>
-                          </td>
-                      </tr>
-                      <tr class="gradeX">
-                          <td>3</td>
-                          <td>Lektor Kepala</td>
-                          <td>13</td>
-                          <td>7.5</td>
-                          <td>2.5</td>
-                          <td>3</td>
-                          <td>23.5</td>
-                          <td>1</td>
-                          <td>37.5</td>
-                          <td>
-                            <center>
-                              <a class='btn btn-warning btn-xs' title='Edit Data' href='' data-toggle="modal" data-target="#modalEdit1"><span class='glyphicon glyphicon-edit'></span></a>
-                              <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
-                            </center>
-                          </td>
-                      </tr>
-                      <tr class="gradeX">
-                          <td>4</td>
-                          <td>Guru Besar</td>
-                          <td>9</td>
-                          <td>7.5</td>
-                          <td>1</td>
-                          <td>0.5</td>
-                          <td>27.5</td>
-                          <td>1</td>
-                          <td>37.5</td>
-                          <td>
-                            <center>
-                              <a class='btn btn-warning btn-xs' title='Edit Data' href='' data-toggle="modal" data-target="#modalEdit1"><span class='glyphicon glyphicon-edit'></span></a>
-                              <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
-                            </center>
-                          </td>
+
+                        <?php
+                        $i = 1;
+                          foreach ($jabatan as $row) {
+                            echo "<tr class='gradeX'>
+                                <td><center>". $i++ ."</center></td>
+                                <td>$row->nama</td>
+                                <td><center>$row->minimal_jam</center></td>
+                                ";
+                                $jumlah=0;
+                                foreach($kategori as $row_j){
+                                  if(!isset($row->jam[$row_j->id]))
+                                    echo "<td><center>0</center></td>";
+                                  else{
+                                    $nilai = $row->jam[$row_j->id];
+                                    echo "<td><center>$nilai</center></td>";
+                                    $jumlah += $nilai;
+                                  }
+                                }
+                            echo "
+                                <td><center>$jumlah</center></td>
+                                <td>
+                                  <center>
+                                    <button class='btn btn-warning btn-xs' title='Edit Data'><span class='glyphicon glyphicon-edit' onclick='edit($row->id)'></span></button>
+                                    <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
+                                  </center>
+                                </td>
+                            </tr>";
+                          }
+                         ?>
+
                       </tbody>
                       </table>
                     </div>
@@ -123,7 +91,7 @@
                             <small>Pastikan data yang diisi telah sesuai</small>
                         </div>
                         <div class="modal-body">
-                          <form class="form-horizontal">
+                          <form id="formEdit" class="form-horizontal">
                             <table class="table" style="margin-top:-10px;">
                               <thead>
                                 <tr>
@@ -136,41 +104,90 @@
                                 <tr>
                                   <td>Jam Hadir Minimal<span style="color:red;">*</span></td>
                                   <td>:</td>
-                                  <td><input type="number" min="0" max="20" class="form-control" required></td>
+                                  <td><input id="nilai0" name="nilai[]" step="0.1" type="number" min="0" class="form-control" required></td>
                                 </tr>
-                                <tr>
-                                  <td>Pengajaran<span style="color:red;">*</span></td>
-                                  <td>:</td>
-                                  <td><input type="number" min="0" max="20" class="form-control" required></td>
-                                </tr>
-                                <tr>
-                                  <td>Pembimbingan<span style="color:red;">*</span></td>
-                                  <td>:</td>
-                                  <td><input type="number" min="0" max="20" class="form-control" required></td>
-                                </tr>
-                                <tr>
-                                  <td>Pengujian<span style="color:red;">*</span></td>
-                                  <td>:</td>
-                                  <td><input type="number" min="0" max="20" class="form-control" required></td>
-                                </tr>
-                                <tr>
-                                  <td>Penelitian dan Pengabdian<span style="color:red;">*</span></td>
-                                  <td>:</td>
-                                  <td><input type="number" min="0" max="20" class="form-control" required></td>
-                                </tr>
-                                <tr>
-                                  <td>Kegiatan Penunjang<span style="color:red;">*</span></td>
-                                  <td>:</td>
-                                  <td><input type="number" min="0" max="20" class="form-control" required></td>
-                                </tr>
+                                <?php
+                                  foreach ($kategori as $row) {
+                                    echo "<tr>
+                                      <td>$row->nama<span style='color:red;'>*</span></td>
+                                      <td>:</td>
+                                      <td><input id='nilai$row->id' name='nilai[]' step='0.1' type='number' min='0' class='form-control' required></td>
+                                    </tr>";
+                                  }
+                                 ?>
+
                               </tbody>
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
+                            <button type="button" class="btn btn-white" onclick="$('#modalEdit').toggle()">Batal</button>
                             <button type="submit" class="btn btn-primary">Tambah</button>
                         </div>
                       </form>
                     </div>
                 </div>
             </div>
+<script>
+var id_jabatan;
+  function edit(id){
+    id_jabatan = id;
+    $.ajax({
+         url : "<?php echo site_url('admin/Konfigwaktu/getJam')?>",
+         type: "POST",
+         data: {'id_jabatan':id_jabatan},
+         dataType: "JSON",
+         success: function(data)
+         {
+           $('#nilai0').val(data[0]);
+           <?php
+             foreach ($kategori as $row) {
+
+              echo "$('#nilai$row->id').val(data[$row->id]);";
+
+             }
+            ?>
+         },
+             error: function (jqXHR, textStatus, errorThrown)
+             {
+               console.log(jqXHR);
+         console.log(textStatus);
+         console.log(errorThrown);
+             }
+       });
+    $('#modalEdit').show();
+  }
+  $('#formEdit').submit(function(){
+    var newArray = [];
+    $( "input[name='nilai[]']" ).each(function() {
+        newArray.push($( this ).val());
+    });
+    var formData = new FormData;
+    for(var i=0; i<newArray.length;i++){
+
+      formData.append('nilai[]',newArray[i]);
+    }
+    formData.append('id_jabatan',id_jabatan);
+    $.ajax({
+      url: '<?php echo base_url("admin/Konfigwaktu/edit");?>',
+      data: formData,
+      type: 'POST',
+      // THIS MUST BE DONE FOR FILE UPLOADING
+      contentType: false,
+      processData: false,
+      dataType: "JSON",
+      success: function(data){
+        alert(data.message);
+        location.reload();
+      },
+    error: function(jqXHR, textStatus, errorThrown)
+    {
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    }
+          });
+          $('#modalEdit').toggle();
+
+
+  });
+</script>
