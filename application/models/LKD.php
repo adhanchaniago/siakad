@@ -132,6 +132,11 @@ class LKD extends CI_Model {
    public function getPengajuan($parameterfilter=array()){
      return $this->db->get_where('t_pengajuan_lkd', $parameterfilter);
    }
+   public function getPengajuanMingguan($id_dosen){
+     return $this->db->query("select id, DATE_FORMAT(tanggal_awal, '%d/%m/%Y') as tanggal_awal, DATE_FORMAT(tanggal_akhir, '%d/%m/%Y') as tanggal_akhir from t_pengajuan_lkd where id_dosen=$id_dosen ORDER BY tanggal_akhir DESC LIMIT 4");
+
+   }
+
 
    public function insertHarian($arraydata = array() )
 {

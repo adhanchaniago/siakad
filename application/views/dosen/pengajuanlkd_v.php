@@ -12,11 +12,7 @@
                         </li>
                     </ol>
                 </div>
-                <!-- <div class="col-sm-8">
-                    <div class="title-action">
-                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#myModal4"><i class="fa fa-plus"></i> Tambah Data</a>
-                    </div>
-                </div> -->
+
             </div>
 
             <div class="wrapper wrapper-content" id="item">
@@ -30,11 +26,11 @@
                           <label for="semester">Filter Mingguan</label>
                           <div class="form-group">
                             <select class="form-control">
-                              <option selected>05/03/18 - 10/03/18</option>
-                              <option value="1">12/03/18 - 17/03/18</option>
-                              <option value="1">19/03/18 - 24/03/18</option>
-                              <option value="1">26/03/18 - 31/03/18</option>
-                              <option value="1">02/04/18 - 07/04/18</option>
+                              <?php
+                              foreach ($pengajuan->result() as $row){
+                                  echo "<option value='$row->id'>$row->tanggal_awal - $row->tanggal_akhir</option>";
+                              } ?>
+
                             </select>
 
                           </div>

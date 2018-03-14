@@ -79,7 +79,9 @@ class Inputlkd extends CI_Controller {
 
 					}
 					if($cek==true){
+
 						for ($i = 0; $i < count($kegiatan); $i++) {
+							if($kegiatan[$i] !='' || $waktu_awal[$i] != '' || $waktu_akhir[$i]!=''){
 							$data = array(
 								'jam_awal'=>$waktu_awal[$i],
 								'jam_akhir'=>$waktu_akhir[$i],
@@ -89,7 +91,7 @@ class Inputlkd extends CI_Controller {
 							$this->LKD->insertDetail($data);
 						}
 						echo json_encode(array('status'=>'berhasil','message'=>'Insert berhasil'));
-
+					}
 				}
 
 			}
