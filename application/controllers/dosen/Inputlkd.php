@@ -37,7 +37,6 @@ class Inputlkd extends CI_Controller {
 
 				$id_harian = $this->LKD->cekHarian(array('tanggal'=>$tanggal,'id_pengajuan'=>$id_pengajuan));
 				if($id_harian==0){
-					echo "insert hari dulu";
 					$array = array(
 						'tanggal' => $tanggal,
 						'id_pengajuan' => $id_pengajuan
@@ -90,8 +89,9 @@ class Inputlkd extends CI_Controller {
 							);
 							$this->LKD->insertDetail($data);
 						}
-						echo json_encode(array('status'=>'berhasil','message'=>'Insert berhasil'));
+
 					}
+					echo json_encode(array('status'=>'berhasil','message'=>'Insert berhasil'));
 				}
 
 			}

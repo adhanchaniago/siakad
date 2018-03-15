@@ -12,11 +12,7 @@
                         </li>
                     </ol>
                 </div>
-                <!-- <div class="col-sm-8">
-                    <div class="title-action">
-                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#myModal4"><i class="fa fa-plus"></i> Tambah Data</a>
-                    </div>
-                </div> -->
+
             </div>
 
             <div class="wrapper wrapper-content" id="item">
@@ -71,71 +67,3 @@
               </div>
             </div> <br >
           </div>
-
-    <script type="text/javascript">
-
-    $('#clockpicker1').clockpicker({
-      minutestep:60
-    });
-    $('#clockpicker2').clockpicker({
-      minutestep:60
-    });
-    // $('#kegiatan2').change(function(){
-    //   kegiatan = $('#kegiatan2').val();
-    //   if(kegiatan=='1'){
-    //     $('#nama_kegiatan2').addClass('hidden');
-    //   }
-    //   else{
-    //     $('#nama_kegiatan2').removeClass('hidden');
-    //   }
-    // });
-    // $('#kegiatan3').change(function(){
-    //   kegiatan = $('#kegiatan3').val();
-    //   if(kegiatan=='1'){
-    //     $('#nama_kegiatan3').addClass('hidden');
-    //   }
-    //   else{
-    //     $('#nama_kegiatan3').removeClass('hidden');
-    //   }
-    // });
-    // $('#kegiatan4').change(function(){
-    //   kegiatan = $('#kegiatan4').val();
-    //   if(kegiatan=='1'){
-    //     $('#nama_kegiatan4').addClass('hidden');
-    //   }
-    //   else{
-    //     $('#nama_kegiatan4').removeClass('hidden');
-    //   }
-    // });
-    var kegiatan_num=1;
-    function addActivity(){
-    kegiatan_num++;
-var html = '<div class="form-group">'+
-'                        <label class="col-lg-2 control-label">Kegiatan '+kegiatan_num+':</label>'+
-'                          <div class="col-lg-6"><select id="kegiatan1" type="text" class="form-control">'+
-'                            <option value="1" selected disabled>-Pilih Kegiatan-</option>'+
-'                            <option value="1">Mengajar</option>'+
-'                            <option value="1">Membimbing</option>'+
-'                            <option value="1">Menguji</option>'+
-'                            <option value="1">Tunjang</option>'+
-'                          </select></div>'+
-'                        </div>'+
-
-'                        <div class="form-group">'+
-'                          <label class="col-lg-2 control-label">Waktu '+kegiatan_num+':</label>'+
-'                            <div class="col-lg-6 input-group">'+
-'                              <div class="col-lg-12">'+
-'                              <input type="text" class="form-control clockpicker" data-autoclose="true">'+
-'                            </div>'+
-'                              <span class="input-group-addon">s/d</span>'+
-'                              <div class="col-lg-12">'+
-'                                <input type="text" class="form-control clockpicker" data-autoclose="true">'+
-'                              </div>'+
-'                              </div>'+
-'                          </div>'+
-'                          <hr>';
-
-
-      $('#activities').append(html);
-    }
-    </script>

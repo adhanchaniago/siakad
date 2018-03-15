@@ -180,6 +180,19 @@ public function updateDetail($parameterfilter=array(), $arraydata=array() )
    return $this->db->get_where('t_detail_lkd', $parameterfilter);
  }
 
+function getDetailLKD($id_pengajuan){
+
+
+
+  $this->db->select('td.*, ROUND(TIME_TO_SEC(TIMEDIFF(td.jam_akhir,td.jam_awal))/3600,1) as selisih,tk.nama as kegiatan , tk.id_kategori as id_kategori, DATE_FORMAT(th.tanggal, "%W %e %M %Y") as tanggal, th.tanggal as tgl');
+  $this->db->from('t_detail_lkd td');
+  $this->db->join('t_lkd_harian th','td.id_lkd_harian = th.id');
+  $this->db->join('t_kegiatan_lkd tk','td.id_kegiatan = tk.id');
+  $this->db->where('th.id_pengajuan',$id_pengajuan);
+  $this->db->order_by('tgl, jam_awal','ASC');
+  return $this->db->get();
+}
+
     function jsonKategori() {
         $this->datatables->select('kt.id, kt.nama, kt.alias');
         $this->datatables->from($this->tablekategori.' kt');
