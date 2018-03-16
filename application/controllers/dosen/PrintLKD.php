@@ -12,18 +12,30 @@ class PrintLKD extends CI_Controller {
 			$cek = $this->session->userdata('status');
 			if ($cek == 'dosen'){
 				$pdfname = 'scheduling_'.date('YmdHis').".pdf";
-
-	$html = '
+				$this->load->model(array('LKD','Dosen'));
+$id = $_GET['q'];
+$pengajuan = $this->LKD->getPengajuanEncrypted($id);
+$id_pengajuan = $pengajuan->row()->id;
+$periode = $this->LKD->getPeriode(array('id'=>$pengajuan->row()->id_periode));
+$dosen = $this->Dosen->get(array('id'=>$pengajuan->row()->id_dosen));
+$dosen = $dosen->row();
+$pegawai = $this->Dosen->getPegawai(array('id'=>$dosen->id_pegawai));
+$pegawai = $pegawai->row();
+$jabatan = $this->Dosen->getJabatan(array('id'=>$dosen->id_jabatan));
+$unit_kerja = $this->Dosen->getUnitKerja(array('id'=>$dosen->id_unit_kerja));
+$jabatan = $jabatan->row();
+$unit_kerja = $unit_kerja->row();
+	$html = "
 
 	<h3><center>LEMBAR KERJA DOSEN (MANUAL)</center></h3>
 	<table>
 	<tr>
 	<td>Nama/NIP</td>
-	<td>: Surya Eka/121212</td>
+	<td>: $pegawai->nama / $pegawai->nip</td>
 	</tr>
 	<tr>
 	<td>Jabatan/Unit Kerja</td>
-	<td>: Lektor Kepala</td>
+	<td>: $jabatan->nama / $unit_kerja->nama</td>
 	</tr>
 	<tr>
 	<td>Bidang Ilmu</td>
@@ -38,92 +50,83 @@ class PrintLKD extends CI_Controller {
 	table.table1, table.table1 th,table.table1 td {
 	    border: 1px solid black;
 	}
-	</style>
-	<table class="table1" style="width:100%;margin-top:20px" >
+	</style>";
+	$kategori = $this->LKD->getKategoriSorted();
+	$data = $this->getData($id_pengajuan);
+// 	print_r($data);
+// foreach($kategori->result() as $row){
+// 	print_r($row);
+// }
+
+	$html.='<table class="table1" style="width:100%;margin-top:20px" >
 	                        <thead>
 	                          <tr>
 	                            <th style="width:5%;text-align:center">No</th>
 	                            <th style="width:12%;text-align:center">Hari/Tgl</th>
 	                            <th style="width:15%;text-align:center">Kegiatan</th>
-	                            <th style="width:12%;text-align:center">Waktu</th>
-	                            <th style="width:9%;text-align:center">Ajar</th>
-	                            <th style="width:9%;text-align:center">Bimbing</th>
-	                            <th style="width:9%;text-align:center">Uji</th>
-	                            <th style="width:9%;text-align:center">Litab</th>
-	                            <th style="width:9%;text-align:center">Tunjang</th>
-	                            <th style="width:9%;text-align:center">Jmlh</th>
-	                          </tr>
-	                        </thead>
-	                        <tbody style="text-align:center">
-	                          <tr>
-	                            <td rowspan="3">1</td>
-	                            <td rowspan="3">Senin, 20-01-2018</td>
+	                            <th style="width:12%;text-align:center">Waktu</th>';
+															$jumlah_k = $kategori->num_rows();
+															$i=1;
+															foreach($kategori->result() as $row){
+																$html .='<th style="width:'.(54/($jumlah_k+1)).'%;text-align:center">'.$row->alias.'</th>';
+															}
+															$html .='<th style="width:'.(54/($jumlah_k+1)).'%;text-align:center">Jmlh</th></tr>
+	 	                        </thead>
+	 	                        <tbody style="text-align:center">';
+														foreach ($data['tanggal'] as $key => $row) {
+															$rowspan = count($row);
+															$html.='<tr>';
+															for($j = 0; $j < $rowspan; $j++){
+																$td='';
+																$baris=0;
+																foreach($kategori->result() as $row_k){
+																	if($row[$j]['id_kategori'] == $row_k->id){
+																		$td.='<td><center>'.$row[$j]["total"].'</center></td>';
+																		$baris = $row[$j]["total"];
+																	}
+																	else{
+																		$td.='<td><center>-</center></td>';
+																	}
+																}
+																$td.='<td>'.$baris.'</td>';
+																if($j==0){
+																	$html.='<td rowspan="'.$rowspan.'">'.($i++).'</td>
+			                            <td rowspan="'.$rowspan.'">'.$key.'</td>
 
-	                                <td style="text-align:left">Menguji</td>
-	                                <td>10:00-12:30</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                                <td>2.5</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                                <td>-</td>
-
-
-	                              <tr>
-	                                <td style="text-align:left">Membaca Jurnal</td>
-	                                <td>15:30-16:30</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                                <td>1</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                              </tr>
-	                              <tr>
-	                                <td style="text-align:left">Membimbing</td>
-	                                <td>17:00-17:30</td>
-	                                <td>-</td>
-	                                <td>0.5</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                                <td>4</td>
-	                              </tr>
-	                          </tr>
-	                          <tr>
-	                            <td rowspan="2">2</td>
-	                            <td rowspan="2">Selasa, 21-01-2018</td>
-
-	                                <td style="text-align:left">Mengajar</td>
-	                                <td>08:00-10:30</td>
-	                                <td>2.5</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                                <td>-</td>
+			                                <td style="text-align:left">'.$row[$j]["kegiatan"].'</td>
+			                                <td>'.$row[$j]["jam_awal"].' - '.$row[$j]["jam_akhir"].'</td>'.$td;
+																}
+																else{
 
 
-	                              <tr>
-	                                <td style="text-align:left">Tunjang</td>
-	                                <td>15:30-16:30</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                                <td>-</td>
-	                                <td>1</td>
-	                                <td>3.5</td>
-	                              </tr>
-	                          </tr>
-	                          <tr>
-	                            <td colspan="4"><b>Jumlah</b></td>
-	                            <td>2.5</td>
-	                            <td>0.5</td>
-	                            <td>2.5</td>
-	                            <td>1</td>
-	                            <td>1</td>
-	                            <td>7.5</td>
-	                          </tr>
+			                                $html.='<tr><td style="text-align:left">'.$row[$j]["kegiatan"].'</td>
+			                                <td>'.$row[$j]["jam_awal"].' - '.$row[$j]["jam_akhir"].'</td>'.$td.'</tr>';
+																}
+															}
+															$html.='</tr>';
+														}
+														if(count($data['tanggal']) == 0){
+															$html = '<tr><td colspan="'.($kategori->num_rows()+5).'"><center><b>Data Kosong</b></center></td></tr>';
+														}
+														$html.='<tr><td colspan="4"><b>Jumlah</b></td>';
+														$nilai;$total = 0;
+														foreach ($kategori->result() as $row_k) {
+															if(!isset($data['jam'][$row_k->id]) || $data['jam'][$row_k->id] == null){
+																$nilai = 0;
+															}
+															else{
+																$nilai = $data['jam'][$row_k->id];
+															}
+															$total=$total+$nilai;
+															$html.="<td><center>$nilai</center></td>";
+														}
+														$dekan = $this->Dosen->getDekan(array('id_fakultas'=>$dosen->id_fakultas))->row();
+														$p_dekan = $this->Dosen->getPegawai(array('id'=>$dekan->id_pegawai))->row();
+														$fakultas = $this->Dosen->getFakultas(array('id'=>$dekan->id_fakultas))->row();
+														setlocale(LC_ALL, 'id_ID');
+														$date = strftime("%e %B %Y");
+														//$date = date("d F Y", time());
+	                         $html.='<td>'.$total.'</td>
 	                        </tbody>
 	                      </table>
 
@@ -131,15 +134,15 @@ class PrintLKD extends CI_Controller {
 	                      <tr>
 	                      	<td>Mengetahui/Mengesahkan</td>
 	                      	<td width="100%"></td>
-	                      	<td style="width:200px">Banjarmasin, 25 Januari 2018</td>
+	                      	<td style="width:200px">Banjarmasin, '.$date.'</td>
 	                      </tr>
 	                      <tr>
-	                      	<td>Dekan/Wakil Dekan ....</td>
+	                      	<td>Dekan</td>
 	                      	<td></td>
 	                      	<td>Dosen yang bersangkutan,</td>
 	                      </tr>
 	                      <tr>
-	                      	<td>Fakultas ....</td>
+	                      	<td>'.$fakultas->nama.'</td>
 	                      	<td></td>
 	                      	<td></td>
 	                      </tr>
@@ -149,7 +152,7 @@ class PrintLKD extends CI_Controller {
 	                      	<td></td>
 	                      </tr>
 	                      <tr>
-	                      	<td>...........................................</td>
+	                      	<td>'.$p_dekan->nama.'</td>
 	                      	<td></td>
 	                      	<td>Surya Eka</td>
 	                      </tr>
@@ -159,11 +162,53 @@ class PrintLKD extends CI_Controller {
 
 	$this->dompdf->render();
 	//$output = $this->dompdf->output();
-	$this->dompdf->stream("Webslesson", array("Attachment"=>0));
+	$this->dompdf->stream("Pengajuan LKD ".$periode->row()->tanggal_awal." - ".$periode->row()->tanggal_akhir, array("Attachment"=>0));
 
 			}else{
 				header("location:".base_url());
 			}
+		}
+
+		public function getData($id_pengajuan){
+			$this->load->model(array('LKD'));
+			$data = $this->LKD->getDetailLKD($id_pengajuan);
+			$json_tanggal = array();
+			$json_id = array();
+			$json_jam = array();
+			foreach ($data->result() as $row) {
+				# code...
+				if(!array_key_exists($row->tanggal,$json_tanggal)){
+					$json_tanggal[$row->tanggal] = array();
+				}
+				$newData = array(
+
+					'kegiatan' => $row->kegiatan,
+					'id_kategori' => (int)$row->id_kategori,
+					'jam_awal' => $row->jam_awal,
+					'jam_akhir' => $row->jam_akhir,
+					'total' => (float)$row->selisih,
+
+				);
+
+				array_push($json_tanggal[$row->tanggal], $newData);
+				if(!in_array(md5($row->id_lkd_harian), $json_id))
+				array_push($json_id, md5($row->id_lkd_harian));
+
+
+				if(!array_key_exists($row->id_kategori,$json_jam)){
+					$json_jam[$row->id_kategori] = 0;
+				}
+				$json_jam[$row->id_kategori] += $row->selisih;
+			}
+
+			$pengajuan = $this->LKD->getPengajuan(array('id'=>$id_pengajuan));
+			$aju='';
+			if($pengajuan->num_rows()>0){
+				$aju = $pengajuan->row_array();
+				$aju['id'] = md5($aju['id']);
+			}
+
+			return array('id'=>$json_id,'tanggal'=>$json_tanggal,'jam'=>$json_jam,'pengajuan'=>$aju);
 		}
 
 }

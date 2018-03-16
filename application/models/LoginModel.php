@@ -57,6 +57,23 @@ class LoginModel extends CI_Model {
             return 1;
           }
 
+          $cek_dekan = $this->cekDekan(array('p.id_akun' => $akun->id));
+          $cek = $cek_dekan->num_rows();
+
+          if($cek>0){
+
+            $dekan = $cek_dekan->row();
+            $sess['status'] = 'dekan';
+            $sess['data'] = array();
+            $sess['data']['id'] = $dekan->id_dekan;
+            $sess['data']['id_pegawai'] = $dekan->id;
+            $sess['data']['nama'] = $dekan->nama;
+            $sess['data']['nip'] = $dekan->nip;
+            $sess['data']['id_fakultas'] = $dekan->id_fakultas;
+            $this->session->set_userdata($sess);
+            return 1;
+          }
+
 
 
           $cek_dosen = $this->cekDosen(array('p.id_akun' => $akun->id));
@@ -95,6 +112,15 @@ class LoginModel extends CI_Model {
       $this->db->where($parameter);
       return $this->db->get();
     }
+
+    private function cekDekan($parameter = array()){
+      $this->db->select('p.id,d.id as id_dekan,d.id_fakultas as id_fakultas,p.nip,p.nama');
+      $this->db->from($this->tablepegawai.' p');
+      $this->db->join('t_dekan d','p.id = d.id_pegawai');
+      $this->db->where($parameter);
+      return $this->db->get();
+    }
+
     private function cekAdmin($parameter = array()){
       $this->db->select('p.id,a.id as id_admin,p.nip,p.nama');
       $this->db->from($this->tablepegawai.' p');

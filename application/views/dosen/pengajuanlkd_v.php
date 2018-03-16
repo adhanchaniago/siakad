@@ -73,7 +73,7 @@
                 <br >
                 <center>
                   <button type="button" id="ajukan" class="btn btn-w-m btn-primary" onclick="pengajuan()"><i class="fa fa-send"></i> Ajukan ACC</button>
-                  <a href="<?php echo base_url()."dosen/printlkd" ?>" type="button" target="_blank" class="btn btn-w-m btn-success" ><i class="fa fa-print"></i> Export Data</a>
+
                 </center>
               </form>
               </div>
@@ -83,6 +83,7 @@
 <script>
 var arrJam=[];
 var arrNilai=[];
+var status, url_print;
 <?php
 
 $a = 0;
@@ -95,9 +96,35 @@ foreach ($kategori as $row){
 var id_pengajuan=$('#mingguan').val();
 getData();
   function pengajuan(){
-    $('#ajukan').removeClass('btn-primary');
-    $('#ajukan').addClass('btn-warning');
-    $('#ajukan').html('<i class="fa fa-clock-o"></i> Menunggu ACC');
+      if(status == "-1"){
+       $.ajax({
+            url : "<?php echo site_url('dosen/Pengajuanlkd/pengajuan')?>",
+            type: "POST",
+            data: {'id_pengajuan':id_pengajuan},
+            dataType: "JSON",
+            success: function(data)
+            {
+              alert(data.message);
+              if(data.status=='berhasil'){
+                $('#ajukan').removeClass('btn-primary');
+                $('#ajukan').removeClass('btn-success');
+                $('#ajukan').addClass('btn-warning');
+                $('#ajukan').html('<i class="fa fa-clock-o"></i> Menunggu ACC');
+                status = "0";
+              }
+            },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                  console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+                }
+          });
+        }
+        else if(status == 1){
+          window.open("<?php echo base_url().'dosen/PrintLKD?q='?>"+url_print, '_blank');
+
+        }
   }
   $('#mingguan').change(function(){
     id_pengajuan=$(this).val();
@@ -145,8 +172,12 @@ if(j==0){
 '            <td rowspan="'+rowspan+'" style="text-align:center;vertical-align:middle;">'+key+'</td>'+
 ''+
 '                <td>'+data.tanggal[key][j].kegiatan+'</td>'+
-'                <td>'+data.tanggal[key][j].jam_awal+'-'+data.tanggal[key][j].jam_akhir+'</td>'+td+
-'                <td rowspan="'+rowspan+'" align="center" style="vertical-align:middle;"><a href="<?php echo base_url()."dosen/pengajuanlkd/edit?q="?>'+data.id[i-2]+'" class="btn btn-xs btn-primary" type="button" name="button"> <i class="fa fa-edit"></i> edit</a></td>';
+'                <td>'+data.tanggal[key][j].jam_awal+'-'+data.tanggal[key][j].jam_akhir+'</td>'+td;
+if(data.pengajuan.status_pengajuan == '-1')
+html+='                <td rowspan="'+rowspan+'" align="center" style="vertical-align:middle;"><a href="<?php echo base_url()."dosen/pengajuanlkd/edit?q="?>'+data.id[i-2]+'" target="_blank" class="btn btn-xs btn-primary" type="button" name="button"> <i class="fa fa-edit"></i> edit</a></td>';
+else
+html+='                <td rowspan="'+rowspan+'" align="center" style="vertical-align:middle;"><button type="button" class="btn btn-xs btn-primary" type="button" name="button" disabled> <i class="fa fa-edit"></i> edit</a></td>';
+
 }
 else{
 html+='              <tr>'+
@@ -182,13 +213,28 @@ html+='          </tr>';
           html+='<td><center><b style="color:'+color+'">'+nilai+' ('+arrNilai[i]+')<b><center></td>';
         }
 
-
-
           html+='<td><center><b>'+total+'</b><center></td><td></td></tr>';
-
-
-
         $('#body').html(html);
+        if(data.pengajuan.status_pengajuan == '-1'){
+          $('#ajukan').removeClass('btn-warning');
+          $('#ajukan').removeClass('btn-success');
+          $('#ajukan').addClass('btn-primary');
+          $('#ajukan').html('<i class="fa fa-send"></i> Ajukan ACC');
+        }
+        else if(data.pengajuan.status_pengajuan == '0'){
+          $('#ajukan').removeClass('btn-primary');
+          $('#ajukan').removeClass('btn-success');
+          $('#ajukan').addClass('btn-warning');
+          $('#ajukan').html('<i class="fa fa-clock-o"></i> Menunggu ACC');
+        }
+        else{
+          $('#ajukan').removeClass('btn-primary');
+          $('#ajukan').removeClass('btn-warning');
+          $('#ajukan').addClass('btn-success');
+          $('#ajukan').html('<i class="fa fa-print"></i> Export Data');
+        }
+        status = data.pengajuan.status_pengajuan;
+        url_print = data.pengajuan.id;
       },
     error: function(jqXHR, textStatus, errorThrown)
     {

@@ -22,21 +22,27 @@ class Inputlkd extends CI_Controller {
 
 			$hari_ini = date('Y-m-d');
 			$tanggal = date('Y-m-d',strtotime($_POST['tanggal']));
+
 			if($tanggal<=$hari_ini){
 				$this->load->model(array('LKD'));
 				$id_dosen = $_SESSION['data']['id'];
 				$id_pengajuan = $this->LKD->cekPengajuan($tanggal,$id_dosen);
+
+
 				if($id_pengajuan==0){
-					echo "insert minggu dulu";
+					$id_periode = $this->LKD->insertPeriode($tanggal);
 					$array = array(
-						'tanggal' => $tanggal,
-						'id_dosen' => $id_dosen
+						'id_dosen' => $id_dosen,
+						'id_periode'=>$id_periode,
 					);
 					$id_pengajuan = $this->LKD->insertPengajuan($array);
 				}
 
+
 				$id_harian = $this->LKD->cekHarian(array('tanggal'=>$tanggal,'id_pengajuan'=>$id_pengajuan));
+				
 				if($id_harian==0){
+
 					$array = array(
 						'tanggal' => $tanggal,
 						'id_pengajuan' => $id_pengajuan
@@ -62,7 +68,7 @@ class Inputlkd extends CI_Controller {
 
 						}
 						for($j=$i+1 ; $j <count($kegiatan); $j++){
-							if(($waktu_awal[$i] > $waktu_awal[$j] && $waktu_awal[$i] < $waktu_akhir[$j]) || ($waktu_akhir[$i] > $waktu_awal[$j] && $waktu_akhir[$i] < $waktu_akhir[$j])){
+							if(($waktu_awal[$i] > $waktu_awal[$j] && $waktu_awal[$i] < $waktu_akhir[$j]) || ($waktu_akhir[$i] > $waktu_awal[$j] && $waktu_akhir[$i] < $waktu_akhir[$j]) || ($waktu_awal[$i] <= $waktu_awal[$j] && $waktu_akhir[$i] >= $waktu_akhir[$j])){
 								echo json_encode(array('status'=>'gagal','message'=>"Periksa waktu ".($i+1)." dan ".($j+1)." bertabrakan!"));
 								$cek = false;
 
@@ -78,26 +84,32 @@ class Inputlkd extends CI_Controller {
 
 					}
 					if($cek==true){
-
-						for ($i = 0; $i < count($kegiatan); $i++) {
-							if($kegiatan[$i] !='' || $waktu_awal[$i] != '' || $waktu_akhir[$i]!=''){
-							$data = array(
-								'jam_awal'=>$waktu_awal[$i],
-								'jam_akhir'=>$waktu_akhir[$i],
-								'id_kegiatan'=>$kegiatan[$i],
-								'id_lkd_harian'=>$id_harian
-							);
-							$this->LKD->insertDetail($data);
+						$pengajuan = $this->LKD->getPengajuan(array('id'=>$id_pengajuan));
+						if($pengajuan->row()->status_pengajuan != '-1'){
+							echo json_encode(array('status'=>'gagal','message'=>'Tidak bisa menambahkan LKD anda telah di-ACC!'));
 						}
+						else{
+							for ($i = 0; $i < count($kegiatan); $i++) {
+								if($kegiatan[$i] !='' || $waktu_awal[$i] != '' || $waktu_akhir[$i]!=''){
+								$data = array(
+									'jam_awal'=>$waktu_awal[$i],
+									'jam_akhir'=>$waktu_akhir[$i],
+									'id_kegiatan'=>$kegiatan[$i],
+									'id_lkd_harian'=>$id_harian
+								);
+								$this->LKD->insertDetail($data);
+							}
 
+						}
+						echo json_encode(array('status'=>'berhasil','message'=>'Insert berhasil'));
 					}
-					echo json_encode(array('status'=>'berhasil','message'=>'Insert berhasil'));
 				}
 
 			}
 			else{
 				echo json_encode(array('status'=>'gagal','message'=>'Tanggal tidak valid!'));
 			}
+
 		}
 		else{
 			echo json_encode(array('status'=>'gagal','message'=>'Tanggal tidak boleh kosong!'));
