@@ -173,9 +173,16 @@ html +='                          </select></div>'+
       // THIS MUST BE DONE FOR FILE UPLOADING
       contentType: false,
       processData: false,
-      //dataType: "JSON",
+      dataType: "JSON",
       success: function(data){
-        alert(data);
+        if (data.status=='berhasil') {
+          swal("Berhasil!", data.message, "success");
+        }else {
+          swal("Gagal!", data.message, "error");
+        }
+        if(data.status=='berhasil'){
+          location.reload();
+        }
       },
     error: function(jqXHR, textStatus, errorThrown)
     {

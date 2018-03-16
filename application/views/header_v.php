@@ -35,6 +35,9 @@
     <!-- choosen -->
     <link href="<?php echo base_url()."assets" ?>/css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
 
+    <!-- Sweet Alert -->
+    <link href="<?php echo base_url()."assets" ?>/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
     <link href="<?php echo base_url()."assets" ?>/css/animate.css" rel="stylesheet">
     <link href="<?php echo base_url()."assets" ?>/css/style.css" rel="stylesheet">
 
@@ -80,6 +83,9 @@
 
     <!-- ClockPicker script -->
     <script src="<?php echo base_url()."assets" ?>/dist/bootstrap-clockpicker.min.js"></script>
+
+    <!-- Sweet alert -->
+    <script src="<?php echo base_url()."assets" ?>/js/plugins/sweetalert/sweetalert.min.js"></script>
 
     <!-- Clock picker -->
     <!-- <script src="/js/plugins/clockpicker/clockpicker.js"></script> -->

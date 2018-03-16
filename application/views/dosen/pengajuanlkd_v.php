@@ -12,11 +12,7 @@
                         </li>
                     </ol>
                 </div>
-                <!-- <div class="col-sm-8">
-                    <div class="title-action">
-                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#myModal4"><i class="fa fa-plus"></i> Tambah Data</a>
-                    </div>
-                </div> -->
+
             </div>
 
             <div class="wrapper wrapper-content" id="item">
@@ -29,12 +25,18 @@
                         <div class=" col-md-3" style="margin-top:5px;margin-bottom:-10px;">
                           <label for="semester">Filter Mingguan</label>
                           <div class="form-group">
-                            <select class="form-control">
-                              <option selected>05/03/18 - 10/03/18</option>
-                              <option value="1">12/03/18 - 17/03/18</option>
-                              <option value="1">19/03/18 - 24/03/18</option>
-                              <option value="1">26/03/18 - 31/03/18</option>
-                              <option value="1">02/04/18 - 07/04/18</option>
+                            <select id="mingguan" class="form-control">
+                              <?php
+                              $i = 0;
+                              foreach ($pengajuan->result() as $row){
+                                $i++;
+                                  echo "<option value='$row->id'>$row->tanggal_awal - $row->tanggal_akhir</option>";
+                              }
+                              if($i==0){
+                                  echo "<option disabled>Anda belum pernah mengajukan LKD</option>";
+                              }
+                              ?>
+
                             </select>
 
                           </div>
@@ -46,90 +48,20 @@
                       <table class="table table-bordered">
                         <thead>
                           <tr>
-                            <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Kegiatan</th>
-                            <th>Waktu</th>
-                            <th>Ajar</th>
-                            <th>Bimbing</th>
-                            <th>Uji</th>
-                            <th>Litab</th>
-                            <th>Tunjang</th>
-                            <th>Jmlh</th>
-                            <th>Opsi</th>
+                            <th><center>No</center></th>
+                            <th><center>Tanggal</center></th>
+                            <th><center>Kegiatan</center></th>
+                            <th><center>Waktu</center></th>
+                            <?php foreach ($kategori as $row){
+                              echo "<th><center>$row->alias</center></th>";
+                            } ?>
+                            <th><center>Jmlh</center></th>
+                            <th><center>Opsi</center></th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <td rowspan="3" style="text-align:center;vertical-align:middle;">1</td>
-                            <td rowspan="3" style="text-align:center;vertical-align:middle;">20-01-2018</td>
+                        <tbody id="body">
 
-                                <td>Menguji</td>
-                                <td>10:00-12:30</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>2.5</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td rowspan="3" align="center" style="vertical-align:middle;"><a href="<?php echo base_url()."dosen/pengajuanlkd/edit"?>" class="btn btn-xs btn-primary" type="button" name="button"> <i class="fa fa-edit"></i> edit</a></td>
 
-                              <tr>
-                                <td>Membaca Jurnal</td>
-                                <td>15:30-16:30</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>1</td>
-                                <td>-</td>
-                                <td>-</td>
-                              </tr>
-                              <tr>
-                                <td>Membimbing</td>
-                                <td>17:00-17:30</td>
-                                <td>-</td>
-                                <td>0.5</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>4</td>
-                              </tr>
-                          </tr>
-                          <tr>
-                            <td rowspan="2" style="text-align:center;vertical-align:middle;">2</td>
-                            <td rowspan="2" style="text-align:center;vertical-align:middle;">27-01-2018</td>
-
-                                <td>Mengajar</td>
-                                <td>08:00-10:30</td>
-                                <td>2.5</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td rowspan="2" align="center" style="vertical-align:middle;"><a class="btn btn-xs btn-primary" type="button" name="button"> <i class="fa fa-edit"></i> edit</a></td>
-
-                              <tr>
-                                <td>Tunjang</td>
-                                <td>15:30-16:30</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>1</td>
-                                <td>3.5</td>
-                              </tr>
-                          </tr>
-                          <tr>
-                            <td colspan="4" style="text-align:center;vertical-align:middle;"><b>Jumlah</b></td>
-                            <td>2.5</td>
-                            <td>0.5</td>
-                            <td>2.5</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>7.5</td>
-                            <td></td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -141,7 +73,7 @@
                 <br >
                 <center>
                   <button type="button" id="ajukan" class="btn btn-w-m btn-primary" onclick="pengajuan()"><i class="fa fa-send"></i> Ajukan ACC</button>
-                  <a href="<?php echo base_url()."dosen/printlkd" ?>" type="button" target="_blank" class="btn btn-w-m btn-success" ><i class="fa fa-print"></i> Export Data</a>
+
                 </center>
               </form>
               </div>
@@ -149,9 +81,181 @@
           </div>
 
 <script>
+var arrJam=[];
+var arrNilai=[];
+var status, url_print;
+<?php
+
+$a = 0;
+foreach ($kategori as $row){
+  $id = $row->id;
+  echo "arrJam.push('$id');";
+  echo "arrNilai.push('$jam[$id]');";
+}
+?>
+var id_pengajuan=$('#mingguan').val();
+getData();
   function pengajuan(){
-    $('#ajukan').removeClass('btn-primary');
-    $('#ajukan').addClass('btn-warning');
-    $('#ajukan').html('<i class="fa fa-clock-o"></i> Menunggu ACC');
+      if(status == "-1"){
+        swal({
+                title: "Anda yakin?",
+                text: "Data tidak akan dapat diubah setelah diajukan",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#1ab394",
+                confirmButtonText: "Ya, ajukan!",
+                closeOnConfirm: false
+            }, function () {
+              $.ajax({
+                   url : "<?php echo site_url('dosen/Pengajuanlkd/pengajuan')?>",
+                   type: "POST",
+                   data: {'id_pengajuan':id_pengajuan},
+                   dataType: "JSON",
+                   success: function(data)
+                   {
+                     if(data.status=='berhasil'){
+                       $('#ajukan').removeClass('btn-primary');
+                       $('#ajukan').removeClass('btn-success');
+                       $('#ajukan').addClass('btn-warning');
+                       $('#ajukan').html('<i class="fa fa-clock-o"></i> Menunggu ACC');
+                       status = "0";
+                       swal("Updated!", data.message, "success");
+                       getData();
+                     }
+                   },
+                       error: function (jqXHR, textStatus, errorThrown)
+                       {
+                         console.log(jqXHR);
+                   console.log(textStatus);
+                   console.log(errorThrown);
+                       }
+                 });
+
+            });
+
+        }
+        else if(status == 1){
+          window.open("<?php echo base_url().'dosen/PrintLKD?q='?>"+url_print, '_blank');
+
+        }
+  }
+  $('#mingguan').change(function(){
+    id_pengajuan=$(this).val();
+    getData();
+  });
+
+  function getData(){
+
+
+    $.ajax({
+      url: '<?php echo base_url("dosen/Pengajuanlkd/getData");?>',
+      data: {'id_pengajuan':id_pengajuan},
+      type: 'POST',
+      // THIS MUST BE DONE FOR FILE UPLOADING
+
+      dataType: "JSON",
+      success: function(data){
+        console.log(data);
+        var html='',rowspan,td='',baris = 0;
+        var i = 1;
+
+        for(key in data.tanggal){
+          rowspan = data.tanggal[key].length;
+          html += '<tr>';
+
+          for(var j = 0; j < rowspan; j++){
+            td='';
+            baris=0;
+            for(var k=0; k < arrJam.length; k++){
+              if(data.tanggal[key][j].id_kategori == arrJam[k]){
+                td += '<td><center>'+data.tanggal[key][j].total+'</center></td>';
+                baris = data.tanggal[key][j].total;
+
+              }
+              else{
+                td += '<td><center>-</center></td>';
+              }
+
+            }
+            td += '<td>'+baris+'</td>';
+
+
+if(j==0){
+  html+= '            <td rowspan="'+rowspan+'" style="text-align:center;vertical-align:middle;">'+(i++)+'</td>'+
+'            <td rowspan="'+rowspan+'" style="text-align:center;vertical-align:middle;">'+key+'</td>'+
+''+
+'                <td>'+data.tanggal[key][j].kegiatan+'</td>'+
+'                <td>'+data.tanggal[key][j].jam_awal+'-'+data.tanggal[key][j].jam_akhir+'</td>'+td;
+if(data.pengajuan.status_pengajuan == '-1')
+html+='                <td rowspan="'+rowspan+'" align="center" style="vertical-align:middle;"><a href="<?php echo base_url()."dosen/pengajuanlkd/edit?q="?>'+data.id[i-2]+'" target="_blank" class="btn btn-xs btn-primary" type="button" name="button"> <i class="fa fa-edit"></i> edit</a></td>';
+else
+html+='                <td rowspan="'+rowspan+'" align="center" style="vertical-align:middle;"><button type="button" class="btn btn-xs btn-primary" type="button" name="button" disabled> <i class="fa fa-edit"></i> edit</a></td>';
+
+}
+else{
+html+='              <tr>'+
+'                <td>'+data.tanggal[key][j].kegiatan+'</td>'+
+'                <td>'+data.tanggal[key][j].jam_awal+'-'+data.tanggal[key][j].jam_akhir+'</td>'+td+
+'              </tr>';
+}
+
+
+}
+html+='          </tr>';
+
+        }
+        if(data.tanggal.length == 0)
+          html='<tr><td colspan="'+(arrJam.length+6)+'"><center><b>Data Kosong<b></center></td></tr>">';
+        html+='<tr><td colspan="4" style="text-align:center;vertical-align:middle;"><b>Jumlah</b></td>';
+        var color;
+        var nilai,total=0;
+        for(var i=0; i<arrJam.length; i++){
+          if(data.jam[arrJam[i]] == null){
+            nilai = 0;
+          }
+          else {
+            nilai = data.jam[arrJam[i]];
+          }
+          if(nilai >= arrNilai[i]){
+            color = '#00cc33'
+          }
+          else {
+            color = 'red';
+          }
+          total+=nilai;
+          html+='<td><center><b style="color:'+color+'">'+nilai+' ('+arrNilai[i]+')<b><center></td>';
+        }
+
+          html+='<td><center><b>'+total+'</b><center></td><td></td></tr>';
+        $('#body').html(html);
+        if(data.pengajuan.status_pengajuan == '-1'){
+          $('#ajukan').removeClass('btn-warning');
+          $('#ajukan').removeClass('btn-success');
+          $('#ajukan').addClass('btn-primary');
+          $('#ajukan').html('<i class="fa fa-send"></i> Ajukan ACC');
+        }
+        else if(data.pengajuan.status_pengajuan == '0'){
+          $('#ajukan').removeClass('btn-primary');
+          $('#ajukan').removeClass('btn-success');
+          $('#ajukan').addClass('btn-warning');
+          $('#ajukan').html('<i class="fa fa-clock-o"></i> Menunggu ACC');
+        }
+        else{
+          $('#ajukan').removeClass('btn-primary');
+          $('#ajukan').removeClass('btn-warning');
+          $('#ajukan').addClass('btn-success');
+          $('#ajukan').html('<i class="fa fa-print"></i> Export Data');
+        }
+        status = data.pengajuan.status_pengajuan;
+        url_print = data.pengajuan.id;
+      },
+    error: function(jqXHR, textStatus, errorThrown)
+    {
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    }
+          });
+
   }
 </script>

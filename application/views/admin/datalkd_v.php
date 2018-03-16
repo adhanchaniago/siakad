@@ -413,7 +413,11 @@ $('#formkg').submit(function(){
               processData: false,
               dataType: "JSON",
               success: function(data){
-                alert(data.message);
+                if (data.status=='berhasil') {
+                  swal("Berhasil!", data.message, "success");
+                }else {
+                  swal("Gagal!", data.message, "error");
+                }
                 if(data.status=="berhasil"){
                 $('#formkg')[0].reset();
                 $('#myModal2').modal('hide');

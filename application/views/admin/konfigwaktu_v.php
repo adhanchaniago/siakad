@@ -1,4 +1,6 @@
-
+<script>
+var idArray = [];
+</script>
   <!-- content -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-8">
@@ -108,6 +110,7 @@
                                 </tr>
                                 <?php
                                   foreach ($kategori as $row) {
+                                    echo "<script>idArray.push($row->id)</script>";
                                     echo "<tr>
                                       <td>$row->nama<span style='color:red;'>*</span></td>
                                       <td>:</td>
@@ -158,6 +161,7 @@ var id_jabatan;
   }
   $('#formEdit').submit(function(){
     var newArray = [];
+
     $( "input[name='nilai[]']" ).each(function() {
         newArray.push($( this ).val());
     });
@@ -165,6 +169,7 @@ var id_jabatan;
     for(var i=0; i<newArray.length;i++){
 
       formData.append('nilai[]',newArray[i]);
+      formData.append('id[]',idArray[i]);
     }
     formData.append('id_jabatan',id_jabatan);
     $.ajax({
@@ -188,6 +193,6 @@ var id_jabatan;
           });
           $('#modalEdit').toggle();
 
-
+return false;
   });
 </script>

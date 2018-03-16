@@ -50,17 +50,21 @@ class Dosen extends CI_Model {
         return $this->db->get_where($this->tabledosen, $parameterfilter);
       }
 
-    public function getJabatan(){
-      return $this->db->get('m_jabatan_dosen');
+    public function getJabatan($param = array()){
+
+      return $this->db->get_where('m_jabatan_dosen',$param);
     }
-    public function getUnitKerja(){
-      return $this->db->get('m_unit_kerja');
+    public function getUnitKerja($param = array()){
+      return $this->db->get('m_unit_kerja',$param);
+    }
+    public function getDekan($param = array()){
+      return $this->db->get('t_dekan',$param);
     }
     public function getTipe(){
       return $this->db->get('m_tipe_dosen');
     }
-    public function getFakultas(){
-      return $this->db->get('t_fakultas');
+    public function getFakultas($param = array()){
+      return $this->db->get_where('t_fakultas',$param);
     }
     function json() {
         $this->datatables->select('p.id, d.id as id_dosen, p.nip,p.nama, p.no_telp as kontak, t.nama as status');

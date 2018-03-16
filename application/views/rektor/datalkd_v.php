@@ -23,18 +23,6 @@
               <div class="ibox-content">
                 <div class="row">
                 <div class=" col-md-3" style="margin-top:5px;margin-bottom:-10px;">
-                  <label for="semester">Filter Periode</label>
-                  <div class="form-group">
-                    <select class="form-control">
-                      <option selected>05/03/18 - 10/03/18</option>
-                      <option value="1">12/03/18 - 17/03/18</option>
-                      <option value="1">19/03/18 - 24/03/18</option>
-                      <option value="1">26/03/18 - 31/03/18</option>
-                      <option value="1">02/04/18 - 07/04/18</option>
-                    </select>
-
-                  </div>
-                </div><div class=" col-md-3" style="margin-top:5px;margin-bottom:-10px;">
                   <label for="semester">Filter Bulan</label>
                   <div class="form-group">
                     <select class="form-control">

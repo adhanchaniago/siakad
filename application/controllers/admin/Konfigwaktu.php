@@ -34,14 +34,17 @@ class Konfigwaktu extends CI_Controller {
 	}
 	function edit(){
 		$id_jabatan = $_POST['id_jabatan'];
+		$id = $_POST['id'];
 		$nilai = $_POST['nilai'];
 		$this->load->model(array('LKD'));
 
 		$this->LKD->update('m_jabatan_dosen',array('id'=>$id_jabatan),array('minimal_jam'=>$nilai[0]));
-		foreach ($nilai as $key => $value) {
-			if($key!=0){
-				$this->LKD->update('t_config_lkd',array('id_jabatan'=>$id_jabatan,'id_kategori'=>$key),array('jam'=>$value));
+		$i=0;
+		foreach ($nilai as $row) {
+			if($i!=0){
+				$this->LKD->update('t_config_lkd',array('id_jabatan'=>$id_jabatan,'id_kategori'=>$id[($i-1)]),array('jam'=>$row));
 			}
+			$i++;
 		}
 		echo json_encode(array('status'=>'berhasil','message'=>'Berhasil mengupdate jam!'));
 	}

@@ -53,3 +53,4 @@ $route['default_controller'] = 'login';
 $route['404_override'] = '';
 // $route['dosen/pengajuanlkd/edit/(:any)'] = 'Dosen/pengajuanlkd/edit/$1';
 $route['translate_uri_dashes'] = FALSE;
+$route['dosen/pengajuanlkd/edit/(:any)'] = 'dosen/Pengajuanlkd/edit/$1';

@@ -44,11 +44,16 @@ class Datalkd extends CI_Controller {
 			'nama' => $this->input->post('nama'),
 			'alias' => $this->input->post('alias'),
 		);
+
 		if(trim($data['nama'])=='' || trim($data['alias'])==''){
 			echo json_encode(array('status'=>'gagal','message'=>'Data tidak boleh kosong!'));
 		}
 		else{
 			$cek = $this->LKD->insertKategori($data);
+			$jabatan = $this->LKD->getJabatan(null);
+			foreach ($jabatan->result() as $row) {
+				$this->LKD->insertConfig(array('id_jabatan'=>$row->id,'id_kategori'=>$cek,'jam'=>0));
+			}
 			echo json_encode(array('status'=>'berhasil','message'=>'Input berhasil!'));
 		}
 	}
