@@ -25,21 +25,22 @@
             <li class="active">
                 <a href="<?php echo base_url()."mahasiswa/home"?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
             </li>
-            <li class="disabled">
+            <li>
                 <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Akun</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                   <li>
-                    <a href="<?php echo base_url()."mahasiswa/editprofile"?>">Edit Profil</a>
+                    <a href="<?php echo base_url()."dosen/editprofile"?>">Edit Profil</a>
                   </li>
                   <li>
-                    <a href="<?php echo base_url()."mahasiswa/ubahpassword"?>">Ubah Password</a>
+                    <a href="<?php echo base_url()."dosen/ubahpassword"?>">Ubah Password</a>
                   </li>
                   <li>
-                    <a href="<?php echo base_url()."mahasiswa/unduhberkas"?>">Unduh Berkas</a>
+                    <a href="<?php echo base_url()."dosen/unduhberkas"?>">Unduh Berkas</a>
                   </li>
                   <li>
-                    <a href="<?php echo base_url()."mahasiswa/riwayatlogin"?>">Riwayat Login</a>
+                    <a href="<?php echo base_url()."dosen/riwayatlogin"?>">Riwayat Login</a>
                   </li>
+                  <li><a href="<?php echo base_url()."dosen/formttd"?>">Form TTD</a></li>
                 </ul>
             </li>
             <li class="disabled">
@@ -112,7 +113,7 @@
                 <ul class="nav nav-second-level collapse">
                   <li><a href="<?php echo base_url()."dosen/inputlkd"?>">Input LKD</a></li>
                   <li><a href="<?php echo base_url()."dosen/pengajuanlkd"?>">Pengajuan LKD</a></li>
-                    <!-- <li><a href="#">Cetak Ticket</a></li> -->
+                  <li><a href="<?php echo base_url()."dosen/rekapkehadiran"?>">Rekapitulasi Kehadiran</a></li>
                     <!-- <li><a href="#">Progres Ticket</a></li> -->
                 </ul>
             </li>

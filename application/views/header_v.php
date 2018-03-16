@@ -29,6 +29,12 @@
     <!-- clockpicker -->
     <!-- <link href="/css/plugins/clockpicker/clockpicker.css" rel="stylesheet"> -->
 
+    <!-- ClockPicker Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()."assets" ?>/dist/bootstrap-clockpicker.min.css">
+
+    <!-- choosen -->
+    <link href="<?php echo base_url()."assets" ?>/css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
+
     <link href="<?php echo base_url()."assets" ?>/css/animate.css" rel="stylesheet">
     <link href="<?php echo base_url()."assets" ?>/css/style.css" rel="stylesheet">
 
@@ -36,15 +42,16 @@
     <!-- scripts -->
 
     <!-- Mainly scripts -->
-    <script src="<?php echo base_url()."assets" ?>/js/plugins/fullcalendar/moment.min.js"></script>
     <script src="<?php echo base_url()."assets" ?>/js/jquery-3.1.1.min.js"></script>
+    <!-- <script>$.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });</script> -->
     <script src="<?php echo base_url()."assets" ?>/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url()."assets" ?>/js/plugins/fullcalendar/moment.min.js"></script>
     <script src="<?php echo base_url()."assets" ?>/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="<?php echo base_url()."assets" ?>/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
     <!-- Custom and plugin javascript -->
     <script src="<?php echo base_url()."assets" ?>/js/inspinia.js"></script>
-    <script src="<?php echo base_url()."assets" ?>/js/plugins/pace/pace.min.js"></script>
+    <!-- <script src="<?php echo base_url()."assets" ?>/js/plugins/pace/pace.min.js"></script> -->
 
     <!-- jQuery UI  -->
     <script src="<?php echo base_url()."assets" ?>/js/plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -70,6 +77,9 @@
 
     <!-- canvajs -->
     <script src="<?php echo base_url()."assets" ?>/js/canvasjs-2.0.1/canvasjs.min.js"></script>
+
+    <!-- ClockPicker script -->
+    <script src="<?php echo base_url()."assets" ?>/dist/bootstrap-clockpicker.min.js"></script>
 
     <!-- Clock picker -->
     <!-- <script src="/js/plugins/clockpicker/clockpicker.js"></script> -->

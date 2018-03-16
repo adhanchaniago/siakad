@@ -228,6 +228,7 @@
             <li>
                 <a href="#"><i class="fa fa-gear"></i> <span class="nav-label">Konfigurasi</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
+                  <li><a href="<?php echo base_url()."admin/roleakun"?>">Role Akun</a></li>
                   <li><a href="#">Backup Data</a></li>
                   <li><a href="#">Restore Data</a></li>
                 </ul>

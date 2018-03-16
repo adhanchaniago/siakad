@@ -1,10 +1,4 @@
 
-<!-- ClockPicker Stylesheet -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url()."assets" ?>/dist/bootstrap-clockpicker.min.css">
-
-<!-- ClockPicker script -->
-<script type="text/javascript" src="<?php echo base_url()."assets" ?>/dist/bootstrap-clockpicker.min.js"></script>
-
   <!-- content -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-6">
@@ -24,6 +18,13 @@
                     </div>
                 </div> -->
             </div>
+
+            <style media="screen">
+            .readonlynone {
+                background-image: none !important;
+                background-color: #FFFFFF !important;
+              }
+            </style>
 
             <div class="wrapper wrapper-content" id="item">
             <div class="row">
@@ -51,11 +52,11 @@
                           <label class="col-lg-2 control-label">Waktu 1:</label>
                             <div class="col-lg-6 input-group">
                               <div class="col-lg-12">
-                              <input type="text" name="waktu_awal[]" class="form-control clockpicker" data-autoclose="true" required readonly>
+                              <input type="text" name="waktu_awal[]" class="form-control clockpicker readonlynone" data-autoclose="true" required readonly>
                             </div>
                               <span class="input-group-addon">s/d</span>
                               <div class="col-lg-12">
-                                <input type="text" name="waktu_akhir[]" class="form-control clockpicker" data-autoclose="true" required readonly>
+                                <input type="text" name="waktu_akhir[]" class="form-control clockpicker readonlynone" data-autoclose="true" required readonly>
                               </div>
                               </div>
                           </div>
@@ -124,11 +125,11 @@ html +='                          </select></div>'+
 '                          <label class="col-lg-2 control-label">Waktu '+kegiatan_num+':</label>'+
 '                            <div class="col-lg-6 input-group">'+
 '                              <div class="col-lg-12">'+
-'                              <input type="text" name="waktu_awal[]" class="form-control clockpicker" data-autoclose="true" required readonly>'+
+'                              <input type="text" name="waktu_awal[]" class="form-control clockpicker readonlynone" data-autoclose="true" required readonly>'+
 '                            </div>'+
 '                              <span class="input-group-addon">s/d</span>'+
 '                              <div class="col-lg-12">'+
-'                                <input type="text" name="waktu_akhir[]" class="form-control clockpicker" data-autoclose="true" required readonly>'+
+'                                <input type="text" name="waktu_akhir[]" class="form-control clockpicker readonlynone" data-autoclose="true" required readonly>'+
 '                              </div>'+
 '                              </div>'+
 '                          </div>'+
