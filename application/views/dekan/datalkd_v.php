@@ -78,8 +78,8 @@
 
                       </form>
                     </div>
-                </div>
-            </div>
+                </div><br>
+            <!-- </div> -->
             <div class="modal inmodal" id="myModalEdit" tabindex="-1" role="dialog"  aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content animated fadeInDown">
@@ -132,8 +132,6 @@
                         </div>
 
       <script>
-
-
 
           var id_periode = 0,id_pengajuan;
           var check = 0;
