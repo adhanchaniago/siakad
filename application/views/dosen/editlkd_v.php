@@ -22,6 +22,13 @@
 
             </div>
 
+            <style media="screen">
+            .readonlynone {
+                background-image: none !important;
+                background-color: #FFFFFF !important;
+              }
+            </style>
+
             <div class="wrapper wrapper-content" id="item">
             <div class="row">
               <div class="ibox-content col-lg-12">
@@ -30,7 +37,7 @@
                       <div class="hr-line-dashed"></div>
                       <div class="form-group">
                         <label class="col-lg-2 control-label">Hari/Tanggal:</label>
-                          <div class="col-lg-6"><input type="text" class="form-control" value="<?php echo $hari->row()->tanggal?>" readonly></div>
+                          <div class="col-lg-6"><input type="text" class="form-control readonlynone" value="<?php echo $hari->row()->tanggal?>" readonly></div>
                         </div><hr>
                         <div id="activities">
                           <?php
@@ -62,11 +69,11 @@
                                 <label class="col-lg-2 control-label">Waktu <?php echo $i?>:</label>
                                   <div class="col-lg-6 input-group col-sm-5">
                                     <div class="col-lg-12">
-                                    <input type="text" name="waktu_awal[]" class="form-control clockpicker" data-autoclose="true" value="<?php echo $row->jam_awal?>" required readonly>
+                                    <input type="text" name="waktu_awal[]" class="form-control clockpicker readonlynone" data-autoclose="true" value="<?php echo $row->jam_awal?>" required readonly>
                                   </div>
                                     <span class="input-group-addon">s/d</span>
                                     <div class="col-lg-12">
-                                      <input type="text" name="waktu_akhir[]" class="form-control clockpicker" data-autoclose="true" value="<?php echo $row->jam_akhir?>" required readonly>
+                                      <input type="text" name="waktu_akhir[]" class="form-control clockpicker readonlynone" data-autoclose="true" value="<?php echo $row->jam_akhir?>" required readonly>
                                     </div>
                                     </div>
                                 </div>
