@@ -306,7 +306,11 @@ $('#formkt').submit(function(){
               processData: false,
               dataType: "JSON",
               success: function(data){
-                alert(data.message);
+                if (data.status=='berhasil') {
+                  swal("Berhasil!", data.message, "success");
+                }else {
+                  swal("Gagal!", data.message, "error");
+                }
                 if(data.status=="berhasil"){
                 $('#formkt')[0].reset();
                 $('#myModal1').modal('hide');
@@ -338,7 +342,11 @@ $('#formkt').submit(function(){
               processData: false,
               dataType: "JSON",
               success: function(data){
-                alert(data.message);
+                if (data.status=='berhasil') {
+                  swal("Berhasil!", data.message, "success");
+                }else {
+                  swal("Gagal!", data.message, "error");
+                }
                 if(data.status=="berhasil"){
                 $('#formEditkt')[0].reset();
                 $('#myModalEdit1').modal('hide');
@@ -449,7 +457,11 @@ $('#formkg').submit(function(){
               processData: false,
               dataType: "JSON",
               success: function(data){
-                alert(data.message);
+                if (data.status=='berhasil') {
+                  swal("Berhasil!", data.message, "success");
+                }else {
+                  swal("Gagal!", data.message, "error");
+                }
                 if(data.status=="berhasil"){
                 $('#formEditkg')[0].reset();
                 $('#myModalEdit2').modal('hide');

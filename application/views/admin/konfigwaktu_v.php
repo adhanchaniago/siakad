@@ -181,7 +181,11 @@ var id_jabatan;
       processData: false,
       dataType: "JSON",
       success: function(data){
-        alert(data.message);
+        if (data.status=='berhasil') {
+          swal("Berhasil!", data.message, "success");
+        }else {
+          swal("Gagal!", data.message, "error");
+        }
         location.reload();
       },
     error: function(jqXHR, textStatus, errorThrown)

@@ -2,7 +2,7 @@
 <!-- saved from url=(0038)http://szimek.github.io/signature_pad/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>Signature Pad demo</title>
+  <title>Buat Tanda Tangan</title>
   <meta name="description" content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
@@ -29,21 +29,18 @@
   </script>
 <script type="text/javascript" async="" src="<?php echo base_url()."assets" ?>/signature/request"></script></head>
 <body onselectstart="return false">
-  <a id="github" style="position: absolute; top: 0; right: 0; border: 0" href="https://github.com/szimek/signature_pad">
-    <img src="./Signature Pad demo_files/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub">
-  </a>
 
   <div id="signature-pad" class="signature-pad">
     <div class="signature-pad--body">
       <canvas width="664" height="373" style="touch-action: none;"></canvas>
     </div>
     <div class="signature-pad--footer">
-      <div class="description">Sign above</div>
+      <div class="description">Silahkan tanda tangan di atas</div>
 
       <div class="signature-pad--actions">
         <div>
           <button type="button" class="button clear" data-action="clear">Clear</button>
-          <button type="button" class="button" data-action="change-color">Change color</button>
+          <!-- <button type="button" class="button" data-action="change-color">Change color</button> -->
           <button type="button" class="button" data-action="undo">Undo</button>
 
         </div>

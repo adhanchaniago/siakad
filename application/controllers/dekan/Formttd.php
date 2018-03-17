@@ -6,9 +6,10 @@ class Formttd extends CI_Controller {
 	public function index()
 	{
 		$cek = $this->session->userdata('status');
-		if ($cek == 'dosen'){
-		$this->load->view('header_v');
-		$this->load->view('dosen/formttd_v');
+		if ($cek == 'dekan'){
+			$array=array('page'=>6);
+			$this->load->view('header_v',$array);
+		$this->load->view('dekan/formttd_v');
 		$this->load->view('footer_v');
 		}else{
 			header("location:".base_url());
@@ -18,10 +19,8 @@ class Formttd extends CI_Controller {
 	public function signature()
 	{
 		$cek = $this->session->userdata('status');
-		if ($cek == 'dosen'){
-		// $this->load->view('header_v');
+		if ($cek == 'dekan'){
 		$this->load->view('signature_v');
-		// $this->load->view('footer_v');
 		}else{
 			header("location:".base_url());
 		}

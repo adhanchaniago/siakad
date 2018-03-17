@@ -20,7 +20,8 @@ class Datalkd extends CI_Controller {
 			}
 
 
-		$this->load->view('header_v');
+			$array=array('page'=>7);
+			$this->load->view('header_v',$array);
 		$this->load->view('dekan/datalkd_v',$data);
 		$this->load->view('footer_v');
 		}else{
@@ -94,7 +95,7 @@ class Datalkd extends CI_Controller {
 				}
 				echo json_encode(array('id'=>$json_id,'tanggal'=>$json_tanggal,'jam'=>$json_jam,'config'=>$jam,'pengajuan'=>$aju));
 			}
-			
+
 			function update(){
 				$id_pengajuan = $_POST['id_pengajuan'];
 				$status = $_POST['action'];

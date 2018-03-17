@@ -21,28 +21,38 @@
                 <div class="logo-element">
                     IN+
                 </div>
+
+                <style media="screen">
+                .noclick       {
+                  pointer-events: none;
+                  }
+                </style>
+
             </li>
-            <li class="active">
-                <a href="<?php echo base_url()."mahasiswa/home"?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
+            <li <?php if($page==1)echo "class='active'"; ?>>
+                <a href="<?php echo base_url()."dekan/home"?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
             </li>
-            <li class="disabled">
+            <li <?php if($page==2||$page==3||$page==4||$page==5||$page==6)echo "class='active'"; ?>>
                 <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Akun</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                  <li>
-                    <a href="<?php echo base_url()."mahasiswa/editprofile"?>">Edit Profil</a>
+                  <li <?php if($page==2)echo "class='active'"; ?>>
+                    <a href="<?php echo base_url()."dekan/editprofile"?>">Edit Profil</a>
                   </li>
-                  <li>
-                    <a href="<?php echo base_url()."mahasiswa/ubahpassword"?>">Ubah Password</a>
+                  <li <?php if($page==3)echo "class='active'"; ?>>
+                    <a href="<?php echo base_url()."dekan/ubahpassword"?>">Ubah Password</a>
                   </li>
-                  <li>
-                    <a href="<?php echo base_url()."mahasiswa/unduhberkas"?>">Unduh Berkas</a>
+                  <li <?php if($page==4)echo "class='active'"; ?>>
+                    <a href="<?php echo base_url()."dekan/unduhberkas"?>">Unduh Berkas</a>
                   </li>
-                  <li>
-                    <a href="<?php echo base_url()."mahasiswa/riwayatlogin"?>">Riwayat Login</a>
+                  <li <?php if($page==5)echo "class='active'"; ?>>
+                    <a href="<?php echo base_url()."dekan/riwayatlogin"?>">Riwayat Login</a>
+                  </li>
+                  <li <?php if($page==6)echo "class='active'"; ?>>
+                    <a href="<?php echo base_url()."dekan/formttd"?>">Form TTD</a>
                   </li>
                 </ul>
             </li>
-            <li class="disabled">
+            <li class="disabled noclick">
                 <a href="#"><i class="fa fa-tasks"></i> <span class="nav-label">KRS</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
@@ -53,7 +63,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="disabled">
+            <li class="disabled noclick">
                 <a href="#"><i class="fa fa-book"></i> <span class="nav-label">Perkuliahan </span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
@@ -72,7 +82,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="disabled">
+            <li class="disabled noclick">
                 <a href="#"><i class="fa fa-trophy"></i> <span class="nav-label">Nilai</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li>
@@ -91,7 +101,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="disabled">
+            <li class="disabled noclick">
                 <a href="#"><i class="fa fa-credit-card"></i> <span class="nav-label">Pembayaran </span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <!-- <li><a href="#">Info Pembayaran</a></li> -->
@@ -99,7 +109,7 @@
                     <li><a href="<?php echo base_url()."mahasiswa/konfirmasipembayaran"?>">Konfirmasi Pembayaran</a></li>
                 </ul>
             </li>
-            <li class="disabled">
+            <li class="disabled noclick">
                 <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">Ticketing </span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                     <li><a href="<?php echo base_url()."mahasiswa/inputticket"?>">Input Ticket</a></li>
@@ -107,7 +117,7 @@
                     <li><a href="<?php echo base_url()."mahasiswa/progressticket"?>">Progres Ticket</a></li>
                 </ul>
             </li>
-            <li>
+            <li <?php if($page==7)echo "class='active'"; ?>>
                 <a href="<?php echo base_url()."dekan/datalkd"?>"><i class="fa fa-edit"></i> Data LKD</a>
             </li>
         </ul>

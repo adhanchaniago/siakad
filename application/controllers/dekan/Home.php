@@ -7,7 +7,8 @@ class Home extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'dekan'){
-		$this->load->view('header_v');
+		$array=array('page'=>1);
+		$this->load->view('header_v',$array);
 		$this->load->view('dekan/dashboard_v');
 		$this->load->view('footer_v');
 		}else{
