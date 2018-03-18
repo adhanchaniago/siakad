@@ -35,7 +35,7 @@
                           <a href="<?php echo base_url()."admin/perguruantinggi"?>">Perguruan Tinggi</a>
                       </li>
                       <li>
-                          <a href="#">Fakultas</a>
+                          <a href="<?php echo base_url()."admin/datafakultas"?>">Fakultas</a>
                       </li>
                       <li>
                           <a href="<?php echo base_url()."admin/dataprogramstudi"?>">Program Studi</a>
@@ -68,6 +68,7 @@
                   <li <?php if($page==2 || $page==3)echo "class='active'"; ?>>
                     <a href="#">Civitas <span class="fa arrow"></span></a>
                     <ul class="nav nav-third-level">
+                      <li><a href="<?php echo base_url()."admin/akunpegawai"?>">Data Akun Pegawai</a></li>
                       <li <?php if($page==2)echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/datadosen"?>">Data Dosen</a>
                       </li>
@@ -228,7 +229,6 @@
             <li>
                 <a href="#"><i class="fa fa-gear"></i> <span class="nav-label">Konfigurasi</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                  <li><a href="<?php echo base_url()."admin/roleakun"?>">Role Akun</a></li>
                   <li><a href="#">Backup Data</a></li>
                   <li><a href="#">Restore Data</a></li>
                 </ul>
