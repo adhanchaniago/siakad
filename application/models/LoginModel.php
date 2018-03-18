@@ -65,7 +65,7 @@ class LoginModel extends CI_Model {
             $rektor = $cek_rektor->row();
             $sess['status'] = 'rektor';
             $sess['data'] = array();
-            $sess['data']['id'] = $rektor->id_dekan;
+            $sess['data']['id'] = $rektor->id_rektor;
             $sess['data']['id_pegawai'] = $rektor->id;
             $sess['data']['nama'] = $rektor->nama;
             $sess['data']['nip'] = $rektor->nip;
@@ -137,7 +137,7 @@ class LoginModel extends CI_Model {
       return $this->db->get();
     }
     private function cekRektor($parameter = array()){
-      $this->db->select('p.id,d.id as id_dekan,p.nip,p.nama');
+      $this->db->select('p.id,d.id as id_rektor,p.nip,p.nama');
       $this->db->from($this->tablepegawai.' p');
       $this->db->join('t_rektor d','p.id = d.id_pegawai');
       $this->db->where($parameter);

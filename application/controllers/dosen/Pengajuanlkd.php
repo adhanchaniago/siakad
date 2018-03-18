@@ -171,10 +171,12 @@ class Pengajuanlkd extends CI_Controller {
 	function pengajuan(){
 		$id_pengajuan = $_POST['id_pengajuan'];
 		$data = array(
-			'status_pengajuan' => 0
+			'status_pengajuan' => 0,
+			'waktu_pengajuan'=>date("Y-m-d H:i:s"),
 		);
 		$this->load->model(array('LKD'));
 		$update = $this->LKD->updatePengajuan(array('id'=>$id_pengajuan),$data);
+		$this->LKD->updatePengajuanTotal($id_pengajuan);
 		if($update){
 			echo json_encode(array('status'=>'berhasil','message'=>'Update berhasil!'));
 		}

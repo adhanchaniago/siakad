@@ -30,7 +30,10 @@ class Inputlkd extends CI_Controller {
 
 
 				if($id_pengajuan==0){
-					$id_periode = $this->LKD->insertPeriode($tanggal);
+					$id_periode = $this->LKD->cekPeriode($tanggal);
+					if($id_periode==0){
+						$id_periode = $this->LKD->insertPeriode($tanggal);
+					}
 					$array = array(
 						'id_dosen' => $id_dosen,
 						'id_periode'=>$id_periode,
@@ -40,7 +43,7 @@ class Inputlkd extends CI_Controller {
 
 
 				$id_harian = $this->LKD->cekHarian(array('tanggal'=>$tanggal,'id_pengajuan'=>$id_pengajuan));
-				
+
 				if($id_harian==0){
 
 					$array = array(

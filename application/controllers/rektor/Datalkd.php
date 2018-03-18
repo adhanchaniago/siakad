@@ -8,11 +8,55 @@ class Datalkd extends CI_Controller {
 		$cek = $this->session->userdata('status');
 		if ($cek == 'rektor'){
 			$array=array('page'=>7);
+			$this->load->model(array('LKD'));
+			$data['bulan'] = $this->LKD->getBulanPengajuan();
 			$this->load->view('header_v',$array);
-		$this->load->view('rektor/datalkd_v');
+		$this->load->view('rektor/datalkd_v',$data);
 		$this->load->view('footer_v');
 		}else{
 			header("location:".base_url());
 		}
 	}
+	function getData(){
+		$this->load->model(array('LKD','Dosen'));
+		$dosen = array();
+		$id_pengajuan = $_POST['id'];
+		$pengajuan_bulanan = $this->LKD->getPengajuanBulanan(array('id'=>$id_pengajuan));
+		$pengajuan = $pengajuan_bulanan->row();
+		if($pengajuan!=null){
+			$pengajuan->id = md5($pengajuan->id);
+			$dosen = $this->Dosen->getAll(array('d.id'=>$pengajuan->id_dosen))->row();
+		}
+		$kode = explode("-",$pengajuan->kode_bulan);
+		$data = $this->LKD->getBulanData($dosen->id,$kode[0],$kode[1]);
+		echo json_encode(array('dosen'=>$dosen,'bulan'=>$data->result_array(),'pengajuan'=>$pengajuan));
+	}
+	function update(){
+		$id_bulanan = $_POST['id'];
+		$status = $_POST['action'];
+		$data = array(
+			'status_pengajuan' => $status
+		);
+		$this->load->model(array('LKD'));
+		$update = $this->LKD->updatePengajuanBulanan(array('id'=>$id_bulanan),$data);
+		if($update){
+			echo json_encode(array('status'=>'berhasil','message'=>'Update berhasil!'));
+		}
+		else{
+			echo json_encode(array('status'=>'gagal','message'=>'Update gagal!'));
+		}
+	}
+	function json() {
+		$kode_bulan = $_POST['kode'];
+		if($kode_bulan == 0){
+			$array = null;
+		}
+		else {
+			$array = array('p.kode_bulan'=>$kode_bulan);
+		}
+			$this->load->library('datatables');
+			$this->load->model(array('LKD'));
+      header('Content-Type: application/json');
+      echo $this->LKD->jsonRektor($array);
+	    }
 }

@@ -92,6 +92,16 @@ class LKD extends CI_Model {
       return $this->db->get('m_tipe_dosen');
     }
     */
+    public function cekPeriode($date){
+        $this->db->select('id');
+        $this->db->from('t_periode_lkd p');
+        $this->db->where("('$date' BETWEEN p.tanggal_awal AND p.tanggal_akhir)");
+        $query = $this->db->get();
+        if($query->num_rows()>0){
+          return $query->row()->id;
+        }
+        return 0;
+    }
     public function cekPengajuan($date,$id_dosen){
         $query = $this->db->query("select t.id from t_pengajuan_lkd t join t_periode_lkd p on t.id_periode = p.id where t.id_dosen = $id_dosen AND ('$date' BETWEEN p.tanggal_awal AND p.tanggal_akhir)");
 
@@ -147,6 +157,11 @@ class LKD extends CI_Model {
        $this->db->update('t_pengajuan_lkd', $arraydata);
        return $this->db->affected_rows();
    }
+   public function updatePengajuanTotal($id_pengajuan)
+     {
+         $query = $this->db->query("update t_pengajuan_lkd t set t.total = (select sum(ROUND(TIME_TO_SEC(TIMEDIFF(td.jam_akhir,td.jam_awal))/3600,1)) from t_detail_lkd td join t_lkd_harian th on td.id_lkd_harian = th.id and th.id_pengajuan = $id_pengajuan) where t.id=$id_pengajuan");
+         return $query;
+     }
    public function deletePengajuan($parameter=array())
    {
        $this->db->delete('t_pengajuan_lkd', $parameter );
@@ -156,12 +171,34 @@ class LKD extends CI_Model {
      return $this->db->get_where('t_pengajuan_lkd', $parameterfilter);
    }
    public function getPengajuanMingguan($id_dosen){
-     return $this->db->query("select p.id, DATE_FORMAT(tanggal_awal, '%d/%m/%Y') as tanggal_awal, DATE_FORMAT(tanggal_akhir, '%d/%m/%Y') as tanggal_akhir from t_pengajuan_lkd p join t_periode_lkd pe on p.id_periode = pe.id where id_dosen=$id_dosen ORDER BY id_periode DESC LIMIT 10");
-
+     return $this->db->query("select p.id, DATE_FORMAT(tanggal_awal, '%d/%m/%Y') as tanggal_awal, DATE_FORMAT(tanggal_akhir, '%d/%m/%Y') as tanggal_akhir from t_pengajuan_lkd p join t_periode_lkd pe on p.id_periode = pe.id where id_dosen=$id_dosen ORDER BY pe.tanggal_akhir DESC LIMIT 10");
    }
    public function getPengajuanFakultas(){
-     return $this->db->query("select id, DATE_FORMAT(tanggal_awal, '%d/%m/%Y') as tanggal_awal, DATE_FORMAT(tanggal_akhir, '%d/%m/%Y') as tanggal_akhir from t_periode_lkd pe ORDER BY id DESC LIMIT 10");
+     return $this->db->query("select id, DATE_FORMAT(tanggal_awal, '%d/%m/%Y') as tanggal_awal, DATE_FORMAT(tanggal_akhir, '%d/%m/%Y') as tanggal_akhir from t_periode_lkd pe ORDER BY pe.tanggal_akhir DESC LIMIT 10");
    }
+
+ public function updatePengajuanBulanan($parameterfilter=array(), $arraydata=array() )
+   {
+       $this->db->where($parameterfilter);
+       $this->db->update('t_pengajuan_bulanan_lkd', $arraydata);
+       return $this->db->affected_rows();
+   }
+
+   public function deletePengajuanBulanan($parameter=array())
+   {
+       $this->db->delete('t_pengajuan_bulanan_lkd', $parameter );
+       return $this->db->affected_rows();
+   }
+   public function getPengajuanBulanan($parameterfilter=array()){
+     return $this->db->get_where('t_pengajuan_bulanan_lkd', $parameterfilter);
+   }
+   public function insertPengajuanBulanan($arraydata = array() )
+{
+  $this->db->insert('t_pengajuan_bulanan_lkd', $arraydata);
+  $last_recore = $this->db->insert_id();
+  return $last_recore;
+}
+
 
 
    public function insertHarian($arraydata = array() )
@@ -211,6 +248,12 @@ public function updateDetail($parameterfilter=array(), $arraydata=array() )
    $this->db->where("MD5(id) = '$encrypted_id'");
    return $this->db->get();
  }
+ public function getPengajuanBulananEncrypted($encrypted_id){
+   $this->db->select('*');
+   $this->db->from('t_pengajuan_bulanan_lkd');
+   $this->db->where("MD5(id) = '$encrypted_id'");
+   return $this->db->get();
+ }
  public function getHarianEncrypted($encrypted_id){
    $this->db->select('id, DATE_FORMAT(tanggal, "%m/%d/%Y") as tanggal');
    $this->db->from('t_lkd_harian td');
@@ -237,6 +280,17 @@ function getDetailLKD($id_pengajuan){
   $this->db->order_by('tgl, jam_awal','ASC');
   return $this->db->get();
 }
+function getBulanPengajuan(){
+  $this->db->select("distinct concat(MONTH(t.tanggal_akhir),'-',YEAR(t.tanggal_akhir)) as kode,
+  concat(MONTHNAME(t.tanggal_akhir),' ', YEAR(t.tanggal_akhir)) as bulan");
+  $this->db->from("t_periode_lkd t");
+  $this->db->order_by('t.tanggal_akhir','DESC');
+  return $this->db->get();
+}
+function getBulanData($id_dosen,$bulan,$tahun){
+  return $this->db->query("select pe.*, p.id as id_pengajuan,p.status_pengajuan,p.total from t_periode_lkd pe left join t_pengajuan_lkd p on pe.id = p.id_periode and p.id_dosen=$id_dosen where MONTH(pe.tanggal_akhir)=$bulan AND YEAR(pe.tanggal_akhir)=$tahun ORDER by tanggal_awal asc");
+
+}
 
     function jsonKategori() {
         $this->datatables->select('kt.id, kt.nama, kt.alias');
@@ -259,7 +313,18 @@ function getDetailLKD($id_pengajuan){
         $this->datatables->join('t_dosen d', 'p.id_dosen = d.id');
         $this->datatables->join('t_pegawai pg', 'd.id_pegawai = pg.id');
         $this->datatables->where('d.id_fakultas',$id_fakultas);
-        $this->db->order_by('waktu_pengajuan','DESC');
+        //$this->db->order_by('waktu_pengajuan','DESC');
+        if($param!=null)
+        $this->datatables->where($param);
+        $this->datatables->add_column('view', '<center><button class=\'btn btn-warning btn-xs\' value=\'$1\' onclick=\'aksi(this.value)\' title=\'Edit Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></button></center>', 'id');
+        return $this->datatables->generate();
+    }
+    function jsonRektor($param=array()) {
+        $this->datatables->select("p.id, pg.nip, pg.nama, p.kode_bulan as bulan, DATE_FORMAT(p.waktu_pengajuan,'%d/%m/%Y %H:%i:%s') as waktu_pengajuan, s.nama as status");
+        $this->datatables->from('t_pengajuan_bulanan_lkd p');
+        $this->datatables->join('t_status_lkd s', 'p.status_pengajuan = s.id');
+        $this->datatables->join('t_dosen d', 'p.id_dosen = d.id');
+        $this->datatables->join('t_pegawai pg', 'd.id_pegawai = pg.id');
         if($param!=null)
         $this->datatables->where($param);
         $this->datatables->add_column('view', '<center><button class=\'btn btn-warning btn-xs\' value=\'$1\' onclick=\'aksi(this.value)\' title=\'Edit Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></button></center>', 'id');

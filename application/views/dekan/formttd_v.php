@@ -7,7 +7,7 @@
   <!-- content -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-6">
-                    <h2>Form Tanda Tangan Dosen</h2>
+                    <h2>Form Tanda Tangan Dekan</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.html">This is</a>
@@ -27,7 +27,7 @@
             <div class="wrapper wrapper-content" id="item">
             <div class="row">
               <div class="ibox-content col-lg-12">
-                <form class="form-horizontal">
+                <form id="form" class="form-horizontal">
                       <h2>Upload Tanda Tangan</h2>
                       <div class="hr-line-dashed"></div>
                       <!-- <div class="form-group">
@@ -47,18 +47,18 @@
                             <span class="input-group-addon btn btn-default btn-file">
                                 <span class="fileinput-new">Select file</span>
                                 <span class="fileinput-exists">Change</span>
-                                <input placeholder="" type="file" name="..." accept="image/jpeg, image/png"/>
+                                <input placeholder="" type="file" name="ttd" accept="image/jpeg, image/png"/>
                             </span>
                             <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                         </div>
                         <small style="color:red;">Silahkan upload file (.png)</small>
                           <small>atau belum punya tanda tangan? tanda tangan</small>
-                          <a href="<?php echo base_url()."dekan/formttd/signature" ?>" target="_blank"> di sini</a>
+                          <a href="<?php echo base_url()."dosen/formttd/signature" ?>" target="_blank"> di sini</a>
                         </div>
                         <div class="col-lg-6 col-lg-offset-2">
                           <center><br>
                           <h6>Tanda tangan anda</h6>
-                          <img src="<?php echo base_url()."assets" ?>/img/signature.svg" alt="ttd" style="width:250px;height:250px;">
+                          <img src="<?php echo base_url().$pegawai->ttd ?>" alt="ttd" style="height:250px;">
                         </div>
                         </div><hr >
                 <br >
@@ -71,21 +71,32 @@
           </div>
 
           <script type="text/javascript">
-          var signaturePad = new SignaturePad(document.getElementById('signature-pad'), {
-            backgroundColor: 'rgba(255, 255, 255, 0)',
-            penColor: 'rgb(0, 0, 0)'
-            });
-            var saveButton = document.getElementById('save');
-            var cancelButton = document.getElementById('clear');
 
-            saveButton.addEventListener('click', function (event) {
-            var data = signaturePad.toDataURL('image/png');
-
-            // Send data to server instead...
-            window.open(data);
-            });
-
-            cancelButton.addEventListener('click', function (event) {
-            signaturePad.clear();
-            });
+            $('#form').submit(function(e){
+              e.preventDefault();
+              var form = $('#form')[0]; // You need to use standart javascript object here
+              var formData = new FormData(form);
+              $.ajax({
+                url: '<?php echo base_url("dekan/Formttd/upload");?>',
+                data: formData,
+                type: 'POST',
+                // THIS MUST BE DONE FOR FILE UPLOADING
+                contentType: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data){
+                  alert(data.message);
+                  if(data.status=="berhasil"){
+                    location.reload();
+                  }
+                },
+              error: function(jqXHR, textStatus, errorThrown)
+              {
+          console.log(jqXHR);
+          console.log(textStatus);
+          console.log(errorThrown);
+        }
+              })
+                    return false;
+                });
           </script>
