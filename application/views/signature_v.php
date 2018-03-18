@@ -2,7 +2,7 @@
 <!-- saved from url=(0038)http://szimek.github.io/signature_pad/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>Signature Pad demo</title>
+  <title>Buat Tanda Tangan</title>
   <meta name="description" content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
@@ -41,7 +41,7 @@
       <div class="signature-pad--actions">
         <div>
           <button type="button" class="button clear" data-action="clear">Clear</button>
-          <button type="button" class="button" data-action="change-color">Change color</button>
+          <button type="button" class="button disabled" data-action="change-color">Change color</button>
           <button type="button" class="button" data-action="undo">Undo</button>
 
         </div>
