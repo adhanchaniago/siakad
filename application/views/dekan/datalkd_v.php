@@ -133,7 +133,7 @@
 
       <script>
 
-          var id_periode = 0,id_pengajuan;
+          var id_periode = 0,id_pengajuan,status;
           var check = 0;
     $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
               {

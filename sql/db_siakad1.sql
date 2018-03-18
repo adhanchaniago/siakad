@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 16 Mar 2018 pada 19.50
+-- Generation Time: 18 Mar 2018 pada 05.56
 -- Versi Server: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -252,7 +252,20 @@ INSERT INTO `t_detail_lkd` (`id`, `jam_awal`, `jam_akhir`, `id_kegiatan`, `id_lk
 (27, '01:00', '02:00', 2, 14),
 (28, '02:00', '03:00', 3, 14),
 (29, '07:00', '09:00', 1, 21),
-(30, '00:00', '10:00', 4, 2);
+(30, '00:00', '10:00', 4, 2),
+(31, '13:00', '15:00', 2, 23),
+(32, '07:00', '09:00', 2, 24),
+(33, '09:00', '12:00', 5, 24),
+(34, '16:00', '18:00', 2, 24),
+(35, '13:00', '15:00', 1, 24),
+(36, '07:30', '09:30', 1, 26),
+(37, '13:00', '15:00', 3, 26),
+(38, '16:00', '17:00', 5, 26),
+(39, '14:00', '16:00', 6, 27),
+(40, '13:00', '15:00', 3, 28),
+(41, '01:00', '15:00', 2, 29),
+(42, '13:00', '15:00', 1, 30),
+(43, '13:00', '15:00', 3, 31);
 
 -- --------------------------------------------------------
 
@@ -382,7 +395,16 @@ INSERT INTO `t_lkd_harian` (`id`, `tanggal`, `id_pengajuan`, `created_at`, `upda
 (17, '2018-03-07', 1, '2018-03-16 14:35:55', '2018-03-16 14:35:55'),
 (18, '2018-03-08', 1, '2018-03-16 14:44:33', '2018-03-16 14:44:33'),
 (19, '2018-03-06', 1, '2018-03-16 14:44:38', '2018-03-16 14:44:38'),
-(21, '2018-01-03', 10, '2018-03-16 14:54:30', '2018-03-16 14:54:30');
+(21, '2018-01-03', 10, '2018-03-16 14:54:30', '2018-03-16 14:54:30'),
+(23, '2018-03-06', 11, '2018-03-18 01:15:02', '2018-03-18 01:15:02'),
+(24, '2018-03-07', 11, '2018-03-18 01:16:21', '2018-03-18 01:16:21'),
+(25, '2018-03-04', 8, '2018-03-18 01:17:38', '2018-03-18 01:17:38'),
+(26, '2018-03-05', 11, '2018-03-18 01:17:59', '2018-03-18 01:17:59'),
+(27, '2018-03-08', 11, '2018-03-18 01:18:18', '2018-03-18 01:18:18'),
+(28, '2018-02-01', 12, '2018-03-18 01:34:25', '2018-03-18 01:34:25'),
+(29, '2018-03-05', 13, '2018-03-18 01:35:16', '2018-03-18 01:35:16'),
+(30, '2018-02-05', 14, '2018-03-18 01:35:46', '2018-03-18 01:35:46'),
+(31, '2018-02-13', 15, '2018-03-18 01:36:11', '2018-03-18 01:36:11');
 
 -- --------------------------------------------------------
 
@@ -420,6 +442,7 @@ CREATE TABLE `t_pegawai` (
   `nama` varchar(60) NOT NULL,
   `email` varchar(30) NOT NULL,
   `no_telp` varchar(15) NOT NULL,
+  `ttd` varchar(150) NOT NULL,
   `id_akun` int(11) DEFAULT NULL,
   `id_status` int(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -428,12 +451,35 @@ CREATE TABLE `t_pegawai` (
 -- Dumping data untuk tabel `t_pegawai`
 --
 
-INSERT INTO `t_pegawai` (`id`, `nip`, `nama`, `email`, `no_telp`, `id_akun`, `id_status`) VALUES
-(1, '123456789', 'Surya Eka', 'suryaeka@gmail.com', '082363242545', 2, 1),
-(2, '987654321', 'Andi Agus', '', '', NULL, 1),
-(3, '4545454', 'Mas Admin', 'admin@gmail.com', '01232334', 1, 1),
-(4, '99943039493', 'Pak Dekan', 'pakdekan@gmail.com', '082363242545', 4, 1),
-(5, '88888888', 'Pak Rektor', 'rektor@gmail.com', '02030303', 5, 1);
+INSERT INTO `t_pegawai` (`id`, `nip`, `nama`, `email`, `no_telp`, `ttd`, `id_akun`, `id_status`) VALUES
+(1, '123456789', 'Surya Eka', 'suryaeka@gmail.com', '082363242545', 'assets/images/signatures/c4ca4238a0b923820dcc509a6f75849b1.png', 2, 1),
+(2, '987654321', 'Andi Agus', '', '', '', NULL, 1),
+(3, '4545454', 'Mas Admin', 'admin@gmail.com', '01232334', '', 1, 1),
+(4, '99943039493', 'Pak Dekan', 'pakdekan@gmail.com', '082363242545', 'assets/images/signatures/a87ff679a2f3e71d9181a67b7542122c1.png', 4, 1),
+(5, '88888888', 'Prof. Dr. Mujiburrahman, MA', 'rektor@gmail.com', '02030303', 'assets/images/signatures/e4da3b7fbbce2345d7772b0674a318d51.png', 5, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `t_pengajuan_bulanan_lkd`
+--
+
+CREATE TABLE `t_pengajuan_bulanan_lkd` (
+  `id` int(11) NOT NULL,
+  `kode_bulan` varchar(11) NOT NULL,
+  `id_dosen` int(11) DEFAULT NULL,
+  `status_pengajuan` int(11) DEFAULT '-1',
+  `waktu_pengajuan` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `t_pengajuan_bulanan_lkd`
+--
+
+INSERT INTO `t_pengajuan_bulanan_lkd` (`id`, `kode_bulan`, `id_dosen`, `status_pengajuan`, `waktu_pengajuan`, `created_at`, `updated_at`) VALUES
+(1, '2-2018', 2, 1, '2018-03-18 04:55:55', '2018-03-18 02:22:06', '2018-03-18 04:55:55');
 
 -- --------------------------------------------------------
 
@@ -443,10 +489,11 @@ INSERT INTO `t_pegawai` (`id`, `nip`, `nama`, `email`, `no_telp`, `id_akun`, `id
 
 CREATE TABLE `t_pengajuan_lkd` (
   `id` int(11) NOT NULL,
-  `waktu_pengajuan` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `waktu_pengajuan` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `id_periode` int(11) DEFAULT NULL,
   `id_dosen` int(11) DEFAULT NULL,
   `status_pengajuan` int(11) DEFAULT '-1',
+  `total` float NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -455,12 +502,16 @@ CREATE TABLE `t_pengajuan_lkd` (
 -- Dumping data untuk tabel `t_pengajuan_lkd`
 --
 
-INSERT INTO `t_pengajuan_lkd` (`id`, `waktu_pengajuan`, `id_periode`, `id_dosen`, `status_pengajuan`, `created_at`, `updated_at`) VALUES
-(1, '2018-03-16 14:26:01', 4, 2, 1, '2018-03-14 07:23:44', '2018-03-16 14:26:01'),
-(7, '2018-03-16 14:46:32', 3, 2, 0, '2018-03-14 08:35:01', '2018-03-16 14:46:32'),
-(8, '2018-03-16 15:12:41', 2, 2, 0, '2018-03-14 08:35:42', '2018-03-16 15:12:41'),
-(9, '2018-03-16 14:26:30', 1, 2, 1, '2018-03-16 01:52:58', '2018-03-16 14:26:30'),
-(10, '2018-03-16 14:54:29', 5, 2, -1, '2018-03-16 14:54:29', '2018-03-16 14:54:29');
+INSERT INTO `t_pengajuan_lkd` (`id`, `waktu_pengajuan`, `id_periode`, `id_dosen`, `status_pengajuan`, `total`, `created_at`, `updated_at`) VALUES
+(1, '2018-03-17 18:16:25', 4, 2, 1, 26, '2018-03-14 07:23:44', '2018-03-17 18:16:25'),
+(8, '2018-03-17 18:12:51', 2, 2, 0, 25.5, '2018-03-14 08:35:42', '2018-03-17 18:12:51'),
+(9, '2018-03-17 18:16:15', 1, 2, 1, 2, '2018-03-16 01:52:58', '2018-03-17 18:16:15'),
+(10, '2018-03-17 18:17:30', 5, 2, -1, 2, '2018-03-16 14:54:29', '2018-03-17 18:17:30'),
+(11, '2018-03-18 01:21:22', NULL, 2, 1, 18, '2018-03-18 01:15:02', '2018-03-18 01:21:22'),
+(12, '2018-03-18 01:40:58', 7, 2, 1, 2, '2018-03-18 01:34:24', '2018-03-18 01:40:58'),
+(13, '2018-03-17 22:08:25', 3, 2, 0, 14, '2018-03-18 01:35:16', '2018-03-18 04:08:25'),
+(14, '2018-03-18 01:40:52', 8, 2, 1, 2, '2018-03-18 01:35:46', '2018-03-18 01:40:52'),
+(15, '2018-03-18 01:40:46', 9, 2, 1, 2, '2018-03-18 01:36:11', '2018-03-18 01:40:46');
 
 -- --------------------------------------------------------
 
@@ -479,11 +530,14 @@ CREATE TABLE `t_periode_lkd` (
 --
 
 INSERT INTO `t_periode_lkd` (`id`, `tanggal_awal`, `tanggal_akhir`) VALUES
+(5, '2018-01-01', '2018-01-07'),
+(7, '2018-01-29', '2018-02-04'),
+(8, '2018-02-05', '2018-02-11'),
+(9, '2018-02-12', '2018-02-18'),
 (1, '2018-02-19', '2018-02-25'),
 (2, '2018-02-26', '2018-03-04'),
 (3, '2018-03-05', '2018-03-11'),
-(4, '2018-03-12', '2018-03-18'),
-(5, '2018-01-01', '2018-01-07');
+(4, '2018-03-12', '2018-03-18');
 
 -- --------------------------------------------------------
 
@@ -767,6 +821,15 @@ ALTER TABLE `t_pegawai`
   ADD KEY `id_user` (`id_akun`);
 
 --
+-- Indexes for table `t_pengajuan_bulanan_lkd`
+--
+ALTER TABLE `t_pengajuan_bulanan_lkd`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `kode_bulan` (`kode_bulan`,`id_dosen`),
+  ADD KEY `status_pengajuan` (`status_pengajuan`),
+  ADD KEY `t_pengajuan_bulanan_lkd_ibfk_1` (`id_dosen`);
+
+--
 -- Indexes for table `t_pengajuan_lkd`
 --
 ALTER TABLE `t_pengajuan_lkd`
@@ -779,7 +842,8 @@ ALTER TABLE `t_pengajuan_lkd`
 -- Indexes for table `t_periode_lkd`
 --
 ALTER TABLE `t_periode_lkd`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `tanggal_awal` (`tanggal_awal`,`tanggal_akhir`);
 
 --
 -- Indexes for table `t_rektor`
@@ -889,7 +953,7 @@ ALTER TABLE `t_dekan`
 -- AUTO_INCREMENT for table `t_detail_lkd`
 --
 ALTER TABLE `t_detail_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `t_dosen`
@@ -919,7 +983,7 @@ ALTER TABLE `t_kegiatan_lkd`
 -- AUTO_INCREMENT for table `t_lkd_harian`
 --
 ALTER TABLE `t_lkd_harian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `t_mahasiswa`
@@ -934,16 +998,22 @@ ALTER TABLE `t_pegawai`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `t_pengajuan_bulanan_lkd`
+--
+ALTER TABLE `t_pengajuan_bulanan_lkd`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `t_pengajuan_lkd`
 --
 ALTER TABLE `t_pengajuan_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `t_periode_lkd`
 --
 ALTER TABLE `t_periode_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `t_rektor`
@@ -1035,6 +1105,13 @@ ALTER TABLE `t_mahasiswa`
 ALTER TABLE `t_pegawai`
   ADD CONSTRAINT `t_pegawai_ibfk_1` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_pegawai_ibfk_2` FOREIGN KEY (`id_akun`) REFERENCES `t_akun` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `t_pengajuan_bulanan_lkd`
+--
+ALTER TABLE `t_pengajuan_bulanan_lkd`
+  ADD CONSTRAINT `t_pengajuan_bulanan_lkd_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `t_dosen` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_pengajuan_bulanan_lkd_ibfk_2` FOREIGN KEY (`status_pengajuan`) REFERENCES `t_status_lkd` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `t_pengajuan_lkd`

@@ -49,6 +49,17 @@ class Dosen extends CI_Model {
       public function get($parameterfilter=array()){
         return $this->db->get_where($this->tabledosen, $parameterfilter);
       }
+      public function getAll($parameterfilter=array()){
+        $this->db->select('pg.id as id_pegawai, pg.nip, pg.nama, d.*,j.nama as jabatan, u.nama as unit_kerja, f.nama as fakultas');
+        $this->db->from('t_dosen d');
+
+        $this->db->join('t_pegawai pg','d.id_pegawai = pg.id');
+        $this->db->join('m_jabatan_dosen j','d.id_jabatan = j.id');
+        $this->db->join('m_unit_kerja u','d.id_unit_kerja = u.id');
+        $this->db->join('t_fakultas f','d.id_fakultas = f.id');
+        $this->db->where($parameterfilter);
+        return $this->db->get();
+      }
 
     public function getJabatan($param = array()){
 
@@ -65,6 +76,12 @@ class Dosen extends CI_Model {
     }
     public function getFakultas($param = array()){
       return $this->db->get_where('t_fakultas',$param);
+    }
+    public function getRektor(){
+      $this->db->select('r.*, p.nama, p.nip, p.ttd');
+      $this->db->from('t_rektor r');
+      $this->db->join('t_pegawai p','r.id_pegawai = p.id');
+      return $this->db->get();
     }
     function json() {
         $this->datatables->select('p.id, d.id as id_dosen, p.nip,p.nama, p.no_telp as kontak, t.nama as status');

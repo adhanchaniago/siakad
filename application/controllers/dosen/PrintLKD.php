@@ -1,7 +1,7 @@
 
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
-header("Content-type:application/pdf");
+//header("Content-type:application/pdf");
 class PrintLKD extends CI_Controller {
 	public function __construct() {
 		parent::__construct ();
@@ -123,8 +123,9 @@ $unit_kerja = $unit_kerja->row();
 														$dekan = $this->Dosen->getDekan(array('id_fakultas'=>$dosen->id_fakultas))->row();
 														$p_dekan = $this->Dosen->getPegawai(array('id'=>$dekan->id_pegawai))->row();
 														$fakultas = $this->Dosen->getFakultas(array('id'=>$dekan->id_fakultas))->row();
-														setlocale(LC_ALL, 'id_ID');
-														$date = strftime("%e %B %Y");
+														// setlocale(LC_ALL, 'id_ID');
+														// $date = strftime("%e %B %Y");
+														$date = date("d M Y");
 														//$date = date("d F Y", time());
 	                         $html.='<td>'.$total.'</td>
 	                        </tbody>
@@ -147,14 +148,19 @@ $unit_kerja = $unit_kerja->row();
 	                      	<td></td>
 	                      </tr>
 	                      <tr>
-	                      	<td style="height:50px"></td>
+	                      	<td style="height:50px;"><img src="././'.$p_dekan->ttd.'" style="height:70px"/></td>
 	                      	<td></td>
-	                      	<td></td>
+	                      	<td style="height:50px;"><center><img src="././'.$pegawai->ttd.'" style="height:70px"/></center></td>
 	                      </tr>
 	                      <tr>
-	                      	<td>'.$p_dekan->nama.'</td>
+	                      	<td><u>'.$p_dekan->nama.'</u></td>
 	                      	<td></td>
-	                      	<td>Surya Eka</td>
+	                      	<td><u>'.$pegawai->nama.'</u></td>
+	                      </tr>
+												<tr>
+	                      	<td>NIP. '.$p_dekan->nip.'</td>
+	                      	<td></td>
+	                      	<td>NIP. '.$pegawai->nip.'</td>
 	                      </tr>
 	                      </table>';
 
@@ -210,5 +216,127 @@ $unit_kerja = $unit_kerja->row();
 
 			return array('id'=>$json_id,'tanggal'=>$json_tanggal,'jam'=>$json_jam,'pengajuan'=>$aju);
 		}
+		public function bulanan()
+		{
+			$cek = $this->session->userdata('status');
+			if ($cek == 'dosen'){
 
+				$pdfname = 'scheduling_'.date('YmdHis').".pdf";
+				$this->load->model(array('LKD','Dosen'));
+				$id = $_GET['q'];
+				$id_dosen = $_SESSION['data']['id'];
+				$dosen = $this->Dosen->getAll(array('d.id'=>$id_dosen))->row();
+				$pengajuan = $this->LKD->getPengajuanBulananEncrypted($id);
+				$id_pengajuan = $pengajuan->row()->id;
+				$bulan = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+				$kode = explode("-",$pengajuan->row()->kode_bulan);
+				$data = $this->LKD->getBulanData($id_dosen,$kode[0],$kode[1]);
+				$b = $kode[0]-1;
+				$bln = $bulan[$b];
+				$rektor = $this->Dosen->getRektor()->row();
+				//print_r($rektor);
+				$html = "
+
+				<h3><center>REKAPITULASI KEHADIRAN</center></h3>
+				<table>
+				<tr>
+				<td>Fakultas/Pascasarjana</td>
+				<td>: $dosen->fakultas</td>
+				</tr>
+				<tr>
+				<td>Bulan</td>
+				<td>: $bln $kode[1]</td>
+				</tr>
+				<tr>
+				<td>Jabatan/Unit Kerja</td>
+				<td>: $dosen->jabatan / $dosen->unit_kerja</td>
+				</tr>
+
+				</table>
+				<style>
+				table.table1 {
+				    border-collapse: collapse;
+				}
+
+				table.table1, table.table1 th,table.table1 td {
+				    border: 1px solid black;
+				}
+				</style>";
+				$html.='<table class="table1" style="width:100%;margin-top:20px" >';
+				$html.= "<thead><tr><th rowspan='2' style='text-align:center;vertical-align:middle;width:5%;'>No</th>
+				<th rowspan='2' style='text-align:center;vertical-align:middle;width:30%;'>Nama/NIP/Jabatan</th>'";
+				$i=1;
+				foreach($data->result() as $row){
+
+					$html.="<th style='width:13%;text-align:center;vertical-align:middle;'>Minggu ".$i++."</th>";
+
+				}
+				$html.='                              <th rowspan="2" style="text-align:center;vertical-align:middle;width:15%;">Keterangan</th></tr><tr>';
+				foreach($data->result() as $row){
+
+					$html.="<th style='width:10%;text-align:center;vertical-align:middle;'>Akumulasi Jam Kerja</th>";
+
+				}
+				$html.="</tr></thead></tbody><tr><td><center>1</center></td><td style='padding:5px;'>$dosen->nama / NIP. $dosen->nip / $dosen->jabatan</td?";
+				foreach($data->result() as $row){
+					if($row->total!=null){
+					$html.="<td><center>$row->total</center></td>";
+					}else{
+						$html.="<td><center> - </center></td>";
+					}
+				}
+
+				$html.="<td><center> Lengkap </center></td></tr></tbody></table>";
+				$html.='<table style="width:100%;margin-top:20px">
+				<tr>
+					<td>Mengetahui/Menyetujui:</td>
+					<td width="100%"></td>
+					<td style="width:200px">Penanggung Jawab</td>
+				</tr>
+				<tr>
+					<td>Atasan Langsung</td>
+					<td></td>
+					<td>Rekapitulasi Kehadiran,</td>
+				</tr>
+
+				<tr>
+					<td style="height:50px"></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><u>..........................................</u></td>
+					<td></td>
+					<td><u>..........................................</u></td>
+				</tr>
+				<tr>
+					<td>NIP.</td>
+					<td></td>
+					<td>NIP.</td>
+				</tr>
+				</table>
+
+
+				<table style="margin-top:40px;margin:0 auto">
+				<tr>
+				<td><center><b>REKTOR</b></center></td>
+				</tr>
+				<tr>
+					<td style="height:50px;"><center><img src="././'.$rektor->ttd.'" style="height:70px"/></center></td>
+				</tr>
+				<tr>
+					<td><b>'.$rektor->nama.'</b></td>
+				</tr>
+				<tr>
+					<td>NIP. '.$rektor->nip.'</td>
+				</tr>
+				</table>';
+				// echo $html;
+				$this->dompdf->load_html($html);
+				$this->dompdf->render();
+				//$output = $this->dompdf->output();
+				$this->dompdf->stream("Pengajuan LKD Bulanan ".$pengajuan->row()->kode_bulan, array("Attachment"=>0));
+
+		}
+	}
 }

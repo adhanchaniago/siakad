@@ -25,19 +25,20 @@
                 <div class=" col-md-3" style="margin-top:5px;margin-bottom:-10px;">
                   <label for="semester">Filter Bulan</label>
                   <div class="form-group">
-                    <select class="form-control">
-                      <option selected>Mei 2018</option>
-                      <option value="1">April 2018</option>
-                      <option value="1">Maret 2018</option>
-                      <option value="1">Februari 2018</option>
-                      <option value="1">Januari 2018</option>
+                    <select id="bulan" class="form-control">
+                      <option value="0" selected>-- Pilih Bulan --</option>
+                      <?php foreach ($bulan->result() as $row){
+                        echo "<option value='$row->kode'>$row->bulan</option>";
+
+                      }
+                      ?>
                     </select>
 
                   </div>
                 </div>
               </div><br>
               <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover dataTables-example" >
+                <table id="mytable" class="table table-striped table-bordered table-hover dataTables-example" >
                 <thead>
                 <tr>
                     <th>No</th>
@@ -50,19 +51,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="gradeX">
-                    <td>1</td>
-                    <td>12398</td>
-                    <td>Budi Santoso</td>
-                    <td>03/2018</td>
-                    <td>06/03/2018 12:01 PM</td>
-                    <td>Menunggu ACC</td>
-                    <td>
-                      <center>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' href='' data-toggle="modal" data-target="#myModalEdit"><span class='glyphicon glyphicon-edit'></span></a>
-                      </center>
-                    </td>
-                </tr>
+
                 </tbody>
                 </table>
                     </div>
@@ -77,42 +66,15 @@
                         </div>
                         <div class="modal-body">
                           <form class="form-horizontal">
-                            <table class="table table-bordered">
-                              <thead>
-                                <tr>
-                                  <th rowspan="2" style="text-align:center;vertical-align:middle;width:10px;">No</th>
-                                  <th rowspan="2" style="text-align:center;vertical-align:middle;width:100px;">Nama/NIP/Jabatan</th>
-                                  <th>Minggu I</th>
-                                  <th>Minggu II</th>
-                                  <th>Minggu III</th>
-                                  <th>Minggu IV</th>
-                                  <th rowspan="2" style="text-align:center;vertical-align:middle;">Keterangan</th>
-                                </tr>
-                                <tr>
-                                  <td>Akumulasi Jam Kerja</td>
-                                  <td>Akumulasi Jam Kerja</td>
-                                  <td>Akumulasi Jam Kerja</td>
-                                  <td>Akumulasi Jam Kerja</td>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>1</td>
-                                  <td>Udin/NIP. 19630417199802011001/Lektor</td>
-                                  <td>37.5</td>
-                                  <td>37.5</td>
-                                  <td>37.5</td>
-                                  <td>37.5</td>
-                                  <td>Lengkap</td>
-                                </tr>
-                              </tbody>
+                            <table id="tableDetail" class="table table-bordered">
+
                             </table>
                             <center>
-                              <button type="button" id="acc" class="btn btn-success" onclick="accept()"><i class="fa fa-check-circle"></i> ACC Kegiatan</button>
-                              <button type="button" id="reset" class="btn btn-danger" onclick="accept()"><i class="fa fa-refresh"></i> Reset Kegiatan</button>
+                              <button type="button" id="acc" class="btn btn-success" onclick="set(1)"><i class="fa fa-check-circle"></i> ACC Kegiatan</button>
+                              <button type="button" id="reset" class="btn btn-danger" onclick="set(-1)"><i class="fa fa-refresh"></i> Reset Kegiatan</button>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Kembali</button>
+                            <button type="button" class="btn btn-white" onclick="$('#myModalEdit').hide()">Kembali</button>
                             <!-- <button type="submit" class="btn btn-primary">Simpan</button> -->
                         </div>
                       </form>
@@ -121,45 +83,207 @@
             </div>
 
       <script>
-      $(document).ready(function(){
-            $('.dataTables-example').DataTable({
-                pageLength: 25,
-                responsive: true,
-                dom: 'lTfgitp',
-                buttons: [
-                    { extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel', title: 'ExampleFile'},
-                    {extend: 'pdf', title: 'ExampleFile'},
+      var kode_bulan =   $('#bulan').val(),id_bulanan, status;
+      $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
+                {
+                    return {
+                        "iStart": oSettings._iDisplayStart,
+                        "iEnd": oSettings.fnDisplayEnd(),
+                        "iLength": oSettings._iDisplayLength,
+                        "iTotal": oSettings.fnRecordsTotal(),
+                        "iFilteredTotal": oSettings.fnRecordsDisplay(),
+                        "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
+                        "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
+                    };
+                };
 
-                    {extend: 'print',
-                     customize: function (win){
-                            $(win.document.body).addClass('white-bg');
-                            $(win.document.body).css('font-size', '10px');
+                $('#bulan').change(function(){
+                  kode_bulan=$(this).val();
+                  loadData();
+                });
+                loadData();
+                function loadData(){
+      $('#mytable').DataTable().destroy();
+      $("#mytable").DataTable({
+                    initComplete: function() {
+                        var api = this.api();
+                        $('#mytable_filter input')
+                                .off('.DT')
+                                .on('keyup.DT', function(e) {
+                                    if (e.keyCode == 13) {
+                                        api.search(this.value).draw();
+                            }
+                        });
+                    },
+                    oLanguage: {
+                        sProcessing: "loading..."
+                    },
+                    processing: true,
+                    serverSide: true,
+                    ajax: {"url": "<?php echo base_url("rektor/Datalkd/json/");?>", "type": "POST","data":{
 
-                            $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
+                    "kode":kode_bulan
+                  }},
+                    "columnDefs": [
+        {
+            "targets": [ -1 ], //last column
+            "orderable": false, //set not orderable
+        },
+        ],
+
+                    columns: [
+                        {
+                            "data": "id",
+                            "orderable": false
+                        },
+                        {"data": "nip"},
+                        {"data": "nama"},
+                        {"data": "bulan"},
+                        {"data": "waktu_pengajuan"},
+                        {"data": "status"},
+                        {"data": "view"}
+                    ],
+                    order: [[1, 'asc']],
+                    rowCallback: function(row, data, iDisplayIndex) {
+                        var info = this.fnPagingInfo();
+                        var page = info.iPage;
+                        var length = info.iLength;
+                        var index = page * length + (iDisplayIndex + 1);
+                        $('td:eq(0)', row).html(index);
                     }
-                    }
-                ]
+                });
+    }
+    function aksi(id){
+      id_bulanan = id;
+      $.ajax({
+           url : "<?php echo site_url('rektor/Datalkd/getData')?>",
+           type: "POST",
+           data: {'id':id},
+           dataType: "JSON",
+           success: function(data)
+           {
+             console.log(data);
+             var n = data.bulan.length;
+             keterangan = 'Lengkap';
+             total = 0;
+             cek=true;
+             var html = '<thead>'+
+  '                            <tr>'+
+  '                              <th rowspan="2" style="text-align:center;vertical-align:middle;width:10px;">No</th>'+
+  '                              <th rowspan="2" style="text-align:center;vertical-align:middle;width:25%;">Nama/NIP/Jabatan</th>';
+            for(var i=0; i < n; i++){
+              html+='<th><center>Minggu '+(i+1)+'</center></th>';
+            }
+              html+='                              <th rowspan="2" style="text-align:center;vertical-align:middle;width:15%;">Keterangan</th>'+
+  '                            </tr>'+
+  '                            <tr>';
+            for(var i=0; i < n; i++){
+              html+='                              <td><center>Akumulasi Jam Kerja</center></td>';
+            }
 
-            });
 
-        });
+  html+='                            </tr>'+
+  '                          </thead>'+
+  '                          <tbody>'+
+  '                            <tr>'+
+  '                              <td>1</td>'+
+  '                              <td>'+data.dosen.nama+' / NIP. '+data.dosen.nip+' / '+data.dosen.jabatan+'</td>';
+              for(var i=0; i < n; i++){
+                if(data.bulan[i].total!=null){
+                  html+='                              <td><center>'+data.bulan[i].total+'</center></td>';
+                  total++;
+                }
+                else{
+                  html+='                              <td>-</td>';
+                  cek=false;
+                }
+                if(data.bulan[i].status_pengajuan!=1)
+                {
+                  cek = false;
+                  keterangan = 'Belum di-ACC semua';
+                }
+              }
+              if(total<4){
+                cek = false;
+                keterangan = 'Jumlah pengajuan masih kurang';
+              }
+  html+='                              <td>'+keterangan+'</td>'+
+  '                            </tr>'+
+  '                          </tbody>';
+  if(data.pengajuan == null){
+  status = '-1'
+  }
+  else{
+    status = data.pengajuan.status_pengajuan;
+    //url_print = data.pengajuan.id;
+  }
+  if(status == '-1'){
+    $('#acc').removeClass('btn-warning disable');
+    $('#acc').addClass('btn-success');
+    $('#acc').html('<i class="fa fa-check-circle"></i> ACC Kegiatan');
+    $('#reset').attr("disabled",true);
+  }
+  else if(status == '0'){
+    $('#acc').removeClass('btn-warning disabled');
+    $('#acc').addClass('btn-success');
+    $('#acc').html('<i class="fa fa-check-circle"></i> ACC Kegiatan');
+    $('#reset').attr("disabled",false);
+  }
+  else{
+      $('#reset').attr("disabled",false);
+      $('#acc').removeClass('btn-success');
+      $('#acc').addClass('btn-warning');
+      $('#acc').html('<i class="fa fa-minus-circle"></i> Telah di-ACC');
+  }
+  $('#tableDetail').html(html);
 
-        var check = 0;
-        function accept(){
-          if (check == 0) {
-            $('#acc').removeClass('btn-success');
-            $('#acc').addClass('btn-warning disabled');
-            $('#acc').html('<i class="fa fa-minus-circle"></i> Telah diACC');
-            check = 1;
-          }else{
-            $('#acc').removeClass('btn-warning disabled');
-            $('#acc').addClass('btn-success');
-            $('#acc').html('<i class="fa fa-check-circle"></i> ACC Kegiatan');
-            check = 0;
-          }
-        };
+  $('#myModalEdit').show();
+           },
+               error: function (jqXHR, textStatus, errorThrown)
+               {
+                 console.log(jqXHR);
+           console.log(textStatus);
+           console.log(errorThrown);
+               }
+         });
+    }
+    function set(tipe){
+      if(status!=tipe){
+      $.ajax({
+           url : "<?php echo site_url('rektor/Datalkd/update')?>",
+           type: "POST",
+           data: {'id':id_bulanan,'action':tipe},
+           dataType: "JSON",
+           success: function(data)
+           {
+             if (data.status=='berhasil') {
+               swal("Berhasil!", data.message, "success");
+             }else {
+               swal("Gagal!", data.message, "error");
+             }
+             if(tipe == '-1'){
+               $('#acc').removeClass('btn-warning disable');
+               $('#acc').addClass('btn-success');
+               $('#acc').html('<i class="fa fa-check-circle"></i> ACC Kegiatan');
+               $('#reset').attr("disabled",true);
+             }
+
+             else{
+                 $('#reset').attr("disabled",false);
+                 $('#acc').removeClass('btn-success');
+                 $('#acc').addClass('btn-warning');
+                 $('#acc').html('<i class="fa fa-minus-circle"></i> Telah di-ACC');
+             }
+             status = tipe;
+             loadData();
+           },
+               error: function (jqXHR, textStatus, errorThrown)
+               {
+                 console.log(jqXHR);
+           console.log(textStatus);
+           console.log(errorThrown);
+               }
+         });
+       }
+    }
       </script>
