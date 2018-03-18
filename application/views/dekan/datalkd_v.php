@@ -45,7 +45,7 @@
                 </div>
               </div><br>
               <div class="table-responsive">
-                <table id="mytable" class="table table-striped table-bordered table-hover dataTables-example" >
+                <table id="mytable" class="table table-striped table-bordered table-hover" >
                 <thead>
                 <tr>
                     <th>No</th>
@@ -59,9 +59,8 @@
                 </thead>
                 <tbody>
 
-                              </tbody>
-                            </table>
-
+                </tbody>
+              </table>
                               <!-- <span id="accept" class="hidden">Telah di ACC</span> -->
                               <!-- <table>
                                 <tr>
@@ -73,9 +72,7 @@
                                   <td></td>
                                 </tr>
                               </table> -->
-
                         </div>
-
                       </form>
                     </div>
                 </div><br>
@@ -86,56 +83,46 @@
               overflow-y: auto;
             }
             </style>
-            <div class="modal inmodal" id="myModalEdit" tabindex="-1" role="dialog"  aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content animated fadeInDown">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Detail Kegiatan</h4>
-                                        <small>Tanggal Pengajuan: 06/03/2018</small>
-                                    </div>
-                                    <div class="modal-body">
-                                      <form class="form-horizontal">
-                                        <table class="table table-bordered">
-                                          <thead>
-                                            <tr>
-                                              <th><center>No</center></th>
-                                              <th><center>Tanggal</center></th>
-                                              <th><center>Kegiatan</center></th>
-                                              <th><center>Waktu</center></th>
-                                              <?php foreach ($kategori as $row){
-                                                echo "<th><center>$row->alias</center></th>";
-                                              } ?>
-                                              <th><center>Jmlh</center></th>
-                                            </tr>
-                                          </thead>
-                                          <tbody id="body">
+            <div class="modal inmodal fade" id="myModalEdit" tabindex="-1" role="dialog"  aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                      <div class="modal-content animated fadeInDown">
+                          <div class="modal-header">
+                              <h4 class="modal-title">Detail Kegiatan</h4>
+                              <small>Tanggal Pengajuan: 06/03/2018</small>
+                          </div>
+                          <form class="form-horizontal">
+                          <div class="modal-body">
+                            <div class="table-responsive">
+                              <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th><center>No</center></th>
+                                    <th><center>Tanggal</center></th>
+                                    <th><center>Kegiatan</center></th>
+                                    <th><center>Waktu</center></th>
+                                    <?php foreach ($kategori as $row){
+                                      echo "<th><center>$row->alias</center></th>";
+                                    } ?>
+                                    <th><center>Jmlh</center></th>
+                                  </tr>
+                                </thead>
+                                <tbody id="body">
 
-                                          </tbody>
-                                        </table>
-                                        <center>
-                                          <button type="button" id="acc" class="btn btn-success" onclick="set(1)"><i class="fa fa-check-circle"></i> ACC Kegiatan</button>
-                                          <button type="button" id="reset" class="btn btn-danger" onclick="set(-1)"><i class="fa fa-refresh"></i> Reset Pengajuan</button>
-                                          <!-- <span id="accept" class="hidden">Telah di ACC</span> -->
-                                          <!-- <table>
-                                            <tr>
-                                              <td style="width:150px;align:center;"></td>
-                                              <td></td>
-                                            </tr>
-                                            <tr>
-                                              <td style="text-align:center;"></td>
-                                              <td></td>
-                                            </tr>
-                                          </table> -->
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-white" onclick="$('#myModalEdit').hide()">Kembali</button>
-                                        <!-- <button type="submit" class="btn btn-primary">Simpan</button> -->
-                                    </div>
-                                  </form>
-                                </div>
+                                </tbody>
+                              </table>
                             </div>
-                        </div>
+                              <center>
+                                <button type="button" id="acc" class="btn btn-success" onclick="set(1)"><i class="fa fa-check-circle"></i> ACC Kegiatan</button>
+                                <button type="button" id="reset" class="btn btn-danger" onclick="set(-1)"><i class="fa fa-refresh"></i> Reset Pengajuan</button>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-white" data-dismiss="modal">Kembali</button>
+                              <!-- <button type="submit" class="btn btn-primary">Simpan</button> -->
+                          </div>
+                        </form>
+                      </div>
+                  </div>
+              </div>
 
       <script>
 
@@ -324,7 +311,8 @@
             url_print = data.pengajuan.id;
 
             $('#body').html(html);
-            $('#myModalEdit').show();
+            // $('#myModalEdit').show();
+            // data-toggle="modal" data-target="#myModalEdit"
           },
         error: function(jqXHR, textStatus, errorThrown)
         {

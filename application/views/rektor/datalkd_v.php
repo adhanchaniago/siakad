@@ -38,7 +38,7 @@
                 </div>
               </div><br>
               <div class="table-responsive">
-                <table id="mytable" class="table table-striped table-bordered table-hover dataTables-example" >
+                <table id="mytable" class="table table-striped table-bordered table-hover" >
                 <thead>
                 <tr>
                     <th>No</th>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal inmodal" id="myModalEdit" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal inmodal fade" id="myModalEdit" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content animated fadeInDown">
                         <div class="modal-header">
@@ -74,7 +74,7 @@
                               <button type="button" id="reset" class="btn btn-danger" onclick="set(-1)"><i class="fa fa-refresh"></i> Reset Kegiatan</button>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" onclick="$('#myModalEdit').hide()">Kembali</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Kembali</button>
                             <!-- <button type="submit" class="btn btn-primary">Simpan</button> -->
                         </div>
                       </form>
@@ -237,7 +237,7 @@
   }
   $('#tableDetail').html(html);
 
-  $('#myModalEdit').show();
+  // $('#myModalEdit').show();
            },
                error: function (jqXHR, textStatus, errorThrown)
                {

@@ -54,7 +54,7 @@
 
     <!-- Custom and plugin javascript -->
     <script src="<?php echo base_url()."assets" ?>/js/inspinia.js"></script>
-    <!-- <script src="<?php echo base_url()."assets" ?>/js/plugins/pace/pace.min.js"></script> -->
+    <script src="<?php echo base_url()."assets" ?>/js/plugins/pace/pace.min.js"></script>
 
     <!-- jQuery UI  -->
     <script src="<?php echo base_url()."assets" ?>/js/plugins/jquery-ui/jquery-ui.min.js"></script>

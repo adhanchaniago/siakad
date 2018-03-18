@@ -316,7 +316,7 @@ function getBulanData($id_dosen,$bulan,$tahun){
         //$this->db->order_by('waktu_pengajuan','DESC');
         if($param!=null)
         $this->datatables->where($param);
-        $this->datatables->add_column('view', '<center><button class=\'btn btn-warning btn-xs\' value=\'$1\' onclick=\'aksi(this.value)\' title=\'Edit Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></button></center>', 'id');
+        $this->datatables->add_column('view', '<center><button class=\'btn btn-warning btn-xs\' value=\'$1\' onclick=\'aksi(this.value)\' title=\'Edit Data\' data-toggle="modal" data-target="#myModalEdit"><span class=\'glyphicon glyphicon-edit\'></span></button></center>', 'id');
         return $this->datatables->generate();
     }
     function jsonRektor($param=array()) {
@@ -327,7 +327,7 @@ function getBulanData($id_dosen,$bulan,$tahun){
         $this->datatables->join('t_pegawai pg', 'd.id_pegawai = pg.id');
         if($param!=null)
         $this->datatables->where($param);
-        $this->datatables->add_column('view', '<center><button class=\'btn btn-warning btn-xs\' value=\'$1\' onclick=\'aksi(this.value)\' title=\'Edit Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></button></center>', 'id');
+        $this->datatables->add_column('view', '<center><button class=\'btn btn-warning btn-xs\' value=\'$1\' onclick=\'aksi(this.value)\' title=\'Edit Data\' data-toggle="modal" data-target="#myModalEdit"><span class=\'glyphicon glyphicon-edit\'></span></button></center>', 'id');
         return $this->datatables->generate();
     }
 }

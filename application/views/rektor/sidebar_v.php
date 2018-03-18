@@ -116,7 +116,7 @@
                 </ul>
             </li>
             <li <?php if($page==7)echo "class='active'"; ?>>
-                <a href="<?php echo base_url()."rektor/datalkd"?>"><i class="fa fa-edit"></i> Data LKD</a>
+                <a href="<?php echo base_url()."rektor/datalkd"?>"><i class="fa fa-edit"></i> <span class="nav-label">Data LKD</span></a>
             </li>
         </ul>
 
