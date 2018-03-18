@@ -53,7 +53,7 @@
                         </div>
                         <small style="color:red;">Silahkan upload file (.png)</small>
                           <small>atau belum punya tanda tangan? tanda tangan</small>
-                          <a href="<?php echo base_url()."dosen/formttd/signature" ?>" target="_blank"> di sini</a>
+                          <a href="<?php echo base_url()."dekan/formttd/signature" ?>" target="_blank"> di sini</a>
                         </div>
                         <div class="col-lg-6 col-lg-offset-2">
                           <center><br>
