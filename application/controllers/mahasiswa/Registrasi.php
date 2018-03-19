@@ -6,7 +6,7 @@ class Registrasi extends CI_Controller {
 	public function index()
 	{
 		$cek = $this->session->userdata('status');
-		if ($cek == 'mhs'){
+		if ($cek == 'mahasiswa'){
 		$this->load->view('header_v');
 		$this->load->view('mahasiswa/registrasi_v');
 		$this->load->view('footer_v');

@@ -108,7 +108,7 @@
     $cek = $this->session->userdata('status');
     if($cek == 'admin'){
       $this->load->view('admin/sidebar_v');
-    }elseif ($cek == 'mhs') {
+    }elseif ($cek == 'mahasiswa') {
       $this->load->view('mahasiswa/sidebar_v');
     }elseif ($cek == 'dosen') {
       $this->load->view('dosen/sidebar_v');

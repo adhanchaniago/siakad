@@ -23,7 +23,7 @@ class Login extends CI_Controller {
 					header("location:".base_url().'dekan/home');
 			else if($st == 'dosen')
 					header("location:".base_url().'dosen/home');
-			else if($st == 'mhs')
+			else if($st == 'mahasiswa')
 					header("location:".base_url().'mahasiswa/home');
 			else
 				header('location:'.base_url());

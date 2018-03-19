@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="title-action">
-                        <a class="btn btn-primary" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a href="<?php echo base_url()."admin/akunpegawai/add" ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,8 @@
                             <td><p><span class="label label-primary">Dosen</span></p></td>
                             <td width="10%">
                               <center>
-                                <a class='btn btn-warning btn-xs' title='Edit Akun' data-toggle="modal" data-target="#editModal"><span class='glyphicon glyphicon-edit'></span></a>
+                                <a class='btn btn-success btn-xs' title='Edit Role' data-toggle="modal" data-target="#editModal"><span class='glyphicon glyphicon-user'></span></a>
+                                <a href="<?php echo base_url()."admin/akunpegawai/edit" ?>" class='btn btn-warning btn-xs' title='Edit Akun'><span class='glyphicon glyphicon-edit'></span></a>
                                 <a class='btn btn-danger btn-xs' title='Hapus Akun'><span class='glyphicon glyphicon-remove'></span></a>
                               </center>
                             </td>
@@ -60,79 +61,15 @@
               </div>
             </div>
 
-            <div class="modal inmodal fade" id="addModal" tabindex="-1" role="dialog"  aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title">Tambah Akun Pegawai Baru</h4>
-                        </div>
-                        <form>
-                        <div class="modal-body">
-                          <div class="form-group">
-                            <label for="nip">NIP: <span style="color:red;">*</span></label>
-                            <input type="number" min="0" name="nip" class="form-control" placeholder="Masukkan NIP Pegawai" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="nip">Nama: <span style="color:red;">*</span></label>
-                            <input type="text" name="..." class="form-control" placeholder="Masukkan Nama Pegawai" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="email">Email: <span style="color:red;">*</span></label>
-                            <input type="email" name="..." class="form-control" placeholder="Masukkan Email Pegawai" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="nip">No. Kontak: <span style="color:red;">*</span></label>
-                            <input type="number" min="0" name="..." class="form-control" placeholder="Masukkan Nomor Kontak Pegawai" required>
-                          </div>
-                          <div class="form-group">
-                            <label>Pilih Role Pengguna</label>
-                            <div>
-                            <select data-placeholder="Tidak ada role..." class="chosen-select" multiple style="width:350px;" tabindex="4">
-                            <option value="" disabled>Select</option>
-                            <option value="" selected>Dosen</option>
-                            <option value="">Dekan</option>
-                            <option value="">Admin Fakultas</option>
-                            <option value="">Ketua Program Studi</option>
-                            <option value="">Rektor</option>
-                            </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                      </form>
-                    </div>
-                </div>
-            </div>
-
             <div class="modal inmodal fade" id="editModal" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title">Edit Akun Pegawai</h4>
+                            <h4 class="modal-title">Edit Role Akun Pegawai</h4>
                         </div>
                         <form>
                         <div class="modal-body">
-                          <div class="form-group">
-                            <label for="nip">NIP: <span style="color:red;">*</span></label>
-                            <input type="number" min="0" name="nip" class="form-control" value="0" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="nip">Nama: <span style="color:red;">*</span></label>
-                            <input type="text" name="..." class="form-control" value="..." required>
-                          </div>
-                          <div class="form-group">
-                            <label for="email">Email: <span style="color:red;">*</span></label>
-                            <input type="email" name="..." class="form-control" value="..." required>
-                          </div>
-                          <div class="form-group">
-                            <label for="nip">No. Kontak: <span style="color:red;">*</span></label>
-                            <input type="number" min="0" name="..." class="form-control" value="0" required>
-                          </div>
                           <div class="form-group">
                             <label>Pilih Role Pengguna</label>
                             <div>
