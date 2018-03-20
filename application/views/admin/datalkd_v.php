@@ -391,18 +391,24 @@ $('#formkt').submit(function(){
     {
         // ajax delete data to database
         $.ajax({
-            url : "<?php echo base_url('Lak/Datakk/delete')?>",
+            url : "<?php echo base_url('admin/Datalkd/deleteKategori')?>",
             type: "POST",
             data: {'id':id},
+            dataType: "JSON",
             success: function(data)
             {
-              alert(data);
-              if(data=="berhasil")
-                reload_kategori();
+              if (data.status=='berhasil') {
+                swal("Berhasil!", data.message, "success");
+              }else {
+                swal("Gagal!", data.message, "error");
+              }
+              if(data.status=="berhasil"){
+              reload_kategori();
+              }
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
-                alert('Terjadi kesalahan saat menghapus data, Periksa apakah KK ini digunakan pada tabel lain!');
+                swal("Gagal!", 'Terjadi kesalahan saat menghapus data, Periksa apakah Kategori ini memiliki kegiatan!', "error");
             }
         });
 
@@ -506,18 +512,24 @@ $('#formkg').submit(function(){
     {
         // ajax delete data to database
         $.ajax({
-            url : "<?php echo base_url('Lak/Datakk/delete')?>",
+            url : "<?php echo base_url('admin/Datalkd/deleteKegiatan')?>",
             type: "POST",
             data: {'id':id},
+            dataType: "JSON",
             success: function(data)
             {
-              alert(data);
-              if(data=="berhasil")
-                reload_kegiatan();
+              if (data.status=='berhasil') {
+                swal("Berhasil!", data.message, "success");
+              }else {
+                swal("Gagal!", data.message, "error");
+              }
+              if(data.status=="berhasil"){
+              reload_kegiatan();
+              }
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
-                alert('Terjadi kesalahan saat menghapus data, Periksa apakah KK ini digunakan pada tabel lain!');
+              swal("Gagal!", "Terjadi kesalahan saat menghapus data, Mungkin kegiatan ini telah digunakan oleh dosen!", "error");
             }
         });
 

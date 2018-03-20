@@ -92,7 +92,7 @@
           </div>
 <script>
 $('.clockpicker').clockpicker({
-  minutestep:30
+  minutestep:5
 });
 $('#form').submit(function(){
   var kegiatanArray = [];
@@ -124,7 +124,7 @@ $('#form').submit(function(){
     formData.append('id_hapus[]',hapusArray[i]);
   }
   $.ajax({
-    url: '<?php echo base_url("dosen/Pengajuanlkd/save");?>',
+    url: '<?php echo base_url("dosen/Laporanlkd/save");?>',
     data: formData,
     type: 'POST',
     // THIS MUST BE DONE FOR FILE UPLOADING
@@ -132,7 +132,11 @@ $('#form').submit(function(){
     processData: false,
     dataType: "JSON",
     success: function(data){
-      alert(data.message);
+      if (data.status=='berhasil') {
+        swal("Berhasil!", data.message, "success");
+      }else {
+        swal("Gagal!", data.message, "error");
+      }
       if(data.status=='berhasil')
       location.reload();
     },

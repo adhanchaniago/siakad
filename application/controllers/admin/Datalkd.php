@@ -72,7 +72,7 @@ class Datalkd extends CI_Controller {
 		}
 		else{
 			$cek = $this->LKD->updateKategori(array('id'=>$id),$data);
-			echo json_encode(array('status'=>'berhasil','message'=>'Input berhasil!'));
+			echo json_encode(array('status'=>'berhasil','message'=>'Update berhasil!'));
 		}
 	}
 	function getKegiatan(){
@@ -114,8 +114,28 @@ class Datalkd extends CI_Controller {
 			echo json_encode(array('status'=>'gagal','message'=>'Data tidak boleh kosong!'));
 		}
 		else{
-			$cek = $this->LKD->updateKegiatan(array('id'=>$id),$data);
-			echo json_encode(array('status'=>'berhasil','message'=>'Input berhasil!'));
+			$kegiatan = $this->LKD->getKegiatan(array('id'=>$id));
+			if($kegiatan->row()!=null && $kegiatan->row()->id_status==0){
+				$cek = $this->LKD->updateKegiatan(array('id'=>$id),$data);
+				echo json_encode(array('status'=>'berhasil','message'=>'Update berhasil!'));
+			}
+			else if($kegiatan->row()!=null){
+				echo json_encode(array('status'=>'gagal','message'=>"Kegiatan ".$kegiatan->row()->nama." tidak dapat diubah!"));
+			}
+		}
+	}
+	
+	function deleteKategori(){
+		$this->load->model(array('LKD'));
+		$data = array(
+			'id' => $_POST['id']
+		);
+		$cek = $this->LKD->deleteKategori($data);
+		if($cek){
+			echo json_encode(array('status'=>'berhasil','message'=>'Delete berhasil!'));
+		}
+		else{
+			echo json_encode(array('status'=>'gagal','message'=>"Delete gagal!"));
 		}
 	}
 }

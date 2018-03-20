@@ -36,6 +36,9 @@
 
                   </div>
                 </div>
+                <div class=" col-md-2" style="margin-top:5px;margin-right:10px;margin-bottom:-10px;float:right">
+                  <button type="button" class="btn btn-success" onclick="accSemua()"><i class="fa fa-check-circle"></i> ACC Semua Pengajuan</button>
+                </div>
               </div><br>
               <div class="table-responsive">
                 <table id="mytable" class="table table-striped table-bordered table-hover" >
@@ -62,7 +65,7 @@
                     <div class="modal-content animated fadeInDown">
                         <div class="modal-header">
                             <h4 class="modal-title">Detail Kegiatan</h4>
-                            <small>Tanggal Pengajuan: 06/03/2018</small>
+                            <!-- <small>Tanggal Pengajuan: 06/03/2018</small> -->
                         </div>
                         <div class="modal-body">
                           <form class="form-horizontal">
@@ -285,5 +288,40 @@
                }
          });
        }
+    }
+    function accSemua(){
+      swal({
+              title: "Anda yakin?",
+              text: "Semua pengajuan pada periode terpilih akan di-ACC",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#1ab394",
+              confirmButtonText: "Ya, ajukan!",
+              closeOnConfirm: false
+          }, function () {
+            $.ajax({
+                 url : "<?php echo site_url('rektor/Datalkd/accSemua')?>",
+                 type: "POST",
+                 data: {"kode":kode_bulan},
+                 dataType: "JSON",
+                 success: function(data)
+                 {
+                   if (data.status=='berhasil') {
+                     swal("Berhasil!", data.message, "success");
+                   }else {
+                     swal("Gagal!", data.message, "error");
+                   }
+                   loadData();
+                 },
+                     error: function (jqXHR, textStatus, errorThrown)
+                     {
+                       console.log(jqXHR);
+                 console.log(textStatus);
+                 console.log(errorThrown);
+                     }
+               });
+
+          });
+
     }
       </script>

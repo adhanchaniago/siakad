@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pengajuanlkd extends CI_Controller {
+class Laporanlkd extends CI_Controller {
 
 	public function index()
 	{
@@ -13,7 +13,16 @@ class Pengajuanlkd extends CI_Controller {
 			$id_jabatan = $dosen->row()->id_jabatan;
 
 			$pengajuan = $this->LKD->getPengajuanMingguan($id_dosen);
-
+			$i = 1;
+			$last = 0;
+			$bulan = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+			foreach (array_reverse($pengajuan->result()) as $row) {
+				if($last != $row->bulan){
+				$i=1;
+				$last = $row->bulan;
+				}
+				$row->bulan = "Minggu ke-".$i++." ". $bulan[($row->bulan-1)]." ". $row->tahun;
+			}
 			$data['pengajuan'] = $pengajuan;
 			$kategori = $this->LKD->getKategoriSorted();
 			$data['kategori'] = array();
@@ -28,7 +37,7 @@ class Pengajuanlkd extends CI_Controller {
 			}
 
 		$this->load->view('header_v');
-		$this->load->view('dosen/pengajuanlkd_v',$data);
+		$this->load->view('dosen/laporanlkd_v',$data);
 		$this->load->view('footer_v');
 		}else{
 			header("location:".base_url());
@@ -41,13 +50,13 @@ class Pengajuanlkd extends CI_Controller {
 		if ($cek == 'dosen'){
 			$this->load->model(array('LKD'));
 			if(!isset($_GET['q'])){
-				header("location:".base_url()."dosen/pengajuanlkd");
+				header("location:".base_url()."dosen/laporanlkd");
 			}
 			else{
 				$id = $_GET['q'];
 				$detail = $this->LKD->getDetailEncrypted($id);
 				if($detail->num_rows()==0){
-					header("location:".base_url()."dosen/pengajuanlkd");
+					header("location:".base_url()."dosen/laporanlkd");
 				}
 				else{
 					$data['kegiatan'] = $this->LKD->getKegiatan(null);
