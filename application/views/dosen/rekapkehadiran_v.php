@@ -23,9 +23,6 @@
             <div class="row">
               <div class="ibox-content col-lg-12">
                 <div class="row">
-                        <div class="col-md-2">
-                          <h2>Form</h2>
-                        </div>
                         <div class=" col-md-3" style="margin-top:5px;margin-bottom:-10px;">
                           <label for="semester">Filter Bulanan</label>
                           <div class="form-group">
