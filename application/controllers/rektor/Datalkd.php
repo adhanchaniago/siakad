@@ -59,4 +59,24 @@ class Datalkd extends CI_Controller {
       header('Content-Type: application/json');
       echo $this->LKD->jsonRektor($array);
 	    }
+			function accSemua(){
+				$data = array(
+					'status_pengajuan' => 1
+				);
+				$param = array(
+					'kode_bulan'=> $_POST['kode'],
+					'status_pengajuan'=>0
+				);
+				if($param['kode_bulan'] == 0){
+					$param['kode_bulan'] = 'IS NOT NULL';
+				}
+				$this->load->model(array('LKD'));
+				$update = $this->LKD->updatePengajuanBulanan($param,$data);
+				if($update){
+					echo json_encode(array('status'=>'berhasil','message'=>'ACC berhasil!'));
+				}
+				else{
+					echo json_encode(array('status'=>'gagal','message'=>'Tidak ada pengajuan yang di-ACC!'));
+				}
+			}
 }

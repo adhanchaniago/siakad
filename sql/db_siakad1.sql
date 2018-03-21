@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18 Mar 2018 pada 05.56
+-- Generation Time: 20 Mar 2018 pada 07.13
 -- Versi Server: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -173,24 +173,24 @@ CREATE TABLE `t_config_lkd` (
 INSERT INTO `t_config_lkd` (`id`, `id_jabatan`, `id_kategori`, `jam`) VALUES
 (1, 1, 1, 7.5),
 (2, 1, 2, 7.5),
-(3, 1, 3, 6),
 (4, 1, 4, 15.5),
 (5, 1, 5, 1),
 (6, 2, 1, 7.5),
 (7, 2, 2, 5.5),
-(8, 2, 3, 4),
 (9, 2, 4, 19.5),
 (10, 2, 5, 1),
 (11, 3, 1, 7.5),
 (12, 3, 2, 2.5),
-(13, 3, 3, 3),
 (14, 3, 4, 23.5),
 (15, 3, 5, 1),
 (16, 4, 1, 7.5),
 (17, 4, 2, 1),
-(18, 4, 3, 0.5),
 (19, 4, 4, 27.5),
-(20, 4, 5, 1);
+(20, 4, 5, 1),
+(25, 1, 7, 0),
+(26, 2, 7, 0),
+(27, 3, 7, 0),
+(28, 4, 7, 0);
 
 -- --------------------------------------------------------
 
@@ -239,7 +239,7 @@ INSERT INTO `t_detail_lkd` (`id`, `jam_awal`, `jam_akhir`, `id_kegiatan`, `id_lk
 (9, '14:00', '15:00', 1, 4),
 (10, '15:00', '18:00', 5, 5),
 (11, '10:00', '11:00', 2, 5),
-(14, '13:00', '16:00', 2, 6),
+(14, '13:10', '16:00', 2, 6),
 (15, '16:00', '18:00', 1, 6),
 (16, '07:30', '09:00', 2, 7),
 (17, '13:30', '15:30', 2, 7),
@@ -331,9 +331,9 @@ CREATE TABLE `t_kategori_kegiatan_lkd` (
 INSERT INTO `t_kategori_kegiatan_lkd` (`id`, `nama`, `alias`) VALUES
 (1, 'Pengajaran', 'ajar'),
 (2, 'Pembimbingan', 'bimbing'),
-(3, 'Pengujian', 'uji'),
 (4, 'Penelitian dan Pengabdian', 'litab'),
-(5, 'Kegiatan Penunjang', 'tunjang');
+(5, 'Kegiatan Penunjang', 'tunjang'),
+(7, 'Pengujian', 'uji');
 
 -- --------------------------------------------------------
 
@@ -356,7 +356,7 @@ INSERT INTO `t_kegiatan_lkd` (`id`, `nama`, `id_kategori`, `id_status`) VALUES
 (1, 'Menulis Jurnal', 4, 0),
 (2, 'Mengajar', 1, 1),
 (3, 'Membimbing', 2, 0),
-(4, 'Menguji', 3, 0),
+(4, 'Menguji', 7, 0),
 (5, 'Menerjemahkan Buku', 4, 0),
 (6, 'Tunjang', 5, 0),
 (7, 'Pengabdian', 4, 0),
@@ -404,7 +404,8 @@ INSERT INTO `t_lkd_harian` (`id`, `tanggal`, `id_pengajuan`, `created_at`, `upda
 (28, '2018-02-01', 12, '2018-03-18 01:34:25', '2018-03-18 01:34:25'),
 (29, '2018-03-05', 13, '2018-03-18 01:35:16', '2018-03-18 01:35:16'),
 (30, '2018-02-05', 14, '2018-03-18 01:35:46', '2018-03-18 01:35:46'),
-(31, '2018-02-13', 15, '2018-03-18 01:36:11', '2018-03-18 01:36:11');
+(31, '2018-02-13', 15, '2018-03-18 01:36:11', '2018-03-18 01:36:11'),
+(32, '2018-03-18', 1, '2018-03-18 14:59:15', '2018-03-18 14:59:15');
 
 -- --------------------------------------------------------
 
@@ -479,7 +480,7 @@ CREATE TABLE `t_pengajuan_bulanan_lkd` (
 --
 
 INSERT INTO `t_pengajuan_bulanan_lkd` (`id`, `kode_bulan`, `id_dosen`, `status_pengajuan`, `waktu_pengajuan`, `created_at`, `updated_at`) VALUES
-(1, '2-2018', 2, 1, '2018-03-18 04:55:55', '2018-03-18 02:22:06', '2018-03-18 04:55:55');
+(1, '2-2018', 2, 1, '2018-03-20 05:35:37', '2018-03-18 02:22:06', '2018-03-20 05:35:37');
 
 -- --------------------------------------------------------
 
@@ -503,15 +504,15 @@ CREATE TABLE `t_pengajuan_lkd` (
 --
 
 INSERT INTO `t_pengajuan_lkd` (`id`, `waktu_pengajuan`, `id_periode`, `id_dosen`, `status_pengajuan`, `total`, `created_at`, `updated_at`) VALUES
-(1, '2018-03-17 18:16:25', 4, 2, 1, 26, '2018-03-14 07:23:44', '2018-03-17 18:16:25'),
-(8, '2018-03-17 18:12:51', 2, 2, 0, 25.5, '2018-03-14 08:35:42', '2018-03-17 18:12:51'),
-(9, '2018-03-17 18:16:15', 1, 2, 1, 2, '2018-03-16 01:52:58', '2018-03-17 18:16:15'),
+(1, '2018-03-19 23:05:54', 4, 2, 1, 25.8, '2018-03-14 07:23:44', '2018-03-20 05:07:58'),
+(8, '2018-03-17 18:12:51', 2, 2, 1, 25.5, '2018-03-14 08:35:42', '2018-03-20 05:03:47'),
+(9, '2018-03-19 23:32:58', 1, 2, 1, 2, '2018-03-16 01:52:58', '2018-03-20 05:33:18'),
 (10, '2018-03-17 18:17:30', 5, 2, -1, 2, '2018-03-16 14:54:29', '2018-03-17 18:17:30'),
 (11, '2018-03-18 01:21:22', NULL, 2, 1, 18, '2018-03-18 01:15:02', '2018-03-18 01:21:22'),
 (12, '2018-03-18 01:40:58', 7, 2, 1, 2, '2018-03-18 01:34:24', '2018-03-18 01:40:58'),
-(13, '2018-03-17 22:08:25', 3, 2, 0, 14, '2018-03-18 01:35:16', '2018-03-18 04:08:25'),
+(13, '2018-03-17 22:08:25', 3, 2, 1, 14, '2018-03-18 01:35:16', '2018-03-20 05:03:47'),
 (14, '2018-03-18 01:40:52', 8, 2, 1, 2, '2018-03-18 01:35:46', '2018-03-18 01:40:52'),
-(15, '2018-03-18 01:40:46', 9, 2, 1, 2, '2018-03-18 01:36:11', '2018-03-18 01:40:46');
+(15, '2018-03-19 23:33:03', 9, 2, 1, 2, '2018-03-18 01:36:11', '2018-03-20 05:33:18');
 
 -- --------------------------------------------------------
 
@@ -941,7 +942,7 @@ ALTER TABLE `t_akun`
 -- AUTO_INCREMENT for table `t_config_lkd`
 --
 ALTER TABLE `t_config_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `t_dekan`
@@ -971,7 +972,7 @@ ALTER TABLE `t_fakultas`
 -- AUTO_INCREMENT for table `t_kategori_kegiatan_lkd`
 --
 ALTER TABLE `t_kategori_kegiatan_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `t_kegiatan_lkd`
@@ -983,7 +984,7 @@ ALTER TABLE `t_kegiatan_lkd`
 -- AUTO_INCREMENT for table `t_lkd_harian`
 --
 ALTER TABLE `t_lkd_harian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `t_mahasiswa`
@@ -1067,7 +1068,7 @@ ALTER TABLE `t_dekan`
 -- Ketidakleluasaan untuk tabel `t_detail_lkd`
 --
 ALTER TABLE `t_detail_lkd`
-  ADD CONSTRAINT `t_detail_lkd_ibfk_1` FOREIGN KEY (`id_kegiatan`) REFERENCES `t_kegiatan_lkd` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_detail_lkd_ibfk_1` FOREIGN KEY (`id_kegiatan`) REFERENCES `t_kegiatan_lkd` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `t_detail_lkd_ibfk_2` FOREIGN KEY (`id_lkd_harian`) REFERENCES `t_lkd_harian` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -1084,7 +1085,7 @@ ALTER TABLE `t_dosen`
 -- Ketidakleluasaan untuk tabel `t_kegiatan_lkd`
 --
 ALTER TABLE `t_kegiatan_lkd`
-  ADD CONSTRAINT `t_kegiatan_lkd_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `t_kategori_kegiatan_lkd` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_kegiatan_lkd_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `t_kategori_kegiatan_lkd` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `t_kegiatan_lkd_ibfk_2` FOREIGN KEY (`id_status`) REFERENCES `m_status_kegiatan_lkd` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --

@@ -112,7 +112,7 @@
                 <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">LKD </span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
                   <li><a href="<?php echo base_url()."dosen/inputlkd"?>">Input LKD</a></li>
-                  <li><a href="<?php echo base_url()."dosen/pengajuanlkd"?>">Pengajuan LKD</a></li>
+                  <li><a href="<?php echo base_url()."dosen/laporanlkd"?>">Laporan LKD</a></li>
                   <li><a href="<?php echo base_url()."dosen/rekapkehadiran"?>">Rekapitulasi Kehadiran</a></li>
                     <!-- <li><a href="#">Progres Ticket</a></li> -->
                 </ul>

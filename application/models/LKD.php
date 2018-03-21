@@ -162,6 +162,15 @@ class LKD extends CI_Model {
          $query = $this->db->query("update t_pengajuan_lkd t set t.total = (select sum(ROUND(TIME_TO_SEC(TIMEDIFF(td.jam_akhir,td.jam_awal))/3600,1)) from t_detail_lkd td join t_lkd_harian th on td.id_lkd_harian = th.id and th.id_pengajuan = $id_pengajuan) where t.id=$id_pengajuan");
          return $query;
      }
+     public function accSemuaDekan($id_periode,$id_fakultas)
+       {
+         if($id_periode!=0){
+          $query = $this->db->query("update t_pengajuan_lkd t join t_dosen d on t.id_dosen = d.id set t.status_pengajuan = 1 where d.id_fakultas = $id_fakultas AND t.id_periode = $id_periode AND t.status_pengajuan=0");
+        }else {
+           $query = $this->db->query("update t_pengajuan_lkd t join t_dosen d on t.id_dosen = d.id set t.status_pengajuan = 1 where d.id_fakultas = $id_fakultas AND t.status_pengajuan=0");
+         }
+         return $query;
+       }
    public function deletePengajuan($parameter=array())
    {
        $this->db->delete('t_pengajuan_lkd', $parameter );
@@ -171,14 +180,15 @@ class LKD extends CI_Model {
      return $this->db->get_where('t_pengajuan_lkd', $parameterfilter);
    }
    public function getPengajuanMingguan($id_dosen){
-     return $this->db->query("select p.id, DATE_FORMAT(tanggal_awal, '%d/%m/%Y') as tanggal_awal, DATE_FORMAT(tanggal_akhir, '%d/%m/%Y') as tanggal_akhir from t_pengajuan_lkd p join t_periode_lkd pe on p.id_periode = pe.id where id_dosen=$id_dosen ORDER BY pe.tanggal_akhir DESC LIMIT 10");
+     return $this->db->query("select p.id, DATE_FORMAT(tanggal_awal, '%d/%m/%Y') as tanggal_awal, DATE_FORMAT(tanggal_akhir, '%d/%m/%Y') as tanggal_akhir, MONTH(tanggal_akhir) as bulan, YEAR(tanggal_akhir) as tahun from t_pengajuan_lkd p join t_periode_lkd pe on p.id_periode = pe.id where id_dosen=$id_dosen ORDER BY pe.tanggal_akhir DESC LIMIT 10");
    }
    public function getPengajuanFakultas(){
-     return $this->db->query("select id, DATE_FORMAT(tanggal_awal, '%d/%m/%Y') as tanggal_awal, DATE_FORMAT(tanggal_akhir, '%d/%m/%Y') as tanggal_akhir from t_periode_lkd pe ORDER BY pe.tanggal_akhir DESC LIMIT 10");
+     return $this->db->query("select id, DATE_FORMAT(tanggal_awal, '%d/%m/%Y') as tanggal_awal, DATE_FORMAT(tanggal_akhir, '%d/%m/%Y') as tanggal_akhir, MONTH(tanggal_akhir) as bulan, YEAR(tanggal_akhir) as tahun from t_periode_lkd pe ORDER BY pe.tanggal_akhir DESC LIMIT 10");
    }
 
  public function updatePengajuanBulanan($parameterfilter=array(), $arraydata=array() )
    {
+     if($parameterfilter!=null)
        $this->db->where($parameterfilter);
        $this->db->update('t_pengajuan_bulanan_lkd', $arraydata);
        return $this->db->affected_rows();

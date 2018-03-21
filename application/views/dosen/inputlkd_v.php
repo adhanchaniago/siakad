@@ -80,7 +80,7 @@
     <script type="text/javascript">
 
     $('.clockpicker').clockpicker({
-      minutestep:30
+      minutestep:5
     });
     // $('#kegiatan2').change(function(){
     //   kegiatan = $('#kegiatan2').val();
@@ -138,7 +138,7 @@ html +='                          </select></div>'+
 
       $('#activities').append(html);
       $('.clockpicker').clockpicker({
-        minutestep:30
+        minutestep:5
       });
 
     }

@@ -9,8 +9,17 @@ class Datalkd extends CI_Controller {
 		if ($cek == 'dekan'){
 			$this->load->model(array('LKD'));
 			$id_fakultas = $_SESSION['data']['id_fakultas'];
-			$pengajuan = $this->LKD->getPengajuanFakultas($id_fakultas);
-
+			$pengajuan = $this->LKD->getPengajuanFakultas();
+			$i = 1;
+			$last = 0;
+			$bulan = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
+			foreach (array_reverse($pengajuan->result()) as $row) {
+				if($last != $row->bulan){
+				$i=1;
+				$last = $row->bulan;
+				}
+				$row->bulan = "Minggu ke-".$i++." ". $bulan[($row->bulan-1)]." ". $row->tahun;
+			}
 			$data['pengajuan'] = $pengajuan;
 
 			$kategori = $this->LKD->getKategoriSorted();
@@ -109,6 +118,21 @@ class Datalkd extends CI_Controller {
 				}
 				else{
 					echo json_encode(array('status'=>'gagal','message'=>'Update gagal!'));
+				}
+			}
+			function accSemua(){
+				$data = array(
+					'status_pengajuan' => 1
+				);
+				$id_periode = $_POST['id_periode'];
+				$id_fakultas = $_SESSION['data']['id_fakultas'];
+				$this->load->model(array('LKD'));
+				$update = $this->LKD->accSemuaDekan($id_periode, $id_fakultas);
+				if($update){
+					echo json_encode(array('status'=>'berhasil','message'=>'ACC berhasil!'));
+				}
+				else{
+					echo json_encode(array('status'=>'gagal','message'=>'ACC gagal!'));
 				}
 			}
 }

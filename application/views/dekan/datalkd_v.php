@@ -32,7 +32,7 @@
                       echo "<option value='0'>-- Pilih Semua --</option>";
                       foreach ($pengajuan->result() as $row){
                         $i++;
-                          echo "<option value='$row->id'>$row->tanggal_awal - $row->tanggal_akhir</option>";
+                          echo "<option value='$row->id'>$row->bulan</option>";
                       }
                       if($i==0){
                           echo "<option disabled>Belum ada pengajuan LKD</option>";
@@ -42,6 +42,9 @@
                     </select>
 
                   </div>
+                </div>
+                <div class=" col-md-2" style="margin-top:5px;margin-right:10px;margin-bottom:-10px;float:right">
+                  <button type="button" class="btn btn-success" onclick="accSemua()"><i class="fa fa-check-circle"></i> ACC Semua Pengajuan</button>
                 </div>
               </div><br>
               <div class="table-responsive">
@@ -88,7 +91,7 @@
                       <div class="modal-content animated fadeInDown">
                           <div class="modal-header">
                               <h4 class="modal-title">Detail Kegiatan</h4>
-                              <small>Tanggal Pengajuan: 06/03/2018</small>
+                              <!-- <small>Tanggal Pengajuan: 06/03/2018</small> -->
                           </div>
                           <form class="form-horizontal">
                           <div class="modal-body">
@@ -207,7 +210,117 @@
               echo "arrJam.push('$id');";
             }
              ?>
-      function aksi(id){
+             function aksi(id){
+               id_pengajuan = id;
+               $.ajax({
+                 url: '<?php echo base_url("dekan/Datalkd/getData");?>',
+                 data: {'id_pengajuan':id_pengajuan},
+                 type: 'POST',
+                 // THIS MUST BE DONE FOR FILE UPLOADING
+
+                 dataType: "JSON",
+                 success: function(data){
+                   console.log(data);
+                   var html='',rowspan,td='',baris = 0;
+                   var i = 1;
+
+                   for(key in data.tanggal){
+                     rowspan = data.tanggal[key].length;
+                     html += '<tr>';
+
+                     for(var j = 0; j < rowspan; j++){
+                       td='';
+                       baris=0;
+                       for(var k=0; k < arrJam.length; k++){
+                         if(data.tanggal[key][j].id_kategori == arrJam[k]){
+                           td += '<td><center>'+data.tanggal[key][j].total+'</center></td>';
+                           baris = data.tanggal[key][j].total;
+
+                         }
+                         else{
+                           td += '<td><center>-</center></td>';
+                         }
+
+                       }
+                       td += '<td>'+baris+'</td>';
+
+
+           if(j==0){
+             html+= '            <td rowspan="'+rowspan+'" style="text-align:center;vertical-align:middle;">'+(i++)+'</td>'+
+           '            <td rowspan="'+rowspan+'" style="text-align:center;vertical-align:middle;">'+key+'</td>'+
+           ''+
+           '                <td>'+data.tanggal[key][j].kegiatan+'</td>'+
+           '                <td>'+data.tanggal[key][j].jam_awal+'-'+data.tanggal[key][j].jam_akhir+'</td>'+td;
+           }
+           else{
+           html+='              <tr>'+
+           '                <td>'+data.tanggal[key][j].kegiatan+'</td>'+
+           '                <td>'+data.tanggal[key][j].jam_awal+'-'+data.tanggal[key][j].jam_akhir+'</td>'+td+
+           '              </tr>';
+           }
+
+
+           }
+           html+='          </tr>';
+
+                   }
+                   if(data.tanggal.length == 0)
+                     html='<tr><td colspan="'+(arrJam.length+6)+'"><center><b>Data Kosong<b></center></td></tr>">';
+                   html+='<tr><td colspan="4" style="text-align:center;vertical-align:middle;"><b>Jumlah</b></td>';
+                   var color;
+                   var nilai,total=0;
+                   for(var i=0; i<arrJam.length; i++){
+                     if(data.jam[arrJam[i]] == null){
+                       nilai = 0;
+                     }
+                     else {
+                       nilai = data.jam[arrJam[i]];
+                     }
+
+                     total+=nilai;
+                     html+='<td><center><b>'+nilai+'<b><center></td>';
+                   }
+
+
+
+                     html+='<td><center><b>'+total+'</b><center></td></tr>';
+
+                     if(data.pengajuan.status_pengajuan == '-1'){
+                       $('#acc').removeClass('btn-warning disable');
+                       $('#acc').addClass('btn-success');
+                       $('#acc').html('<i class="fa fa-check-circle"></i> ACC Kegiatan');
+                       $('#reset').attr("disabled",true);
+                     }
+                     else if(data.pengajuan.status_pengajuan == '0'){
+                       $('#acc').removeClass('btn-warning disabled');
+                       $('#acc').addClass('btn-success');
+                       $('#acc').html('<i class="fa fa-check-circle"></i> ACC Kegiatan');
+                       $('#reset').attr("disabled",false);
+                     }
+                     else{
+                         $('#reset').attr("disabled",false);
+                         $('#acc').removeClass('btn-success');
+                         $('#acc').addClass('btn-warning');
+                         $('#acc').html('<i class="fa fa-minus-circle"></i> Telah di-ACC');
+                     }
+
+
+                   status = data.pengajuan.status_pengajuan;
+                   url_print = data.pengajuan.id;
+
+                   $('#body').html(html);
+                   // $('#myModalEdit').show();
+                   // data-toggle="modal" data-target="#myModalEdit"
+                 },
+               error: function(jqXHR, textStatus, errorThrown)
+               {
+                 console.log(jqXHR);
+                 console.log(textStatus);
+                 console.log(errorThrown);
+               }
+                     });
+             }
+      /*function aksi(id){
         id_pengajuan = id;
         $.ajax({
           url: '<?php echo base_url("dekan/Datalkd/getData");?>',
@@ -321,7 +434,7 @@
           console.log(errorThrown);
         }
               });
-      }
+      }*/
 function keluar(){
   $('#myModalEdit').hide();
 }
@@ -362,6 +475,42 @@ function set(tipe){
        console.log(errorThrown);
            }
      });
+
    }
+}
+function accSemua(){
+  swal({
+          title: "Anda yakin?",
+          text: "Semua pengajuan pada periode terpilih akan di-ACC",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#1ab394",
+          confirmButtonText: "Ya, ajukan!",
+          closeOnConfirm: false
+      }, function () {
+        $.ajax({
+             url : "<?php echo site_url('dekan/Datalkd/accSemua')?>",
+             type: "POST",
+             data: {"id_periode":id_periode},
+             dataType: "JSON",
+             success: function(data)
+             {
+               if (data.status=='berhasil') {
+                 swal("Berhasil!", data.message, "success");
+               }else {
+                 swal("Gagal!", data.message, "error");
+               }
+               loadData();
+             },
+                 error: function (jqXHR, textStatus, errorThrown)
+                 {
+                   console.log(jqXHR);
+             console.log(textStatus);
+             console.log(errorThrown);
+                 }
+           });
+
+      });
+
 }
       </script>
