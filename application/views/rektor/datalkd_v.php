@@ -22,7 +22,7 @@
             <div class="wrapper wrapper-content">
               <div class="ibox-content">
                 <div class="row">
-                <div class=" col-md-3" style="margin-top:5px;margin-bottom:-10px;">
+                <div class=" col-md-3">
                   <label for="semester">Filter Bulan</label>
                   <div class="form-group">
                     <select id="bulan" class="form-control">
@@ -36,8 +36,13 @@
 
                   </div>
                 </div>
-                <div class=" col-md-2" style="margin-top:5px;margin-right:10px;margin-bottom:-10px;float:right">
-                  <button type="button" class="btn btn-success" onclick="accSemua()"><i class="fa fa-check-circle"></i> ACC Semua Pengajuan</button>
+                <!-- <style media="screen">
+                  .as{
+                    style="margin-top:5px;margin-right:10px;margin-bottom:-10px;float:right"
+                  }
+                </style> -->
+                <div class="col-md-1 col-md-offset-7">
+                  <button type="button" class="btn btn-sm btn-success" onclick="accSemua()"><i class="fa fa-check-circle"></i> ACC Semua Pengajuan</button>
                 </div>
               </div><br>
               <div class="table-responsive">
