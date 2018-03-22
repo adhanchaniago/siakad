@@ -8,8 +8,9 @@ class Datalkd extends CI_Controller {
 		$cek = $this->session->userdata('status');
 		if ($cek == 'rektor'){
 			$array=array('page'=>7);
-			$this->load->model(array('LKD'));
+			$this->load->model(array('LKD','Fakultas'));
 			$data['bulan'] = $this->LKD->getBulanPengajuan();
+			$data['fakultas'] = $this->Fakultas->get();
 			$this->load->view('header_v',$array);
 		$this->load->view('rektor/datalkd_v',$data);
 		$this->load->view('footer_v');
@@ -48,12 +49,14 @@ class Datalkd extends CI_Controller {
 	}
 	function json() {
 		$kode_bulan = $_POST['kode'];
+		$id_fakultas = $_POST['fakultas'];
 		if($kode_bulan == 0){
-			$array = null;
+			$kode_bulan = null;
 		}
-		else {
-			$array = array('p.kode_bulan'=>$kode_bulan);
+		if($id_fakultas == 0) {
+			$id_fakultas = null;
 		}
+		$array = array('kode_bulan'=>$kode_bulan,'id_fakultas'=>$id_fakultas);
 			$this->load->library('datatables');
 			$this->load->model(array('LKD'));
       header('Content-Type: application/json');
@@ -68,15 +71,18 @@ class Datalkd extends CI_Controller {
 					'status_pengajuan'=>0
 				);
 				if($param['kode_bulan'] == 0){
-					$param['kode_bulan'] = 'IS NOT NULL';
-				}
-				$this->load->model(array('LKD'));
-				$update = $this->LKD->updatePengajuanBulanan($param,$data);
-				if($update){
-					echo json_encode(array('status'=>'berhasil','message'=>'ACC berhasil!'));
+					echo json_encode(array('status'=>'gagal','message'=>'Pilih bulan terlebih dahulu!'));
 				}
 				else{
-					echo json_encode(array('status'=>'gagal','message'=>'Tidak ada pengajuan yang di-ACC!'));
+					$this->load->model(array('LKD'));
+					$update = $this->LKD->updatePengajuanBulanan($param,$data);
+					echo json_encode(array('status'=>'berhasil','message'=>'ACC berhasil!'));
 				}
+				// if($update){
+				// 	echo json_encode(array('status'=>'berhasil','message'=>'ACC berhasil!'));
+				// }
+				// else{
+				// 	echo json_encode(array('status'=>'gagal','message'=>'Tidak ada pengajuan yang di-ACC!'));
+				// }
 			}
 }

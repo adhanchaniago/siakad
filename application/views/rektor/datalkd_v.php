@@ -22,7 +22,7 @@
             <div class="wrapper wrapper-content">
               <div class="ibox-content">
                 <div class="row">
-                <div class=" col-md-3" style="margin-top:5px;margin-bottom:-10px;">
+                <div class=" col-md-2" style="margin-top:5px;margin-bottom:-10px;">
                   <label for="semester">Filter Bulan</label>
                   <div class="form-group">
                     <select id="bulan" class="form-control">
@@ -36,7 +36,22 @@
 
                   </div>
                 </div>
-                <div class=" col-md-2" style="margin-top:5px;margin-right:10px;margin-bottom:-10px;float:right">
+                <div class=" col-md-2" style="margin-top:5px;margin-bottom:-10px;">
+                  <label for="semester">Filter Fakultas</label>
+                  <div class="form-group">
+                    <select id="fakultas" class="form-control">
+                      <option value="0" selected>-- Pilih Fakultas --</option>
+                      <?php foreach ($fakultas->result() as $row){
+                        echo "<option value='$row->id'>$row->nama</option>";
+
+                      }
+                      ?>
+                    </select>
+
+                  </div>
+                </div>
+                <div class=" col-md-4" style="margin-top:10px;margin-bottom:-10px;margin-right:-20px;float:right">
+                  <button type="button" class="btn btn-info" onclick="exportPengajuan()"><i class="fa fa-print"></i> Export Bulanan</button>
                   <button type="button" class="btn btn-success" onclick="accSemua()"><i class="fa fa-check-circle"></i> ACC Semua Pengajuan</button>
                 </div>
               </div><br>
@@ -86,7 +101,7 @@
             </div>
 
       <script>
-      var kode_bulan =   $('#bulan').val(),id_bulanan, status;
+      var kode_bulan =   $('#bulan').val(),id_bulanan, status,fakultas=0;
       $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
                 {
                     return {
@@ -102,6 +117,10 @@
 
                 $('#bulan').change(function(){
                   kode_bulan=$(this).val();
+                  loadData();
+                });
+                $('#fakultas').change(function(){
+                  fakultas=$(this).val();
                   loadData();
                 });
                 loadData();
@@ -125,7 +144,8 @@
                     serverSide: true,
                     ajax: {"url": "<?php echo base_url("rektor/Datalkd/json/");?>", "type": "POST","data":{
 
-                    "kode":kode_bulan
+                    "kode":kode_bulan,
+                    "fakultas":fakultas
                   }},
                     "columnDefs": [
         {
@@ -323,5 +343,16 @@
 
           });
 
+    }
+    function exportPengajuan(){
+      if(kode_bulan==0){
+        swal("", "Pilih bulan terlebih dahulu!", "error");
+      }
+      else if(fakultas==0){
+        swal("", "Pilih fakultas terlebih dahulu!", "error");
+      }
+      else{
+        window.open("<?php echo base_url().'PrintLKD/rektor?bulan='?>"+kode_bulan+'&fakultas='+fakultas, '_blank');
+      }
     }
       </script>

@@ -11,7 +11,7 @@ class Laporanlkd extends CI_Controller {
 			$id_dosen = $_SESSION['data']['id'];
 			$dosen = $this->Dosen->get(array('id'=>$id_dosen));
 			$id_jabatan = $dosen->row()->id_jabatan;
-
+			/*
 			$pengajuan = $this->LKD->getPengajuanMingguan($id_dosen);
 			$i = 1;
 			$last = 0;
@@ -24,6 +24,9 @@ class Laporanlkd extends CI_Controller {
 				$row->bulan = "Minggu ke-".$i++." ". $bulan[($row->bulan-1)]." ". $row->tahun;
 			}
 			$data['pengajuan'] = $pengajuan;
+			*/
+			$bulan_data = $this->LKD->getBulanPengajuan();
+			$data['bulan'] = $bulan_data;
 			$kategori = $this->LKD->getKategoriSorted();
 			$data['kategori'] = array();
 			$data['jam'] = array();
@@ -74,7 +77,14 @@ class Laporanlkd extends CI_Controller {
 	}
 	public function getData(){
 		$this->load->model(array('LKD'));
-		$id_pengajuan = $_POST['id_pengajuan'];
+		$id_periode = $_POST['id_periode'];
+		$id_dosen = $_SESSION['data']['id'];
+		$pengajuan = $this->LKD->getPengajuan(array('id_periode'=>$id_periode,'id_dosen'=>$id_dosen))->row();
+		if($pengajuan!=null)
+		$id_pengajuan = $pengajuan->id;
+		else {
+			$id_pengajuan=null;
+		}
 		$data = $this->LKD->getDetailLKD($id_pengajuan);
 		$json_tanggal = array();
 		$json_id = array();
@@ -176,14 +186,34 @@ class Laporanlkd extends CI_Controller {
 			echo json_encode(array('status'=>'berhasil','message'=>'Update berhasil'));
 		}
 	}
+	public function getPeriode(){
+		$kode_bulan = $_POST['kode'];
+		$kode = explode("-",$kode_bulan);
+		$this->load->model(array('LKD'));
+		$pengajuan = $this->LKD->getPeriodeByKode($kode[0],$kode[1]);
+		$i=$pengajuan->num_rows();
+		$data="";
+		foreach (array_reverse($pengajuan->result()) as $row) {
+			$data.="<option value='$row->id'>Minggu ke-".$i--."</option>";
+		}
+		echo json_encode(array('status'=>'berhasil','data'=>$data));
+	}
 
 	function pengajuan(){
-		$id_pengajuan = $_POST['id_pengajuan'];
+		$this->load->model(array('LKD'));
+		$id_periode = $_POST['id_periode'];
+		$id_dosen = $_SESSION['data']['id'];
+		$pengajuan = $this->LKD->getPengajuan(array('id_periode'=>$id_periode,'id_dosen'=>$id_dosen))->row();
+		if($pengajuan!=null)
+		$id_pengajuan = $pengajuan->id;
+		else {
+			$id_pengajuan=null;
+		}
 		$data = array(
 			'status_pengajuan' => 0,
 			'waktu_pengajuan'=>date("Y-m-d H:i:s"),
 		);
-		$this->load->model(array('LKD'));
+
 		$update = $this->LKD->updatePengajuan(array('id'=>$id_pengajuan),$data);
 		$this->LKD->updatePengajuanTotal($id_pengajuan);
 		if($update){
