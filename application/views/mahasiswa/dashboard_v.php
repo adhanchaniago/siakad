@@ -178,6 +178,13 @@
                 </div>
             </div>
 
+            <style media="screen">
+            .responsive {
+                width: 100%;
+                height: auto;
+              }
+            </style>
+
             <!-- modal window -->
             <div class="modal inmodal fade" id="modalberita" tabindex="-1" role="dialog"  aria-hidden="true">
                       <div class="modal-dialog">
@@ -190,7 +197,7 @@
                                 <p>PEMBEKALAN PENGAWAS UJIAN TENGAH SEMESTER (UTS) SEMESTER GENAP 2017/2018 FAKULTAS TEKNIK ELEKTRO Seluruh Pengawas Ujian Tengah Semester (UTS) Genap 2017/2018 Fakultas Teknik Elektro wajib menghadiri Pembekalan Pengawas Ujian yang akan dilaksanakan pada : Hari, Tanggal : Jum???at, 2 Maret 2018 Waktu	: 15.30 ??? 17.30 WIB Tempat	: Gedung Barung Ruang N314 Sehubungan dengan pentingnya acara ini, diharapkan dapat hadir tepat waktu . Demikian untuk diperhatikan dan dilaksanakan.</p>
                                 <div class="lightBoxGallery">
                                 <a href="<?php echo base_url()."assets" ?>/img/thumbnail-file.png" title="attachment" data-gallery="">
-                                <center><img src="<?php echo base_url()."assets" ?>/img/thumbnail-file.png" alt="attachment_img"></a>
+                                <center><img src="<?php echo base_url()."assets" ?>/img/thumbnail-file.png" alt="attachment_img" class="responsive"></a>
                                 </div>
                               </div>
                           </div>

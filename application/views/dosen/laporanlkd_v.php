@@ -20,9 +20,7 @@
             <div class="row">
               <div class="ibox-content col-lg-12">
                 <div class="row">
-                        <div class="col-md-2">
-                          <h2>Form</h2>
-                        </div>
+                        
                         <div class=" col-md-2" style="margin-top:5px;margin-bottom:-10px;">
                           <label for="semester">Filter Bulan</label>
                           <div class="form-group">
