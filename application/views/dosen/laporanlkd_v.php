@@ -1,8 +1,9 @@
 
+
   <!-- content -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-6">
-                    <h2>Pengajuan Lembar Kerja Dosen</h2>
+                    <h2>Laporan Lembar Kerja Dosen</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.html">This is</a>
@@ -19,19 +20,27 @@
             <div class="row">
               <div class="ibox-content col-lg-12">
                 <div class="row">
-                        <div class=" col-md-3" style="margin-top:5px;margin-bottom:-10px;">
-                          <label for="semester">Filter Mingguan</label>
+                        
+                        <div class=" col-md-2" style="margin-top:5px;margin-bottom:-10px;">
+                          <label for="semester">Filter Bulan</label>
+                          <div class="form-group">
+                            <select id="bulan" class="form-control">
+                              <?php
+                              foreach ($bulan->result() as $row){
+                                  echo "<option value='$row->kode'>$row->bulan</option>";
+                              }
+                              ?>
+
+                            </select>
+
+                          </div>
+                        </div>
+                        <div class=" col-md-2" style="margin-top:5px;margin-bottom:-10px;">
+                          <label for="semester">Filter Periode</label>
                           <div class="form-group">
                             <select id="mingguan" class="form-control">
                               <?php
-                              $i = 0;
-                              foreach ($pengajuan->result() as $row){
-                                $i++;
-                                  echo "<option value='$row->id'>$row->bulan</option>";
-                              }
-                              if($i==0){
-                                  echo "<option disabled>Anda belum pernah mengajukan LKD</option>";
-                              }
+
                               ?>
 
                             </select>
@@ -90,8 +99,10 @@ foreach ($kategori as $row){
   echo "arrNilai.push('$jam[$id]');";
 }
 ?>
-var id_pengajuan=$('#mingguan').val();
-getData();
+
+var id_periode,kode_bulan=$('#bulan').val();
+getPeriode();
+
   function pengajuan(){
       if(status == "-1"){
         swal({
@@ -106,7 +117,7 @@ getData();
               $.ajax({
                    url : "<?php echo site_url('dosen/Laporanlkd/pengajuan')?>",
                    type: "POST",
-                   data: {'id_pengajuan':id_pengajuan},
+                   data: {'id_periode':id_periode},
                    dataType: "JSON",
                    success: function(data)
                    {
@@ -136,8 +147,34 @@ getData();
 
         }
   }
+  $('#bulan').change(function(){
+    kode_bulan=$(this).val();
+    getPeriode();
+  });
+  function getPeriode(){
+    $.ajax({
+         url : "<?php echo site_url('dosen/Laporanlkd/getPeriode')?>",
+         type: "POST",
+         data: {"kode":kode_bulan},
+         dataType: "JSON",
+         success: function(data)
+         {
+           if (data.status=='berhasil') {
+             $('#mingguan').html(data.data);
+           }
+           id_periode=$('#mingguan').val();
+           getData();
+         },
+             error: function (jqXHR, textStatus, errorThrown)
+             {
+               console.log(jqXHR);
+         console.log(textStatus);
+         console.log(errorThrown);
+             }
+       });
+  }
   $('#mingguan').change(function(){
-    id_pengajuan=$(this).val();
+    id_periode=$(this).val();
     getData();
   });
 
@@ -145,8 +182,8 @@ getData();
 
 
     $.ajax({
-      url: '<?php echo base_url("dosen/Laporanlkd/getData");?>',
-      data: {'id_pengajuan':id_pengajuan},
+      url: '<?php //echo base_url("dosen/Laporanlkd/getData");?>',
+      data: {'id_periode':id_periode},
       type: 'POST',
       // THIS MUST BE DONE FOR FILE UPLOADING
 
@@ -260,7 +297,7 @@ html+='          </tr>';
 
     $.ajax({
       url: '<?php echo base_url("dosen/Laporanlkd/getData");?>',
-      data: {'id_pengajuan':id_pengajuan},
+      data: {'id_periode':id_periode},
       type: 'POST',
       // THIS MUST BE DONE FOR FILE UPLOADING
 
@@ -288,7 +325,7 @@ html+='          </tr>';
               }
 
             }
-            td += '<td>'+baris+'</td>';
+            td += '<td><center>'+baris+'</center></td>';
 
 
 if(j==0){
@@ -336,20 +373,26 @@ html+='          </tr>';
         if(data.pengajuan.status_pengajuan == '-1'){
           $('#ajukan').removeClass('btn-warning');
           $('#ajukan').removeClass('btn-success');
+          $('#ajukan').removeClass('hidden');
           $('#ajukan').addClass('btn-primary');
           $('#ajukan').html('<i class="fa fa-send"></i> Ajukan ACC');
         }
         else if(data.pengajuan.status_pengajuan == '0'){
           $('#ajukan').removeClass('btn-primary');
           $('#ajukan').removeClass('btn-success');
+          $('#ajukan').removeClass('hidden');
           $('#ajukan').addClass('btn-warning');
           $('#ajukan').html('<i class="fa fa-clock-o"></i> Menunggu ACC');
         }
-        else{
+        else if(data.pengajuan.status_pengajuan == '1'){
           $('#ajukan').removeClass('btn-primary');
           $('#ajukan').removeClass('btn-warning');
+          $('#ajukan').removeClass('hidden');
           $('#ajukan').addClass('btn-success');
-          $('#ajukan').html('<i class="fa fa-print"></i> Export Data');
+          $('#ajukan').html('<i class="fa fa-print"></i> Export Data Mingguan');
+        }
+        else{
+          $('#ajukan').addClass('hidden');
         }
         status = data.pengajuan.status_pengajuan;
         url_print = data.pengajuan.id;

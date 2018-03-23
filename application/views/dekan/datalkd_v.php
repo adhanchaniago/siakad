@@ -1,4 +1,4 @@
-
+<script src="<?php echo base_url()."assets" ?>/js/md5.min.js"></script>
   <!-- content -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
@@ -21,21 +21,15 @@
 
             <div class="wrapper wrapper-content">
               <div class="ibox-content">
-                <div class="row form-inline">
-                <div class=" col-md-3">
-                  <label for="semester">Filter Periode</label>
+                <div class="row">
+                <div class=" col-md-2" style="margin-top:5px;margin-bottom:-10px;">
+                  <label for="semester">Filter Bulan</label>
                   <div class="form-group">
-                    <select id="mingguan" class="form-control">
+                    <select id="bulan" class="form-control">
                       <?php
-                      $i = 0;
-                      if($pengajuan->num_rows()>0)
                       echo "<option value='0'>-- Pilih Semua --</option>";
-                      foreach ($pengajuan->result() as $row){
-                        $i++;
-                          echo "<option value='$row->id'>$row->bulan</option>";
-                      }
-                      if($i==0){
-                          echo "<option disabled>Belum ada pengajuan LKD</option>";
+                      foreach ($bulan->result() as $row){
+                          echo "<option value='$row->kode'>$row->bulan</option>";
                       }
                       ?>
 
@@ -43,9 +37,37 @@
 
                   </div>
                 </div>
-                <div class=" col-md-1 col-md-offset-7">
-                  <button type="button" class="btn btn-sm btn-success" onclick="accSemua()"><i class="fa fa-check-circle"></i> ACC Semua Pengajuan</button>
+                <div class=" col-md-2" style="margin-top:5px;margin-bottom:-10px;">
+                  <label for="semester">Filter Periode</label>
+                  <div class="form-group">
+                    <select id="mingguan" class="form-control">
+                      <?php
+                      echo "<option value='0'>-- Pilih Semua --</option>";
+
+                      ?>
+
+                    </select>
+
+                  </div>
                 </div>
+                <div class=" col-md-2" style="margin-top:5px;margin-bottom:-10px;">
+                  <label for="semester">Filter Status Pengajuan</label>
+                  <div class="form-group">
+                    <select id="status" class="form-control">
+                      <option value="-2">-- Pilih Semua --</option>
+                      <option value="-1">Belum Mengajukan ACC</option>
+                      <option value="0">Menunggu ACC</option>
+                      <option value="1">Telah di-ACC</option>
+                    </select>
+
+                  </div>
+                </div>
+
+                <div class=" col-md-4" style="margin-top:10px;margin-bottom:-10px;margin-right:-20px;float:right">
+                  <button type="button" class="btn btn-info" onclick="exportPengajuan()"><i class="fa fa-print"></i> Export Bulanan</button>
+                  <button type="button" class="btn btn-success" onclick="accSemua()"><i class="fa fa-check-circle"></i> ACC Semua Pengajuan</button>
+                </div>
+
               </div><br>
               <div class="table-responsive">
                 <table id="mytable" class="table table-striped table-bordered table-hover" >
@@ -128,8 +150,7 @@
               </div>
 
       <script>
-
-          var id_periode = 0,id_pengajuan,status;
+          var id_periode = 0,id_pengajuan,status,kode_bulan = 0,status_pengajuan=0;
           var check = 0;
     $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
               {
@@ -143,13 +164,41 @@
                       "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
                   };
               };
+              $('#bulan').change(function(){
+                kode_bulan = $(this).val();
+                $.ajax({
+                     url : "<?php echo site_url('dekan/Datalkd/getPeriode')?>",
+                     type: "POST",
+                     data: {"kode":kode_bulan},
+                     dataType: "JSON",
+                     success: function(data)
+                     {
+                       if (data.status=='berhasil') {
+                         $('#mingguan').html(data.data);
+                       }
+                       id_periode=0;
+                       loadData();
+                     },
+                         error: function (jqXHR, textStatus, errorThrown)
+                         {
+                           console.log(jqXHR);
+                     console.log(textStatus);
+                     console.log(errorThrown);
+                         }
+                   });
 
+              });
               $('#mingguan').change(function(){
-                id_periode=$(this).val();
+
+                loadData();
+              });
+              $('#status').change(function(){
                 loadData();
               });
               loadData();
               function loadData(){
+                id_periode=$("#mingguan").val();
+                status_pengajuan=$("#status").val();
     $('#mytable').DataTable().destroy();
     $("#mytable").DataTable({
                   initComplete: function() {
@@ -169,7 +218,9 @@
                   serverSide: true,
                   ajax: {"url": "<?php echo base_url("dekan/Datalkd/json/");?>", "type": "POST","data":{
 
-                  "id_periode":id_periode
+                  "id_periode":id_periode,
+                  "kode":kode_bulan,
+                  "status":status_pengajuan
                 }},
                   "columnDefs": [
       {
@@ -481,7 +532,7 @@ function set(tipe){
 function accSemua(){
   swal({
           title: "Anda yakin?",
-          text: "Semua pengajuan pada periode terpilih akan di-ACC",
+          text: "Semua pengajuan akan di-ACC",
           type: "warning",
           showCancelButton: true,
           confirmButtonColor: "#1ab394",
@@ -512,5 +563,13 @@ function accSemua(){
 
       });
 
+}
+function exportPengajuan(){
+  if(kode_bulan==0){
+    swal("", "Pilih bulan terlebih dahulu!", "error");
+  }
+  else{
+    window.open("<?php echo base_url().'PrintLKD/dekan?bulan='?>"+kode_bulan, '_blank');
+  }
 }
       </script>

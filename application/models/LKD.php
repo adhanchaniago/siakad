@@ -6,6 +6,7 @@ class LKD extends CI_Model {
       // $this->db1 = $this->load->database('db1', TRUE);
       $this->tablekategori = 't_kategori_kegiatan_lkd';
       $this->tablekegiatan = 't_kegiatan_lkd';
+      $this->db->query("set lc_time_names='id_ID'");
     }
   public function insertKategori($arraydata = array() )
   {
@@ -102,6 +103,7 @@ class LKD extends CI_Model {
         }
         return 0;
     }
+
     public function cekPengajuan($date,$id_dosen){
         $query = $this->db->query("select t.id from t_pengajuan_lkd t join t_periode_lkd p on t.id_periode = p.id where t.id_dosen = $id_dosen AND ('$date' BETWEEN p.tanggal_awal AND p.tanggal_akhir)");
 
@@ -179,11 +181,15 @@ class LKD extends CI_Model {
    public function getPengajuan($parameterfilter=array()){
      return $this->db->get_where('t_pengajuan_lkd', $parameterfilter);
    }
+
    public function getPengajuanMingguan($id_dosen){
      return $this->db->query("select p.id, DATE_FORMAT(tanggal_awal, '%d/%m/%Y') as tanggal_awal, DATE_FORMAT(tanggal_akhir, '%d/%m/%Y') as tanggal_akhir, MONTH(tanggal_akhir) as bulan, YEAR(tanggal_akhir) as tahun from t_pengajuan_lkd p join t_periode_lkd pe on p.id_periode = pe.id where id_dosen=$id_dosen ORDER BY pe.tanggal_akhir DESC LIMIT 10");
    }
    public function getPengajuanFakultas(){
      return $this->db->query("select id, DATE_FORMAT(tanggal_awal, '%d/%m/%Y') as tanggal_awal, DATE_FORMAT(tanggal_akhir, '%d/%m/%Y') as tanggal_akhir, MONTH(tanggal_akhir) as bulan, YEAR(tanggal_akhir) as tahun from t_periode_lkd pe ORDER BY pe.tanggal_akhir DESC LIMIT 10");
+   }
+   public function getPeriodeByKode($bulan,$tahun){
+     return $this->db->query("select id, DATE_FORMAT(tanggal_awal, '%d/%m/%Y') as tanggal_awal, DATE_FORMAT(tanggal_akhir, '%d/%m/%Y') as tanggal_akhir, MONTH(tanggal_akhir) as bulan, YEAR(tanggal_akhir) as tahun from t_periode_lkd pe where MONTH(pe.tanggal_akhir)='$bulan' AND YEAR(pe.tanggal_akhir)='$tahun' ORDER BY pe.tanggal_akhir");
    }
 
  public function updatePengajuanBulanan($parameterfilter=array(), $arraydata=array() )
@@ -201,6 +207,13 @@ class LKD extends CI_Model {
    }
    public function getPengajuanBulanan($parameterfilter=array()){
      return $this->db->get_where('t_pengajuan_bulanan_lkd', $parameterfilter);
+   }
+   public function getPengajuanBulananDosen($id_fakultas,$kode_bulan){
+     $this->db->select("t.*");
+     $this->db->from('t_pengajuan_bulanan_lkd t');
+     $this->db->join('t_dosen d','d.id = t.id_dosen');
+     $this->db->where(array('t.kode_bulan'=>$kode_bulan,'d.id_fakultas'=>$id_fakultas));
+     return $this->db->get();
    }
    public function insertPengajuanBulanan($arraydata = array() )
 {
@@ -302,6 +315,7 @@ function getBulanData($id_dosen,$bulan,$tahun){
 
 }
 
+
     function jsonKategori() {
         $this->datatables->select('kt.id, kt.nama, kt.alias');
         $this->datatables->from($this->tablekategori.' kt');
@@ -324,8 +338,17 @@ function getBulanData($id_dosen,$bulan,$tahun){
         $this->datatables->join('t_pegawai pg', 'd.id_pegawai = pg.id');
         $this->datatables->where('d.id_fakultas',$id_fakultas);
         //$this->db->order_by('waktu_pengajuan','DESC');
-        if($param!=null)
-        $this->datatables->where($param);
+        if($param['pe.id']!=null){
+          $this->datatables->where('pe.id',$param['pe.id']);
+        }
+        else if($param['bulan']!=null){
+
+          $bulan = $param['bulan'][0];
+          $tahun = $param['bulan'][1];
+          $this->datatables->where("MONTH(pe.tanggal_akhir)='$bulan' AND YEAR(pe.tanggal_akhir)='$tahun'");
+        }
+        if($param['status']!=-2)
+        $this->datatables->where('p.status_pengajuan',$param['status']);
         $this->datatables->add_column('view', '<center><button class=\'btn btn-warning btn-xs\' value=\'$1\' onclick=\'aksi(this.value)\' title=\'Edit Data\' data-toggle="modal" data-target="#myModalEdit"><span class=\'glyphicon glyphicon-edit\'></span></button></center>', 'id');
         return $this->datatables->generate();
     }
@@ -335,8 +358,10 @@ function getBulanData($id_dosen,$bulan,$tahun){
         $this->datatables->join('t_status_lkd s', 'p.status_pengajuan = s.id');
         $this->datatables->join('t_dosen d', 'p.id_dosen = d.id');
         $this->datatables->join('t_pegawai pg', 'd.id_pegawai = pg.id');
-        if($param!=null)
-        $this->datatables->where($param);
+        if($param['kode_bulan']!=null)
+        $this->datatables->where('kode_bulan',$param['kode_bulan']);
+        if($param['id_fakultas']!=null)
+        $this->datatables->where('d.id_fakultas',$param['id_fakultas']);
         $this->datatables->add_column('view', '<center><button class=\'btn btn-warning btn-xs\' value=\'$1\' onclick=\'aksi(this.value)\' title=\'Edit Data\' data-toggle="modal" data-target="#myModalEdit"><span class=\'glyphicon glyphicon-edit\'></span></button></center>', 'id');
         return $this->datatables->generate();
     }

@@ -9,18 +9,25 @@ class Datalkd extends CI_Controller {
 		if ($cek == 'dekan'){
 			$this->load->model(array('LKD'));
 			$id_fakultas = $_SESSION['data']['id_fakultas'];
-			$pengajuan = $this->LKD->getPengajuanFakultas();
+
+			$bulan_data = $this->LKD->getBulanPengajuan();
+			/*
+$periode = $this->LKD->getPengajuanFakultas();
 			$i = 1;
 			$last = 0;
 			$bulan = array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
-			foreach (array_reverse($pengajuan->result()) as $row) {
+
+			foreach (array_reverse($periode->result()) as $row) {
 				if($last != $row->bulan){
 				$i=1;
 				$last = $row->bulan;
 				}
 				$row->bulan = "Minggu ke-".$i++." ". $bulan[($row->bulan-1)]." ". $row->tahun;
 			}
-			$data['pengajuan'] = $pengajuan;
+			$data['periode'] = $periode;
+			*/
+			$data['bulan'] = $bulan_data;
+
 
 			$kategori = $this->LKD->getKategoriSorted();
 			$data['kategori'] = array();
@@ -39,23 +46,44 @@ class Datalkd extends CI_Controller {
 	}
 	function json() {
 		$id_periode = $_POST['id_periode'];
+		$kode_bulan = $_POST['kode'];
+		$status = $_POST['status'];
 		$id_fakultas = $_SESSION['data']['id_fakultas'];
 		if($id_periode == 0){
-			$array = null;
+			if($kode_bulan!=0){
+				$kode = explode("-",$kode_bulan);
+				$array = array('pe.id'=>null,'bulan'=>$kode,'status'=>$status);
+			}
+			else{
+				$array = array('pe.id'=>null,'bulan'=>null,'status'=>$status);
+			}
 		}
 		else {
-			$array = array('pe.id'=>$id_periode);
+			$array = array('pe.id'=>$id_periode,'status'=>$status);
 		}
 			$this->load->library('datatables');
 			$this->load->model(array('LKD'));
       header('Content-Type: application/json');
       echo $this->LKD->jsonDekan($array,$id_fakultas);
 	    }
+			public function getPeriode(){
+				$kode_bulan = $_POST['kode'];
+				$kode = explode("-",$kode_bulan);
+				$this->load->model(array('LKD'));
+				$pengajuan = $this->LKD->getPeriodeByKode($kode[0],$kode[1]);
+				$data = "<option value='0'>-- Pilih Semua --</option>";;
+				$i=$pengajuan->num_rows();
 
+				foreach (array_reverse($pengajuan->result()) as $row) {
+					$data.="<option value='$row->id'>Minggu ke-".$i--."</option>";
+				}
+				echo json_encode(array('status'=>'berhasil','data'=>$data));
+			}
 
 			public function getData(){
 				$this->load->model(array('LKD','Dosen'));
 				$id_pengajuan = $_POST['id_pengajuan'];
+
 
 				$pengajuan = $this->LKD->getPengajuan(array('id'=>$id_pengajuan));
 				$dosen = $this->Dosen->get(array('id'=>$pengajuan->row()->id_dosen));
