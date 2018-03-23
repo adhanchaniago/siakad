@@ -52,10 +52,10 @@
                 </div>
                 <div class="col-md-4 pull-right">
                     <div class="col-md-5" style="margin-top:30px;">
-                      <button type="button pull-right" class="btn btn-sm btn-info" onclick="exportPengajuan()"><i class="fa fa-print"></i> Export Bulanan</button>
+                      <button type="button" class="btn btn-sm btn-info" onclick="exportPengajuan()"><i class="fa fa-print"></i> Export Bulanan</button>
                     </div>
                     <div class="col-md-7"  style="margin-top:30px;">
-                      <button type="button pull-right" class="btn btn-sm btn-success" onclick="accSemua()"><i class="fa fa-check-circle"></i> ACC Semua Pengajuan</button>
+                      <button type="button" class="btn btn-sm btn-success" onclick="accSemua()"><i class="fa fa-check-circle"></i> ACC Semua Pengajuan</button>
                     </div>
                 </div>
                 <!-- <div class=" col-md-4" style="margin-top:10px;margin-bottom:-10px;margin-right:-20px;float:right">
