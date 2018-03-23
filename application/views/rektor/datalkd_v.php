@@ -20,7 +20,7 @@
             </div>
 
             <div class="wrapper wrapper-content">
-              <div class="ibox-content">
+              <div class="ibox-title">
                 <div class="row">
                 <div class=" col-md-2" style="margin-top:5px;margin-bottom:-10px;">
                   <label for="semester">Filter Bulan</label>
@@ -50,11 +50,22 @@
 
                   </div>
                 </div>
-                <div class=" col-md-4" style="margin-top:10px;margin-bottom:-10px;margin-right:-20px;float:right">
+                <div class="col-md-4 pull-right">
+                    <div class="col-md-5" style="margin-top:30px;">
+                      <button type="button pull-right" class="btn btn-sm btn-info" onclick="exportPengajuan()"><i class="fa fa-print"></i> Export Bulanan</button>
+                    </div>
+                    <div class="col-md-7"  style="margin-top:30px;">
+                      <button type="button pull-right" class="btn btn-sm btn-success" onclick="accSemua()"><i class="fa fa-check-circle"></i> ACC Semua Pengajuan</button>
+                    </div>
+                </div>
+                <!-- <div class=" col-md-4" style="margin-top:10px;margin-bottom:-10px;margin-right:-20px;float:right">
                   <button type="button" class="btn btn-info" onclick="exportPengajuan()"><i class="fa fa-print"></i> Export Bulanan</button>
                   <button type="button" class="btn btn-success" onclick="accSemua()"><i class="fa fa-check-circle"></i> ACC Semua Pengajuan</button>
-                </div>
-              </div><br>
+                </div> -->
+              </div>
+              </div>
+              <div class="ibox-content">
+                <br>
               <div class="table-responsive">
                 <table id="mytable" class="table table-striped table-bordered table-hover" >
                 <thead>
