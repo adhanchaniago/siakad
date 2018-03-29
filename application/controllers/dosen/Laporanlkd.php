@@ -127,13 +127,18 @@ class Laporanlkd extends CI_Controller {
 
 	function save(){
 		$this->load->model(array('LKD'));
+		if(isset($_POST['id']))
 		$id = $_POST['id'];
 		if(isset($_POST['id_hapus']))
 		$id_hapus = $_POST['id_hapus'];
+		if(isset($_POST['kegiatan']))
 		$kegiatan = $_POST['kegiatan'];
+		if(isset($_POST['waktu_awal']))
 		$waktu_awal = $_POST['waktu_awal'];
+		if(isset($_POST['waktu_akhir']))
 		$waktu_akhir = $_POST['waktu_akhir'];
 		$cek = true;
+		if(isset($_POST['kegiatan']))
 		for ($i = 0; $i < count($kegiatan); $i++) {
 				if($kegiatan[$i] !='' || $waktu_awal[$i] != '' || $waktu_akhir[$i]!=''){
 					if($kegiatan[$i]==''){
@@ -158,8 +163,8 @@ class Laporanlkd extends CI_Controller {
 
 
 			}
-			if($cek==true){
-
+			if($cek==true ){
+				if(isset($_POST['kegiatan']))
 				for ($i = 0; $i < count($kegiatan); $i++) {
 					if($kegiatan[$i] !='' || $waktu_awal[$i] != '' || $waktu_akhir[$i]!=''){
 					$data = array(
