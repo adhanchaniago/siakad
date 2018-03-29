@@ -102,6 +102,9 @@
         iframe {
              display: none !important;
         }
+        h1,h2,h3,h4,h5,p,th,td,label{
+          color: #232323 !important;
+        }
     </style>
 
   <?php
