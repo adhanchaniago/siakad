@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 22 Mar 2018 pada 15.36
--- Versi Server: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Mar 25, 2018 at 11:41 AM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_jabatan_dosen`
+-- Table structure for table `m_jabatan_dosen`
 --
 
 CREATE TABLE `m_jabatan_dosen` (
@@ -35,7 +35,7 @@ CREATE TABLE `m_jabatan_dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_jabatan_dosen`
+-- Dumping data for table `m_jabatan_dosen`
 --
 
 INSERT INTO `m_jabatan_dosen` (`id`, `nama`, `minimal_jam`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `m_jabatan_dosen` (`id`, `nama`, `minimal_jam`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_status_kegiatan_lkd`
+-- Table structure for table `m_status_kegiatan_lkd`
 --
 
 CREATE TABLE `m_status_kegiatan_lkd` (
@@ -56,7 +56,7 @@ CREATE TABLE `m_status_kegiatan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_status_kegiatan_lkd`
+-- Dumping data for table `m_status_kegiatan_lkd`
 --
 
 INSERT INTO `m_status_kegiatan_lkd` (`id`, `nama`) VALUES
@@ -66,7 +66,7 @@ INSERT INTO `m_status_kegiatan_lkd` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_tipe_dosen`
+-- Table structure for table `m_tipe_dosen`
 --
 
 CREATE TABLE `m_tipe_dosen` (
@@ -75,7 +75,7 @@ CREATE TABLE `m_tipe_dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_tipe_dosen`
+-- Dumping data for table `m_tipe_dosen`
 --
 
 INSERT INTO `m_tipe_dosen` (`id`, `nama`) VALUES
@@ -85,7 +85,7 @@ INSERT INTO `m_tipe_dosen` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_unit_kerja`
+-- Table structure for table `m_unit_kerja`
 --
 
 CREATE TABLE `m_unit_kerja` (
@@ -94,7 +94,7 @@ CREATE TABLE `m_unit_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_unit_kerja`
+-- Dumping data for table `m_unit_kerja`
 --
 
 INSERT INTO `m_unit_kerja` (`id`, `nama`) VALUES
@@ -104,7 +104,7 @@ INSERT INTO `m_unit_kerja` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_admin`
+-- Table structure for table `t_admin`
 --
 
 CREATE TABLE `t_admin` (
@@ -113,7 +113,7 @@ CREATE TABLE `t_admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_admin`
+-- Dumping data for table `t_admin`
 --
 
 INSERT INTO `t_admin` (`id`, `id_pegawai`) VALUES
@@ -122,7 +122,7 @@ INSERT INTO `t_admin` (`id`, `id_pegawai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_admin_fakultas`
+-- Table structure for table `t_admin_fakultas`
 --
 
 CREATE TABLE `t_admin_fakultas` (
@@ -133,7 +133,7 @@ CREATE TABLE `t_admin_fakultas` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_akun`
+-- Table structure for table `t_akun`
 --
 
 CREATE TABLE `t_akun` (
@@ -143,7 +143,7 @@ CREATE TABLE `t_akun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_akun`
+-- Dumping data for table `t_akun`
 --
 
 INSERT INTO `t_akun` (`id`, `username`, `password`) VALUES
@@ -157,7 +157,7 @@ INSERT INTO `t_akun` (`id`, `username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_config_lkd`
+-- Table structure for table `t_config_lkd`
 --
 
 CREATE TABLE `t_config_lkd` (
@@ -168,7 +168,7 @@ CREATE TABLE `t_config_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_config_lkd`
+-- Dumping data for table `t_config_lkd`
 --
 
 INSERT INTO `t_config_lkd` (`id`, `id_jabatan`, `id_kategori`, `jam`) VALUES
@@ -196,7 +196,7 @@ INSERT INTO `t_config_lkd` (`id`, `id_jabatan`, `id_kategori`, `jam`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_dekan`
+-- Table structure for table `t_dekan`
 --
 
 CREATE TABLE `t_dekan` (
@@ -206,7 +206,7 @@ CREATE TABLE `t_dekan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_dekan`
+-- Dumping data for table `t_dekan`
 --
 
 INSERT INTO `t_dekan` (`id`, `id_pegawai`, `id_fakultas`) VALUES
@@ -215,7 +215,7 @@ INSERT INTO `t_dekan` (`id`, `id_pegawai`, `id_fakultas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_detail_lkd`
+-- Table structure for table `t_detail_lkd`
 --
 
 CREATE TABLE `t_detail_lkd` (
@@ -229,7 +229,7 @@ CREATE TABLE `t_detail_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_detail_lkd`
+-- Dumping data for table `t_detail_lkd`
 --
 
 INSERT INTO `t_detail_lkd` (`id`, `jam_awal`, `jam_akhir`, `id_kegiatan`, `id_lkd_harian`, `created_at`, `updated_at`) VALUES
@@ -286,7 +286,7 @@ INSERT INTO `t_detail_lkd` (`id`, `jam_awal`, `jam_akhir`, `id_kegiatan`, `id_lk
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_dosen`
+-- Table structure for table `t_dosen`
 --
 
 CREATE TABLE `t_dosen` (
@@ -299,7 +299,7 @@ CREATE TABLE `t_dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_dosen`
+-- Dumping data for table `t_dosen`
 --
 
 INSERT INTO `t_dosen` (`id`, `id_pegawai`, `id_fakultas`, `id_tipe`, `id_unit_kerja`, `id_jabatan`) VALUES
@@ -312,7 +312,7 @@ INSERT INTO `t_dosen` (`id`, `id_pegawai`, `id_fakultas`, `id_tipe`, `id_unit_ke
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_fakultas`
+-- Table structure for table `t_fakultas`
 --
 
 CREATE TABLE `t_fakultas` (
@@ -321,7 +321,7 @@ CREATE TABLE `t_fakultas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_fakultas`
+-- Dumping data for table `t_fakultas`
 --
 
 INSERT INTO `t_fakultas` (`id`, `nama`) VALUES
@@ -331,7 +331,7 @@ INSERT INTO `t_fakultas` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_kategori_kegiatan_lkd`
+-- Table structure for table `t_kategori_kegiatan_lkd`
 --
 
 CREATE TABLE `t_kategori_kegiatan_lkd` (
@@ -341,7 +341,7 @@ CREATE TABLE `t_kategori_kegiatan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_kategori_kegiatan_lkd`
+-- Dumping data for table `t_kategori_kegiatan_lkd`
 --
 
 INSERT INTO `t_kategori_kegiatan_lkd` (`id`, `nama`, `alias`) VALUES
@@ -354,7 +354,7 @@ INSERT INTO `t_kategori_kegiatan_lkd` (`id`, `nama`, `alias`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_kegiatan_lkd`
+-- Table structure for table `t_kegiatan_lkd`
 --
 
 CREATE TABLE `t_kegiatan_lkd` (
@@ -365,7 +365,7 @@ CREATE TABLE `t_kegiatan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_kegiatan_lkd`
+-- Dumping data for table `t_kegiatan_lkd`
 --
 
 INSERT INTO `t_kegiatan_lkd` (`id`, `nama`, `id_kategori`, `id_status`) VALUES
@@ -381,7 +381,7 @@ INSERT INTO `t_kegiatan_lkd` (`id`, `nama`, `id_kategori`, `id_status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_lkd_harian`
+-- Table structure for table `t_lkd_harian`
 --
 
 CREATE TABLE `t_lkd_harian` (
@@ -393,7 +393,7 @@ CREATE TABLE `t_lkd_harian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_lkd_harian`
+-- Dumping data for table `t_lkd_harian`
 --
 
 INSERT INTO `t_lkd_harian` (`id`, `tanggal`, `id_pengajuan`, `created_at`, `updated_at`) VALUES
@@ -436,7 +436,7 @@ INSERT INTO `t_lkd_harian` (`id`, `tanggal`, `id_pengajuan`, `created_at`, `upda
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_mahasiswa`
+-- Table structure for table `t_mahasiswa`
 --
 
 CREATE TABLE `t_mahasiswa` (
@@ -451,7 +451,7 @@ CREATE TABLE `t_mahasiswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_mahasiswa`
+-- Dumping data for table `t_mahasiswa`
 --
 
 INSERT INTO `t_mahasiswa` (`id`, `nim`, `nama`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `kode_pos`, `id_akun`) VALUES
@@ -460,7 +460,7 @@ INSERT INTO `t_mahasiswa` (`id`, `nim`, `nama`, `tempat_lahir`, `tanggal_lahir`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_pegawai`
+-- Table structure for table `t_pegawai`
 --
 
 CREATE TABLE `t_pegawai` (
@@ -475,7 +475,7 @@ CREATE TABLE `t_pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_pegawai`
+-- Dumping data for table `t_pegawai`
 --
 
 INSERT INTO `t_pegawai` (`id`, `nip`, `nama`, `email`, `no_telp`, `ttd`, `id_akun`, `id_status`) VALUES
@@ -488,7 +488,7 @@ INSERT INTO `t_pegawai` (`id`, `nip`, `nama`, `email`, `no_telp`, `ttd`, `id_aku
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_pengajuan_bulanan_lkd`
+-- Table structure for table `t_pengajuan_bulanan_lkd`
 --
 
 CREATE TABLE `t_pengajuan_bulanan_lkd` (
@@ -502,7 +502,7 @@ CREATE TABLE `t_pengajuan_bulanan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_pengajuan_bulanan_lkd`
+-- Dumping data for table `t_pengajuan_bulanan_lkd`
 --
 
 INSERT INTO `t_pengajuan_bulanan_lkd` (`id`, `kode_bulan`, `id_dosen`, `status_pengajuan`, `waktu_pengajuan`, `created_at`, `updated_at`) VALUES
@@ -512,7 +512,7 @@ INSERT INTO `t_pengajuan_bulanan_lkd` (`id`, `kode_bulan`, `id_dosen`, `status_p
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_pengajuan_lkd`
+-- Table structure for table `t_pengajuan_lkd`
 --
 
 CREATE TABLE `t_pengajuan_lkd` (
@@ -527,7 +527,7 @@ CREATE TABLE `t_pengajuan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_pengajuan_lkd`
+-- Dumping data for table `t_pengajuan_lkd`
 --
 
 INSERT INTO `t_pengajuan_lkd` (`id`, `waktu_pengajuan`, `id_periode`, `id_dosen`, `status_pengajuan`, `total`, `created_at`, `updated_at`) VALUES
@@ -551,7 +551,7 @@ INSERT INTO `t_pengajuan_lkd` (`id`, `waktu_pengajuan`, `id_periode`, `id_dosen`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_periode_lkd`
+-- Table structure for table `t_periode_lkd`
 --
 
 CREATE TABLE `t_periode_lkd` (
@@ -561,7 +561,7 @@ CREATE TABLE `t_periode_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_periode_lkd`
+-- Dumping data for table `t_periode_lkd`
 --
 
 INSERT INTO `t_periode_lkd` (`id`, `tanggal_awal`, `tanggal_akhir`) VALUES
@@ -578,7 +578,7 @@ INSERT INTO `t_periode_lkd` (`id`, `tanggal_awal`, `tanggal_akhir`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_rektor`
+-- Table structure for table `t_rektor`
 --
 
 CREATE TABLE `t_rektor` (
@@ -587,7 +587,7 @@ CREATE TABLE `t_rektor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_rektor`
+-- Dumping data for table `t_rektor`
 --
 
 INSERT INTO `t_rektor` (`id`, `id_pegawai`) VALUES
@@ -596,7 +596,7 @@ INSERT INTO `t_rektor` (`id`, `id_pegawai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_riwayat_login`
+-- Table structure for table `t_riwayat_login`
 --
 
 CREATE TABLE `t_riwayat_login` (
@@ -611,7 +611,7 @@ CREATE TABLE `t_riwayat_login` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_role_admin`
+-- Table structure for table `t_role_admin`
 --
 
 CREATE TABLE `t_role_admin` (
@@ -620,7 +620,7 @@ CREATE TABLE `t_role_admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_role_admin`
+-- Dumping data for table `t_role_admin`
 --
 
 INSERT INTO `t_role_admin` (`id_admin`, `id_tipe`) VALUES
@@ -629,7 +629,7 @@ INSERT INTO `t_role_admin` (`id_admin`, `id_tipe`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_status_lkd`
+-- Table structure for table `t_status_lkd`
 --
 
 CREATE TABLE `t_status_lkd` (
@@ -638,7 +638,7 @@ CREATE TABLE `t_status_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_status_lkd`
+-- Dumping data for table `t_status_lkd`
 --
 
 INSERT INTO `t_status_lkd` (`id`, `nama`) VALUES
@@ -649,7 +649,7 @@ INSERT INTO `t_status_lkd` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_status_login`
+-- Table structure for table `t_status_login`
 --
 
 CREATE TABLE `t_status_login` (
@@ -658,7 +658,7 @@ CREATE TABLE `t_status_login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_status_login`
+-- Dumping data for table `t_status_login`
 --
 
 INSERT INTO `t_status_login` (`id`, `nama`) VALUES
@@ -668,7 +668,7 @@ INSERT INTO `t_status_login` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_status_user`
+-- Table structure for table `t_status_user`
 --
 
 CREATE TABLE `t_status_user` (
@@ -677,7 +677,7 @@ CREATE TABLE `t_status_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_status_user`
+-- Dumping data for table `t_status_user`
 --
 
 INSERT INTO `t_status_user` (`id`, `nama`) VALUES
@@ -687,7 +687,7 @@ INSERT INTO `t_status_user` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_tipe_admin`
+-- Table structure for table `t_tipe_admin`
 --
 
 CREATE TABLE `t_tipe_admin` (
@@ -696,7 +696,7 @@ CREATE TABLE `t_tipe_admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_tipe_admin`
+-- Dumping data for table `t_tipe_admin`
 --
 
 INSERT INTO `t_tipe_admin` (`id`, `nama`) VALUES
@@ -710,23 +710,25 @@ INSERT INTO `t_tipe_admin` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
   `username` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `status` varchar(5) NOT NULL
+  `status` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`username`, `password`, `status`) VALUES
 ('admin', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
+('adminpmb', '54e61496c9ce65ee1f167c1f14ec1d15', 'adminpmb'),
 ('dosen', 'ce28eed1511f631af6b2a7bb0a85d636', 'dosen'),
-('mhs', '0357a7592c4734a8b1e12bc48e29e9e9', 'mhs');
+('mhs', '0357a7592c4734a8b1e12bc48e29e9e9', 'mhs'),
+('sekolah', 'fef4cda9b13cc54433ef48d9277128d5', 'sekolah');
 
 --
 -- Indexes for dumped tables
@@ -1076,38 +1078,38 @@ ALTER TABLE `t_tipe_admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `t_admin`
+-- Constraints for table `t_admin`
 --
 ALTER TABLE `t_admin`
   ADD CONSTRAINT `t_admin_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_config_lkd`
+-- Constraints for table `t_config_lkd`
 --
 ALTER TABLE `t_config_lkd`
   ADD CONSTRAINT `t_config_lkd_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `m_jabatan_dosen` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `t_config_lkd_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `t_kategori_kegiatan_lkd` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_dekan`
+-- Constraints for table `t_dekan`
 --
 ALTER TABLE `t_dekan`
   ADD CONSTRAINT `t_dekan_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_dekan_ibfk_2` FOREIGN KEY (`id_fakultas`) REFERENCES `t_fakultas` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `t_detail_lkd`
+-- Constraints for table `t_detail_lkd`
 --
 ALTER TABLE `t_detail_lkd`
   ADD CONSTRAINT `t_detail_lkd_ibfk_1` FOREIGN KEY (`id_kegiatan`) REFERENCES `t_kegiatan_lkd` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `t_detail_lkd_ibfk_2` FOREIGN KEY (`id_lkd_harian`) REFERENCES `t_lkd_harian` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_dosen`
+-- Constraints for table `t_dosen`
 --
 ALTER TABLE `t_dosen`
   ADD CONSTRAINT `t_dosen_ibfk_1` FOREIGN KEY (`id_tipe`) REFERENCES `m_tipe_dosen` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -1117,40 +1119,40 @@ ALTER TABLE `t_dosen`
   ADD CONSTRAINT `t_dosen_ibfk_5` FOREIGN KEY (`id_fakultas`) REFERENCES `t_fakultas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_kegiatan_lkd`
+-- Constraints for table `t_kegiatan_lkd`
 --
 ALTER TABLE `t_kegiatan_lkd`
   ADD CONSTRAINT `t_kegiatan_lkd_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `t_kategori_kegiatan_lkd` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `t_kegiatan_lkd_ibfk_2` FOREIGN KEY (`id_status`) REFERENCES `m_status_kegiatan_lkd` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_lkd_harian`
+-- Constraints for table `t_lkd_harian`
 --
 ALTER TABLE `t_lkd_harian`
   ADD CONSTRAINT `t_lkd_harian_ibfk_1` FOREIGN KEY (`id_pengajuan`) REFERENCES `t_pengajuan_lkd` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_mahasiswa`
+-- Constraints for table `t_mahasiswa`
 --
 ALTER TABLE `t_mahasiswa`
   ADD CONSTRAINT `t_mahasiswa_ibfk_1` FOREIGN KEY (`id_akun`) REFERENCES `t_akun` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_pegawai`
+-- Constraints for table `t_pegawai`
 --
 ALTER TABLE `t_pegawai`
   ADD CONSTRAINT `t_pegawai_ibfk_1` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_pegawai_ibfk_2` FOREIGN KEY (`id_akun`) REFERENCES `t_akun` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_pengajuan_bulanan_lkd`
+-- Constraints for table `t_pengajuan_bulanan_lkd`
 --
 ALTER TABLE `t_pengajuan_bulanan_lkd`
   ADD CONSTRAINT `t_pengajuan_bulanan_lkd_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `t_dosen` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_pengajuan_bulanan_lkd_ibfk_2` FOREIGN KEY (`status_pengajuan`) REFERENCES `t_status_lkd` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_pengajuan_lkd`
+-- Constraints for table `t_pengajuan_lkd`
 --
 ALTER TABLE `t_pengajuan_lkd`
   ADD CONSTRAINT `t_pengajuan_lkd_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `t_dosen` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -1158,20 +1160,20 @@ ALTER TABLE `t_pengajuan_lkd`
   ADD CONSTRAINT `t_pengajuan_lkd_ibfk_3` FOREIGN KEY (`id_periode`) REFERENCES `t_periode_lkd` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_rektor`
+-- Constraints for table `t_rektor`
 --
 ALTER TABLE `t_rektor`
   ADD CONSTRAINT `t_rektor_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_riwayat_login`
+-- Constraints for table `t_riwayat_login`
 --
 ALTER TABLE `t_riwayat_login`
   ADD CONSTRAINT `t_riwayat_login_ibfk_1` FOREIGN KEY (`id_status`) REFERENCES `t_status_login` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_riwayat_login_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `t_akun` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_role_admin`
+-- Constraints for table `t_role_admin`
 --
 ALTER TABLE `t_role_admin`
   ADD CONSTRAINT `t_role_admin_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `t_admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,

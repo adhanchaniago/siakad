@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="title-action">
-                        <a href="<?php echo base_url()."admin/datastaff/tambahstaff"?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a href="<?php echo base_url()."admin/datastaff/add"?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                     <td>
                       <center>
                         <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' href='#'><span class='glyphicon glyphicon-edit'></span></a>
+                        <a class='btn btn-warning btn-xs' title='Edit Data' href='<?php echo base_url()."admin/datastaff/edit"?>'><span class='glyphicon glyphicon-edit'></span></a>
                         <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
                       </center>
                     </td>

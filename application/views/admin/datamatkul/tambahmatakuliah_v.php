@@ -111,7 +111,7 @@
                             </div>
                 <br >
                 <center>
-                  <button type="submit" class="btn btn-w-m btn-primary" name="button"><i class="fa fa-save"></i> Simpan</button>
+                  <button type="submit" class="btn btn-w-m btn-primary" name="button"><i class="fa fa-send"></i> Submit</button>
                 </center>
               </form>
               </div>

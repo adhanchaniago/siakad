@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="title-action">
-                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a href="<?php echo base_url()."admin/datafakultas/add"?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     <td>
                       <center>
                         <a class='btn btn-primary btn-xs' title='Lihat Data'><span class='fa fa-eye'></span></a>
-                        <a class='btn btn-success btn-xs' title='Edit Data' data-toggle="modal" data-target="#editModal"><span class='glyphicon glyphicon-edit'></span></a>
+                        <a class='btn btn-warning btn-xs' title='Edit Data' href="<?php echo base_url()."admin/datafakultas/edit"?>"><span class='glyphicon glyphicon-edit'></span></a>
                         <a class='btn btn-danger btn-xs' title='Hapus Data'><span class='glyphicon glyphicon-remove'></span></a>
                       </center>
                     </td>
@@ -52,30 +52,7 @@
                 </div>
             </div>
 
-            <div class="modal inmodal" id="addModal" tabindex="-1" role="dialog"  aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content animated fadeInDown">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Tambah Fakultas</h4>
-                            <small>Pastikan data yang diisi telah sesuai</small>
-                        </div>
-                        <div class="modal-body">
-                          <form id="formEdit" class="form-horizontal">
-                          <div class="form-group">
-                            <label for="nama">Nama Fakultas: <span style="color:red;">*</span></label>
-                            <input type="text"  name="nama" id="nama" class="form-control" placeholder="Masukkan Nama Fakultas" required>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                      </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal inmodal" id="editModal" tabindex="-1" role="dialog"  aria-hidden="true">
+            <!-- <div class="modal inmodal" id="editModal" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeInDown">
                         <div class="modal-header">
@@ -96,7 +73,7 @@
                       </form>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <script type="text/javascript">
             $(document).ready(function(){

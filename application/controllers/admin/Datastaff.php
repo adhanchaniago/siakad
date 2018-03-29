@@ -9,20 +9,33 @@ class Datastaff extends CI_Controller {
 		if ($cek == 'admin'){
 			$array=array('page'=>5);
 		$this->load->view('header_v',$array);
-		$this->load->view('admin/datastaff_v');
+		$this->load->view('admin/datastaff/datastaff_v');
 		$this->load->view('footer_v');
 		}else{
 			header("location:".base_url());
 		}
 	}
 
-	public function tambahstaff()
+	public function add()
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
 			$array=array('page'=>5);
 		$this->load->view('header_v',$array);
-		$this->load->view('admin/tambahstaff_v');
+		$this->load->view('admin/datastaff/tambahstaff_v');
+		$this->load->view('footer_v');
+		}else{
+			header("location:".base_url());
+		}
+	}
+
+	public function edit()
+	{
+		$cek = $this->session->userdata('status');
+		if ($cek == 'admin'){
+			$array=array('page'=>5);
+		$this->load->view('header_v',$array);
+		$this->load->view('admin/datastaff/editstaff_v');
 		$this->load->view('footer_v');
 		}else{
 			header("location:".base_url());
