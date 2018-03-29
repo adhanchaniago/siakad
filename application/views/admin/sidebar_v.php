@@ -69,6 +69,20 @@
                     <a href="#">Civitas <span class="fa arrow"></span></a>
                     <ul class="nav nav-third-level">
                       <li><a href="<?php echo base_url()."admin/akunpegawai"?>">Data Akun Pegawai</a></li>
+                      <li>
+                        <a href="#">Data Pimpinan <span class="fa arrow"></span></a>
+                      <ul class="nav nav-fourth-level">
+                        <li>
+                          <a href="<?php echo base_url()."admin/datarektor"?>">&nbsp;&nbsp; Data Rektor</a>
+                        </li>
+                        <li>
+                          <a href="<?php echo base_url()."admin/datadekan"?>">&nbsp;&nbsp; Data Dekan</a>
+                        </li>
+                        <li>
+                          <a href="<?php echo base_url()."admin/datakaprodi"?>">&nbsp;&nbsp; Data Kaprodi</a>
+                        </li>
+                      </ul>
+                    </li>
                       <li <?php if($page==2)echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/datadosen"?>">Data Dosen</a>
                       </li>

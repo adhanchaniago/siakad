@@ -2,7 +2,7 @@
   <!-- content -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h2>Tambah Program Studi Baru</h2>
+                    <h2>Edit Data Pegawai/Staff</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.html">This is</a>
@@ -26,45 +26,45 @@
                       <h2>Form</h2>
                       <div class="hr-line-dashed"></div>
                       <div class="form-group">
-                        <label class="col-lg-2 control-label">Kode Program Studi:</label>
+                        <label class="col-lg-2 control-label">Kode Pegawai/Staff:</label>
                           <div class="col-lg-6"><input type="number" class="form-control"></div>
                         </div>
                       <div class="form-group">
-                        <label class="col-lg-2 control-label">Nama Program Studi:</label>
+                        <label class="col-lg-2 control-label">Nama Pegawai/Staff:</label>
                           <div class="col-lg-6"><input type="text" class="form-control"></div>
                         </div>
                       <div class="form-group">
-                        <label class="col-lg-2 control-label">Jenjang:</label>
+                        <label class="col-lg-2 control-label">Gelar Akademik:</label>
                           <div class="col-lg-6"><input type="text" class="form-control"></div>
                         </div>
                         <div class="form-group">
-                          <label class="col-lg-2 control-label">Gelar Akademik:</label>
+                          <label class="col-lg-2 control-label">Tempat Lahir:</label>
                             <div class="col-lg-6"><input type="text" class="form-control"></div>
                           </div>
                       <div class="form-group">
-                        <label class="col-lg-2 control-label">Total SKS:</label>
+                        <label class="col-lg-2 control-label">Tanggal Lahir:</label>
                           <div class="col-lg-6"><input type="number" class="form-control"></div>
                         </div>
                         <div class="form-group">
-                          <label class="col-lg-2 control-label">Tanggal Berdiri:</label>
+                          <label class="col-lg-2 control-label">Jenis Kelamin:</label>
                             <div class="col-lg-6"><input type="text" class="form-control"></div>
                           </div>
                         <div class="form-group">
-                          <label class="col-lg-2 control-label">Mulai Semester:</label>
+                          <label class="col-lg-2 control-label">Agama:</label>
                             <div class="col-lg-6"><input type="text" class="form-control"></div>
                           </div>
                           <div class="hr-line-dashed"></div><br >
                           <div class="form-group">
-                            <label class="col-lg-2 control-label">Ketua Prodi:</label>
+                            <label class="col-lg-2 control-label">Status Perkawinan:</label>
                               <div class="col-lg-6"><input type="text" class="form-control"></div>
                             </div>
                           <div class="form-group">
-                            <label class="col-lg-2 control-label">No HP Ketua:</label>
+                            <label class="col-lg-2 control-label">No. NPWP:</label>
                               <div class="col-lg-6"><input type="number" class="form-control"></div>
                             </div>
                             <div class="hr-line-dashed"></div><br >
                           <div class="form-group">
-                            <label class="col-lg-2 control-label">No SK Dikti:</label>
+                            <label class="col-lg-2 control-label">No. Kontak:</label>
                               <div class="col-lg-6"><input type="number" class="form-control"></div>
                             </div>
                           <div class="form-group">
@@ -72,24 +72,24 @@
                               <div class="col-lg-6"><input type="number" class="form-control"></div>
                             </div>
                             <div class="form-group">
-                              <label class="col-lg-2 control-label">Tgl Berakhir SK Dikti:</label>
-                                <div class="col-lg-6"><input type="number" class="form-control"></div>
+                              <label class="col-lg-2 control-label">E-mail:</label>
+                                <div class="col-lg-6"><input type="email" class="form-control"></div>
                               </div>
                           <div class="form-group">
-                            <label class="col-lg-2 control-label">No SK BAN:</label>
-                              <div class="col-lg-6"><input type="number" class="form-control"></div>
+                            <label class="col-lg-2 control-label">Alamat Rumah:</label>
+                              <div class="col-lg-6"><input type="text" class="form-control"></div>
                             </div>
                           <div class="form-group">
-                            <label class="col-lg-2 control-label">Tanggal SK BAN:</label>
-                              <div class="col-lg-6"><input type="number" class="form-control"></div>
+                            <label class="col-lg-2 control-label">Jabatan:</label>
+                              <div class="col-lg-6"><input type="text" class="form-control"></div>
                             </div>
                             <div class="form-group">
-                              <label class="col-lg-2 control-label">Tgl Berakhir SK BAN:</label>
-                                <div class="col-lg-6"><input type="number" class="form-control"></div>
+                              <label class="col-lg-2 control-label">Pangkat:</label>
+                                <div class="col-lg-6"><input type="text" class="form-control"></div>
                               </div>
                             <div class="form-group">
-                              <label class="col-lg-2 control-label">Akreditasi:</label>
-                                <div class="col-lg-6"><input type="number" class="form-control"></div>
+                              <label class="col-lg-2 control-label">Status:</label>
+                                <div class="col-lg-6"><input type="text" class="form-control"></div>
                               </div>
                 <br >
                 <center>

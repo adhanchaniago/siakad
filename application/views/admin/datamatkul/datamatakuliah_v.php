@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="title-action">
-                        <a href="<?php echo base_url()."admin/datamatakuliah/tambahmatakuliah"?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a href="<?php echo base_url()."admin/datamatakuliah/add"?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
             <div class="wrapper wrapper-content">
               <div class="ibox-content">
               <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover dataTables-example" >
+                <table class="table table-striped table-bordered table-hover tabelmatkul" >
                 <thead>
                 <tr>
                     <th>No</th>
@@ -49,7 +49,7 @@
                     <td>
                       <center>
                         <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' href='#'><span class='glyphicon glyphicon-edit'></span></a>
+                        <a class='btn btn-warning btn-xs' title='Edit Data' href='<?php echo base_url()."admin/datamatakuliah/edit"?>'><span class='glyphicon glyphicon-edit'></span></a>
                         <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
                       </center>
                     </td>
@@ -59,3 +59,32 @@
                     </div>
                 </div>
             </div>
+
+            <script type="text/javascript">
+            $(document).ready(function(){
+                  $('.tabelmatkul').DataTable({
+                      pageLength: 25,
+                      responsive: true,
+                      dom: 'lTfgitp',
+                      buttons: [
+                          { extend: 'copy'},
+                          {extend: 'csv'},
+                          {extend: 'excel', title: 'ExampleFile'},
+                          {extend: 'pdf', title: 'ExampleFile'},
+
+                          {extend: 'print',
+                           customize: function (win){
+                                  $(win.document.body).addClass('white-bg');
+                                  $(win.document.body).css('font-size', '10px');
+
+                                  $(win.document.body).find('table')
+                                          .addClass('compact')
+                                          .css('font-size', 'inherit');
+                          }
+                          }
+                      ]
+
+                  });
+
+              });
+            </script>

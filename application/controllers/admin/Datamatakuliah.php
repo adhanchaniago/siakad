@@ -9,20 +9,33 @@ class Datamatakuliah extends CI_Controller {
 		if ($cek == 'admin'){
 			$array=array('page'=>10);
 		$this->load->view('header_v',$array);
-		$this->load->view('admin/datamatakuliah_v');
+		$this->load->view('admin/datamatkul/datamatakuliah_v');
 		$this->load->view('footer_v');
 		}else{
 			header("location:".base_url());
 		}
 	}
 
-	public function tambahmatakuliah()
+	public function add()
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
 			$array=array('page'=>10);
 		$this->load->view('header_v',$array);
-		$this->load->view('admin/tambahmatakuliah_v');
+		$this->load->view('admin/datamatkul/tambahmatakuliah_v');
+		$this->load->view('footer_v');
+		}else{
+			header("location:".base_url());
+		}
+	}
+
+	public function edit()
+	{
+		$cek = $this->session->userdata('status');
+		if ($cek == 'admin'){
+			$array=array('page'=>10);
+		$this->load->view('header_v',$array);
+		$this->load->view('admin/datamatkul/editmatakuliah_v');
 		$this->load->view('footer_v');
 		}else{
 			header("location:".base_url());
