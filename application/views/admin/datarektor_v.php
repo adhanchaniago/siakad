@@ -30,7 +30,6 @@
                     <th>Nama Lengkap</th>
                     <th>Kontak</th>
                     <th>Jabatan</th>
-                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,13 +39,6 @@
                     <td>Sintia Wati</td>
                     <td>0851908198</td>
                     <td>Rektor</td>
-                    <td>
-                      <center>
-                        <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' data-toggle="modal" data-target="#editModal"><span class='glyphicon glyphicon-edit'></span></a>
-                        <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
-                      </center>
-                    </td>
                 </tr>
                 <tr class="gradeX">
                     <td>2</td>
@@ -54,13 +46,6 @@
                     <td>Budi A</td>
                     <td>0871828112</td>
                     <td>Wakil Rektor I</td>
-                    <td>
-                      <center>
-                        <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' data-toggle="modal" data-target="#editModal"><span class='glyphicon glyphicon-edit'></span></a>
-                        <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
-                      </center>
-                    </td>
                 </tr>
                 </tbody>
                 </table>

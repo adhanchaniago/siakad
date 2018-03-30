@@ -23,6 +23,8 @@
 
     <link href="<?php echo base_url()."assets" ?>/css/datatables.css" rel="stylesheet">
 
+    <link href="<?php echo base_url()."assets" ?>/css/plugins/select2/select2.min.css" rel="stylesheet">
+
     <!-- FooTable -->
     <link href="<?php echo base_url()."assets" ?>/css/plugins/footable/footable.core.css" rel="stylesheet">
 

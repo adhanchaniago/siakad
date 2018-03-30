@@ -54,6 +54,10 @@
                           <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Kode Program Studi" required></div>
                         </div>
                       <div class="form-group">
+                        <label class="col-lg-2 control-label">UUID SMS Feeder:</label>
+                          <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan UUID SMS Feeder" required></div>
+                        </div>
+                      <div class="form-group">
                         <label class="col-lg-2 control-label">Nama Program Studi:</label>
                           <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Nama Program Studi" required></div>
                         </div>
@@ -92,22 +96,33 @@
                             </select>
                           </div>
                         </div>
+                        <style media="screen">
+                        [class^='select2'] {
+                            border-radius: 0px !important;
+                            }
+                        </style>
                           <div class="hr-line-dashed"></div><br >
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Nama Ketua Prodi:</label>
-                              <div class="col-lg-6"><input type="text" data-provide="typeahead" data-source='["item 1","item 2","item 3"]' class="form-control" placeholder="Masukkan Nama Ketua Prodi" required></div>
-                            </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">No HP Ketua:</label>
-                              <div class="col-lg-6"><input type="number" min="0" class="form-control" placeholder="Masukkan Nomor HP Ketua Prodi" required></div>
+                              <div class="col-lg-6"><select type="text" class="select2_demo_1 standart form-control">
+                                        <option value="1">Option 1</option>
+                                        <option value="2">Option 2</option>
+                                        <option value="3">Option 3</option>
+                                        <option value="4">Option 4</option>
+                                        <option value="5">Option 5</option>
+                                    </select></div>
                             </div>
                             <div class="form-group">
                               <label class="col-lg-2 control-label">No Telepon Prodi:</label>
                                 <div class="col-lg-6"><input type="number" min="0" class="form-control" placeholder="Masukkan Nomor Telepon Kantor Prodi"></div>
                               </div>
                           <div class="form-group">
+                            <label class="col-lg-2 control-label">Email Prodi:</label>
+                              <div class="col-lg-6"><input type="email" class="form-control" placeholder="Masukkan Email Prodi"></div>
+                            </div>
+                          <div class="form-group">
                             <label class="col-lg-2 control-label">Nama Operator Prodi:</label>
-                              <div class="col-lg-6"><input type="text" data-provide="typeahead" data-source='["item 1","item 2","item 3"]' class="form-control" placeholder="Masukkan Nama Operator/Pengelola Prodi"></div>
+                              <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Nama Operator Prodi"></div>
                             </div>
                             <div class="form-group">
                               <label class="col-lg-2 control-label">No HP Operator:</label>
@@ -188,12 +203,8 @@
             </div> <br >
           </div>
 
-          <script>
-                  $(document).ready(function(){
-
-                      $('.typeahead_1').typeahead({
-                          source: ["item 1","item 2","item 3"]
-                      });
-
-                  });
-              </script>
+<script>
+    $(document).ready(function(){
+        $(".select2_demo_1").select2();
+    });
+</script>

@@ -26,6 +26,7 @@
                 <thead>
                 <tr>
                     <th>No</th>
+                    <th>Kode</th>
                     <th>Nama Fakultas</th>
                     <th>Dekan Fakultas</th>
                     <th>Wakil Dekan Fakultas</th>
@@ -35,12 +36,13 @@
                 <tbody>
                   <tr>
                     <td>1</td>
+                    <td>212</td>
                     <td>DAKWAH DAN KOMUNIKASI</td>
                     <td>123 - Prof. X</td>
                     <td>123 - Prof. Y</td>
                     <td>
                       <center>
-                        <a class='btn btn-primary btn-xs' title='Lihat Data'><span class='fa fa-eye'></span></a>
+                        <!-- <a class='btn btn-primary btn-xs' title='Lihat Data'><span class='fa fa-eye'></span></a> -->
                         <a class='btn btn-warning btn-xs' title='Edit Data' href="<?php echo base_url()."admin/datafakultas/edit"?>"><span class='glyphicon glyphicon-edit'></span></a>
                         <a class='btn btn-danger btn-xs' title='Hapus Data'><span class='glyphicon glyphicon-remove'></span></a>
                       </center>

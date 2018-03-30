@@ -31,7 +31,6 @@
                     <th>Kontak</th>
                     <th>Jabatan</th>
                     <th>Fakultas</th>
-                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,13 +41,6 @@
                     <td>0851908198</td>
                     <td>Dekan</td>
                     <td>Informatika</td>
-                    <td>
-                      <center>
-                        <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' data-toggle="modal" data-target="#editModal"><span class='glyphicon glyphicon-edit'></span></a>
-                        <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
-                      </center>
-                    </td>
                 </tr>
                 <tr class="gradeX">
                     <td>2</td>
@@ -70,7 +62,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal inmodal" id="editModal" tabindex="-1" role="dialog"  aria-hidden="true">
+            <!-- <div class="modal inmodal" id="editModal" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeInDown">
                         <div class="modal-header">
@@ -99,7 +91,7 @@
                       </form>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
   <script type="text/javascript">
   $(document).ready(function(){

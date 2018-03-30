@@ -20,6 +20,24 @@
             </div>
 
             <div class="wrapper wrapper-content">
+              <div class="ibox-title">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="control-label">Filter Fakultas:</label>
+                        <div><select type="text" class="form-control">
+                          <option value="0" selected>SEMUA</option>
+                          <option value="1" >DAKWAH DAN KOMUNIKASI</option>
+                          <option value="2">EKONOMI DAN BISNIS ISLAM</option>
+                          <option value="3">PASCASARJANA</option>
+                          <option value="4">SYARIAH</option>
+                          <option value="5">TARBIYAH DAN KEGURUAN</option>
+                          <option value="6">USHULUDDIN DAN HUMANIORA</option>
+                        </select></div>
+                      </div>
+                  </div>
+                </div>
+              </div>
               <div class="ibox-content">
               <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover datatabelpimpinan" >
@@ -30,8 +48,7 @@
                     <th>Nama Lengkap</th>
                     <th>Kontak</th>
                     <th>Jabatan</th>
-                    <th>Fakultas</th>
-                    <th>Action</th>
+                    <th>Program Studi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,13 +59,6 @@
                     <td>0851908198</td>
                     <td>Kaprodi</td>
                     <td>Informatika</td>
-                    <td>
-                      <center>
-                        <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' data-toggle="modal" data-target="#editModal"><span class='glyphicon glyphicon-edit'></span></a>
-                        <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
-                      </center>
-                    </td>
                 </tr>
                 <tr class="gradeX">
                     <td>2</td>
@@ -57,20 +67,13 @@
                     <td>0871828112</td>
                     <td>Kaprodi</td>
                     <td>Sistem Informasi</td>
-                    <td>
-                      <center>
-                        <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' data-toggle="modal" data-target="#editModal"><span class='glyphicon glyphicon-edit'></span></a>
-                        <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
-                      </center>
-                    </td>
                 </tr>
                 </tbody>
                 </table>
                     </div>
                 </div>
             </div>
-            <div class="modal inmodal" id="editModal" tabindex="-1" role="dialog"  aria-hidden="true">
+            <!-- <div class="modal inmodal" id="editModal" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeInDown">
                         <div class="modal-header">
@@ -99,7 +102,7 @@
                       </form>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
   <script type="text/javascript">
   $(document).ready(function(){
