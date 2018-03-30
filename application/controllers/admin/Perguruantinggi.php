@@ -7,7 +7,7 @@ class Perguruantinggi extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>4);
+			$array=array('page'=>'211');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/perguruantinggi_v');
 		$this->load->view('footer_v');

@@ -7,7 +7,7 @@ class Datadekan extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>10);
+			$array=array('page'=>'2322');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datadekan_v');
 		$this->load->view('footer_v');

@@ -7,7 +7,7 @@ class Akunpegawai extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>5);
+			$array=array('page'=>'231');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/akunpegawai/akunpegawai_v');
 		$this->load->view('footer_v');
@@ -20,7 +20,7 @@ class Akunpegawai extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>5);
+			$array=array('page'=>'231');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/akunpegawai/tambahakunpegawai_v');
 		$this->load->view('footer_v');
@@ -33,7 +33,7 @@ class Akunpegawai extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>5);
+			$array=array('page'=>'231');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/akunpegawai/editakunpegawai_v');
 		$this->load->view('footer_v');

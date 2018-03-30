@@ -7,7 +7,7 @@ class Datamahasiswa extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>3);
+			$array=array('page'=>'234');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datamhs_v');
 		$this->load->view('footer_v');

@@ -25,27 +25,27 @@
             <li <?php if($page==1)echo "class='active'"; ?>>
                 <a href="<?php echo base_url()."admin/home"?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
             </li>
-            <li <?php if($page==2 || $page==3)echo "class='active'"; ?>>
+            <li <?php if(substr($page,0,1)=='2')echo "class='active'"; ?>>
                 <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Master Data</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                  <li>
+                  <li <?php if(substr($page,0,2)=='21')echo "class='active'"; ?>>
                     <a href="#">Master Pusat <span class="fa arrow"></span></a>
                     <ul class="nav nav-third-level">
-                      <li>
+                      <li <?php if(substr($page,0,3)=='211')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/perguruantinggi"?>">Perguruan Tinggi</a>
                       </li>
-                      <li>
+                      <li <?php if(substr($page,0,3)=='212')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/datafakultas"?>">Fakultas</a>
                       </li>
-                      <li>
+                      <li <?php if(substr($page,0,3)=='213')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/dataprogramstudi"?>">Program Studi</a>
                       </li>
-                      <li>
+                      <li <?php if(substr($page,0,3)=='214')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/datapimpinan"?>">Pimpinan</a>
                       </li>
                     </ul>
                   </li>
-                  <li>
+                  <li <?php if(substr($page,0,2)=='22')echo "class='active'"; ?>>
                     <a href="#">Akademik <span class="fa arrow"></span></a>
                     <ul class="nav nav-third-level">
                       <li>
@@ -58,38 +58,38 @@
                         <a href="<?php echo base_url()."admin/datakelas"?>">Kelas</a>
                       </li>
                       <!-- <li>
-                          <a href="#">Fasilitas Penunjang</a>
-                      </li>
-                      <li>
-                        <a href="#">Gedung & Ruangan</a>
-                      </li> -->
+                      <a href="#">Fasilitas Penunjang</a>
+                    </li>
+                    <li>
+                    <a href="#">Gedung & Ruangan</a>
+                  </li> -->
                     </ul>
                   </li>
-                  <li <?php if($page==2 || $page==3)echo "class='active'"; ?>>
+                  <li <?php if(substr($page,0,2)=='23')echo "class='active'"; ?>>
                     <a href="#">Civitas <span class="fa arrow"></span></a>
                     <ul class="nav nav-third-level">
-                      <li><a href="<?php echo base_url()."admin/akunpegawai"?>">Data Akun Pegawai</a></li>
-                      <li>
+                      <li <?php if(substr($page,0,3)=='231')echo "class='active'"; ?>><a href="<?php echo base_url()."admin/akunpegawai"?>">Data Akun Pegawai</a></li>
+                      <li <?php if(substr($page,0,3)=='232')echo "class='active'"; ?>>
                         <a href="#">Data Pimpinan <span class="fa arrow"></span></a>
                       <ul class="nav nav-fourth-level">
-                        <li>
+                        <li <?php if(substr($page,0,4)=='2321')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/datarektor"?>">&nbsp;&nbsp; Data Rektor</a>
                         </li>
-                        <li>
+                        <li <?php if(substr($page,0,4)=='2322')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/datadekan"?>">&nbsp;&nbsp; Data Dekan</a>
                         </li>
-                        <li>
+                        <li <?php if(substr($page,0,4)=='2323')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/datakaprodi"?>">&nbsp;&nbsp; Data Kaprodi</a>
                         </li>
                       </ul>
                     </li>
-                      <li <?php if($page==2)echo "class='active'"; ?>>
+                      <li <?php if(substr($page,0,3)=='233')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/datadosen"?>">Data Dosen</a>
                       </li>
-                      <li <?php if($page==3)echo "class='active'"; ?>>
+                      <li <?php if(substr($page,0,3)=='234')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/datamahasiswa"?>">Data Mahasiswa</a>
                       </li>
-                      <li>
+                      <li <?php if(substr($page,0,3)=='235')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/datastaff"?>">Data Staff</a>
                       </li>
                     </ul>

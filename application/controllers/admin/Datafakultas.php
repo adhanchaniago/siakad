@@ -7,7 +7,7 @@ class Datafakultas extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>0);
+			$array=array('page'=>'212');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datafakultas/datafakultas_v');
 		$this->load->view('footer_v');
@@ -20,7 +20,7 @@ class Datafakultas extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>5);
+			$array=array('page'=>'212');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datafakultas/tambahfakultas_v');
 		$this->load->view('footer_v');
@@ -33,7 +33,7 @@ class Datafakultas extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>5);
+			$array=array('page'=>'212');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datafakultas/editfakultas_v');
 		$this->load->view('footer_v');

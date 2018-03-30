@@ -7,7 +7,7 @@ class Datastaff extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>5);
+			$array=array('page'=>'235');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datastaff/datastaff_v');
 		$this->load->view('footer_v');
@@ -20,7 +20,7 @@ class Datastaff extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>5);
+			$array=array('page'=>'235');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datastaff/tambahstaff_v');
 		$this->load->view('footer_v');
@@ -33,7 +33,7 @@ class Datastaff extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>5);
+			$array=array('page'=>'235');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datastaff/editstaff_v');
 		$this->load->view('footer_v');

@@ -7,7 +7,7 @@ class Dataprogramstudi extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>5);
+			$array=array('page'=>'213');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/dataprodi/dataprogramstudi_v');
 		$this->load->view('footer_v');
@@ -20,7 +20,7 @@ class Dataprogramstudi extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>5);
+			$array=array('page'=>'213');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/dataprodi/tambahprodi_v');
 		$this->load->view('footer_v');
@@ -33,7 +33,7 @@ class Dataprogramstudi extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>5);
+			$array=array('page'=>'213');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/dataprodi/editprodi_v');
 		$this->load->view('footer_v');

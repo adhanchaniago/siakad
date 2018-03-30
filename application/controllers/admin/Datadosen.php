@@ -8,7 +8,7 @@ class Datadosen extends CI_Controller {
 		$this->load->model(array('Dosen'));
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>2);
+			$array=array('page'=>'233');
 			$data['unit_kerja'] = $this->Dosen->getUnitKerja();
 			$data['tipe'] = $this->Dosen->getTipe();
 			$data['jabatan'] = $this->Dosen->getJabatan();
