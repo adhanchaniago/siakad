@@ -57,12 +57,12 @@
                       <li>
                         <a href="<?php echo base_url()."admin/datakelas"?>">Kelas</a>
                       </li>
-                      <li>
+                      <!-- <li>
                           <a href="#">Fasilitas Penunjang</a>
                       </li>
                       <li>
                         <a href="#">Gedung & Ruangan</a>
-                      </li>
+                      </li> -->
                     </ul>
                   </li>
                   <li <?php if($page==2 || $page==3)echo "class='active'"; ?>>

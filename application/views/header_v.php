@@ -87,6 +87,9 @@
     <!-- Sweet alert -->
     <script src="<?php echo base_url()."assets" ?>/js/plugins/sweetalert/sweetalert.min.js"></script>
 
+    <!-- Typehead -->
+    <script src="<?php echo base_url()."assets" ?>/js/plugins/typehead/bootstrap3-typeahead.min.js"></script>
+
     <!-- Clock picker -->
     <!-- <script src="/js/plugins/clockpicker/clockpicker.js"></script> -->
 

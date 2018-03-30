@@ -22,7 +22,7 @@
             <div class="wrapper wrapper-content">
               <div class="ibox-content">
               <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover dataTables-example" >
+                <table class="table table-striped table-bordered table-hover datatabelkelas" >
                 <thead>
                 <tr>
                     <th>No</th>
@@ -88,3 +88,32 @@
                     </div>
                 </div>
             </div>
+
+            <script type="text/javascript">
+            $(document).ready(function(){
+                  $('.datatabelkelas').DataTable({
+                      pageLength: 25,
+                      responsive: true,
+                      dom: 'lTfgitp',
+                      buttons: [
+                          { extend: 'copy'},
+                          {extend: 'csv'},
+                          {extend: 'excel', title: 'ExampleFile'},
+                          {extend: 'pdf', title: 'ExampleFile'},
+
+                          {extend: 'print',
+                           customize: function (win){
+                                  $(win.document.body).addClass('white-bg');
+                                  $(win.document.body).css('font-size', '10px');
+
+                                  $(win.document.body).find('table')
+                                          .addClass('compact')
+                                          .css('font-size', 'inherit');
+                          }
+                          }
+                      ]
+
+                  });
+
+              });
+            </script>
