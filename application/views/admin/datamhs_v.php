@@ -63,6 +63,18 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label class="control-label">Gender:</label>
+                      <div>
+                        <select class="form-control" name="...">
+                          <option value="0">SEMUA</option>
+                          <option value="1">LAKI-LAKI</option>
+                          <option value="2">PEREMPUAN</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="ibox-content">

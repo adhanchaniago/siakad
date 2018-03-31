@@ -70,7 +70,43 @@
                         </div>
                         <form>
                         <div class="modal-body">
-                          <div class="form-group">
+                            <div class="row">
+                              <div class="col-xs-6">
+                                <div class="form-group">
+                                  <label>Kelas Prodi: <span style="color:red;">*</span></label>
+                                  <select type="text" class="form-control">
+                                    <option value="">Dekan</option>
+                                    <option value="">Admin Fakultas</option>
+                                    <option value="">Ketua Program Studi</option>
+                                    <option value="">Rektor</option>
+                                  </select>
+                                </div>
+                              </div>
+                            <div class="col-xs-1">
+                              <a class="btn btn-xs btn-success" style="margin-top:30px;">Tambahkan</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                          <div class="table-responsive">
+                          <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>No</th>
+                                <th>Role User</th>
+                                <th>Hapus</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>DOsen</td>
+                                <td><center> <a type="button" name="button" class="btn btn-xs btn-danger"><span class="fa fa-remove"></span></a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        </div>
+                          <!-- <div class="form-group">
                             <label>Pilih Role Pengguna</label>
                             <div>
                             <select data-placeholder="Tidak ada role..." class="chosen-select" multiple style="width:350px;" tabindex="4">
@@ -82,7 +118,7 @@
                             <option value="">Rektor</option>
                             </select>
                             </div>
-                          </div>
+                          </div> -->
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
