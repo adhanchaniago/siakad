@@ -24,44 +24,69 @@
                 border-radius: 0px !important;
                 }
             </style>
-
+            <script type="text/javascript">
+            </script>
             <div class="wrapper wrapper-content">
             <div class="row">
               <div class="ibox-content col-lg-12">
-                <form class="form-horizontal">
+                <form id="form" class="form-horizontal">
                       <h2>Form</h2>
                       <div class="hr-line-dashed"></div>
                       <div class="form-group">
                         <label class="col-lg-2 control-label">Kode Fakultas:</label>
-                          <div class="col-lg-6"><input type="number" class="form-control" value="1"></div>
+                          <div class="col-lg-6"><input type="number" name="kode" class="form-control" placeholder="Masukkan Kode Fakultas" value="<?php echo $fakultas->kode?>" required></div>
                         </div>
                       <div class="form-group">
                         <label class="col-lg-2 control-label">Nama Fakultas:</label>
-                          <div class="col-lg-6"><input type="text" class="form-control" value="NASYID" style="text-transform:uppercase;"></div>
+                          <div class="col-lg-6"><input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Fakultas" value="<?php echo $fakultas->nama?>" style="text-transform:uppercase;" required></div>
                         </div>
                       <div class="form-group">
-                        <label class="col-lg-2 control-label">Nama Dekan:</label>
-                          <div class="col-lg-6"><select type="text" class="dekan standart form-control">
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
-                                    <option value="4">Option 4</option>
-                                    <option value="5">Option 5</option>
+                        <label class="col-lg-2 control-label">Dekan:</label>
+                          <div class="col-lg-6"><select type="text" name="dekan" class="dekan standart form-control">
+                            <?php
+                            foreach ($role->result() as $row){
+                              if($row->id_role=='1'){
+                                echo "<option value='$row->id_dekan'>$row->text</option>";
+                              }
+                            } ?>
                                 </select></div>
                         </div>
                         <div class="form-group">
-                          <label class="col-lg-2 control-label">Nama Wakil Dekan:</label>
-                            <div class="col-lg-6"><select type="text" class="wakildekan standart form-control">
-                                      <option value="1">Option 1</option>
-                                      <option value="2">Option 2</option>
-                                      <option value="3">Option 3</option>
-                                      <option value="4">Option 4</option>
-                                      <option value="5">Option 5</option>
+                          <label class="col-lg-2 control-label">Wakil Dekan Akademik:</label>
+                            <div class="col-lg-6"><select type="text" id="wadek_akademik" name="wadek_akademik" class="wakildekan standart form-control">
+                              <?php
+                              foreach ($role->result() as $row){
+                                if($row->id_role=='2'){
+                                  echo "<option value='$row->id_dekan'>$row->text</option>";
+                                }
+                              } ?>
                                   </select></div>
                           </div>
+                          <div class="form-group">
+                            <label class="col-lg-2 control-label">Wakil Dekan Keuangan:</label>
+                              <div class="col-lg-6"><select type="text" id="wadek_keuangan" name="wadek_keuangan" class="wakildekan standart form-control">
+                                <?php
+                                foreach ($role->result() as $row){
+                                  if($row->id_role=='3'){
+                                    echo "<option value='$row->id_dekan'>$row->text</option>";
+                                  }
+                                } ?>
+                                    </select></div>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-lg-2 control-label">Wakil Dekan Kemahasiswaan:</label>
+                                <div class="col-lg-6"><select type="text" id="wadek_kemahasiswaan" name="wadek_kemahasiswaan" class="wakildekan standart form-control">
+                                  <?php
+                                  foreach ($role->result() as $row){
+                                    if($row->id_role=='4'){
+                                      echo "<option value='$row->id_dekan'>$row->text</option>";
+                                    }
+                                  } ?>
+                                      </select></div>
+                              </div>
                 <br >
                 <center>
-                  <button type="submit" class="btn btn-w-m btn-primary" name="button"><i class="fa fa-send"></i> Submit</button>
+                  <button type="submit" class="btn btn-w-m btn-primary" name="button"><i class="fa fa-send"></i> Save</button>
                   <button type="button" class="btn btn-w-m btn-warning" name="button" onclick="goBack()"><i class="fa fa-mail-reply"></i> Kembali</button>
                 </center>
               </form>
@@ -69,11 +94,105 @@
             </div> <br >
           </div>
 <script>
-    $(document).ready(function(){
-      $(".dekan").select2();
-      $(".wakildekan").select2();
-    });
-    function goBack() {
-    window.history.back();
-  }
+$(document).ready(function(){
+  $(".wakildekan").select2();
+  $('.dekan').select2({
+    placeholder: 'Pilih Dekan',
+    allowClear:true,
+    ajax: {
+      url: '<?php echo base_url()."admin/Datafakultas/getDekan"?>',
+      dataType: 'json',
+      delay: 250,
+      processResults: function (data) {
+        return {
+          results: data
+        };
+      },
+      cache: true
+    }
+  });
+  $('#wadek_akademik').select2({
+    placeholder: 'Pilih Wadek Akademik',
+    allowClear:true,
+    ajax: {
+      url: '<?php echo base_url()."admin/Datafakultas/getDekan"?>',
+      dataType: 'json',
+      delay: 250,
+      processResults: function (data) {
+        return {
+          results: data
+        };
+      },
+      cache: true
+    }
+  });
+  $('#wadek_keuangan').select2({
+    placeholder: 'Pilih Wadek Keuangan',
+    allowClear:true,
+    ajax: {
+      url: '<?php echo base_url()."admin/Datafakultas/getDekan"?>',
+      dataType: 'json',
+      delay: 250,
+      processResults: function (data) {
+        return {
+          results: data
+        };
+      },
+      cache: true
+    }
+  });
+  $('#wadek_kemahasiswaan').select2({
+    placeholder: 'Pilih Wadek Kemahasiswaan',
+    allowClear:true,
+    ajax: {
+      url: '<?php echo base_url()."admin/Datafakultas/getDekan"?>',
+      dataType: 'json',
+      delay: 250,
+      processResults: function (data) {
+        return {
+          results: data
+        };
+      },
+      cache: true
+    }
+  });
+});
+
+function goBack() {
+window.history.back();
+}
+$('#form').submit(function(){
+
+          var form = $('#form')[0]; // You need to use standart javascript object here
+          var formData = new FormData(form);
+          formData.append('id','<?php echo $fakultas->id?>');
+          $.ajax({
+            url: '<?php echo base_url("admin/Datafakultas/editFakultas");?>',
+            data: formData,
+            type: 'POST',
+            // THIS MUST BE DONE FOR FILE UPLOADING
+            contentType: false,
+            processData: false,
+            dataType: "JSON",
+            success: function(data){
+              if (data.status=='berhasil') {
+                swal("Berhasil!", data.message, "success");
+              }else {
+                swal("Gagal!", data.message, "error");
+              }
+              if(data.status=="berhasil"){
+                window.location.href = "<?php echo base_url()."admin/datafakultas"?>";
+              }
+            },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+            alert('gagal');
+          }
+          })
+
+          return false;
+      });
 </script>

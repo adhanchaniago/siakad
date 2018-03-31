@@ -120,7 +120,7 @@ $unit_kerja = $unit_kerja->row();
 															$total=$total+$nilai;
 															$html.="<td><center>$nilai</center></td>";
 														}
-														$dekan = $this->Dosen->getDekan(array('id_fakultas'=>$dosen->id_fakultas))->row();
+														$dekan = $this->Dosen->getDekan(array('r.id_fakultas'=>$dosen->id_fakultas,'r.id_role'=>1))->row();
 														$p_dekan = $this->Dosen->getPegawai(array('id'=>$dekan->id_pegawai))->row();
 														$fakultas = $this->Dosen->getFakultas(array('id'=>$dekan->id_fakultas))->row();
 														// setlocale(LC_ALL, 'id_ID');

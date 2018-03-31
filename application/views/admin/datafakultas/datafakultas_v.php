@@ -29,7 +29,9 @@
                     <th>Kode</th>
                     <th>Nama Fakultas</th>
                     <th>Dekan Fakultas</th>
-                    <th>Wakil Dekan Fakultas</th>
+                    <th>Wadek Akademik</th>
+                    <th>Wadek Keuangan</th>
+                    <th>Wadek Kemahasiswaan</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -39,6 +41,8 @@
                     <td>212</td>
                     <td>DAKWAH DAN KOMUNIKASI</td>
                     <td>123 - Prof. X</td>
+                    <td>123 - Prof. Y</td>
+                    <td>123 - Prof. Y</td>
                     <td>123 - Prof. Y</td>
                     <td>
                       <center>
@@ -78,30 +82,64 @@
             </div> -->
 
             <script type="text/javascript">
-            $(document).ready(function(){
-                  $('.datatabelakun').DataTable({
-                      pageLength: 25,
-                      responsive: true,
-                      dom: 'lTfgitp',
-                      buttons: [
-                          { extend: 'copy'},
-                          {extend: 'csv'},
-                          {extend: 'excel', title: 'ExampleFile'},
-                          {extend: 'pdf', title: 'ExampleFile'},
+            $(document).ready(function() {
+              $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
+                        {
+                            return {
+                                "iStart": oSettings._iDisplayStart,
+                                "iEnd": oSettings.fnDisplayEnd(),
+                                "iLength": oSettings._iDisplayLength,
+                                "iTotal": oSettings.fnRecordsTotal(),
+                                "iFilteredTotal": oSettings.fnRecordsDisplay(),
+                                "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
+                                "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
+                            };
+                        };
 
-                          {extend: 'print',
-                           customize: function (win){
-                                  $(win.document.body).addClass('white-bg');
-                                  $(win.document.body).css('font-size', '10px');
-
-                                  $(win.document.body).find('table')
-                                          .addClass('compact')
-                                          .css('font-size', 'inherit');
-                          }
-                          }
-                      ]
-
-                  });
-
-              });
+                        t = $("#mytable").dataTable({
+                            initComplete: function() {
+                                var api = this.api();
+                                $('#mytable_filter input')
+                                        .off('.DT')
+                                        .on('keyup.DT', function(e) {
+                                            if (e.keyCode == 13) {
+                                                api.search(this.value).draw();
+                                    }
+                                });
+                            },
+                            oLanguage: {
+                                sProcessing: "loading..."
+                            },
+                            processing: true,
+                            serverSide: true,
+                            ajax: {"url": "<?php echo base_url("admin/Datafakultas/json");?>", "type": "POST"},
+                            "columnDefs": [
+                {
+                    "targets": [ -1 ], //last column
+                    "orderable": false, //set not orderable
+                },
+                ],
+                            columns: [
+                                {
+                                    "data": "id",
+                                    "orderable": false
+                                },
+                                {"data": "kode"},
+                                {"data": "nama"},
+                                {"data": "dekan"},
+                                {"data": "wadek1"},
+                                {"data": "wadek2"},
+                                {"data": "wadek3"},
+                                {"data": "view"}
+                            ],
+                            order: [[1, 'asc']],
+                            rowCallback: function(row, data, iDisplayIndex) {
+                                var info = this.fnPagingInfo();
+                                var page = info.iPage;
+                                var length = info.iLength;
+                                var index = page * length + (iDisplayIndex + 1);
+                                $('td:eq(0)', row).html(index);
+                            }
+                        });
+            });
             </script>
