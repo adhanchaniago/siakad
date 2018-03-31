@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="title-action">
-                        <a data-toggle="modal" data-target="#myModal4" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a href="<?php echo base_url()."admin/datakelas/add"?>" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,8 @@
                     <th>No</th>
                     <th>Program Studi</th>
                     <th>Nama Kelas</th>
-                    <th>Kapasitas</th>
+                    <th>Kuota (Orang)</th>
+                    <th>Jenis Kelas</th>
                     <th>Dosen Wali</th>
                     <th>Action</th>
                 </tr>
@@ -39,11 +40,12 @@
                     <td>Akutansi</td>
                     <td>AK-47</td>
                     <td>30</td>
+                    <td>Reguler (R)</td>
                     <td>Arsene Wenger</td>
                     <td>
                       <center>
-                        <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' href='#'><span class='glyphicon glyphicon-edit'></span></a>
+                        <!-- <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a> -->
+                        <a class='btn btn-warning btn-xs' title='Edit Data' href='<?php echo base_url()."admin/datakelas/edit"?>'><span class='glyphicon glyphicon-edit'></span></a>
                         <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
                       </center>
                     </td>
@@ -54,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="modal inmodal" id="myModal4" tabindex="-1" role="dialog"  aria-hidden="true">
+            <!-- <div class="modal inmodal" id="myModal4" tabindex="-1" role="dialog"  aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeInDown">
                         <div class="modal-header">
@@ -87,7 +89,7 @@
                       </form>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <script type="text/javascript">
             $(document).ready(function(){

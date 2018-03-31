@@ -7,7 +7,7 @@ class Datamatakuliah extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>10);
+			$array=array('page'=>'221');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datamatkul/datamatakuliah_v');
 		$this->load->view('footer_v');
@@ -20,7 +20,7 @@ class Datamatakuliah extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>10);
+			$array=array('page'=>'221');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datamatkul/tambahmatakuliah_v');
 		$this->load->view('footer_v');
@@ -33,7 +33,7 @@ class Datamatakuliah extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>10);
+			$array=array('page'=>'221');
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datamatkul/editmatakuliah_v');
 		$this->load->view('footer_v');

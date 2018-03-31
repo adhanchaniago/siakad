@@ -48,21 +48,18 @@
                   <li <?php if(substr($page,0,2)=='22')echo "class='active'"; ?>>
                     <a href="#">Akademik <span class="fa arrow"></span></a>
                     <ul class="nav nav-third-level">
-                      <li>
+                      <li <?php if(substr($page,0,3)=='221')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/datamatakuliah"?>">Mata Kuliah</a>
                       </li>
-                      <li>
+                      <li <?php if(substr($page,0,3)=='222')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/tahunakademik"?>">Tahun Akademik</a>
                       </li>
-                      <li>
+                      <li <?php if(substr($page,0,3)=='223')echo "class='active'"; ?>>
                         <a href="<?php echo base_url()."admin/datakelas"?>">Kelas</a>
                       </li>
-                      <!-- <li>
-                      <a href="#">Fasilitas Penunjang</a>
-                    </li>
-                    <li>
-                    <a href="#">Gedung & Ruangan</a>
-                  </li> -->
+                      <li <?php if(substr($page,0,3)=='224')echo "class='active'"; ?>>
+                        <a href="<?php echo base_url()."admin/dataruangan"?>">Gedung & Ruangan</a>
+                      </li>
                     </ul>
                   </li>
                   <li <?php if(substr($page,0,2)=='23')echo "class='active'"; ?>>
@@ -135,14 +132,17 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li <?php if(substr($page,0,1)=='4')echo "class='active'"; ?>>
                 <a href="#"><i class="fa fa-graduation-cap"></i> <span class="nav-label">Akademika </span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li>
+                    <li <?php if(substr($page,0,2)=='41')echo "class='active'"; ?>>
                         <a href="#">KRS<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                           <li>
                               <a href="#">Data KRS</a>
+                          </li>
+                          <li <?php if(substr($page,0,3)=='412')echo "class='active'"; ?>>
+                              <a href="<?php echo base_url()."admin/jadwalkrs"?>">Jadwal KRS</a>
                           </li>
                           <li>
                               <a href="#">Ekuivalensi Mata Kuliah</a>
