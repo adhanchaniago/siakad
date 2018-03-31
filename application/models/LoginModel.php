@@ -73,7 +73,7 @@ class LoginModel extends CI_Model {
             return 1;
           }
 
-          $cek_dekan = $this->cekDekan(array('p.id_akun' => $akun->id));
+          $cek_dekan = $this->cekDekan(array('p.id_akun' => $akun->id,'r.id_role'=>1));
           $cek = $cek_dekan->num_rows();
 
           if($cek>0){
@@ -130,9 +130,11 @@ class LoginModel extends CI_Model {
     }
 
     private function cekDekan($parameter = array()){
-      $this->db->select('p.id,d.id as id_dekan,d.id_fakultas as id_fakultas,p.nip,p.nama');
+      $this->db->select('p.id,d.id as id_dekan,r.id_fakultas as id_fakultas,p.nip,p.nama');
       $this->db->from($this->tablepegawai.' p');
       $this->db->join('t_dekan d','p.id = d.id_pegawai');
+      $this->db->join('t_role_dekan r','r.id_dekan = d.id');
+
       $this->db->where($parameter);
       return $this->db->get();
     }

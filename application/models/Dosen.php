@@ -69,6 +69,10 @@ class Dosen extends CI_Model {
       return $this->db->get('m_unit_kerja',$param);
     }
     public function getDekan($param = array()){
+      $this->db->select("d.*,r.id_fakultas");
+      $this->db->from("t_dekan d");
+      $this->db->join("t_role_dekan r","d.id = r.id_dekan");
+      $this->db->where($param);
       return $this->db->get('t_dekan',$param);
     }
     public function getTipe(){
