@@ -2,7 +2,7 @@
   <!-- content -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h2>Tambah Program Studi Baru</h2>
+                    <h2>Tambah Jurusan Baru</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.html">This is</a>
@@ -22,79 +22,81 @@
             <div class="wrapper wrapper-content">
             <div class="row">
               <div class="ibox-content col-lg-12">
-                <form class="form-horizontal">
+                <form id="form" class="form-horizontal">
                       <h2>Form</h2>
                       <div class="hr-line-dashed"></div>
                       <div class="form-group">
                         <label class="col-lg-2 control-label">Fakultas:</label>
-                          <div class="col-lg-6"><select type="text" class="form-control">
+                          <div class="col-lg-6"><select name="id_fakultas" type="text" class="form-control">
                             <option value="0" disabled selected>-Pilih Fakultas-</option>
-                            <option value="1">DAKWAH DAN KOMUNIKASI</option>
-                            <option value="2">EKONOMI DAN BISNIS ISLAM</option>
-                            <option value="3">PASCASARJANA</option>
-                            <option value="4">SYARIAH</option>
-                            <option value="5">TARBIYAH DAN KEGURUAN</option>
-                            <option value="6">USHULUDDIN DAN HUMANIORA</option>
+                            <?php foreach ($fakultas->result() as $row){
+                              echo "<option value='$row->id'>$row->nama</option>";
+                            }?>
                           </select></div>
                         </div>
                         <div class="form-group">
                           <label class="col-lg-2 control-label">Jenjang:</label>
-                          <div class="col-lg-6"><select type="text" class="form-control">
+                          <div class="col-lg-6"><select name="id_jenjang" type="text" class="form-control">
                             <option value="0" disabled selected>-Pilih Jenjang-</option>
-                            <option value="1">S3</option>
-                            <option value="2">S2</option>
-                            <option value="3">S1</option>
-                            <option value="4">D4</option>
-                            <option value="5">D3</option>
+                            <?php foreach ($jenjang->result() as $row){
+                              echo "<option value='$row->id'>$row->nama</option>";
+                            }?>
                           </select>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="col-lg-2 control-label">Kode Program Studi:</label>
-                          <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Kode Program Studi" required></div>
+                        <label class="col-lg-2 control-label">Kode Jurusan:</label>
+                          <div class="col-lg-6"><input name="kode" type="text" class="form-control" placeholder="Masukkan Kode Jurusan" required></div>
                         </div>
                       <div class="form-group">
                         <label class="col-lg-2 control-label">UUID SMS Feeder:</label>
-                          <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan UUID SMS Feeder" required></div>
+                          <div class="col-lg-6"><input name="uuid" type="text" class="form-control" placeholder="Masukkan UUID SMS Feeder" required></div>
                         </div>
                       <div class="form-group">
-                        <label class="col-lg-2 control-label">Nama Program Studi:</label>
-                          <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Nama Program Studi" required></div>
+                        <label class="col-lg-2 control-label">Nama Jurusan:</label>
+                          <div class="col-lg-6"><input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Jurusan" required></div>
                         </div>
                         <div class="form-group">
                           <label class="col-lg-2 control-label">Tanggal Berdiri:</label>
-                          <div class="col-lg-6"><input type="text" class="form-control" id="datepicker" placeholder="Masukkan Tanggal Berdiri Prodi" required></div>
+                          <div class="col-lg-6"><input type="text" name="tanggal_berdiri" class="form-control" id="datepicker" placeholder="Masukkan Tanggal Berdiri Jurusan" required></div>
                         </div>
                         <div class="form-group">
                           <label class="col-lg-2 control-label">Gelar Akademik:</label>
-                            <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Gelar Akademik" required></div>
+                            <div class="col-lg-6"><input type="text" name="nama_gelar" class="form-control" placeholder="Masukkan Gelar Akademik" required></div>
                           </div>
                       <div class="form-group">
                         <label class="col-lg-2 control-label">Total SKS:</label>
-                          <div class="col-lg-6"><input type="number" min="0" class="form-control" placeholder="Masukkan Jumlah SKS Lulus" required></div>
+                          <div class="col-lg-6"><input type="number" min="0" name="total_sks" class="form-control" placeholder="Masukkan Jumlah SKS Lulus" required></div>
                         </div>
                         <div class="form-group">
                           <label class="col-lg-2 control-label">Mulai Semester:</label>
                             <div class="col-lg-6">
-                              <select type="text" class="form-control">
+                              <select type="text" name="id_semester_mulai" class="form-control">
                               <option value="0" selected disabled>-Pilih Semester-</option>
-                              <option value="1">17/18(2)</option>
-                              <option value="2">17/18(1)</option>
+                              <?php foreach ($semester->result() as $row){
+                                echo "<option value='$row->id'>$row->semester</option>";
+                              }?>
                             </select>
                             <small>(1):ganjil;(2):genap</small>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Status:</label>
-                            <div class="col-lg-6"><select type="text" class="form-control">
+                            <div class="col-lg-6"><select type="text" name="id_status" class="form-control">
                               <option value="0" disabled selected>-Pilih Status-</option>
-                              <option value="1">AKTIF</option>
-                              <option value="2">ALIG BENTUK</option>
-                              <option value="3">ALIH KELOLA</option>
-                              <option value="4">MERGER</option>
-                              <option value="5">NON-AKTIF</option>
+                              <?php foreach ($status->result() as $row){
+                                echo "<option value='$row->id'>$row->nama</option>";
+                              }?>
                             </select>
                           </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-lg-2 control-label">No Telepon Jurusan:</label>
+                            <div class="col-lg-6"><input type="number" min="0" name="no_telp" class="form-control" placeholder="Masukkan Nomor Telepon Kantor Jurusan"></div>
+                          </div>
+                      <div class="form-group">
+                        <label class="col-lg-2 control-label">Email Jurusan:</label>
+                          <div class="col-lg-6"><input type="email" name="email" class="form-control" placeholder="Masukkan Email Jurusan"></div>
                         </div>
                         <style media="screen">
                         [class^='select2'] {
@@ -103,31 +105,24 @@
                         </style>
                           <div class="hr-line-dashed"></div><br >
                           <div class="form-group">
-                            <label class="col-lg-2 control-label">Nama Ketua Prodi:</label>
-                              <div class="col-lg-6"><select type="text" class="select2_demo_1 standart form-control">
-                                        <option value="1">Option 1</option>
-                                        <option value="2">Option 2</option>
-                                        <option value="3">Option 3</option>
-                                        <option value="4">Option 4</option>
-                                        <option value="5">Option 5</option>
+                            <label class="col-lg-2 control-label">Ketua Jurusan:</label>
+                              <div class="col-lg-6"><select type="text" id="kajur" name="kajur" class="select2_demo_1 standart form-control">
+
                                     </select></div>
                             </div>
                             <div class="form-group">
-                              <label class="col-lg-2 control-label">No Telepon Prodi:</label>
-                                <div class="col-lg-6"><input type="number" min="0" class="form-control" placeholder="Masukkan Nomor Telepon Kantor Prodi"></div>
+                              <label class="col-lg-2 control-label">Sekretaris :</label>
+                                <div class="col-lg-6"><select type="text" id="sekre" name="sekre" class="select2_demo_1 standart form-control">
+
+                                      </select></div>
                               </div>
+
                           <div class="form-group">
-                            <label class="col-lg-2 control-label">Email Prodi:</label>
-                              <div class="col-lg-6"><input type="email" class="form-control" placeholder="Masukkan Email Prodi"></div>
+                            <label class="col-lg-2 control-label">Operator Jurusan:</label>
+                              <div class="col-lg-6"><select type="text" name="operator" id="operator" class="select2_demo_1 standart form-control"></select></div>
                             </div>
-                          <div class="form-group">
-                            <label class="col-lg-2 control-label">Nama Operator Prodi:</label>
-                              <div class="col-lg-6"><input type="text" class="form-control" placeholder="Masukkan Nama Operator Prodi"></div>
-                            </div>
-                            <div class="form-group">
-                              <label class="col-lg-2 control-label">No HP Operator:</label>
-                                <div class="col-lg-6"><input type="number" class="form-control" placeholder="Masukkan Nomor HP Operator/Pengelola Prodi" ></div>
-                              </div>
+
+                            <!--
                             <div class="hr-line-dashed"></div><br >
                             <h4>Pemutakhiran/Peninjauan Kurikulum</h4><br>
                             <div class="form-group">
@@ -154,36 +149,37 @@
                               <option value="5">BERSAMA STAKEHOLDER</option>
                             </select>
                           </div>
-                        </div>
+                        </div> -->
+
                         <div class="hr-line-dashed"></div><br >
                         <h4>Nomor dan Tanggal S.K Izin Operasional Dikti (Terakhir)</h4><br>
                           <div class="form-group">
                             <label class="col-lg-2 control-label">No SK Dikti:</label>
-                              <div class="col-lg-6"><input type="number" class="form-control" placeholder="Masukkan Nomor SK Dikti" required></div>
+                              <div class="col-lg-6"><input type="text" class="form-control" name="no_sk_dikti" placeholder="Masukkan Nomor SK Dikti" required></div>
                             </div>
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Tanggal SK Dikti:</label>
-                              <div class="col-lg-6"><input type="text" class="form-control" id="datepicker2" placeholder="Masukkan Tanggal SK Dikti" required></div>
+                              <div class="col-lg-6"><input type="text" class="form-control" id="datepicker2" name="tanggal_sk_dikti" placeholder="Masukkan Tanggal SK Dikti" required></div>
                             </div>
                             <div class="form-group">
                               <label class="col-lg-2 control-label">Tgl Berakhir SK Dikti:</label>
-                                <div class="col-lg-6"><input type="text" class="form-control" id="datepicker3" placeholder="Masukkan Tanggal Berakhir SK Dikti" required></div>
+                                <div class="col-lg-6"><input type="text" class="form-control" id="datepicker3" name="tanggal_berakhir_sk_dikti" placeholder="Masukkan Tanggal Berakhir SK Dikti" required></div>
                               </div>
                           <div class="hr-line-dashed"></div><br >
                           <h4>Nomor dan Tanggal S.K Akreditasi BAN-PT (Terakhir, Jika ada)</h4><br>
                           <div class="form-group">
                             <label class="col-lg-2 control-label">No SK BAN:</label>
-                              <div class="col-lg-6"><input type="number" class="form-control" placeholder="Masukkan Nomor SK BAN-PT"></div>
+                              <div class="col-lg-6"><input type="text" class="form-control" name="no_sk_ban" placeholder="Masukkan Nomor SK BAN-PT"></div>
                             </div>
                           <div class="form-group">
                             <label class="col-lg-2 control-label">Tanggal SK BAN:</label>
-                              <div class="col-lg-6"><input type="text" class="form-control" id="datepicker5" placeholder="Masukkan Tanggal SK BAN-PT"></div>
+                              <div class="col-lg-6"><input type="text" class="form-control" id="datepicker5" name="tanggal_sk_ban" placeholder="Masukkan Tanggal SK BAN-PT"></div>
                             </div>
                             <div class="form-group">
                               <label class="col-lg-2 control-label">Tgl Berakhir SK BAN:</label>
-                                <div class="col-lg-6"><input type="text" class="form-control" id="datepicker6" placeholder="Masukkan Tanggal Berakhir SK BAN-PT"></div>
+                                <div class="col-lg-6"><input type="text" class="form-control" id="datepicker6" name="tanggal_berakhir_sk_ban" placeholder="Masukkan Tanggal Berakhir SK BAN-PT"></div>
                               </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                               <label class="col-lg-2 control-label">Akreditasi:</label>
                                 <div class="col-lg-6"><select type="text" class="form-control">
                                   <option value="0" selected disabled>-Pilih-</option>
@@ -193,7 +189,7 @@
                                   <option value="4">Belajar</option>
                                   <option value="5">Unggul</option>
                                 </select></div>
-                              </div>
+                              </div> -->
                 <br >
                 <center>
                   <button type="submit" class="btn btn-w-m btn-primary" name="button"><i class="fa fa-send"></i> Submit</button>
@@ -205,6 +201,86 @@
 
 <script>
     $(document).ready(function(){
-        $(".select2_demo_1").select2();
+      $('#kajur').select2({
+        placeholder: 'Pilih Kepala Jurusan',
+        allowClear:true,
+        ajax: {
+          url: '<?php echo base_url()."admin/Datajurusan/getKaprodi"?>',
+          dataType: 'json',
+          delay: 250,
+          processResults: function (data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        }
+      });
+      $('#sekre').select2({
+        placeholder: 'Pilih Sekretaris Jurusan',
+        allowClear:true,
+        ajax: {
+          url: '<?php echo base_url()."admin/Datajurusan/getKaprodi"?>',
+          dataType: 'json',
+          delay: 250,
+          processResults: function (data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        }
+      });
+
+      $('#operator').select2({
+        placeholder: 'Pilih Operator Jurusan',
+        allowClear:true,
+        ajax: {
+          url: '<?php echo base_url()."admin/Datajurusan/getOperator"?>',
+          dataType: 'json',
+          delay: 250,
+          processResults: function (data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
+        }
+      });
     });
+    function goBack() {
+    window.history.back();
+  }
+  $('#form').submit(function(){
+
+              var form = $('#form')[0]; // You need to use standart javascript object here
+              var formData = new FormData(form);
+              $.ajax({
+                url: '<?php echo base_url("admin/Datajurusan/insert");?>',
+                data: formData,
+                type: 'POST',
+                // THIS MUST BE DONE FOR FILE UPLOADING
+                contentType: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data){
+                  if (data.status=='berhasil') {
+                    swal("Berhasil!", data.message, "success");
+                  }else {
+                    swal("Gagal!", data.message, "error");
+                  }
+                  if(data.status=="berhasil"){
+                    window.location.href = "<?php echo base_url()."admin/datajurusan"?>";
+                  }
+                },
+                    error: function(jqXHR, textStatus, errorThrown)
+                    {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+                alert('gagal');
+              }
+              })
+              return false;
+          });
 </script>

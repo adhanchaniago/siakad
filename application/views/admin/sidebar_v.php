@@ -38,7 +38,7 @@
                           <a href="<?php echo base_url()."admin/datafakultas"?>">Fakultas</a>
                       </li>
                       <li <?php if(substr($page,0,3)=='213')echo "class='active'"; ?>>
-                          <a href="<?php echo base_url()."admin/dataprogramstudi"?>">Program Studi</a>
+                          <a href="<?php echo base_url()."admin/datajurusan"?>">Program Studi</a>
                       </li>
                       <li <?php if(substr($page,0,3)=='214')echo "class='active'"; ?>>
                           <a href="<?php echo base_url()."admin/datapimpinan"?>">Pimpinan</a>

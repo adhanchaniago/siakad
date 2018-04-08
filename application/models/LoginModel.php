@@ -151,7 +151,7 @@ class LoginModel extends CI_Model {
       $this->db->from($this->tablepegawai.' p');
       $this->db->join($this->tableadmin.' a','p.id = a.id_pegawai');
       $this->db->join('t_role_admin tr','a.id = tr.id_admin');
-      $parameter['tr.id_tipe'] = 1;
+      $parameter['tr.id_role'] = 1;
       $this->db->where($parameter);
       return $this->db->get();
     }

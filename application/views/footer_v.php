@@ -44,16 +44,22 @@ $("#yearpicker").datepicker( {
       minViewMode: "years"
     });
     $("#datepicker").datepicker( {
+      format: 'dd/mm/yyyy'
     });
     $("#datepicker2").datepicker( {
+      format: 'dd/mm/yyyy'
     });
     $("#datepicker3").datepicker( {
+      format: 'dd/mm/yyyy'
     });
     $("#datepicker4").datepicker( {
+      format: 'dd/mm/yyyy'
     });
     $("#datepicker5").datepicker( {
+      format: 'dd/mm/yyyy'
     });
     $("#datepicker6").datepicker( {
+      format: 'dd/mm/yyyy'
     });
 </script>
 
