@@ -20,6 +20,32 @@
             </div>
 
             <div class="wrapper wrapper-content">
+              <div class="ibox-title">
+                <div class="row">
+                  <div class="col-lg-3">
+                    <div class="form-group">
+                      <label class="control-label">Filter Fakultas:</label>
+                        <div><select type="text" class="form-control">
+                          <option value="0" selected>SEMUA</option>
+                          <option value="1" >DAKWAH DAN KOMUNIKASI</option>
+                          <option value="2">EKONOMI DAN BISNIS ISLAM</option>
+                          <option value="3">PASCASARJANA</option>
+                          <option value="4">SYARIAH</option>
+                          <option value="5">TARBIYAH DAN KEGURUAN</option>
+                          <option value="6">USHULUDDIN DAN HUMANIORA</option>
+                        </select></div>
+                      </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="control-label">Filter Program Studi:</label>
+                        <div><select type="text" class="form-control">
+                          <option value="0" selected>SEMUA</option>
+                        </select></div>
+                      </div>
+                  </div>
+                </div>
+              </div>
               <div class="ibox-content">
               <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover tabelmatkul" >

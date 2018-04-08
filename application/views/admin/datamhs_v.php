@@ -14,12 +14,69 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="title-action">
-                        <a href="" class="btn btn-primary" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Tambah Data</a>
+                      <a href="" class="btn btn-sm btn-info" data-toggle="modal" data-target="#addModal"><i class="fa fa-cloud-download"></i> Import</a>
+                      <a href="" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#addModal"><i class="fa fa-cloud-upload"></i> Export</a>
+                        <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                 </div>
             </div>
 
             <div class="wrapper wrapper-content">
+              <div class="ibox-title">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label class="control-label">Filter Prodi:</label>
+                        <div><select type="text" class="form-control">
+                          <option value="0" selected>SEMUA</option>
+                          <optgroup label="Fakultas DAKWAH DAN KOMUNIKASI">
+                            <option value="1">S1 - BIMBINGAN DAN PENYULUHAN</option>
+                            <option value="2">S1 - KOMUNIKASI DAN PENYIARAN ISLAM</option>
+                          </optgroup>
+                          <optgroup label="Fakultas EKONOMI DAN BISNIS ISLAM">
+                            <option value="">S1 - ASURANSI SYARIAH</option>
+                          </optgroup>
+                          <optgroup label="Fakultas PASCASARJANA">
+                            <option value="">S2 - AKHLAK DAN TASAWUF</option>
+                          </optgroup>
+                          <optgroup label="Fakultas SYARIAH">
+                            <option value="">S1 - HUKUM EKONOMI SYARIAH (MUAMALAH)</option>
+                          </optgroup>
+                          <optgroup label="Fakultas TARBIYAH DAN KEGURUAN">
+                            <option value="">S1 - BIMBINGAN KONSELING ISLAM</option>
+                          </optgroup>
+                          <optgroup label="Fakultas USHULUDDIN DAN HUMANIORA">
+                            <option value="">S1 - AQIDAH DAN FILSAFAT ISLAM</option>
+                          </optgroup>
+                        </select></div>
+                      </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label class="control-label">Angkatan:</label>
+                      <div>
+                        <select class="form-control" name="...">
+                          <option value="0">SEMUA</option>
+                          <option value="1">2018</option>
+                          <option value="2">2017</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label class="control-label">Gender:</label>
+                      <div>
+                        <select class="form-control" name="...">
+                          <option value="0">SEMUA</option>
+                          <option value="1">LAKI-LAKI</option>
+                          <option value="2">PEREMPUAN</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="ibox-content">
               <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover datatabelmhs" >

@@ -60,13 +60,26 @@
                           <div class="col-lg-7"><input type="number" class="form-control"></div>
                         </div>
                         <div class="form-group">
-                          <label class="col-lg-5 control-label">Tanggal Berdiri:</label>
-                            <div class="col-lg-7"><input type="text" class="form-control" required></div>
+                          <label class="col-lg-5 control-label">Tanggal Akta:</label>
+                            <div class="col-lg-7"><input type="text" class="form-control" id="datepicker" required></div>
                           </div>
+                          <div class="form-group">
+                            <label class="col-lg-5 control-label">Nomor P.N:</label>
+                              <div class="col-lg-7"><input type="number" class="form-control"></div>
+                            </div>
+                          <div class="form-group">
+                            <label class="col-lg-5 control-label">Tanggal Berdiri:</label>
+                              <div class="col-lg-7"><input type="text" class="form-control" id="datepicker3" required></div>
+                            </div>
                       </div>
                       <!-- </form> -->
                   </div>
                 </div> <br >
+                <style media="screen">
+                  textarea{
+                    resize: none;
+                  }
+                </style>
                 <div class="row">
                   <div class="col-lg-6">
                         <h2>Alamat dan Kontak</h2>
@@ -74,14 +87,14 @@
                       <!-- <form class="form-horizontal"> -->
                       <div class="form-group">
                         <label class="col-lg-5 control-label">Alamat:</label>
-                          <div class="col-lg-7"><input type="text" class="form-control"></div>
+                          <div class="col-lg-7"><textarea type="text" class="form-control"></textarea></div>
                         </div>
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label class="col-lg-5 control-label">Provinsi:</label>
                           <div class="col-lg-7"><input type="text" class="form-control"></div>
-                        </div>
+                        </div> -->
                       <div class="form-group">
-                        <label class="col-lg-5 control-label">Kota/Kab.:</label>
+                        <label class="col-lg-5 control-label">Kota:</label>
                           <div class="col-lg-7"><input type="text" class="form-control"></div>
                         </div>
                       <div class="form-group">
@@ -93,9 +106,17 @@
                             <div class="col-lg-7"><input type="number" class="form-control"></div>
                           </div>
                           <div class="form-group">
+                            <label class="col-lg-5 control-label">FAX:</label>
+                              <div class="col-lg-7"><input type="number" class="form-control"></div>
+                            </div>
+                          <div class="form-group">
                             <label class="col-lg-5 control-label">Email:</label>
                               <div class="col-lg-7"><input type="email" class="form-control"></div>
                             </div>
+                            <div class="form-group">
+                              <label class="col-lg-5 control-label">Website:</label>
+                                <div class="col-lg-7"><input type="Website" class="form-control"></div>
+                              </div>
                       <!-- </form> -->
                   </div>
                   <div class="col-lg-6">
@@ -109,7 +130,7 @@
                         </div>
                         <div class="form-group">
                           <label class="col-lg-5 control-label">Tanggal:</label>
-                            <div class="col-lg-7"><input type="text" class="form-control"></div>
+                            <div class="col-lg-7"><input type="text" id="datepicker2" class="form-control"></div>
                           </div>
                           <div class="form-group">
                             <label class="col-lg-5 control-label">Akreditasi:</label>

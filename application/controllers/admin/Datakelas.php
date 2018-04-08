@@ -7,9 +7,35 @@ class Datakelas extends CI_Controller {
 	{
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin'){
-			$array=array('page'=>10);
+			$array=array('page'=>'223');
 		$this->load->view('header_v',$array);
-		$this->load->view('admin/datakelas_v');
+		$this->load->view('admin/datakelas/datakelas_v');
+		$this->load->view('footer_v');
+		}else{
+			header("location:".base_url());
+		}
+	}
+
+	public function add()
+	{
+		$cek = $this->session->userdata('status');
+		if ($cek == 'admin'){
+			$array=array('page'=>'223');
+		$this->load->view('header_v',$array);
+		$this->load->view('admin/datakelas/tambahkelas_v');
+		$this->load->view('footer_v');
+		}else{
+			header("location:".base_url());
+		}
+	}
+
+	public function edit()
+	{
+		$cek = $this->session->userdata('status');
+		if ($cek == 'admin'){
+			$array=array('page'=>'223');
+		$this->load->view('header_v',$array);
+		$this->load->view('admin/datakelas/editkelas_v');
 		$this->load->view('footer_v');
 		}else{
 			header("location:".base_url());
