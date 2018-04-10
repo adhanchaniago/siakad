@@ -50,7 +50,7 @@ class Dosen extends CI_Model {
         return $this->db->get_where($this->tabledosen, $parameterfilter);
       }
       public function getAll($parameterfilter=array()){
-        $this->db->select('pg.id as id_pegawai, pg.nip, pg.nama, d.*,j.nama as jabatan, u.nama as unit_kerja, f.nama as fakultas');
+        $this->db->select('pg.id as id_pegawai, pg.nip, pg.nama, d.*,j.nama as jabatan, u.nama as unit_kerja, f.id as id_fakultas, f.nama as fakultas');
         $this->db->from('t_dosen d');
 
         $this->db->join('t_pegawai pg','d.id_pegawai = pg.id');

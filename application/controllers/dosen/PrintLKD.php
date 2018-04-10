@@ -233,6 +233,8 @@ $unit_kerja = $unit_kerja->row();
 				$data = $this->LKD->getBulanData($id_dosen,$kode[0],$kode[1]);
 				$b = $kode[0]-1;
 				$bln = $bulan[$b];
+				$dekan = $this->Dosen->getDekan(array('r.id_fakultas'=>$dosen->id_fakultas,'r.id_role'=>1))->row();
+				$p_dekan = $this->Dosen->getPegawai(array('id'=>$dekan->id_pegawai))->row();
 				$rektor = $this->Dosen->getRektor()->row();
 				//print_r($rektor);
 				$html = "
@@ -294,23 +296,23 @@ $unit_kerja = $unit_kerja->row();
 					<td style="width:200px">Penanggung Jawab</td>
 				</tr>
 				<tr>
-					<td>Atasan Langsung</td>
+					<td>Dekan</td>
 					<td></td>
 					<td>Rekapitulasi Kehadiran,</td>
 				</tr>
 
 				<tr>
-					<td style="height:50px"></td>
+					<td style="height:50px"><img src="././'.$p_dekan->ttd.'" style="height:70px"/></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td><u>..........................................</u></td>
+					<td><u>'.$p_dekan->nama.'</u></td>
 					<td></td>
 					<td><u>..........................................</u></td>
 				</tr>
 				<tr>
-					<td>NIP.</td>
+					<td>NIP.'.$p_dekan->nip.'</td>
 					<td></td>
 					<td>NIP.</td>
 				</tr>
