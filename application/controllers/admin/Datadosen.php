@@ -87,6 +87,8 @@ class Datadosen extends CI_Controller {
 	}
 
 	function update(){
+		$cek = $this->session->userdata('status');
+		if ($cek == 'admin'){
 		$this->load->model(array('Dosen'));
 		$id = $this->input->post('id');
 
@@ -112,21 +114,14 @@ class Datadosen extends CI_Controller {
 			$fakultas = $this->input->post('fakultas');
 
 
-			$data_pegawai = array(
-				'nama' => $this->input->post('nama'),
-				'nip' => $this->input->post('nip'),
-			);
+
 			$data_dosen = array(
 				'id_tipe' => $status,
 				'id_jabatan' => $jabatan,
 				'id_unit_kerja' => $unit_kerja,
 				'id_fakultas' => $fakultas
 			);
-		if(!is_numeric($data_pegawai['nip'])){
-			echo json_encode(array('status'=>'gagal','message'=>'NIP salah!'));
-		}
-		else{
-			$cek = $this->Dosen->updatePegawai(array('id'=>$id),$data_pegawai);
+
 			$cek = $this->Dosen->update(array('id_pegawai'=>$id),$data_dosen);
 			echo json_encode(array('status'=>'berhasil','message'=>'Update berhasil!'));
 		}

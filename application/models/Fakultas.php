@@ -38,4 +38,18 @@ class Fakultas extends CI_Model {
           $this->datatables->add_column('view', '<center><a class=\'btn btn-warning btn-xs\'  title=\'Edit Data\' href=\''.$url.'$1\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></a></center>', 'id');
           return $this->datatables->generate();
       }
+      function json_dekan($id_fakultas) {
+        //SELECT p.id, p.nip, p.nama, p.no_telp, td.nama as jabatan, f.nama from t_pegawai p join t_dekan d on p.id = d.id_pegawai
+        //JOIN t_role_dekan rd on rd.id_dekan = d.id JOIN t_tipe_dekan td on rd.id_role = td.id JOIN t_fakultas f on rd.id_fakultas = f.id
+
+          $this->datatables->select('p.id, p.nip, p.nama, p.no_telp, td.nama as jabatan, f.nama as fakultas');
+          $this->datatables->from('t_pegawai p');
+          $this->datatables->join('t_dekan d', 'p.id = d.id_pegawai');
+          $this->datatables->join('t_role_dekan rd', 'd.id = rd.id_dekan');
+          $this->datatables->join('t_tipe_dekan td', 'td.id = rd.id_role');
+          $this->datatables->join('t_fakultas f', 'f.id = rd.id_fakultas');
+          if($id_fakultas!=0)
+          $this->datatables->where('f.id',$id_fakultas);
+          return $this->datatables->generate();
+      }
 }

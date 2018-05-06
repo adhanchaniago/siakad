@@ -212,6 +212,7 @@ class Datajurusan extends CI_Controller {
 				'id_jurusan' => $id_jurusan
 			);
 			if(isset($_POST['sekre'])){
+
 				$data = array(
 					'id_kajur' => $pimpinan['sekre'],
 				);
@@ -221,7 +222,7 @@ class Datajurusan extends CI_Controller {
 					$cek = $this->Kaprodi->updateRole($sekre,$data);
 				}
 				else{
-					$kajur['id_kajur'] = $pimpinan['sekre'];
+					$sekre['id_kajur'] = $pimpinan['sekre'];
 					$this->Kaprodi->insertRole($sekre);
 				}
 			}

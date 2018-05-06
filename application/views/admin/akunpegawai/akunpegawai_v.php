@@ -25,7 +25,7 @@
             <div class="wrapper wrapper-content">
               <div class="ibox-content">
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover datatabelakun" >
+                    <table id="mytable" class="table table-striped table-bordered table-hover datatabelakun" >
                         <thead>
                         <tr>
                           <th>No</th>
@@ -34,12 +34,12 @@
                             <th>Email</th>
                             <th>Kontak</th>
                             <th>Username</th>
-                            <th>Role</th>
+                            <!-- <th>Role</th> -->
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="gradeX">
+                        <!-- <tr class="gradeX">
                             <td width="5%">1</td>
                             <td>123456789</td>
                             <td>Abdul</td>
@@ -50,11 +50,11 @@
                             <td width="10%">
                               <center>
                                 <a class='btn btn-success btn-xs' title='Edit Role' data-toggle="modal" data-target="#editModal"><span class='glyphicon glyphicon-user'></span></a>
-                                <a href="<?php echo base_url()."admin/akunpegawai/edit" ?>" class='btn btn-warning btn-xs' title='Edit Akun'><span class='glyphicon glyphicon-edit'></span></a>
+                                <a href="<?php //echo base_url()."admin/akunpegawai/edit" ?>" class='btn btn-warning btn-xs' title='Edit Akun'><span class='glyphicon glyphicon-edit'></span></a>
                                 <a class='btn btn-danger btn-xs' title='Hapus Akun'><span class='glyphicon glyphicon-remove'></span></a>
                               </center>
                             </td>
-                        </tr>
+                        </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -66,7 +66,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title">Edit Role Akun Pegawai</h4>
+                            <h4 class="modal-title" id="title">Edit Role Akun Pegawai</h4>
                         </div>
                         <form>
                         <div class="modal-body">
@@ -74,16 +74,13 @@
                               <div class="col-xs-6">
                                 <div class="form-group">
                                   <label>Kelas Prodi: <span style="color:red;">*</span></label>
-                                  <select type="text" class="form-control">
-                                    <option value="">Dekan</option>
-                                    <option value="">Admin Fakultas</option>
-                                    <option value="">Ketua Program Studi</option>
-                                    <option value="">Rektor</option>
+                                  <select id="role" class="form-control">
+
                                   </select>
                                 </div>
                               </div>
                             <div class="col-xs-1">
-                              <a class="btn btn-xs btn-success" style="margin-top:30px;">Tambahkan</a>
+                              <button type="button" onclick='tambahRole()' class="btn btn-xs btn-success" style="margin-top:30px;">Tambahkan</button>
                             </div>
                         </div>
                         <div class="row">
@@ -96,12 +93,8 @@
                                 <th>Hapus</th>
                               </tr>
                             </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>DOsen</td>
-                                <td><center> <a type="button" name="button" class="btn btn-xs btn-danger"><span class="fa fa-remove"></span></a></td>
-                              </tr>
+                            <tbody id="tbody">
+
                             </tbody>
                           </table>
                         </div>
@@ -121,8 +114,7 @@
                           </div> -->
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="button" class="btn btn-white" data-dismiss="modal">Kembali</button>
                         </div>
                       </form>
                     </div>
@@ -134,30 +126,200 @@
       </script>
 
       <script type="text/javascript">
-      $(document).ready(function(){
-            $('.datatabelakun').DataTable({
-                pageLength: 25,
-                responsive: true,
-                dom: 'lTfgitp',
-                buttons: [
-                    { extend: 'copy'},
-                    {extend: 'csv'},
-                    {extend: 'excel', title: 'ExampleFile'},
-                    {extend: 'pdf', title: 'ExampleFile'},
+      var id_pegawai;
+      function editRole(id){
+        id_pegawai = id;
+        $.ajax({
+             url : "<?php echo site_url('admin/Akunpegawai/getRole')?>",
+             type: "POST",
+             data: {"id_pegawai":id},
+             dataType: "JSON",
+             success: function(data)
+             {
+               if (data.status=='berhasil') {
+                 console.log(data);
+                 $('#editModal').modal();
+                 $('#title').html("Edit Role Akun Pegawai "+data.data.pegawai.nip);
+                 $('#role').html(data.data.not_selected);
+                  $('#tbody').html(data.data.selected);
+               }else {
+                 swal("Gagal!", data.message, "error");
+               }
+             },
+                 error: function (jqXHR, textStatus, errorThrown)
+                 {
+                   console.log(jqXHR);
+             console.log(textStatus);
+             console.log(errorThrown);
+                 }
+           });
+      }
 
-                    {extend: 'print',
-                     customize: function (win){
-                            $(win.document.body).addClass('white-bg');
-                            $(win.document.body).css('font-size', '10px');
+      function tambahRole(){
+        $.ajax({
+             url : "<?php echo site_url('admin/Akunpegawai/addRole')?>",
+             type: "POST",
+             data: {"id_pegawai":id_pegawai,"kode":$('#role').val()},
+             dataType: "JSON",
+             success: function(data)
+             {
+               console.log(data);
+               if (data.status=='berhasil') {
 
-                            $(win.document.body).find('table')
-                                    .addClass('compact')
-                                    .css('font-size', 'inherit');
-                    }
-                    }
-                ]
+                 swal("Berhasil!", data.message, "success");
+                 $.ajax({
+                      url : "<?php echo site_url('admin/Akunpegawai/getRole')?>",
+                      type: "POST",
+                      data: {"id_pegawai":id_pegawai},
+                      dataType: "JSON",
+                      success: function(data)
+                      {
+                        if (data.status=='berhasil') {
+                          console.log(data);
+                          $('#title').html("Edit Role Akun Pegawai "+data.data.pegawai.nip);
+                          $('#role').html(data.data.not_selected);
+                           $('#tbody').html(data.data.selected);
+                        }else {
+                          swal("Gagal!", data.message, "error");
+                        }
+                      },
+                          error: function (jqXHR, textStatus, errorThrown)
+                          {
+                            console.log(jqXHR);
+                      console.log(textStatus);
+                      console.log(errorThrown);
+                          }
+                    });
+               }else {
+                 swal("Gagal!", data.message, "error");
+               }
+             },
+                 error: function (jqXHR, textStatus, errorThrown)
+                 {
+                   console.log(jqXHR);
+             console.log(textStatus);
+             console.log(errorThrown);
+                 }
+           });
+           return false;
+      }
+      function hapusRole(kode){
+        swal({
+                title: "Anda yakin?",
+                text: "Role akan dihapus",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#1ab394",
+                confirmButtonText: "Ya, hapus!",
+                closeOnConfirm: false
+            }, function () {
+        $.ajax({
+             url : "<?php echo site_url('admin/Akunpegawai/deleteRole')?>",
+             type: "POST",
+             data: {"id_pegawai":id_pegawai,"kode":kode},
+             dataType: "JSON",
+             success: function(data)
+             {
+               console.log(data);
+               if (data.status=='berhasil') {
 
-            });
+                 swal("Berhasil!", data.message, "success");
+                 $.ajax({
+                      url : "<?php echo site_url('admin/Akunpegawai/getRole')?>",
+                      type: "POST",
+                      data: {"id_pegawai":id_pegawai},
+                      dataType: "JSON",
+                      success: function(data)
+                      {
+                        if (data.status=='berhasil') {
+                          console.log(data);
+                          $('#title').html("Edit Role Akun Pegawai "+data.data.pegawai.nip);
+                          $('#role').html(data.data.not_selected);
+                           $('#tbody').html(data.data.selected);
+                        }else {
+                          swal("Gagal!", data.message, "error");
+                        }
+                      },
+                          error: function (jqXHR, textStatus, errorThrown)
+                          {
+                            console.log(jqXHR);
+                      console.log(textStatus);
+                      console.log(errorThrown);
+                          }
+                    });
+               }else {
+                 swal("Gagal!", data.message, "error");
+               }
+             },
+                 error: function (jqXHR, textStatus, errorThrown)
+                 {
+                   console.log(jqXHR);
+             console.log(textStatus);
+             console.log(errorThrown);
+                 }
+           });
+         });
+           return false;
+      }
+      $(document).ready(function() {
+        $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
+                  {
+                      return {
+                          "iStart": oSettings._iDisplayStart,
+                          "iEnd": oSettings.fnDisplayEnd(),
+                          "iLength": oSettings._iDisplayLength,
+                          "iTotal": oSettings.fnRecordsTotal(),
+                          "iFilteredTotal": oSettings.fnRecordsDisplay(),
+                          "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
+                          "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
+                      };
+                  };
 
-        });
+                  t = $("#mytable").dataTable({
+                      initComplete: function() {
+                          var api = this.api();
+                          $('#mytable_filter input')
+                                  .off('.DT')
+                                  .on('keyup.DT', function(e) {
+                                      if (e.keyCode == 13) {
+                                          api.search(this.value).draw();
+                              }
+                          });
+                      },
+                      oLanguage: {
+                          sProcessing: "loading..."
+                      },
+                      processing: true,
+                      serverSide: true,
+                      ajax: {"url": "<?php echo base_url("admin/Akunpegawai/json");?>", "type": "POST"},
+                      "columnDefs": [
+          {
+              "targets": [ -1 ], //last column
+              "orderable": false, //set not orderable
+          },
+          ],
+                      columns: [
+                          {
+                              "data": "id",
+                              "orderable": false
+                          },
+                          {"data": "nip"},
+                          {"data": "nama"},
+                          {"data": "email"},
+                          {"data": "no_telp"},
+                          {"data": "username"},
+                          {"data": "view"}
+                      ],
+                      order: [[1, 'asc']],
+                      rowCallback: function(row, data, iDisplayIndex) {
+                          var info = this.fnPagingInfo();
+                          var page = info.iPage;
+                          var length = info.iLength;
+                          var index = page * length + (iDisplayIndex + 1);
+                          $('td:eq(0)', row).html(index);
+                      }
+                  });
+
+      });
+
       </script>

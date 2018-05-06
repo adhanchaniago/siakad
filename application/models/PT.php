@@ -1,11 +1,11 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Dekan extends CI_Model {
+class PT extends CI_Model {
   private $tablepegawai;
   function __construct(){
       parent::__construct();
       // $this->db1 = $this->load->database('db1', TRUE);
-      $this->tabledekan = 't_dekan';
+      $this->tabledekan = 't_config_kampus';
     }
 
 
@@ -27,7 +27,9 @@ class Dekan extends CI_Model {
           return $this->db->affected_rows();
       }
       public function get($parameterfilter=array()){
-        return $this->db->get_where($this->tabledekan, $parameterfilter);
+        if($parameterfilter!=null)
+        $this->db->where($parameterfilter);
+        return $this->db->get($this->tabledekan);
       }
       public function insertRole($arraydata = array() )
       {
@@ -60,7 +62,7 @@ class Dekan extends CI_Model {
         $this->db->select("d.id, CONCAT(p.nip,' - ',p.nama) as text");
         $this->db->from($this->tabledekan." d");
         $this->db->join('t_pegawai p','d.id_pegawai = p.id');
-        $this->db->where("(p.nip LIKE '%$like%' OR p.nama LIKE '%$like%' ) AND d.id_status=1");
+        $this->db->where("(p.nip LIKE '%$like%' OR p.nama LIKE '%$like%' )");
         //$this->db->or_like($like);
         return $this->db->get();
       }

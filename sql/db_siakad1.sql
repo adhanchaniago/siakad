@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2018 at 02:50 PM
+-- Generation Time: May 06, 2018 at 05:28 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -118,7 +118,9 @@ CREATE TABLE `t_admin` (
 
 INSERT INTO `t_admin` (`id`, `id_pegawai`) VALUES
 (1, 3),
-(2, 6);
+(4, 4),
+(2, 6),
+(3, 8);
 
 -- --------------------------------------------------------
 
@@ -191,13 +193,15 @@ CREATE TABLE `t_akun` (
 --
 
 INSERT INTO `t_akun` (`id`, `username`, `password`) VALUES
-(1, 'admin', '$2y$10$1ByKTqy1piPtfrlviA5McuYSdaoGcUqrGgMN8bbPsM1iLieFwhBlm'),
+(1, 'adminku', '$2y$10$Jz5eXfsBgPkc5jGmFW6tMuPRD3DxJXr0kMbGT1N7JBkEHjvYl4Deu'),
 (2, 'dosenku', '$2y$10$1eilaJke0OlE5aIkQSm/6.N5RcyVupAFoiDiYcL/NCjI2OKH/ErQO'),
 (3, 'mahasiswa', '$2y$10$ycjeCTs.yZrF1PaRkluvBOdjEmMikiP9u0mHdcAIeuENO3v3FkrHq'),
 (4, 'dekanku', '$2y$10$VEL1FkFbf/Mpo.suE2/r1.mM0FpM4k85jNz7RpdiPwp4k69oBlN/2'),
 (5, 'rektorku', '$2y$10$BEqDmi.nf.C/YiiTH1vbTeGGaYP.meOzSIHozoad1KKRCpT4YBtfC'),
 (6, 'agusagus', '$2y$10$HduBsU.K0M/grc10HVeXB.ONWNSD9jDDX7vf3iyXlytMBrFHPduGq'),
-(7, 'adminsmb', '$2y$10$mCjrz1r.t0T9MC2j.JxgtOXXbqrvGIV9GV15VJ39jJuhvx8daVHNi');
+(7, 'adminsmbb', '$2y$10$vu1yUPcK8RUe5s5uX6Nx8u2HW0r/QOj3vnF1RowpDFm/ztZncpCPy'),
+(9, 'ahmaadmuflih', '$2y$10$rTVFkwH0uZ4beb6Q2jDeP.bdZiu886aAbd6nbuAg64/RhEEm7mXMi'),
+(10, 'assaas', '$2y$10$hjNRi8USnU.Gf/B.wbkJ9.9NpHAkxpoJE1iE9XRobuow2J7aB8guC');
 
 -- --------------------------------------------------------
 
@@ -210,6 +214,46 @@ CREATE TABLE `t_akun_pmb` (
   `username` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_config_kampus`
+--
+
+CREATE TABLE `t_config_kampus` (
+  `id` int(11) NOT NULL,
+  `option_code` varchar(20) NOT NULL,
+  `option_type` int(11) NOT NULL,
+  `option_category` int(11) NOT NULL,
+  `option_name` varchar(50) NOT NULL,
+  `option_data` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_config_kampus`
+--
+
+INSERT INTO `t_config_kampus` (`id`, `option_code`, `option_type`, `option_category`, `option_name`, `option_data`) VALUES
+(1, 'kode_badan_hukum', 2, 1, 'Kode Badan Hukum', '0'),
+(2, 'kode_perguruan', 2, 1, 'Kode Perguruan Tinggi', '1'),
+(3, 'nama_perguruan', 2, 1, 'Nama Perguruan Tinggi', '2'),
+(4, 'singkatan', 2, 1, 'Nama Singkatan', '3'),
+(5, 'tanggal_berdiri', 2, 1, 'Tanggal Berdiri', '4'),
+(6, 'alamat', 2, 2, 'Alamat', '5'),
+(7, 'kota', 2, 2, 'Kota', '6'),
+(8, 'pos', 1, 2, 'POS', '7'),
+(9, 'no_telp', 1, 2, 'No. Telepon', '8'),
+(10, 'fax', 1, 2, 'Fax', '9'),
+(11, 'email', 3, 2, 'Email', '10'),
+(12, 'website', 2, 2, 'Website', '11'),
+(13, 'no_akta', 2, 3, 'Nomor', '1'),
+(14, 'tanggal_akta', 4, 3, 'Tanggal Akta', '2'),
+(15, 'no_pn', 2, 3, 'Nomor P.N', '3'),
+(16, 'tanggal_berdiri_akta', 4, 3, 'Tanggal Berdiri', '4'),
+(17, 'no_pengesahan', 2, 4, 'No Pengesahan', '1'),
+(18, 'tanggal_pengesahan', 2, 4, 'Tanggal Pengesahan', '2'),
+(19, 'akreditasi', 2, 4, 'Akreditasi', '3');
 
 -- --------------------------------------------------------
 
@@ -253,25 +297,47 @@ INSERT INTO `t_config_lkd` (`id`, `id_jabatan`, `id_kategori`, `jam`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `t_config_option`
+--
+
+CREATE TABLE `t_config_option` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_config_option`
+--
+
+INSERT INTO `t_config_option` (`id`, `nama`) VALUES
+(1, 'number'),
+(2, 'text'),
+(3, 'email'),
+(4, 'date');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `t_dekan`
 --
 
 CREATE TABLE `t_dekan` (
   `id` int(11) NOT NULL,
-  `id_pegawai` int(11) DEFAULT NULL
+  `id_pegawai` int(11) DEFAULT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_dekan`
 --
 
-INSERT INTO `t_dekan` (`id`, `id_pegawai`) VALUES
-(5, 1),
-(6, 2),
-(7, 3),
-(1, 4),
-(10, 5),
-(13, 6);
+INSERT INTO `t_dekan` (`id`, `id_pegawai`, `id_status`) VALUES
+(1, 4, 0),
+(5, 1, 1),
+(6, 2, 1),
+(7, 3, 1),
+(10, 5, 1),
+(13, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -332,7 +398,8 @@ INSERT INTO `t_detail_lkd` (`id`, `jam_awal`, `jam_akhir`, `id_kegiatan`, `id_lk
 (53, '14:00', '16:00', 2, 40, '2018-03-22 14:06:43', '2018-03-22 14:06:43'),
 (54, '02:00', '15:00', 2, 41, '2018-03-22 14:07:27', '2018-03-22 14:07:27'),
 (55, '08:00', '11:00', 2, 42, '2018-03-22 14:12:35', '2018-03-22 14:12:35'),
-(56, '12:00', '15:00', 2, 42, '2018-03-22 14:12:35', '2018-03-22 14:12:35');
+(56, '12:00', '15:00', 2, 42, '2018-03-22 14:12:35', '2018-03-22 14:12:35'),
+(57, '00:00', '13:00', 1, 43, '2018-05-05 13:08:17', '2018-05-05 13:08:17');
 
 -- --------------------------------------------------------
 
@@ -346,19 +413,23 @@ CREATE TABLE `t_dosen` (
   `id_fakultas` int(11) DEFAULT NULL,
   `id_tipe` int(11) DEFAULT NULL,
   `id_unit_kerja` int(11) DEFAULT NULL,
-  `id_jabatan` int(11) DEFAULT NULL
+  `id_jabatan` int(11) DEFAULT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_dosen`
 --
 
-INSERT INTO `t_dosen` (`id`, `id_pegawai`, `id_fakultas`, `id_tipe`, `id_unit_kerja`, `id_jabatan`) VALUES
-(2, 1, 2, 1, 1, 1),
-(4, NULL, NULL, 2, NULL, NULL),
-(8, NULL, NULL, 2, 2, 2),
-(9, NULL, NULL, 1, 1, 1),
-(10, 2, 2, 1, 1, 2);
+INSERT INTO `t_dosen` (`id`, `id_pegawai`, `id_fakultas`, `id_tipe`, `id_unit_kerja`, `id_jabatan`, `id_status`) VALUES
+(2, 1, 2, 1, 1, 1, 1),
+(4, NULL, NULL, 2, NULL, NULL, 1),
+(8, NULL, NULL, 2, 2, 2, 1),
+(9, NULL, NULL, 1, 1, 1, 1),
+(10, 2, 2, 1, 1, 2, 1),
+(11, 4, NULL, NULL, NULL, NULL, 1),
+(12, 6, 2, 1, 1, 1, 1),
+(13, 7, NULL, 1, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -443,7 +514,8 @@ INSERT INTO `t_jurusan` (`id`, `kode`, `uuid`, `nama`, `tanggal_berdiri`, `nama_
 (1, 'SI', '21', 'Sistem Informasi', '2018-04-10', 'D.4', 114, 'ahmadbaso97@gmail.com', '211212', '1', '0000-00-00', '0000-00-00', '', '2', '0000-00-00', '0000-00-00', '', 5, 4, 1, 1),
 (8, 'IF', '21', 'INFORMATIKA', '2018-04-10', 'D.4', 114, 'ahmadbaso97@gmail.com', '211212', '1', '1970-01-01', '1970-01-01', '', '2', '1970-01-01', '1970-01-01', '', 5, 4, 1, 1),
 (9, 'EKO', '22', 'EKONOMI', '2018-12-04', 'S. E.', 144, '121@a.com', '12', '1', '2018-12-04', '1970-01-01', '', '2', '1970-01-01', '1970-01-01', '', 1, 3, 1, 1),
-(10, 'TK', '123', 'TEKNIK KOMPUTER', '2017-07-13', 'S. Kom.', 144, 'ahmadbaso97@gmail.com', '121212', '1', '2018-06-14', '2018-07-11', '', '2', '2019-02-27', '2018-12-04', '', 5, 2, 1, 1);
+(10, 'TK', '123', 'TEKNIK KOMPUTER', '2017-07-13', 'S. Kom.', 144, 'ahmadbaso97@gmail.com', '121212', '1', '2018-06-14', '2018-07-11', '', '2', '2019-02-27', '2018-12-04', '', 5, 2, 1, 1),
+(11, '12', '1212', 'FILSAFAT', '2018-04-19', 'S. F', 144, 'ahmadbaso97@gmail.com', '1212', 'q', '2018-04-11', '2018-04-07', '', '1', '2018-04-25', '2018-04-25', '', 2, 3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -985,16 +1057,18 @@ INSERT INTO `t_kabupaten` (`id`, `id_provinsi`, `nama`) VALUES
 
 CREATE TABLE `t_kaprodi` (
   `id` int(11) NOT NULL,
-  `id_pegawai` int(11) NOT NULL
+  `id_pegawai` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_kaprodi`
 --
 
-INSERT INTO `t_kaprodi` (`id`, `id_pegawai`) VALUES
-(2, 5),
-(1, 6);
+INSERT INTO `t_kaprodi` (`id`, `id_pegawai`, `id_status`) VALUES
+(1, 6, 1),
+(2, 5, 1),
+(3, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -1119,7 +1193,8 @@ INSERT INTO `t_lkd_harian` (`id`, `tanggal`, `id_pengajuan`, `created_at`, `upda
 (39, '2018-02-07', 21, '2018-03-22 14:04:57', '2018-03-22 14:04:57'),
 (40, '2018-02-05', 21, '2018-03-22 14:06:43', '2018-03-22 14:06:43'),
 (41, '2018-02-08', 21, '2018-03-22 14:07:27', '2018-03-22 14:07:27'),
-(42, '2018-03-15', 22, '2018-03-22 14:12:35', '2018-03-22 14:12:35');
+(42, '2018-03-15', 22, '2018-03-22 14:12:35', '2018-03-22 14:12:35'),
+(43, '2018-05-03', 23, '2018-05-05 13:08:17', '2018-05-05 13:08:17');
 
 -- --------------------------------------------------------
 
@@ -1172,7 +1247,9 @@ INSERT INTO `t_pegawai` (`id`, `nip`, `nama`, `email`, `no_telp`, `ttd`, `id_aku
 (3, '4545454', 'Mas Admin', 'admin@gmail.com', '01232334', '', 1, 1),
 (4, '99943039493', 'Pak Dekan', 'pakdekan@gmail.com', '082363242545', 'assets/images/signatures/a87ff679a2f3e71d9181a67b7542122c1.png', 4, 1),
 (5, '88888888', 'Prof. Dr. Mujiburrahman, MA', 'rektor@gmail.com', '02030303', 'assets/images/signatures/e4da3b7fbbce2345d7772b0674a318d51.png', 5, 1),
-(6, '00000121', 'Pak Admin PMB', 'admin@pmb.com', '12121212', '', 7, 1);
+(6, '00000121', 'Pak Admin PMB', 'admin@pmb.com', '12121212', '', 7, 1),
+(7, '1233', 'Labaco', 'ahmadbaso97@gmail.com', '', '', 9, 1),
+(8, '12333', 'A', '', '', '', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -1235,7 +1312,8 @@ INSERT INTO `t_pengajuan_lkd` (`id`, `waktu_pengajuan`, `id_periode`, `id_dosen`
 (19, '2018-03-22 08:10:16', 9, 10, 1, 1, '2018-03-22 13:48:22', '2018-03-22 14:11:10'),
 (20, '2018-03-22 08:10:11', 1, 10, 1, 2, '2018-03-22 14:01:06', '2018-03-22 14:11:10'),
 (21, '2018-03-22 08:10:20', 8, 10, 1, 18, '2018-03-22 14:02:47', '2018-03-22 14:11:10'),
-(22, '0000-00-00 00:00:00', 4, 10, -1, 0, '2018-03-22 14:12:35', '2018-03-22 14:12:35');
+(22, '0000-00-00 00:00:00', 4, 10, -1, 0, '2018-03-22 14:12:35', '2018-03-22 14:12:35'),
+(23, '0000-00-00 00:00:00', 11, 2, -1, 0, '2018-05-05 13:08:17', '2018-05-05 13:08:17');
 
 -- --------------------------------------------------------
 
@@ -1262,7 +1340,8 @@ INSERT INTO `t_periode_lkd` (`id`, `tanggal_awal`, `tanggal_akhir`) VALUES
 (2, '2018-02-26', '2018-03-04'),
 (3, '2018-03-05', '2018-03-11'),
 (4, '2018-03-12', '2018-03-18'),
-(10, '2018-03-19', '2018-03-25');
+(10, '2018-03-19', '2018-03-25'),
+(11, '2018-04-30', '2018-05-06');
 
 -- --------------------------------------------------------
 
@@ -1357,7 +1436,7 @@ CREATE TABLE `t_riwayat_login` (
 CREATE TABLE `t_role_admin` (
   `id_admin` int(11) NOT NULL,
   `id_role` int(11) NOT NULL,
-  `id_status` int(11) NOT NULL
+  `id_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1365,9 +1444,19 @@ CREATE TABLE `t_role_admin` (
 --
 
 INSERT INTO `t_role_admin` (`id_admin`, `id_role`, `id_status`) VALUES
-(1, 1, 0),
-(2, 3, 0),
-(2, 6, 0);
+(2, 6, 0),
+(4, 1, 0),
+(4, 2, 0),
+(4, 3, 0),
+(4, 4, 0),
+(4, 5, 0),
+(4, 6, 0),
+(1, 1, 1),
+(2, 1, 1),
+(2, 2, 1),
+(2, 3, 1),
+(2, 4, 1),
+(2, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -1442,7 +1531,9 @@ CREATE TABLE `t_role_kaprodi` (
 
 INSERT INTO `t_role_kaprodi` (`id`, `id_kajur`, `id_role`, `id_jurusan`, `id_status`) VALUES
 (10, 1, 1, 9, 1),
-(11, 1, 1, 10, 1);
+(11, 1, 1, 10, 1),
+(14, 2, 1, 8, 1),
+(25, 1, 1, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -1652,6 +1743,7 @@ INSERT INTO `t_tahun` (`id`, `kode`, `tahun_awal`, `tahun_akhir`) VALUES
 
 CREATE TABLE `t_tipe_admin` (
   `id` int(11) NOT NULL,
+  `kode` varchar(10) NOT NULL,
   `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1659,13 +1751,13 @@ CREATE TABLE `t_tipe_admin` (
 -- Dumping data for table `t_tipe_admin`
 --
 
-INSERT INTO `t_tipe_admin` (`id`, `nama`) VALUES
-(1, 'Super Admin'),
-(2, 'Admin Sisfo'),
-(3, 'Admin SMB'),
-(4, 'Admin Keuangan'),
-(5, 'Admin Fakultas'),
-(6, 'Admin Prodi');
+INSERT INTO `t_tipe_admin` (`id`, `kode`, `nama`) VALUES
+(1, 'super', 'Super Admin'),
+(2, 'sisfo', 'Admin Sisfo'),
+(3, 'smb', 'Admin SMB'),
+(4, 'keuangan', 'Admin Keuangan'),
+(5, 'fakultas', 'Admin Fakultas'),
+(6, 'jurusan', 'Admin Jurusan');
 
 -- --------------------------------------------------------
 
@@ -1705,7 +1797,7 @@ CREATE TABLE `t_tipe_kaprodi` (
 
 INSERT INTO `t_tipe_kaprodi` (`id`, `nama`) VALUES
 (1, 'KETUA JURUSAN'),
-(2, 'SEKRETARIS');
+(2, 'SEKRETARIS JURUSAN');
 
 -- --------------------------------------------------------
 
@@ -1819,6 +1911,14 @@ ALTER TABLE `t_akun_pmb`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `t_config_kampus`
+--
+ALTER TABLE `t_config_kampus`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `option_type` (`option_type`),
+  ADD KEY `option_category` (`option_category`);
+
+--
 -- Indexes for table `t_config_lkd`
 --
 ALTER TABLE `t_config_lkd`
@@ -1827,11 +1927,18 @@ ALTER TABLE `t_config_lkd`
   ADD KEY `id_kategori` (`id_kategori`);
 
 --
+-- Indexes for table `t_config_option`
+--
+ALTER TABLE `t_config_option`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `t_dekan`
 --
 ALTER TABLE `t_dekan`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_pegawai` (`id_pegawai`);
+  ADD UNIQUE KEY `id_pegawai` (`id_pegawai`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Indexes for table `t_detail_lkd`
@@ -1851,7 +1958,8 @@ ALTER TABLE `t_dosen`
   ADD KEY `id_jabatan` (`id_jabatan`),
   ADD KEY `id_tipe_2` (`id_tipe`),
   ADD KEY `id_pegawai` (`id_pegawai`),
-  ADD KEY `id_fakultas` (`id_fakultas`);
+  ADD KEY `id_fakultas` (`id_fakultas`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Indexes for table `t_fakultas`
@@ -1887,7 +1995,8 @@ ALTER TABLE `t_kabupaten`
 --
 ALTER TABLE `t_kaprodi`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_pegawai` (`id_pegawai`);
+  ADD UNIQUE KEY `id_pegawai` (`id_pegawai`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Indexes for table `t_kategori_kegiatan_lkd`
@@ -2144,7 +2253,7 @@ ALTER TABLE `m_unit_kerja`
 -- AUTO_INCREMENT for table `t_admin`
 --
 ALTER TABLE `t_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `t_admin_fakultas`
@@ -2168,7 +2277,7 @@ ALTER TABLE `t_akreditasi_sekolah`
 -- AUTO_INCREMENT for table `t_akun`
 --
 ALTER TABLE `t_akun`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `t_akun_pmb`
@@ -2177,10 +2286,22 @@ ALTER TABLE `t_akun_pmb`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `t_config_kampus`
+--
+ALTER TABLE `t_config_kampus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT for table `t_config_lkd`
 --
 ALTER TABLE `t_config_lkd`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `t_config_option`
+--
+ALTER TABLE `t_config_option`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `t_dekan`
@@ -2192,13 +2313,13 @@ ALTER TABLE `t_dekan`
 -- AUTO_INCREMENT for table `t_detail_lkd`
 --
 ALTER TABLE `t_detail_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `t_dosen`
 --
 ALTER TABLE `t_dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `t_fakultas`
@@ -2216,13 +2337,13 @@ ALTER TABLE `t_jenjang_jurusan`
 -- AUTO_INCREMENT for table `t_jurusan`
 --
 ALTER TABLE `t_jurusan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `t_kaprodi`
 --
 ALTER TABLE `t_kaprodi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `t_kategori_kegiatan_lkd`
@@ -2246,7 +2367,7 @@ ALTER TABLE `t_kelas_jurusan`
 -- AUTO_INCREMENT for table `t_lkd_harian`
 --
 ALTER TABLE `t_lkd_harian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `t_mahasiswa`
@@ -2258,7 +2379,7 @@ ALTER TABLE `t_mahasiswa`
 -- AUTO_INCREMENT for table `t_pegawai`
 --
 ALTER TABLE `t_pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `t_pengajuan_bulanan_lkd`
@@ -2270,13 +2391,13 @@ ALTER TABLE `t_pengajuan_bulanan_lkd`
 -- AUTO_INCREMENT for table `t_pengajuan_lkd`
 --
 ALTER TABLE `t_pengajuan_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `t_periode_lkd`
 --
 ALTER TABLE `t_periode_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `t_rektor`
@@ -2300,7 +2421,7 @@ ALTER TABLE `t_role_jurusan`
 -- AUTO_INCREMENT for table `t_role_kaprodi`
 --
 ALTER TABLE `t_role_kaprodi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `t_sekolah`
@@ -2393,6 +2514,12 @@ ALTER TABLE `t_admin_jurusan`
   ADD CONSTRAINT `t_admin_jurusan_ibfk_2` FOREIGN KEY (`id_jurusan`) REFERENCES `t_jurusan` (`id`);
 
 --
+-- Constraints for table `t_config_kampus`
+--
+ALTER TABLE `t_config_kampus`
+  ADD CONSTRAINT `t_config_kampus_ibfk_1` FOREIGN KEY (`option_type`) REFERENCES `t_config_option` (`id`);
+
+--
 -- Constraints for table `t_config_lkd`
 --
 ALTER TABLE `t_config_lkd`
@@ -2403,7 +2530,8 @@ ALTER TABLE `t_config_lkd`
 -- Constraints for table `t_dekan`
 --
 ALTER TABLE `t_dekan`
-  ADD CONSTRAINT `t_dekan_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`);
+  ADD CONSTRAINT `t_dekan_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`),
+  ADD CONSTRAINT `t_dekan_ibfk_2` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 
 --
 -- Constraints for table `t_detail_lkd`
@@ -2420,7 +2548,8 @@ ALTER TABLE `t_dosen`
   ADD CONSTRAINT `t_dosen_ibfk_2` FOREIGN KEY (`id_jabatan`) REFERENCES `m_jabatan_dosen` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_dosen_ibfk_3` FOREIGN KEY (`id_unit_kerja`) REFERENCES `m_unit_kerja` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_dosen_ibfk_4` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_dosen_ibfk_5` FOREIGN KEY (`id_fakultas`) REFERENCES `t_fakultas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `t_dosen_ibfk_5` FOREIGN KEY (`id_fakultas`) REFERENCES `t_fakultas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_dosen_ibfk_6` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 
 --
 -- Constraints for table `t_jurusan`
@@ -2441,7 +2570,8 @@ ALTER TABLE `t_kabupaten`
 -- Constraints for table `t_kaprodi`
 --
 ALTER TABLE `t_kaprodi`
-  ADD CONSTRAINT `t_kaprodi_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`);
+  ADD CONSTRAINT `t_kaprodi_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`),
+  ADD CONSTRAINT `t_kaprodi_ibfk_2` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 
 --
 -- Constraints for table `t_kegiatan_lkd`
@@ -2502,7 +2632,8 @@ ALTER TABLE `t_riwayat_login`
 --
 ALTER TABLE `t_role_admin`
   ADD CONSTRAINT `t_role_admin_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `t_admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_role_admin_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `t_tipe_admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `t_role_admin_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `t_tipe_admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_role_admin_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 
 --
 -- Constraints for table `t_role_dekan`

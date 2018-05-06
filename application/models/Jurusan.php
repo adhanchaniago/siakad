@@ -84,4 +84,20 @@ class Jurusan extends CI_Model {
           $this->datatables->add_column('view', '<center><button class=\'btn btn-primary btn-xs\' title=\'Data Kelas\' onclick="kelas($1)"><span class=\'fa fa-list\'></span></button> <a class=\'btn btn-success btn-xs\'  title=\'Edit Data\' href=\''.$url.'$1\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></a></center>', 'id');
           return $this->datatables->generate();
       }
+
+
+      function json_kaprodi($id_fakultas) {
+        // SELECT p.id, p.nip, p.nama, p.no_telp, tk.nama as jabatan, j.nama from t_pegawai p
+        // join t_kaprodi k on p.id = k.id_pegawai JOIN t_role_kaprodi rk on rk.id_kajur = k.id JOIN t_tipe_kaprodi tk on rk.id_role = tk.id
+        // JOIN t_jurusan j on rk.id_jurusan = j.id
+          $this->datatables->select('p.id, p.nip, p.nama, p.no_telp, tr.nama as jabatan, j.nama as jurusan');
+          $this->datatables->from('t_pegawai p');
+          $this->datatables->join('t_kaprodi k', 'p.id = k.id_pegawai');
+          $this->datatables->join('t_role_kaprodi rk', 'k.id = rk.id_kajur');
+          $this->datatables->join('t_tipe_kaprodi tr', 'tr.id = rk.id_role');
+          $this->datatables->join('t_jurusan j', 'j.id = rk.id_jurusan');
+          if($id_fakultas!=0)
+          $this->datatables->where('j.id_fakultas',$id_fakultas);
+          return $this->datatables->generate();
+      }
 }

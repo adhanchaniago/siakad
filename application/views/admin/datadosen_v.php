@@ -124,11 +124,11 @@
                           <form id="formEdit" class="form-horizontal">
                           <div class="form-group">
                             <label for="nip">NIP: <span style="color:red;">*</span></label>
-                            <input type="number" min="0" name="nip" id="nip" class="form-control" placeholder="Masukkan NIP Dosen" required>
+                            <input type="number" min="0" name="nip" id="nip" class="form-control" placeholder="Masukkan NIP Dosen" disabled>
                           </div>
                           <div class="form-group">
                             <label for="nama">Nama: <span style="color:red;">*</span></label>
-                            <input type="text"  name="nama" id="nama" class="form-control" placeholder="Masukkan Nama Dosen" required>
+                            <input type="text"  name="nama" id="nama" class="form-control" placeholder="Masukkan Nama Dosen" disabled>
                           </div>
                           <div class="form-group">
                             <label for="nohp">Status:</label>
@@ -246,39 +246,8 @@
                   }
               });
   });
-  $('#form').submit(function(){
 
-            var form = $('#form')[0]; // You need to use standart javascript object here
-            var formData = new FormData(form);
-            $.ajax({
-              url: '<?php echo base_url("Admin/Datadosen/insert");?>',
-              data: formData,
-              type: 'POST',
-              // THIS MUST BE DONE FOR FILE UPLOADING
-              contentType: false,
-              processData: false,
-              dataType: "JSON",
-              success: function(data){
-                alert(data.message);
-                if(data.status=="berhasil"){
-                $('#form')[0].reset();
-                $('#myModal').modal('hide');
-                reload_table();
-                }
-              },
-                  error: function(jqXHR, textStatus, errorThrown)
-                  {
-              console.log(jqXHR);
-              console.log(textStatus);
-              console.log(errorThrown);
-              alert('gagal');
-            }
-            })
-
-            return false;
-        });
   $('#formEdit').submit(function(){
-
             var form = $('#formEdit')[0]; // You need to use standart javascript object here
             var formData = new FormData(form);
             formData.append('id',id_pegawai);
@@ -291,12 +260,15 @@
               processData: false,
               dataType: "JSON",
               success: function(data){
-                alert(data.status);
-                if(data.status=="berhasil"){
-                $('#formEdit')[0].reset();
-                $('#myModalEdit').modal('hide');
-                reload_table();
+                if (data.status=='berhasil') {
+                  $('#formEdit')[0].reset();
+                  $('#myModalEdit').modal('hide');
+                  reload_table();
+                  swal("Berhasil!", data.message, "success");
+                }else {
+                  swal("Gagal!", data.message, "error");
                 }
+
               },
             error: function(jqXHR, textStatus, errorThrown)
             {
