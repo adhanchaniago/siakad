@@ -50,7 +50,7 @@ class Dosen extends CI_Model {
         return $this->db->get_where($this->tabledosen, $parameterfilter);
       }
       public function getAll($parameterfilter=array()){
-        $this->db->select('pg.id as id_pegawai, pg.nip, pg.nama, d.*,j.nama as jabatan, u.nama as unit_kerja, f.nama as fakultas');
+        $this->db->select('pg.id as id_pegawai, pg.nip, pg.nama, d.*,j.nama as jabatan, u.nama as unit_kerja, f.id as id_fakultas, f.nama as fakultas');
         $this->db->from('t_dosen d');
 
         $this->db->join('t_pegawai pg','d.id_pegawai = pg.id');
@@ -92,8 +92,8 @@ class Dosen extends CI_Model {
         $this->datatables->from($this->tablepegawai.' p');
         $this->datatables->join($this->tabledosen.' d',' p.id = d.id_pegawai');
         $this->datatables->join('m_tipe_dosen t', 'd.id_tipe = t.id','left');
-
-        $this->datatables->add_column('view', '<center><button class=\'btn btn-primary btn-xs\' title=\'Lihat Data\'><span class=\'fa fa-eye\'></span></button> <button class=\'btn btn-success btn-xs\' onclick=\'edit($1)\' title=\'Edit Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></button> <button class=\'btn btn-danger btn-xs\' value=\'$1\' onclick=\'hapus(this.value)\' title=\'Hapus Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-remove\'></span></button></center>', 'id');
+        $this->datatables->where('d.id_status',1);
+        $this->datatables->add_column('view', '<center><button class=\'btn btn-success btn-xs\' onclick=\'edit($1)\' title=\'Edit Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></button></center>', 'id');
         return $this->datatables->generate();
     }
 }

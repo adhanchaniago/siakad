@@ -74,7 +74,6 @@
           </div>
 <script>
     $(document).ready(function(){
-      $(".wakildekan").select2();
       $('.dekan').select2({
         placeholder: 'Pilih Dekan',
         allowClear:true,

@@ -27,13 +27,29 @@ class Fakultas extends CI_Model {
           return $this->db->affected_rows();
       }
       public function get($parameterfilter=array()){
-        return $this->db->get_where($this->tablefakultas, $parameterfilter);
+        if($parameterfilter!=null)
+        $this->db->where($parameterfilter);
+        return $this->db->get($this->tablefakultas);
       }
       function json() {
           $this->datatables->select('f.id,  f.kode,f.nama, (select p.nama from t_dekan d left join t_pegawai p on d.id_pegawai = p.id join t_role_dekan r on d.id = r.id_dekan where r.id_fakultas=f.id and r.id_role=1 limit 1) as dekan,(select p.nama from t_dekan d left join t_pegawai p on d.id_pegawai = p.id join t_role_dekan r on d.id = r.id_dekan where r.id_fakultas=f.id and r.id_role=2 limit 1) as wadek1,(select p.nama from t_dekan d left join t_pegawai p on d.id_pegawai = p.id join t_role_dekan r on d.id = r.id_dekan where r.id_fakultas=f.id and r.id_role=3 limit 1) as wadek2,(select p.nama from t_dekan d left join t_pegawai p on d.id_pegawai = p.id join t_role_dekan r on d.id = r.id_dekan where r.id_fakultas=f.id and r.id_role=4 limit 1) as wadek3');
           $this->datatables->from($this->tablefakultas.' f');
           $url = base_url()."admin/datafakultas/edit?id=";
-          $this->datatables->add_column('view', '<center><a class=\'btn btn-success btn-xs\'  title=\'Edit Data\' href=\''.$url.'$1\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></a> <a class=\'btn btn-danger btn-xs\' value=\'$1\' onclick=\'hapus(this.value)\' title=\'Hapus Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-remove\'></span></a></center>', 'id');
+          $this->datatables->add_column('view', '<center><a class=\'btn btn-warning btn-xs\'  title=\'Edit Data\' href=\''.$url.'$1\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></a></center>', 'id');
+          return $this->datatables->generate();
+      }
+      function json_dekan($id_fakultas) {
+        //SELECT p.id, p.nip, p.nama, p.no_telp, td.nama as jabatan, f.nama from t_pegawai p join t_dekan d on p.id = d.id_pegawai
+        //JOIN t_role_dekan rd on rd.id_dekan = d.id JOIN t_tipe_dekan td on rd.id_role = td.id JOIN t_fakultas f on rd.id_fakultas = f.id
+
+          $this->datatables->select('p.id, p.nip, p.nama, p.no_telp, td.nama as jabatan, f.nama as fakultas');
+          $this->datatables->from('t_pegawai p');
+          $this->datatables->join('t_dekan d', 'p.id = d.id_pegawai');
+          $this->datatables->join('t_role_dekan rd', 'd.id = rd.id_dekan');
+          $this->datatables->join('t_tipe_dekan td', 'td.id = rd.id_role');
+          $this->datatables->join('t_fakultas f', 'f.id = rd.id_fakultas');
+          if($id_fakultas!=0)
+          $this->datatables->where('f.id',$id_fakultas);
           return $this->datatables->generate();
       }
 }

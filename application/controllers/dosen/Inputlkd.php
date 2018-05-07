@@ -21,7 +21,7 @@ class Inputlkd extends CI_Controller {
 		if($_POST['tanggal']!=''){
 
 			$hari_ini = date('Y-m-d');
-			$tanggal = date('Y-m-d',strtotime($_POST['tanggal']));
+			$tanggal = date('Y-m-d',strtotime(implode("-", array_reverse(explode("/", $_POST['tanggal'])))));
 
 			if($tanggal<=$hari_ini){
 				$this->load->model(array('LKD'));

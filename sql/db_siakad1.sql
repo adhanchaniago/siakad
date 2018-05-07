@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 31 Mar 2018 pada 17.29
--- Versi Server: 10.1.28-MariaDB
+-- Generation Time: May 06, 2018 at 05:28 PM
+-- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_jabatan_dosen`
+-- Table structure for table `m_jabatan_dosen`
 --
 
 CREATE TABLE `m_jabatan_dosen` (
@@ -35,7 +35,7 @@ CREATE TABLE `m_jabatan_dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_jabatan_dosen`
+-- Dumping data for table `m_jabatan_dosen`
 --
 
 INSERT INTO `m_jabatan_dosen` (`id`, `nama`, `minimal_jam`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `m_jabatan_dosen` (`id`, `nama`, `minimal_jam`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_status_kegiatan_lkd`
+-- Table structure for table `m_status_kegiatan_lkd`
 --
 
 CREATE TABLE `m_status_kegiatan_lkd` (
@@ -56,7 +56,7 @@ CREATE TABLE `m_status_kegiatan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_status_kegiatan_lkd`
+-- Dumping data for table `m_status_kegiatan_lkd`
 --
 
 INSERT INTO `m_status_kegiatan_lkd` (`id`, `nama`) VALUES
@@ -66,7 +66,7 @@ INSERT INTO `m_status_kegiatan_lkd` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_tipe_dosen`
+-- Table structure for table `m_tipe_dosen`
 --
 
 CREATE TABLE `m_tipe_dosen` (
@@ -75,7 +75,7 @@ CREATE TABLE `m_tipe_dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_tipe_dosen`
+-- Dumping data for table `m_tipe_dosen`
 --
 
 INSERT INTO `m_tipe_dosen` (`id`, `nama`) VALUES
@@ -85,7 +85,7 @@ INSERT INTO `m_tipe_dosen` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_unit_kerja`
+-- Table structure for table `m_unit_kerja`
 --
 
 CREATE TABLE `m_unit_kerja` (
@@ -94,7 +94,7 @@ CREATE TABLE `m_unit_kerja` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `m_unit_kerja`
+-- Dumping data for table `m_unit_kerja`
 --
 
 INSERT INTO `m_unit_kerja` (`id`, `nama`) VALUES
@@ -104,7 +104,7 @@ INSERT INTO `m_unit_kerja` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_admin`
+-- Table structure for table `t_admin`
 --
 
 CREATE TABLE `t_admin` (
@@ -113,20 +113,23 @@ CREATE TABLE `t_admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_admin`
+-- Dumping data for table `t_admin`
 --
 
 INSERT INTO `t_admin` (`id`, `id_pegawai`) VALUES
 (1, 3),
-(2, 6);
+(4, 4),
+(2, 6),
+(3, 8);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_admin_fakultas`
+-- Table structure for table `t_admin_fakultas`
 --
 
 CREATE TABLE `t_admin_fakultas` (
+  `id` int(11) NOT NULL,
   `id_admin` int(11) NOT NULL,
   `id_fakultas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -134,7 +137,28 @@ CREATE TABLE `t_admin_fakultas` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_akreditasi_sekolah`
+-- Table structure for table `t_admin_jurusan`
+--
+
+CREATE TABLE `t_admin_jurusan` (
+  `id` int(11) NOT NULL,
+  `id_admin` int(11) NOT NULL,
+  `id_jurusan` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_admin_jurusan`
+--
+
+INSERT INTO `t_admin_jurusan` (`id`, `id_admin`, `id_jurusan`) VALUES
+(4, 2, 1),
+(2, 2, 9),
+(3, 2, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_akreditasi_sekolah`
 --
 
 CREATE TABLE `t_akreditasi_sekolah` (
@@ -143,7 +167,7 @@ CREATE TABLE `t_akreditasi_sekolah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_akreditasi_sekolah`
+-- Dumping data for table `t_akreditasi_sekolah`
 --
 
 INSERT INTO `t_akreditasi_sekolah` (`id`, `nama`) VALUES
@@ -155,7 +179,7 @@ INSERT INTO `t_akreditasi_sekolah` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_akun`
+-- Table structure for table `t_akun`
 --
 
 CREATE TABLE `t_akun` (
@@ -165,22 +189,24 @@ CREATE TABLE `t_akun` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_akun`
+-- Dumping data for table `t_akun`
 --
 
 INSERT INTO `t_akun` (`id`, `username`, `password`) VALUES
-(1, 'admin', '$2y$10$1ByKTqy1piPtfrlviA5McuYSdaoGcUqrGgMN8bbPsM1iLieFwhBlm'),
+(1, 'adminku', '$2y$10$Jz5eXfsBgPkc5jGmFW6tMuPRD3DxJXr0kMbGT1N7JBkEHjvYl4Deu'),
 (2, 'dosenku', '$2y$10$1eilaJke0OlE5aIkQSm/6.N5RcyVupAFoiDiYcL/NCjI2OKH/ErQO'),
 (3, 'mahasiswa', '$2y$10$ycjeCTs.yZrF1PaRkluvBOdjEmMikiP9u0mHdcAIeuENO3v3FkrHq'),
 (4, 'dekanku', '$2y$10$VEL1FkFbf/Mpo.suE2/r1.mM0FpM4k85jNz7RpdiPwp4k69oBlN/2'),
 (5, 'rektorku', '$2y$10$BEqDmi.nf.C/YiiTH1vbTeGGaYP.meOzSIHozoad1KKRCpT4YBtfC'),
 (6, 'agusagus', '$2y$10$HduBsU.K0M/grc10HVeXB.ONWNSD9jDDX7vf3iyXlytMBrFHPduGq'),
-(7, 'adminsmb', '$2y$10$mCjrz1r.t0T9MC2j.JxgtOXXbqrvGIV9GV15VJ39jJuhvx8daVHNi');
+(7, 'adminsmbb', '$2y$10$vu1yUPcK8RUe5s5uX6Nx8u2HW0r/QOj3vnF1RowpDFm/ztZncpCPy'),
+(9, 'ahmaadmuflih', '$2y$10$rTVFkwH0uZ4beb6Q2jDeP.bdZiu886aAbd6nbuAg64/RhEEm7mXMi'),
+(10, 'assaas', '$2y$10$hjNRi8USnU.Gf/B.wbkJ9.9NpHAkxpoJE1iE9XRobuow2J7aB8guC');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_akun_pmb`
+-- Table structure for table `t_akun_pmb`
 --
 
 CREATE TABLE `t_akun_pmb` (
@@ -192,7 +218,47 @@ CREATE TABLE `t_akun_pmb` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_config_lkd`
+-- Table structure for table `t_config_kampus`
+--
+
+CREATE TABLE `t_config_kampus` (
+  `id` int(11) NOT NULL,
+  `option_code` varchar(20) NOT NULL,
+  `option_type` int(11) NOT NULL,
+  `option_category` int(11) NOT NULL,
+  `option_name` varchar(50) NOT NULL,
+  `option_data` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_config_kampus`
+--
+
+INSERT INTO `t_config_kampus` (`id`, `option_code`, `option_type`, `option_category`, `option_name`, `option_data`) VALUES
+(1, 'kode_badan_hukum', 2, 1, 'Kode Badan Hukum', '0'),
+(2, 'kode_perguruan', 2, 1, 'Kode Perguruan Tinggi', '1'),
+(3, 'nama_perguruan', 2, 1, 'Nama Perguruan Tinggi', '2'),
+(4, 'singkatan', 2, 1, 'Nama Singkatan', '3'),
+(5, 'tanggal_berdiri', 2, 1, 'Tanggal Berdiri', '4'),
+(6, 'alamat', 2, 2, 'Alamat', '5'),
+(7, 'kota', 2, 2, 'Kota', '6'),
+(8, 'pos', 1, 2, 'POS', '7'),
+(9, 'no_telp', 1, 2, 'No. Telepon', '8'),
+(10, 'fax', 1, 2, 'Fax', '9'),
+(11, 'email', 3, 2, 'Email', '10'),
+(12, 'website', 2, 2, 'Website', '11'),
+(13, 'no_akta', 2, 3, 'Nomor', '1'),
+(14, 'tanggal_akta', 4, 3, 'Tanggal Akta', '2'),
+(15, 'no_pn', 2, 3, 'Nomor P.N', '3'),
+(16, 'tanggal_berdiri_akta', 4, 3, 'Tanggal Berdiri', '4'),
+(17, 'no_pengesahan', 2, 4, 'No Pengesahan', '1'),
+(18, 'tanggal_pengesahan', 2, 4, 'Tanggal Pengesahan', '2'),
+(19, 'akreditasi', 2, 4, 'Akreditasi', '3');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_config_lkd`
 --
 
 CREATE TABLE `t_config_lkd` (
@@ -203,7 +269,7 @@ CREATE TABLE `t_config_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_config_lkd`
+-- Dumping data for table `t_config_lkd`
 --
 
 INSERT INTO `t_config_lkd` (`id`, `id_jabatan`, `id_kategori`, `jam`) VALUES
@@ -231,30 +297,52 @@ INSERT INTO `t_config_lkd` (`id`, `id_jabatan`, `id_kategori`, `jam`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_dekan`
+-- Table structure for table `t_config_option`
 --
 
-CREATE TABLE `t_dekan` (
+CREATE TABLE `t_config_option` (
   `id` int(11) NOT NULL,
-  `id_pegawai` int(11) DEFAULT NULL
+  `nama` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_dekan`
+-- Dumping data for table `t_config_option`
 --
 
-INSERT INTO `t_dekan` (`id`, `id_pegawai`) VALUES
-(5, 1),
-(6, 2),
-(7, 3),
-(1, 4),
-(10, 5),
-(13, 6);
+INSERT INTO `t_config_option` (`id`, `nama`) VALUES
+(1, 'number'),
+(2, 'text'),
+(3, 'email'),
+(4, 'date');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_detail_lkd`
+-- Table structure for table `t_dekan`
+--
+
+CREATE TABLE `t_dekan` (
+  `id` int(11) NOT NULL,
+  `id_pegawai` int(11) DEFAULT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_dekan`
+--
+
+INSERT INTO `t_dekan` (`id`, `id_pegawai`, `id_status`) VALUES
+(1, 4, 0),
+(5, 1, 1),
+(6, 2, 1),
+(7, 3, 1),
+(10, 5, 1),
+(13, 6, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_detail_lkd`
 --
 
 CREATE TABLE `t_detail_lkd` (
@@ -268,7 +356,7 @@ CREATE TABLE `t_detail_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_detail_lkd`
+-- Dumping data for table `t_detail_lkd`
 --
 
 INSERT INTO `t_detail_lkd` (`id`, `jam_awal`, `jam_akhir`, `id_kegiatan`, `id_lkd_harian`, `created_at`, `updated_at`) VALUES
@@ -310,12 +398,13 @@ INSERT INTO `t_detail_lkd` (`id`, `jam_awal`, `jam_akhir`, `id_kegiatan`, `id_lk
 (53, '14:00', '16:00', 2, 40, '2018-03-22 14:06:43', '2018-03-22 14:06:43'),
 (54, '02:00', '15:00', 2, 41, '2018-03-22 14:07:27', '2018-03-22 14:07:27'),
 (55, '08:00', '11:00', 2, 42, '2018-03-22 14:12:35', '2018-03-22 14:12:35'),
-(56, '12:00', '15:00', 2, 42, '2018-03-22 14:12:35', '2018-03-22 14:12:35');
+(56, '12:00', '15:00', 2, 42, '2018-03-22 14:12:35', '2018-03-22 14:12:35'),
+(57, '00:00', '13:00', 1, 43, '2018-05-05 13:08:17', '2018-05-05 13:08:17');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_dosen`
+-- Table structure for table `t_dosen`
 --
 
 CREATE TABLE `t_dosen` (
@@ -324,24 +413,28 @@ CREATE TABLE `t_dosen` (
   `id_fakultas` int(11) DEFAULT NULL,
   `id_tipe` int(11) DEFAULT NULL,
   `id_unit_kerja` int(11) DEFAULT NULL,
-  `id_jabatan` int(11) DEFAULT NULL
+  `id_jabatan` int(11) DEFAULT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_dosen`
+-- Dumping data for table `t_dosen`
 --
 
-INSERT INTO `t_dosen` (`id`, `id_pegawai`, `id_fakultas`, `id_tipe`, `id_unit_kerja`, `id_jabatan`) VALUES
-(2, 1, 2, 1, 1, 1),
-(4, NULL, NULL, 2, NULL, NULL),
-(8, NULL, NULL, 2, 2, 2),
-(9, NULL, NULL, 1, 1, 1),
-(10, 2, 2, 1, 1, 2);
+INSERT INTO `t_dosen` (`id`, `id_pegawai`, `id_fakultas`, `id_tipe`, `id_unit_kerja`, `id_jabatan`, `id_status`) VALUES
+(2, 1, 2, 1, 1, 1, 1),
+(4, NULL, NULL, 2, NULL, NULL, 1),
+(8, NULL, NULL, 2, 2, 2, 1),
+(9, NULL, NULL, 1, 1, 1, 1),
+(10, 2, 2, 1, 1, 2, 1),
+(11, 4, NULL, NULL, NULL, NULL, 1),
+(12, 6, 2, 1, 1, 1, 1),
+(13, 7, NULL, 1, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_fakultas`
+-- Table structure for table `t_fakultas`
 --
 
 CREATE TABLE `t_fakultas` (
@@ -351,7 +444,7 @@ CREATE TABLE `t_fakultas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_fakultas`
+-- Dumping data for table `t_fakultas`
 --
 
 INSERT INTO `t_fakultas` (`id`, `kode`, `nama`) VALUES
@@ -364,7 +457,70 @@ INSERT INTO `t_fakultas` (`id`, `kode`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_kabupaten`
+-- Table structure for table `t_jenjang_jurusan`
+--
+
+CREATE TABLE `t_jenjang_jurusan` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_jenjang_jurusan`
+--
+
+INSERT INTO `t_jenjang_jurusan` (`id`, `nama`) VALUES
+(1, 'S3'),
+(2, 'S2'),
+(3, 'S1'),
+(4, 'D4'),
+(5, 'D3');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_jurusan`
+--
+
+CREATE TABLE `t_jurusan` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(10) NOT NULL,
+  `uuid` varchar(10) NOT NULL,
+  `nama` varchar(80) NOT NULL,
+  `tanggal_berdiri` date NOT NULL,
+  `nama_gelar` varchar(10) NOT NULL,
+  `total_sks` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `no_telp` varchar(15) NOT NULL,
+  `no_sk_dikti` varchar(20) NOT NULL,
+  `tanggal_sk_dikti` date NOT NULL,
+  `tanggal_berakhir_sk_dikti` date NOT NULL,
+  `file_sk_dikti` varchar(200) NOT NULL,
+  `no_sk_ban` varchar(20) NOT NULL,
+  `tanggal_sk_ban` date NOT NULL,
+  `tanggal_berakhir_sk_ban` date NOT NULL,
+  `file_sk_ban` varchar(200) NOT NULL,
+  `id_fakultas` int(11) NOT NULL,
+  `id_jenjang` int(11) NOT NULL,
+  `id_semester_mulai` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_jurusan`
+--
+
+INSERT INTO `t_jurusan` (`id`, `kode`, `uuid`, `nama`, `tanggal_berdiri`, `nama_gelar`, `total_sks`, `email`, `no_telp`, `no_sk_dikti`, `tanggal_sk_dikti`, `tanggal_berakhir_sk_dikti`, `file_sk_dikti`, `no_sk_ban`, `tanggal_sk_ban`, `tanggal_berakhir_sk_ban`, `file_sk_ban`, `id_fakultas`, `id_jenjang`, `id_semester_mulai`, `id_status`) VALUES
+(1, 'SI', '21', 'Sistem Informasi', '2018-04-10', 'D.4', 114, 'ahmadbaso97@gmail.com', '211212', '1', '0000-00-00', '0000-00-00', '', '2', '0000-00-00', '0000-00-00', '', 5, 4, 1, 1),
+(8, 'IF', '21', 'INFORMATIKA', '2018-04-10', 'D.4', 114, 'ahmadbaso97@gmail.com', '211212', '1', '1970-01-01', '1970-01-01', '', '2', '1970-01-01', '1970-01-01', '', 5, 4, 1, 1),
+(9, 'EKO', '22', 'EKONOMI', '2018-12-04', 'S. E.', 144, '121@a.com', '12', '1', '2018-12-04', '1970-01-01', '', '2', '1970-01-01', '1970-01-01', '', 1, 3, 1, 1),
+(10, 'TK', '123', 'TEKNIK KOMPUTER', '2017-07-13', 'S. Kom.', 144, 'ahmadbaso97@gmail.com', '121212', '1', '2018-06-14', '2018-07-11', '', '2', '2019-02-27', '2018-12-04', '', 5, 2, 1, 1),
+(11, '12', '1212', 'FILSAFAT', '2018-04-19', 'S. F', 144, 'ahmadbaso97@gmail.com', '1212', 'q', '2018-04-11', '2018-04-07', '', '1', '2018-04-25', '2018-04-25', '', 2, 3, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_kabupaten`
 --
 
 CREATE TABLE `t_kabupaten` (
@@ -374,7 +530,7 @@ CREATE TABLE `t_kabupaten` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `t_kabupaten`
+-- Dumping data for table `t_kabupaten`
 --
 
 INSERT INTO `t_kabupaten` (`id`, `id_provinsi`, `nama`) VALUES
@@ -896,7 +1052,28 @@ INSERT INTO `t_kabupaten` (`id`, `id_provinsi`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_kategori_kegiatan_lkd`
+-- Table structure for table `t_kaprodi`
+--
+
+CREATE TABLE `t_kaprodi` (
+  `id` int(11) NOT NULL,
+  `id_pegawai` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_kaprodi`
+--
+
+INSERT INTO `t_kaprodi` (`id`, `id_pegawai`, `id_status`) VALUES
+(1, 6, 1),
+(2, 5, 1),
+(3, 4, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_kategori_kegiatan_lkd`
 --
 
 CREATE TABLE `t_kategori_kegiatan_lkd` (
@@ -906,7 +1083,7 @@ CREATE TABLE `t_kategori_kegiatan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_kategori_kegiatan_lkd`
+-- Dumping data for table `t_kategori_kegiatan_lkd`
 --
 
 INSERT INTO `t_kategori_kegiatan_lkd` (`id`, `nama`, `alias`) VALUES
@@ -919,7 +1096,7 @@ INSERT INTO `t_kategori_kegiatan_lkd` (`id`, `nama`, `alias`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_kegiatan_lkd`
+-- Table structure for table `t_kegiatan_lkd`
 --
 
 CREATE TABLE `t_kegiatan_lkd` (
@@ -930,7 +1107,7 @@ CREATE TABLE `t_kegiatan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_kegiatan_lkd`
+-- Dumping data for table `t_kegiatan_lkd`
 --
 
 INSERT INTO `t_kegiatan_lkd` (`id`, `nama`, `id_kategori`, `id_status`) VALUES
@@ -946,7 +1123,27 @@ INSERT INTO `t_kegiatan_lkd` (`id`, `nama`, `id_kategori`, `id_status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_lkd_harian`
+-- Table structure for table `t_kelas_jurusan`
+--
+
+CREATE TABLE `t_kelas_jurusan` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(5) NOT NULL,
+  `nama` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_kelas_jurusan`
+--
+
+INSERT INTO `t_kelas_jurusan` (`id`, `kode`, `nama`) VALUES
+(1, 'R', 'Reguler'),
+(2, 'Ex', 'Ekstensi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_lkd_harian`
 --
 
 CREATE TABLE `t_lkd_harian` (
@@ -958,7 +1155,7 @@ CREATE TABLE `t_lkd_harian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_lkd_harian`
+-- Dumping data for table `t_lkd_harian`
 --
 
 INSERT INTO `t_lkd_harian` (`id`, `tanggal`, `id_pengajuan`, `created_at`, `updated_at`) VALUES
@@ -996,12 +1193,13 @@ INSERT INTO `t_lkd_harian` (`id`, `tanggal`, `id_pengajuan`, `created_at`, `upda
 (39, '2018-02-07', 21, '2018-03-22 14:04:57', '2018-03-22 14:04:57'),
 (40, '2018-02-05', 21, '2018-03-22 14:06:43', '2018-03-22 14:06:43'),
 (41, '2018-02-08', 21, '2018-03-22 14:07:27', '2018-03-22 14:07:27'),
-(42, '2018-03-15', 22, '2018-03-22 14:12:35', '2018-03-22 14:12:35');
+(42, '2018-03-15', 22, '2018-03-22 14:12:35', '2018-03-22 14:12:35'),
+(43, '2018-05-03', 23, '2018-05-05 13:08:17', '2018-05-05 13:08:17');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_mahasiswa`
+-- Table structure for table `t_mahasiswa`
 --
 
 CREATE TABLE `t_mahasiswa` (
@@ -1016,7 +1214,7 @@ CREATE TABLE `t_mahasiswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_mahasiswa`
+-- Dumping data for table `t_mahasiswa`
 --
 
 INSERT INTO `t_mahasiswa` (`id`, `nim`, `nama`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `kode_pos`, `id_akun`) VALUES
@@ -1025,7 +1223,7 @@ INSERT INTO `t_mahasiswa` (`id`, `nim`, `nama`, `tempat_lahir`, `tanggal_lahir`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_pegawai`
+-- Table structure for table `t_pegawai`
 --
 
 CREATE TABLE `t_pegawai` (
@@ -1040,7 +1238,7 @@ CREATE TABLE `t_pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_pegawai`
+-- Dumping data for table `t_pegawai`
 --
 
 INSERT INTO `t_pegawai` (`id`, `nip`, `nama`, `email`, `no_telp`, `ttd`, `id_akun`, `id_status`) VALUES
@@ -1049,12 +1247,14 @@ INSERT INTO `t_pegawai` (`id`, `nip`, `nama`, `email`, `no_telp`, `ttd`, `id_aku
 (3, '4545454', 'Mas Admin', 'admin@gmail.com', '01232334', '', 1, 1),
 (4, '99943039493', 'Pak Dekan', 'pakdekan@gmail.com', '082363242545', 'assets/images/signatures/a87ff679a2f3e71d9181a67b7542122c1.png', 4, 1),
 (5, '88888888', 'Prof. Dr. Mujiburrahman, MA', 'rektor@gmail.com', '02030303', 'assets/images/signatures/e4da3b7fbbce2345d7772b0674a318d51.png', 5, 1),
-(6, '00000121', 'Pak Admin PMB', 'admin@pmb.com', '12121212', '', 7, 1);
+(6, '00000121', 'Pak Admin PMB', 'admin@pmb.com', '12121212', '', 7, 1),
+(7, '1233', 'Labaco', 'ahmadbaso97@gmail.com', '', '', 9, 1),
+(8, '12333', 'A', '', '', '', 10, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_pengajuan_bulanan_lkd`
+-- Table structure for table `t_pengajuan_bulanan_lkd`
 --
 
 CREATE TABLE `t_pengajuan_bulanan_lkd` (
@@ -1068,7 +1268,7 @@ CREATE TABLE `t_pengajuan_bulanan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_pengajuan_bulanan_lkd`
+-- Dumping data for table `t_pengajuan_bulanan_lkd`
 --
 
 INSERT INTO `t_pengajuan_bulanan_lkd` (`id`, `kode_bulan`, `id_dosen`, `status_pengajuan`, `waktu_pengajuan`, `created_at`, `updated_at`) VALUES
@@ -1078,7 +1278,7 @@ INSERT INTO `t_pengajuan_bulanan_lkd` (`id`, `kode_bulan`, `id_dosen`, `status_p
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_pengajuan_lkd`
+-- Table structure for table `t_pengajuan_lkd`
 --
 
 CREATE TABLE `t_pengajuan_lkd` (
@@ -1093,7 +1293,7 @@ CREATE TABLE `t_pengajuan_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_pengajuan_lkd`
+-- Dumping data for table `t_pengajuan_lkd`
 --
 
 INSERT INTO `t_pengajuan_lkd` (`id`, `waktu_pengajuan`, `id_periode`, `id_dosen`, `status_pengajuan`, `total`, `created_at`, `updated_at`) VALUES
@@ -1112,12 +1312,13 @@ INSERT INTO `t_pengajuan_lkd` (`id`, `waktu_pengajuan`, `id_periode`, `id_dosen`
 (19, '2018-03-22 08:10:16', 9, 10, 1, 1, '2018-03-22 13:48:22', '2018-03-22 14:11:10'),
 (20, '2018-03-22 08:10:11', 1, 10, 1, 2, '2018-03-22 14:01:06', '2018-03-22 14:11:10'),
 (21, '2018-03-22 08:10:20', 8, 10, 1, 18, '2018-03-22 14:02:47', '2018-03-22 14:11:10'),
-(22, '0000-00-00 00:00:00', 4, 10, -1, 0, '2018-03-22 14:12:35', '2018-03-22 14:12:35');
+(22, '0000-00-00 00:00:00', 4, 10, -1, 0, '2018-03-22 14:12:35', '2018-03-22 14:12:35'),
+(23, '0000-00-00 00:00:00', 11, 2, -1, 0, '2018-05-05 13:08:17', '2018-05-05 13:08:17');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_periode_lkd`
+-- Table structure for table `t_periode_lkd`
 --
 
 CREATE TABLE `t_periode_lkd` (
@@ -1127,7 +1328,7 @@ CREATE TABLE `t_periode_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_periode_lkd`
+-- Dumping data for table `t_periode_lkd`
 --
 
 INSERT INTO `t_periode_lkd` (`id`, `tanggal_awal`, `tanggal_akhir`) VALUES
@@ -1139,12 +1340,13 @@ INSERT INTO `t_periode_lkd` (`id`, `tanggal_awal`, `tanggal_akhir`) VALUES
 (2, '2018-02-26', '2018-03-04'),
 (3, '2018-03-05', '2018-03-11'),
 (4, '2018-03-12', '2018-03-18'),
-(10, '2018-03-19', '2018-03-25');
+(10, '2018-03-19', '2018-03-25'),
+(11, '2018-04-30', '2018-05-06');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_provinsi`
+-- Table structure for table `t_provinsi`
 --
 
 CREATE TABLE `t_provinsi` (
@@ -1153,7 +1355,7 @@ CREATE TABLE `t_provinsi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data untuk tabel `t_provinsi`
+-- Dumping data for table `t_provinsi`
 --
 
 INSERT INTO `t_provinsi` (`id`, `nama`) VALUES
@@ -1195,7 +1397,7 @@ INSERT INTO `t_provinsi` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_rektor`
+-- Table structure for table `t_rektor`
 --
 
 CREATE TABLE `t_rektor` (
@@ -1204,7 +1406,7 @@ CREATE TABLE `t_rektor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_rektor`
+-- Dumping data for table `t_rektor`
 --
 
 INSERT INTO `t_rektor` (`id`, `id_pegawai`) VALUES
@@ -1213,7 +1415,7 @@ INSERT INTO `t_rektor` (`id`, `id_pegawai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_riwayat_login`
+-- Table structure for table `t_riwayat_login`
 --
 
 CREATE TABLE `t_riwayat_login` (
@@ -1228,26 +1430,38 @@ CREATE TABLE `t_riwayat_login` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_role_admin`
+-- Table structure for table `t_role_admin`
 --
 
 CREATE TABLE `t_role_admin` (
   `id_admin` int(11) NOT NULL,
-  `id_tipe` int(11) NOT NULL
+  `id_role` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_role_admin`
+-- Dumping data for table `t_role_admin`
 --
 
-INSERT INTO `t_role_admin` (`id_admin`, `id_tipe`) VALUES
-(1, 1),
-(2, 3);
+INSERT INTO `t_role_admin` (`id_admin`, `id_role`, `id_status`) VALUES
+(2, 6, 0),
+(4, 1, 0),
+(4, 2, 0),
+(4, 3, 0),
+(4, 4, 0),
+(4, 5, 0),
+(4, 6, 0),
+(1, 1, 1),
+(2, 1, 1),
+(2, 2, 1),
+(2, 3, 1),
+(2, 4, 1),
+(2, 5, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_role_dekan`
+-- Table structure for table `t_role_dekan`
 --
 
 CREATE TABLE `t_role_dekan` (
@@ -1259,7 +1473,7 @@ CREATE TABLE `t_role_dekan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_role_dekan`
+-- Dumping data for table `t_role_dekan`
 --
 
 INSERT INTO `t_role_dekan` (`id`, `id_dekan`, `id_role`, `id_fakultas`, `id_status`) VALUES
@@ -1267,12 +1481,64 @@ INSERT INTO `t_role_dekan` (`id`, `id_dekan`, `id_role`, `id_fakultas`, `id_stat
 (3, 7, 1, 7, 1),
 (4, 10, 2, 7, 1),
 (11, 5, 3, 7, 1),
-(29, 13, 4, 7, 1);
+(29, 13, 4, 7, 1),
+(30, 6, 1, 5, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_sekolah`
+-- Table structure for table `t_role_jurusan`
+--
+
+CREATE TABLE `t_role_jurusan` (
+  `id` int(11) NOT NULL,
+  `id_jurusan` int(11) NOT NULL,
+  `id_kelas` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_role_jurusan`
+--
+
+INSERT INTO `t_role_jurusan` (`id`, `id_jurusan`, `id_kelas`, `id_status`) VALUES
+(1, 9, 1, 1),
+(2, 1, 2, 1),
+(3, 9, 2, 1),
+(4, 8, 1, 1),
+(5, 8, 2, 1),
+(6, 1, 1, 1),
+(7, 10, 1, 0),
+(8, 10, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_role_kaprodi`
+--
+
+CREATE TABLE `t_role_kaprodi` (
+  `id` int(11) NOT NULL,
+  `id_kajur` int(11) NOT NULL,
+  `id_role` int(11) NOT NULL,
+  `id_jurusan` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_role_kaprodi`
+--
+
+INSERT INTO `t_role_kaprodi` (`id`, `id_kajur`, `id_role`, `id_jurusan`, `id_status`) VALUES
+(10, 1, 1, 9, 1),
+(11, 1, 1, 10, 1),
+(14, 2, 1, 8, 1),
+(25, 1, 1, 11, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_sekolah`
 --
 
 CREATE TABLE `t_sekolah` (
@@ -1295,7 +1561,7 @@ CREATE TABLE `t_sekolah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_sekolah`
+-- Dumping data for table `t_sekolah`
 --
 
 INSERT INTO `t_sekolah` (`id`, `npsn`, `nama`, `alamat`, `kode_pos`, `kontak`, `email`, `file_akreditasi`, `link_perbaikan`, `id_akun`, `id_tipe`, `id_akreditasi`, `id_kabupaten`, `id_status`, `created_at`, `updated_at`) VALUES
@@ -1308,7 +1574,72 @@ INSERT INTO `t_sekolah` (`id`, `npsn`, `nama`, `alamat`, `kode_pos`, `kontak`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_status_lkd`
+-- Table structure for table `t_semester`
+--
+
+CREATE TABLE `t_semester` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_semester`
+--
+
+INSERT INTO `t_semester` (`id`, `nama`) VALUES
+(1, 'GANJIL'),
+(2, 'GENAP'),
+(3, 'PENDEK');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_semester_ajaran`
+--
+
+CREATE TABLE `t_semester_ajaran` (
+  `id` int(11) NOT NULL,
+  `id_semester` int(11) NOT NULL,
+  `id_tahun` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_semester_ajaran`
+--
+
+INSERT INTO `t_semester_ajaran` (`id`, `id_semester`, `id_tahun`, `id_status`) VALUES
+(1, 1, 1, 0),
+(2, 2, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_status_jurusan`
+--
+
+CREATE TABLE `t_status_jurusan` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(2) NOT NULL,
+  `nama` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_status_jurusan`
+--
+
+INSERT INTO `t_status_jurusan` (`id`, `kode`, `nama`) VALUES
+(-1, 'N', 'NON-AKTIF'),
+(1, 'A', 'AKTIF'),
+(2, 'B', 'ALIH BENTUK'),
+(3, 'H', 'HAPUS'),
+(4, 'K', 'ALIH KELOLA'),
+(5, 'M', 'MERGER');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_status_lkd`
 --
 
 CREATE TABLE `t_status_lkd` (
@@ -1317,7 +1648,7 @@ CREATE TABLE `t_status_lkd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_status_lkd`
+-- Dumping data for table `t_status_lkd`
 --
 
 INSERT INTO `t_status_lkd` (`id`, `nama`) VALUES
@@ -1328,7 +1659,7 @@ INSERT INTO `t_status_lkd` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_status_login`
+-- Table structure for table `t_status_login`
 --
 
 CREATE TABLE `t_status_login` (
@@ -1337,7 +1668,7 @@ CREATE TABLE `t_status_login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_status_login`
+-- Dumping data for table `t_status_login`
 --
 
 INSERT INTO `t_status_login` (`id`, `nama`) VALUES
@@ -1347,7 +1678,7 @@ INSERT INTO `t_status_login` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_status_pengajuan_sekolah`
+-- Table structure for table `t_status_pengajuan_sekolah`
 --
 
 CREATE TABLE `t_status_pengajuan_sekolah` (
@@ -1356,7 +1687,7 @@ CREATE TABLE `t_status_pengajuan_sekolah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_status_pengajuan_sekolah`
+-- Dumping data for table `t_status_pengajuan_sekolah`
 --
 
 INSERT INTO `t_status_pengajuan_sekolah` (`id`, `nama`) VALUES
@@ -1367,7 +1698,7 @@ INSERT INTO `t_status_pengajuan_sekolah` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_status_user`
+-- Table structure for table `t_status_user`
 --
 
 CREATE TABLE `t_status_user` (
@@ -1376,40 +1707,62 @@ CREATE TABLE `t_status_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_status_user`
+-- Dumping data for table `t_status_user`
 --
 
 INSERT INTO `t_status_user` (`id`, `nama`) VALUES
-(1, 'Aktif'),
-(2, 'Non Aktif');
+(0, 'Non Aktif'),
+(1, 'Aktif');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_tipe_admin`
+-- Table structure for table `t_tahun`
+--
+
+CREATE TABLE `t_tahun` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(10) NOT NULL,
+  `tahun_awal` varchar(10) NOT NULL,
+  `tahun_akhir` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_tahun`
+--
+
+INSERT INTO `t_tahun` (`id`, `kode`, `tahun_awal`, `tahun_akhir`) VALUES
+(1, '1718', '2017', '2018'),
+(2, '1617', '2016', '2017');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_tipe_admin`
 --
 
 CREATE TABLE `t_tipe_admin` (
   `id` int(11) NOT NULL,
+  `kode` varchar(10) NOT NULL,
   `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_tipe_admin`
+-- Dumping data for table `t_tipe_admin`
 --
 
-INSERT INTO `t_tipe_admin` (`id`, `nama`) VALUES
-(1, 'Super Admin'),
-(2, 'Admin Sisfo'),
-(3, 'Admin SMB'),
-(4, 'Admin Keuangan'),
-(5, 'Admin Fakultas'),
-(6, 'Admin Prodi');
+INSERT INTO `t_tipe_admin` (`id`, `kode`, `nama`) VALUES
+(1, 'super', 'Super Admin'),
+(2, 'sisfo', 'Admin Sisfo'),
+(3, 'smb', 'Admin SMB'),
+(4, 'keuangan', 'Admin Keuangan'),
+(5, 'fakultas', 'Admin Fakultas'),
+(6, 'jurusan', 'Admin Jurusan');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_tipe_dekan`
+-- Table structure for table `t_tipe_dekan`
 --
 
 CREATE TABLE `t_tipe_dekan` (
@@ -1418,7 +1771,7 @@ CREATE TABLE `t_tipe_dekan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_tipe_dekan`
+-- Dumping data for table `t_tipe_dekan`
 --
 
 INSERT INTO `t_tipe_dekan` (`id`, `nama`) VALUES
@@ -1430,7 +1783,26 @@ INSERT INTO `t_tipe_dekan` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `t_tipe_sekolah`
+-- Table structure for table `t_tipe_kaprodi`
+--
+
+CREATE TABLE `t_tipe_kaprodi` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_tipe_kaprodi`
+--
+
+INSERT INTO `t_tipe_kaprodi` (`id`, `nama`) VALUES
+(1, 'KETUA JURUSAN'),
+(2, 'SEKRETARIS JURUSAN');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_tipe_sekolah`
 --
 
 CREATE TABLE `t_tipe_sekolah` (
@@ -1439,7 +1811,7 @@ CREATE TABLE `t_tipe_sekolah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `t_tipe_sekolah`
+-- Dumping data for table `t_tipe_sekolah`
 --
 
 INSERT INTO `t_tipe_sekolah` (`id`, `nama`) VALUES
@@ -1451,7 +1823,7 @@ INSERT INTO `t_tipe_sekolah` (`id`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -1461,7 +1833,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`username`, `password`, `status`) VALUES
@@ -1508,7 +1880,17 @@ ALTER TABLE `t_admin`
 -- Indexes for table `t_admin_fakultas`
 --
 ALTER TABLE `t_admin_fakultas`
-  ADD PRIMARY KEY (`id_admin`,`id_fakultas`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_admin` (`id_admin`,`id_fakultas`),
+  ADD KEY `id_fakultas` (`id_fakultas`);
+
+--
+-- Indexes for table `t_admin_jurusan`
+--
+ALTER TABLE `t_admin_jurusan`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_admin` (`id_admin`,`id_jurusan`),
+  ADD KEY `id_jurusan` (`id_jurusan`);
 
 --
 -- Indexes for table `t_akreditasi_sekolah`
@@ -1529,6 +1911,14 @@ ALTER TABLE `t_akun_pmb`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `t_config_kampus`
+--
+ALTER TABLE `t_config_kampus`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `option_type` (`option_type`),
+  ADD KEY `option_category` (`option_category`);
+
+--
 -- Indexes for table `t_config_lkd`
 --
 ALTER TABLE `t_config_lkd`
@@ -1537,11 +1927,18 @@ ALTER TABLE `t_config_lkd`
   ADD KEY `id_kategori` (`id_kategori`);
 
 --
+-- Indexes for table `t_config_option`
+--
+ALTER TABLE `t_config_option`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `t_dekan`
 --
 ALTER TABLE `t_dekan`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_pegawai` (`id_pegawai`);
+  ADD UNIQUE KEY `id_pegawai` (`id_pegawai`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Indexes for table `t_detail_lkd`
@@ -1561,7 +1958,8 @@ ALTER TABLE `t_dosen`
   ADD KEY `id_jabatan` (`id_jabatan`),
   ADD KEY `id_tipe_2` (`id_tipe`),
   ADD KEY `id_pegawai` (`id_pegawai`),
-  ADD KEY `id_fakultas` (`id_fakultas`);
+  ADD KEY `id_fakultas` (`id_fakultas`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Indexes for table `t_fakultas`
@@ -1570,11 +1968,35 @@ ALTER TABLE `t_fakultas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `t_jenjang_jurusan`
+--
+ALTER TABLE `t_jenjang_jurusan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `t_jurusan`
+--
+ALTER TABLE `t_jurusan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_fakultas` (`id_fakultas`),
+  ADD KEY `id_jenjang` (`id_jenjang`),
+  ADD KEY `id_status` (`id_status`),
+  ADD KEY `id_semester_mulai` (`id_semester_mulai`);
+
+--
 -- Indexes for table `t_kabupaten`
 --
 ALTER TABLE `t_kabupaten`
   ADD PRIMARY KEY (`id`),
   ADD KEY `regencies_province_id_index` (`id_provinsi`);
+
+--
+-- Indexes for table `t_kaprodi`
+--
+ALTER TABLE `t_kaprodi`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_pegawai` (`id_pegawai`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Indexes for table `t_kategori_kegiatan_lkd`
@@ -1589,6 +2011,12 @@ ALTER TABLE `t_kegiatan_lkd`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_kategori` (`id_kategori`),
   ADD KEY `id_status` (`id_status`);
+
+--
+-- Indexes for table `t_kelas_jurusan`
+--
+ALTER TABLE `t_kelas_jurusan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `t_lkd_harian`
@@ -1665,8 +2093,9 @@ ALTER TABLE `t_riwayat_login`
 -- Indexes for table `t_role_admin`
 --
 ALTER TABLE `t_role_admin`
-  ADD PRIMARY KEY (`id_admin`,`id_tipe`),
-  ADD KEY `id_tipe` (`id_tipe`);
+  ADD PRIMARY KEY (`id_admin`,`id_role`),
+  ADD KEY `id_tipe` (`id_role`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Indexes for table `t_role_dekan`
@@ -1676,6 +2105,25 @@ ALTER TABLE `t_role_dekan`
   ADD KEY `id_dekan` (`id_dekan`),
   ADD KEY `id_role` (`id_role`),
   ADD KEY `id_fakultas` (`id_fakultas`),
+  ADD KEY `id_status` (`id_status`);
+
+--
+-- Indexes for table `t_role_jurusan`
+--
+ALTER TABLE `t_role_jurusan`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_jurusan` (`id_jurusan`,`id_kelas`),
+  ADD KEY `id_kelas` (`id_kelas`),
+  ADD KEY `id_status` (`id_status`);
+
+--
+-- Indexes for table `t_role_kaprodi`
+--
+ALTER TABLE `t_role_kaprodi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_kaprodi` (`id_kajur`),
+  ADD KEY `id_role` (`id_role`),
+  ADD KEY `id_prodi` (`id_jurusan`),
   ADD KEY `id_status` (`id_status`);
 
 --
@@ -1690,6 +2138,27 @@ ALTER TABLE `t_sekolah`
   ADD KEY `id_akun_2` (`id_akun`),
   ADD KEY `id_kabupaten` (`id_kabupaten`),
   ADD KEY `id_status` (`id_status`);
+
+--
+-- Indexes for table `t_semester`
+--
+ALTER TABLE `t_semester`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `t_semester_ajaran`
+--
+ALTER TABLE `t_semester_ajaran`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_semester` (`id_semester`),
+  ADD KEY `id_tahun` (`id_tahun`),
+  ADD KEY `id_status` (`id_status`);
+
+--
+-- Indexes for table `t_status_jurusan`
+--
+ALTER TABLE `t_status_jurusan`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `t_status_lkd`
@@ -1716,6 +2185,13 @@ ALTER TABLE `t_status_user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `t_tahun`
+--
+ALTER TABLE `t_tahun`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `kode` (`kode`);
+
+--
 -- Indexes for table `t_tipe_admin`
 --
 ALTER TABLE `t_tipe_admin`
@@ -1725,6 +2201,12 @@ ALTER TABLE `t_tipe_admin`
 -- Indexes for table `t_tipe_dekan`
 --
 ALTER TABLE `t_tipe_dekan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `t_tipe_kaprodi`
+--
+ALTER TABLE `t_tipe_kaprodi`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1771,7 +2253,19 @@ ALTER TABLE `m_unit_kerja`
 -- AUTO_INCREMENT for table `t_admin`
 --
 ALTER TABLE `t_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `t_admin_fakultas`
+--
+ALTER TABLE `t_admin_fakultas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `t_admin_jurusan`
+--
+ALTER TABLE `t_admin_jurusan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `t_akreditasi_sekolah`
@@ -1783,7 +2277,7 @@ ALTER TABLE `t_akreditasi_sekolah`
 -- AUTO_INCREMENT for table `t_akun`
 --
 ALTER TABLE `t_akun`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `t_akun_pmb`
@@ -1792,10 +2286,22 @@ ALTER TABLE `t_akun_pmb`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `t_config_kampus`
+--
+ALTER TABLE `t_config_kampus`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT for table `t_config_lkd`
 --
 ALTER TABLE `t_config_lkd`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `t_config_option`
+--
+ALTER TABLE `t_config_option`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `t_dekan`
@@ -1807,19 +2313,37 @@ ALTER TABLE `t_dekan`
 -- AUTO_INCREMENT for table `t_detail_lkd`
 --
 ALTER TABLE `t_detail_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `t_dosen`
 --
 ALTER TABLE `t_dosen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `t_fakultas`
 --
 ALTER TABLE `t_fakultas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `t_jenjang_jurusan`
+--
+ALTER TABLE `t_jenjang_jurusan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `t_jurusan`
+--
+ALTER TABLE `t_jurusan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `t_kaprodi`
+--
+ALTER TABLE `t_kaprodi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `t_kategori_kegiatan_lkd`
@@ -1834,10 +2358,16 @@ ALTER TABLE `t_kegiatan_lkd`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `t_kelas_jurusan`
+--
+ALTER TABLE `t_kelas_jurusan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `t_lkd_harian`
 --
 ALTER TABLE `t_lkd_harian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `t_mahasiswa`
@@ -1849,7 +2379,7 @@ ALTER TABLE `t_mahasiswa`
 -- AUTO_INCREMENT for table `t_pegawai`
 --
 ALTER TABLE `t_pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `t_pengajuan_bulanan_lkd`
@@ -1861,13 +2391,13 @@ ALTER TABLE `t_pengajuan_bulanan_lkd`
 -- AUTO_INCREMENT for table `t_pengajuan_lkd`
 --
 ALTER TABLE `t_pengajuan_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `t_periode_lkd`
 --
 ALTER TABLE `t_periode_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `t_rektor`
@@ -1879,13 +2409,43 @@ ALTER TABLE `t_rektor`
 -- AUTO_INCREMENT for table `t_role_dekan`
 --
 ALTER TABLE `t_role_dekan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `t_role_jurusan`
+--
+ALTER TABLE `t_role_jurusan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `t_role_kaprodi`
+--
+ALTER TABLE `t_role_kaprodi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `t_sekolah`
 --
 ALTER TABLE `t_sekolah`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `t_semester`
+--
+ALTER TABLE `t_semester`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `t_semester_ajaran`
+--
+ALTER TABLE `t_semester_ajaran`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `t_status_jurusan`
+--
+ALTER TABLE `t_status_jurusan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `t_status_login`
@@ -1897,6 +2457,12 @@ ALTER TABLE `t_status_login`
 -- AUTO_INCREMENT for table `t_status_user`
 --
 ALTER TABLE `t_status_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `t_tahun`
+--
+ALTER TABLE `t_tahun`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -1912,92 +2478,136 @@ ALTER TABLE `t_tipe_dekan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `t_tipe_kaprodi`
+--
+ALTER TABLE `t_tipe_kaprodi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `t_tipe_sekolah`
 --
 ALTER TABLE `t_tipe_sekolah`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `t_admin`
+-- Constraints for table `t_admin`
 --
 ALTER TABLE `t_admin`
   ADD CONSTRAINT `t_admin_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_config_lkd`
+-- Constraints for table `t_admin_fakultas`
+--
+ALTER TABLE `t_admin_fakultas`
+  ADD CONSTRAINT `t_admin_fakultas_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `t_admin` (`id`),
+  ADD CONSTRAINT `t_admin_fakultas_ibfk_2` FOREIGN KEY (`id_fakultas`) REFERENCES `t_fakultas` (`id`);
+
+--
+-- Constraints for table `t_admin_jurusan`
+--
+ALTER TABLE `t_admin_jurusan`
+  ADD CONSTRAINT `t_admin_jurusan_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `t_admin` (`id`),
+  ADD CONSTRAINT `t_admin_jurusan_ibfk_2` FOREIGN KEY (`id_jurusan`) REFERENCES `t_jurusan` (`id`);
+
+--
+-- Constraints for table `t_config_kampus`
+--
+ALTER TABLE `t_config_kampus`
+  ADD CONSTRAINT `t_config_kampus_ibfk_1` FOREIGN KEY (`option_type`) REFERENCES `t_config_option` (`id`);
+
+--
+-- Constraints for table `t_config_lkd`
 --
 ALTER TABLE `t_config_lkd`
   ADD CONSTRAINT `t_config_lkd_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `m_jabatan_dosen` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `t_config_lkd_ibfk_2` FOREIGN KEY (`id_kategori`) REFERENCES `t_kategori_kegiatan_lkd` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_dekan`
+-- Constraints for table `t_dekan`
 --
 ALTER TABLE `t_dekan`
-  ADD CONSTRAINT `t_dekan_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`);
+  ADD CONSTRAINT `t_dekan_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`),
+  ADD CONSTRAINT `t_dekan_ibfk_2` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `t_detail_lkd`
+-- Constraints for table `t_detail_lkd`
 --
 ALTER TABLE `t_detail_lkd`
   ADD CONSTRAINT `t_detail_lkd_ibfk_1` FOREIGN KEY (`id_kegiatan`) REFERENCES `t_kegiatan_lkd` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `t_detail_lkd_ibfk_2` FOREIGN KEY (`id_lkd_harian`) REFERENCES `t_lkd_harian` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_dosen`
+-- Constraints for table `t_dosen`
 --
 ALTER TABLE `t_dosen`
   ADD CONSTRAINT `t_dosen_ibfk_1` FOREIGN KEY (`id_tipe`) REFERENCES `m_tipe_dosen` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_dosen_ibfk_2` FOREIGN KEY (`id_jabatan`) REFERENCES `m_jabatan_dosen` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_dosen_ibfk_3` FOREIGN KEY (`id_unit_kerja`) REFERENCES `m_unit_kerja` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_dosen_ibfk_4` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_dosen_ibfk_5` FOREIGN KEY (`id_fakultas`) REFERENCES `t_fakultas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `t_dosen_ibfk_5` FOREIGN KEY (`id_fakultas`) REFERENCES `t_fakultas` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_dosen_ibfk_6` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `t_kabupaten`
+-- Constraints for table `t_jurusan`
+--
+ALTER TABLE `t_jurusan`
+  ADD CONSTRAINT `t_jurusan_ibfk_1` FOREIGN KEY (`id_fakultas`) REFERENCES `t_fakultas` (`id`),
+  ADD CONSTRAINT `t_jurusan_ibfk_2` FOREIGN KEY (`id_jenjang`) REFERENCES `t_jenjang_jurusan` (`id`),
+  ADD CONSTRAINT `t_jurusan_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `t_status_jurusan` (`id`),
+  ADD CONSTRAINT `t_jurusan_ibfk_4` FOREIGN KEY (`id_semester_mulai`) REFERENCES `t_semester_ajaran` (`id`);
+
+--
+-- Constraints for table `t_kabupaten`
 --
 ALTER TABLE `t_kabupaten`
   ADD CONSTRAINT `regencies_province_id_foreign` FOREIGN KEY (`id_provinsi`) REFERENCES `t_provinsi` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `t_kegiatan_lkd`
+-- Constraints for table `t_kaprodi`
+--
+ALTER TABLE `t_kaprodi`
+  ADD CONSTRAINT `t_kaprodi_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`),
+  ADD CONSTRAINT `t_kaprodi_ibfk_2` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
+
+--
+-- Constraints for table `t_kegiatan_lkd`
 --
 ALTER TABLE `t_kegiatan_lkd`
   ADD CONSTRAINT `t_kegiatan_lkd_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `t_kategori_kegiatan_lkd` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `t_kegiatan_lkd_ibfk_2` FOREIGN KEY (`id_status`) REFERENCES `m_status_kegiatan_lkd` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_lkd_harian`
+-- Constraints for table `t_lkd_harian`
 --
 ALTER TABLE `t_lkd_harian`
   ADD CONSTRAINT `t_lkd_harian_ibfk_1` FOREIGN KEY (`id_pengajuan`) REFERENCES `t_pengajuan_lkd` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_mahasiswa`
+-- Constraints for table `t_mahasiswa`
 --
 ALTER TABLE `t_mahasiswa`
   ADD CONSTRAINT `t_mahasiswa_ibfk_1` FOREIGN KEY (`id_akun`) REFERENCES `t_akun` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_pegawai`
+-- Constraints for table `t_pegawai`
 --
 ALTER TABLE `t_pegawai`
   ADD CONSTRAINT `t_pegawai_ibfk_1` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_pegawai_ibfk_2` FOREIGN KEY (`id_akun`) REFERENCES `t_akun` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_pengajuan_bulanan_lkd`
+-- Constraints for table `t_pengajuan_bulanan_lkd`
 --
 ALTER TABLE `t_pengajuan_bulanan_lkd`
   ADD CONSTRAINT `t_pengajuan_bulanan_lkd_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `t_dosen` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_pengajuan_bulanan_lkd_ibfk_2` FOREIGN KEY (`status_pengajuan`) REFERENCES `t_status_lkd` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_pengajuan_lkd`
+-- Constraints for table `t_pengajuan_lkd`
 --
 ALTER TABLE `t_pengajuan_lkd`
   ADD CONSTRAINT `t_pengajuan_lkd_ibfk_1` FOREIGN KEY (`id_dosen`) REFERENCES `t_dosen` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
@@ -2005,33 +2615,59 @@ ALTER TABLE `t_pengajuan_lkd`
   ADD CONSTRAINT `t_pengajuan_lkd_ibfk_3` FOREIGN KEY (`id_periode`) REFERENCES `t_periode_lkd` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_rektor`
+-- Constraints for table `t_rektor`
 --
 ALTER TABLE `t_rektor`
   ADD CONSTRAINT `t_rektor_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_riwayat_login`
+-- Constraints for table `t_riwayat_login`
 --
 ALTER TABLE `t_riwayat_login`
   ADD CONSTRAINT `t_riwayat_login_ibfk_1` FOREIGN KEY (`id_status`) REFERENCES `t_status_login` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `t_riwayat_login_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `t_akun` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `t_role_admin`
+-- Constraints for table `t_role_admin`
 --
 ALTER TABLE `t_role_admin`
   ADD CONSTRAINT `t_role_admin_ibfk_1` FOREIGN KEY (`id_admin`) REFERENCES `t_admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_role_admin_ibfk_2` FOREIGN KEY (`id_tipe`) REFERENCES `t_tipe_admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `t_role_admin_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `t_tipe_admin` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_role_admin_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `t_role_dekan`
+-- Constraints for table `t_role_dekan`
 --
 ALTER TABLE `t_role_dekan`
   ADD CONSTRAINT `t_role_dekan_ibfk_1` FOREIGN KEY (`id_dekan`) REFERENCES `t_dekan` (`id`),
   ADD CONSTRAINT `t_role_dekan_ibfk_2` FOREIGN KEY (`id_fakultas`) REFERENCES `t_fakultas` (`id`),
   ADD CONSTRAINT `t_role_dekan_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `t_tipe_dekan` (`id`),
   ADD CONSTRAINT `t_role_dekan_ibfk_4` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
+
+--
+-- Constraints for table `t_role_jurusan`
+--
+ALTER TABLE `t_role_jurusan`
+  ADD CONSTRAINT `t_role_jurusan_ibfk_1` FOREIGN KEY (`id_jurusan`) REFERENCES `t_jurusan` (`id`),
+  ADD CONSTRAINT `t_role_jurusan_ibfk_2` FOREIGN KEY (`id_kelas`) REFERENCES `t_kelas_jurusan` (`id`),
+  ADD CONSTRAINT `t_role_jurusan_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
+
+--
+-- Constraints for table `t_role_kaprodi`
+--
+ALTER TABLE `t_role_kaprodi`
+  ADD CONSTRAINT `t_role_kaprodi_ibfk_1` FOREIGN KEY (`id_kajur`) REFERENCES `t_kaprodi` (`id`),
+  ADD CONSTRAINT `t_role_kaprodi_ibfk_2` FOREIGN KEY (`id_jurusan`) REFERENCES `t_jurusan` (`id`),
+  ADD CONSTRAINT `t_role_kaprodi_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `t_tipe_kaprodi` (`id`),
+  ADD CONSTRAINT `t_role_kaprodi_ibfk_4` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
+
+--
+-- Constraints for table `t_semester_ajaran`
+--
+ALTER TABLE `t_semester_ajaran`
+  ADD CONSTRAINT `t_semester_ajaran_ibfk_1` FOREIGN KEY (`id_semester`) REFERENCES `t_semester` (`id`),
+  ADD CONSTRAINT `t_semester_ajaran_ibfk_2` FOREIGN KEY (`id_tahun`) REFERENCES `t_tahun` (`id`),
+  ADD CONSTRAINT `t_semester_ajaran_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -20,9 +20,24 @@
             </div>
 
             <div class="wrapper wrapper-content">
+              <div class="ibox-title">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="control-label">Filter Fakultas:</label>
+                        <div><select id="fakultas" class="form-control">
+                          <option value="0" selected>SEMUA</option>
+                          <?php foreach ($fakultas->result() as $row){
+                            echo "<option value='$row->id'>$row->nama</option>";
+                          }?>
+                        </select></div>
+                      </div>
+                  </div>
+                </div>
+              </div>
               <div class="ibox-content">
               <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover datatabelpimpinan" >
+                <table id ="mytable" class="table table-striped table-bordered table-hover datatabelpimpinan" >
                 <thead>
                 <tr>
                     <th>No</th>
@@ -34,29 +49,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="gradeX">
-                    <td>1</td>
-                    <td>12398</td>
-                    <td>Sintia Wati</td>
-                    <td>0851908198</td>
-                    <td>Dekan</td>
-                    <td>Informatika</td>
-                </tr>
-                <tr class="gradeX">
-                    <td>2</td>
-                    <td>12398</td>
-                    <td>Budi A</td>
-                    <td>0871828112</td>
-                    <td>Wakil Dekan I</td>
-                    <td>Informatika</td>
-                    <td>
-                      <center>
-                        <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
-                        <a class='btn btn-warning btn-xs' title='Edit Data' data-toggle="modal" data-target="#editModal"><span class='glyphicon glyphicon-edit'></span></a>
-                        <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
-                      </center>
-                    </td>
-                </tr>
+
                 </tbody>
                 </table>
                     </div>
@@ -93,31 +86,72 @@
                 </div>
             </div> -->
 
-  <script type="text/javascript">
-  $(document).ready(function(){
-        $('.datatabelpimpinan').DataTable({
-            pageLength: 25,
-            responsive: true,
-            dom: 'lTfgitp',
-            buttons: [
-                { extend: 'copy'},
-                {extend: 'csv'},
-                {extend: 'excel', title: 'ExampleFile'},
-                {extend: 'pdf', title: 'ExampleFile'},
+            <script type="text/javascript">
+            var id_fakultas = 0;
+            $('#fakultas').change(function(){
+              id_fakultas = $(this).val();
+              loadData();
+            });
+            loadData();
+            function loadData(){
+              $('#mytable').DataTable().destroy();
+              $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
+                        {
+                            return {
+                                "iStart": oSettings._iDisplayStart,
+                                "iEnd": oSettings.fnDisplayEnd(),
+                                "iLength": oSettings._iDisplayLength,
+                                "iTotal": oSettings.fnRecordsTotal(),
+                                "iFilteredTotal": oSettings.fnRecordsDisplay(),
+                                "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
+                                "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
+                            };
+                        };
 
-                {extend: 'print',
-                 customize: function (win){
-                        $(win.document.body).addClass('white-bg');
-                        $(win.document.body).css('font-size', '10px');
-
-                        $(win.document.body).find('table')
-                                .addClass('compact')
-                                .css('font-size', 'inherit');
-                }
-                }
-            ]
-
-        });
-
-    });
-  </script>
+                        t = $("#mytable").dataTable({
+                            initComplete: function() {
+                                var api = this.api();
+                                $('#mytable_filter input')
+                                        .off('.DT')
+                                        .on('keyup.DT', function(e) {
+                                            if (e.keyCode == 13) {
+                                                api.search(this.value).draw();
+                                    }
+                                });
+                            },
+                            oLanguage: {
+                                sProcessing: "loading..."
+                            },
+                            processing: true,
+                            serverSide: true,
+                            ajax: {"url": "<?php echo base_url("admin/Datadekan/json");?>", "type": "POST","data":{
+                            "id_fakultas":id_fakultas,
+                          }},
+                            "columnDefs": [
+                {
+                    "targets": [ -1 ], //last column
+                    "orderable": false, //set not orderable
+                },
+                ],
+                            columns: [
+                                {
+                                    "data": "id",
+                                    "orderable": false
+                                },
+                                {"data": "nip"},
+                                {"data": "nama"},
+                                {"data": "no_telp"},
+                                {"data": "jabatan"},
+                                {"data": "fakultas"}
+                            ],
+                            order: [[1, 'asc']],
+                            rowCallback: function(row, data, iDisplayIndex) {
+                                var info = this.fnPagingInfo();
+                                var page = info.iPage;
+                                var length = info.iLength;
+                                var index = page * length + (iDisplayIndex + 1);
+                                $('td:eq(0)', row).html(index);
+                            }
+                        });
+            };
+            </script>

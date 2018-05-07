@@ -65,69 +65,72 @@ class Datafakultas extends CI_Controller {
 		echo json_encode($dekan->result());
 	}
 	public function insert(){
-		if(isset($_POST['dekan']))
-			$pimpinan['dekan'] = $_POST['dekan'];
-		if(isset($_POST['wadek_akademik']))
-			$pimpinan['wadek_akademik'] = $_POST['wadek_akademik'];
-		if(isset($_POST['wadek_keuangan']))
-			$pimpinan['wadek_keuangan'] = $_POST['wadek_keuangan'];
-		if(isset($_POST['wadek_kemahasiswaan']))
-			$pimpinan['wadek_kemahasiswaan'] = $_POST['wadek_kemahasiswaan'];
+		$cek = $this->session->userdata('status');
+		if ($cek == 'admin'){
+			if(isset($_POST['dekan']))
+				$pimpinan['dekan'] = $_POST['dekan'];
+			if(isset($_POST['wadek_akademik']))
+				$pimpinan['wadek_akademik'] = $_POST['wadek_akademik'];
+			if(isset($_POST['wadek_keuangan']))
+				$pimpinan['wadek_keuangan'] = $_POST['wadek_keuangan'];
+			if(isset($_POST['wadek_kemahasiswaan']))
+				$pimpinan['wadek_kemahasiswaan'] = $_POST['wadek_kemahasiswaan'];
 
-		if(isset($pimpinan)){
-			$count = array_count_values($pimpinan);
-			foreach ($count as $row => $value) {
-				if($value>1){
-					echo json_encode(array('status'=>'gagal','message'=>'Pimpinan tidak boleh rangkap jabatan!'));
-					return;
+			if(isset($pimpinan)){
+				$count = array_count_values($pimpinan);
+				foreach ($count as $row => $value) {
+					if($value>1){
+						echo json_encode(array('status'=>'gagal','message'=>'Pimpinan tidak boleh rangkap jabatan!'));
+						return;
+					}
 				}
 			}
-		}
 
-		$fakultas = array(
-			'kode' => $_POST['kode'],
-			'nama' => strtoupper($_POST['nama'])
-		);
-		$this->load->model(array('Fakultas','Dekan'));
-		$id_fakultas = $this->Fakultas->insert($fakultas);
-
-		if(isset($_POST['dekan'])){
-
-			$dekan = array(
-				'id_dekan' => $pimpinan['dekan'],
-				'id_role' => 1,
-				'id_fakultas' => $id_fakultas
+			$fakultas = array(
+				'kode' => $_POST['kode'],
+				'nama' => strtoupper($_POST['nama'])
 			);
-			$this->Dekan->insertRole($dekan);
-		}
-		if(isset($_POST['wadek_akademik'])){
+			$this->load->model(array('Fakultas','Dekan'));
+			$id_fakultas = $this->Fakultas->insert($fakultas);
 
-			$wadek1 = array(
-				'id_dekan' => $pimpinan['wadek_akademik'],
-				'id_role' => 2,
-				'id_fakultas' => $id_fakultas
-			);
-			$this->Dekan->insertRole($wadek1);
-		}
-		if(isset($_POST['wadek_keuangan'])){
+			if(isset($_POST['dekan'])){
 
-			$wadek2 = array(
-				'id_dekan' => $pimpinan['wadek_keuangan'],
-				'id_role' => 3,
-				'id_fakultas' => $id_fakultas
-			);
-			$this->Dekan->insertRole($wadek2);
-		}
-		if(isset($_POST['wadek_kemahasiswaan'])){
+				$dekan = array(
+					'id_dekan' => $pimpinan['dekan'],
+					'id_role' => 1,
+					'id_fakultas' => $id_fakultas
+				);
+				$this->Dekan->insertRole($dekan);
+			}
+			if(isset($_POST['wadek_akademik'])){
 
-			$wadek3 = array(
-				'id_dekan' => $pimpinan['wadek_kemahasiswaan'],
-				'id_role' => 4,
-				'id_fakultas' => $id_fakultas
-			);
-			$this->Dekan->insertRole($wadek3);
+				$wadek1 = array(
+					'id_dekan' => $pimpinan['wadek_akademik'],
+					'id_role' => 2,
+					'id_fakultas' => $id_fakultas
+				);
+				$this->Dekan->insertRole($wadek1);
+			}
+			if(isset($_POST['wadek_keuangan'])){
+
+				$wadek2 = array(
+					'id_dekan' => $pimpinan['wadek_keuangan'],
+					'id_role' => 3,
+					'id_fakultas' => $id_fakultas
+				);
+				$this->Dekan->insertRole($wadek2);
+			}
+			if(isset($_POST['wadek_kemahasiswaan'])){
+
+				$wadek3 = array(
+					'id_dekan' => $pimpinan['wadek_kemahasiswaan'],
+					'id_role' => 4,
+					'id_fakultas' => $id_fakultas
+				);
+				$this->Dekan->insertRole($wadek3);
+			}
+			echo json_encode(array('status'=>'berhasil','message'=>'Fakultas berhasil dibuat!'));
 		}
-		echo json_encode(array('status'=>'berhasil','message'=>'Fakultas berhasil dibuat!'));
 	}
 	public function editFakultas(){
 		if(isset($_POST['dekan']))
