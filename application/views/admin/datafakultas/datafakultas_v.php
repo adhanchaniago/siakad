@@ -32,7 +32,7 @@
                     <th>Wadek Akademik</th>
                     <th>Wadek Keuangan</th>
                     <th>Wadek Kemahasiswaan</th>
-                    <th>Action</th>
+                    <th width="10%">Action</th>
                 </tr>
                 </thead>
                 <tbody>
