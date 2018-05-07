@@ -2,7 +2,7 @@
   <!-- content -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
-                    <h2>Data Gedung dan Ruangan</h2>
+                    <h2>Data Gedung</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="index.html">This is</a>
@@ -26,10 +26,9 @@
                 <thead>
                 <tr>
                     <th>No</th>
-                    <th>Gedung</th>
-                    <th>Kode Ruangan</th>
-                    <th>Nama Ruangan</th>
-                    <th>Daya Tampung</th>
+                    <th>Kode Gedung</th>
+                    <th>Nama Gedung</th>
+                    <th>Jumlah Ruangan</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -37,9 +36,8 @@
                 <tr class="gradeX">
                     <td>1</td>
                     <td>A</td>
-                    <td>101</td>
-                    <td>A101</td>
-                    <td>50</td>
+                    <td>Gedung A</td>
+                    <td>10</td>
                     <td>
                       <center>
                         <!-- <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a> -->
@@ -58,26 +56,18 @@
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeInDown">
                         <div class="modal-header">
-                            <h4 class="modal-title">Tambah Data Ruangan Baru</h4>
+                            <h4 class="modal-title">Tambah Data Gedung Baru</h4>
                             <small>Pastikan data yang diisi telah sesuai</small>
                         </div>
                         <div class="modal-body">
                           <form class="form-horizontal">
                           <div class="form-group">
+                            <label>Kode Gedung: <span style="color:red;">*</span></label>
+                            <input type="text" class="form-control" placeholder="Masukkan Kode Gedung" required>
+                          </div>
+                          <div class="form-group">
                             <label>Nama Gedung: <span style="color:red;">*</span></label>
                             <input type="text" class="form-control" placeholder="Masukkan Nama Gedung" required>
-                          </div>
-                          <div class="form-group">
-                            <label>Kode Ruangan: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Kode Ruangan" required>
-                          </div>
-                          <div class="form-group">
-                            <label>Nama Ruangan: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Ruangan" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="nohp">Daya Tampung:</label>
-                            <input type="number" min="0" class="form-control" placeholder="Masukkan Daya Tampung Ruangan">
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -93,26 +83,18 @@
                 <div class="modal-dialog">
                     <div class="modal-content animated fadeInDown">
                         <div class="modal-header">
-                            <h4 class="modal-title">Edit Data Ruangan</h4>
+                            <h4 class="modal-title">Tambah Data Gedung Baru</h4>
                             <small>Pastikan data yang diisi telah sesuai</small>
                         </div>
                         <div class="modal-body">
                           <form class="form-horizontal">
                           <div class="form-group">
+                            <label>Kode Gedung: <span style="color:red;">*</span></label>
+                            <input type="text" class="form-control" value="A" required>
+                          </div>
+                          <div class="form-group">
                             <label>Nama Gedung: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Gedung" required>
-                          </div>
-                          <div class="form-group">
-                            <label>Kode Ruangan: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Kode Ruangan" required>
-                          </div>
-                          <div class="form-group">
-                            <label>Nama Ruangan: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Ruangan" required>
-                          </div>
-                          <div class="form-group">
-                            <label for="nohp">Daya Tampung:</label>
-                            <input type="number" min="0" class="form-control" placeholder="Masukkan Daya Tampung Ruangan">
+                            <input type="text" class="form-control" value="Gedung A" required>
                           </div>
                         </div>
                         <div class="modal-footer">

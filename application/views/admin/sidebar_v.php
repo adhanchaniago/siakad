@@ -58,8 +58,16 @@
                         <a href="<?php echo base_url()."admin/datakelas"?>">Kelas</a>
                       </li>
                       <li <?php if(substr($page,0,3)=='224')echo "class='active'"; ?>>
-                        <a href="<?php echo base_url()."admin/dataruangan"?>">Gedung & Ruangan</a>
-                      </li>
+                        <a href="#">Gedung & Ruangan <span class="fa arrow"></span></a>
+                      <ul class="nav nav-fourth-level">
+                        <li <?php if(substr($page,0,4)=='2241')echo "class='active'"; ?>>
+                          <a href="<?php echo base_url()."admin/datagedung"?>">&nbsp;&nbsp; Data Gedung</a>
+                        </li>
+                        <li <?php if(substr($page,0,4)=='2242')echo "class='active'"; ?>>
+                          <a href="<?php echo base_url()."admin/dataruangan"?>">&nbsp;&nbsp; Data Ruangan</a>
+                        </li>
+                      </ul>
+                    </li>
                     </ul>
                   </li>
                   <li <?php if(substr($page,0,2)=='23')echo "class='active'"; ?>>

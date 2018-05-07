@@ -15,8 +15,8 @@
                 <div class="col-sm-8">
                     <div class="title-action">
                       <a href="" class="btn btn-sm btn-info" data-toggle="modal" data-target="#addModal"><i class="fa fa-cloud-download"></i> Import</a>
-                      <a href="" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#addModal"><i class="fa fa-cloud-upload"></i> Export</a>
-                        <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addModal"><i class="fa fa-plus"></i> Tambah Data</a>
+                      <a href="" class="btn btn-sm btn-warning"><i class="fa fa-cloud-upload"></i> Export</a>
+                        <a href="" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                 </div>
             </div>
