@@ -207,6 +207,15 @@
                                               </div>
                                             </div>
                                         <div class="form-group">
+                                          <label class="col-lg-2 control-label">Unit Kerja :</label>
+                                            <div class="col-lg-6"><select class="form-control" required>
+                                              <option value="0" selected disabled>-Pilih-</option>
+                                              <option value="1">BAGIAN AKADEMIK</option>
+                                              <option value="2">SISTEM INFORMASI</option>
+                                            </select>
+                                            </div>
+                                          </div>
+                                        <div class="form-group">
                                           <label class="col-lg-2 control-label">Ikatan Kerja :</label>
                                             <div class="col-lg-6"><select class="form-control" required>
                                               <option value="0" selected disabled>-Pilih-</option>
@@ -379,7 +388,7 @@
                                          </div>
                                         <div id="inputpns" class="hidden">
                                            <div class="form-group">
-                                             <label class="col-lg-2 control-label">NIP PNS:</label>
+                                             <label class="col-lg-2 control-label">NIP:</label>
                                                <div class="col-lg-6"><input value='0' type="number" min="0" name="pns" class="form-control" required></div>
                                            </div>
                                            <div class="form-group">
