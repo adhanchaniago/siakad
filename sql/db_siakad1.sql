@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2018 at 05:28 PM
+-- Generation Time: May 08, 2018 at 09:00 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -453,6 +453,29 @@ INSERT INTO `t_fakultas` (`id`, `kode`, `nama`) VALUES
 (5, '33', 'USLUHUDDIN DAN HUMANIORA'),
 (6, '55', 'EKONOMI DAN BISNIS ISLAM'),
 (7, '444', 'FAKULTAS DAKWAH DAN ILMU KOMUNIKASII');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_gedung`
+--
+
+CREATE TABLE `t_gedung` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(10) NOT NULL,
+  `nama` varchar(30) NOT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_gedung`
+--
+
+INSERT INTO `t_gedung` (`id`, `kode`, `nama`, `id_status`) VALUES
+(1, 'KU3', 'Gedung tokong nanas', 1),
+(2, 'KU2', 'AA', 1),
+(3, 'KU1', 'za', 1),
+(4, 'KU4', 'ASSA', 1);
 
 -- --------------------------------------------------------
 
@@ -1538,6 +1561,32 @@ INSERT INTO `t_role_kaprodi` (`id`, `id_kajur`, `id_role`, `id_jurusan`, `id_sta
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `t_ruangan`
+--
+
+CREATE TABLE `t_ruangan` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(10) NOT NULL,
+  `nama` varchar(30) NOT NULL,
+  `kapasitas` int(11) NOT NULL,
+  `id_gedung` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_ruangan`
+--
+
+INSERT INTO `t_ruangan` (`id`, `kode`, `nama`, `kapasitas`, `id_gedung`, `id_status`) VALUES
+(1, 'assa', 'asdasd', 49, 1, 0),
+(2, '11.KU2', 'ABCD', 40, 2, 0),
+(3, 'KU1.11.11', 'a', 11, 3, 1),
+(4, 'KU2.11.11', '1', 12, 2, 1),
+(5, 'KU3.12.22', '1', 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `t_sekolah`
 --
 
@@ -1968,6 +2017,13 @@ ALTER TABLE `t_fakultas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `t_gedung`
+--
+ALTER TABLE `t_gedung`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_status` (`id_status`);
+
+--
 -- Indexes for table `t_jenjang_jurusan`
 --
 ALTER TABLE `t_jenjang_jurusan`
@@ -2124,6 +2180,14 @@ ALTER TABLE `t_role_kaprodi`
   ADD KEY `id_kaprodi` (`id_kajur`),
   ADD KEY `id_role` (`id_role`),
   ADD KEY `id_prodi` (`id_jurusan`),
+  ADD KEY `id_status` (`id_status`);
+
+--
+-- Indexes for table `t_ruangan`
+--
+ALTER TABLE `t_ruangan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_gedung` (`id_gedung`),
   ADD KEY `id_status` (`id_status`);
 
 --
@@ -2328,6 +2392,12 @@ ALTER TABLE `t_fakultas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `t_gedung`
+--
+ALTER TABLE `t_gedung`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `t_jenjang_jurusan`
 --
 ALTER TABLE `t_jenjang_jurusan`
@@ -2422,6 +2492,12 @@ ALTER TABLE `t_role_jurusan`
 --
 ALTER TABLE `t_role_kaprodi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `t_ruangan`
+--
+ALTER TABLE `t_ruangan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `t_sekolah`
@@ -2552,6 +2628,12 @@ ALTER TABLE `t_dosen`
   ADD CONSTRAINT `t_dosen_ibfk_6` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 
 --
+-- Constraints for table `t_gedung`
+--
+ALTER TABLE `t_gedung`
+  ADD CONSTRAINT `t_gedung_ibfk_1` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
+
+--
 -- Constraints for table `t_jurusan`
 --
 ALTER TABLE `t_jurusan`
@@ -2660,6 +2742,13 @@ ALTER TABLE `t_role_kaprodi`
   ADD CONSTRAINT `t_role_kaprodi_ibfk_2` FOREIGN KEY (`id_jurusan`) REFERENCES `t_jurusan` (`id`),
   ADD CONSTRAINT `t_role_kaprodi_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `t_tipe_kaprodi` (`id`),
   ADD CONSTRAINT `t_role_kaprodi_ibfk_4` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
+
+--
+-- Constraints for table `t_ruangan`
+--
+ALTER TABLE `t_ruangan`
+  ADD CONSTRAINT `t_ruangan_ibfk_1` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`),
+  ADD CONSTRAINT `t_ruangan_ibfk_2` FOREIGN KEY (`id_gedung`) REFERENCES `t_gedung` (`id`);
 
 --
 -- Constraints for table `t_semester_ajaran`
