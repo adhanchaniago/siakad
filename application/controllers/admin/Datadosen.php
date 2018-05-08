@@ -14,13 +14,27 @@ class Datadosen extends CI_Controller {
 			$data['jabatan'] = $this->Dosen->getJabatan();
 			$data['fakultas'] = $this->Dosen->getFakultas();
 		$this->load->view('header_v',$array);
-		$this->load->view('admin/datadosen_v',$data);
+		$this->load->view('admin/datadosen/datadosen_v',$data);
 		$this->load->view('footer_v');
 		}else{
 			header("location:".base_url());
 		}
 
 	}
+
+	public function detail()
+	{
+		$cek = $this->session->userdata('status');
+		if ($cek == 'admin'){
+			$array=array('page'=>'233');
+		$this->load->view('header_v',$array);
+		$this->load->view('admin/datadosen/detaildosen_v');
+		$this->load->view('footer_v');
+		}else{
+			header("location:".base_url());
+		}
+	}
+
 	function json() {
 			$this->load->library('datatables');
 			$this->load->model(array('Dosen'));

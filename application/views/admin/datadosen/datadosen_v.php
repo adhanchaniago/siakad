@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="title-action">
-                        <!-- <a href="" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Tambah Data</a> -->
+                        <a href="<?php echo base_url()."admin/datadosen/detail" ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Detail Test</a>
                     </div>
                 </div>
             </div>
