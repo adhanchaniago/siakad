@@ -513,7 +513,6 @@ function set(tipe){
            $('#acc').html('<i class="fa fa-check-circle"></i> ACC Kegiatan');
            $('#reset').attr("disabled",true);
          }
-
          else{
              $('#reset').attr("disabled",false);
              $('#acc').removeClass('btn-success');

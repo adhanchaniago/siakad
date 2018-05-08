@@ -26,7 +26,7 @@
                 <thead>
                 <tr>
                     <th>No</th>
-                    <th>NIP</th>
+                    <th>NIDN</th>
                     <th>Nama Lengkap</th>
                     <th>Kontak</th>
                     <th>Jabatan</th>
@@ -45,7 +45,7 @@
                     <td>12398</td>
                     <td>Budi A</td>
                     <td>0871828112</td>
-                    <td>Wakil Rektor I</td>
+                    <td>Pembantu Rektor I</td>
                 </tr>
                 </tbody>
                 </table>
