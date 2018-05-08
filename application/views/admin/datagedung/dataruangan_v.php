@@ -20,9 +20,24 @@
             </div>
 
             <div class="wrapper wrapper-content">
+              <div class="ibox-title">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="control-label">Filter Gedung:</label>
+                        <div><select id="id_gedung" class="form-control">
+                          <option value="0" selected>SEMUA</option>
+                          <?php foreach ($gedung->result() as $row){
+                            echo "<option value='$row->id'>$row->kode - $row->nama</option>";
+                          }?>
+                        </select></div>
+                      </div>
+                  </div>
+                </div>
+              </div>
               <div class="ibox-content">
               <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover datatabelruangan" >
+                <table id="mytable" class="table table-striped table-bordered table-hover datatabelruangan" >
                 <thead>
                 <tr>
                     <th>No</th>
@@ -34,20 +49,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="gradeX">
-                    <td>1</td>
-                    <td>101</td>
-                    <td>A101</td>
-                    <td>50</td>
-                    <td>A</td>
-                    <td>
-                      <center>
-                        <!-- <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a> -->
-                        <a class='btn btn-warning btn-xs' title='Edit Data' data-toggle="modal" data-target="#editModal"><span class='glyphicon glyphicon-edit'></span></a>
-                        <a class='btn btn-danger btn-xs' title='Hapus Data' href='#'><span class='glyphicon glyphicon-trash'></span></a>
-                      </center>
-                    </td>
-                </tr>
+
                 </tbody>
                 </table>
                     </div>
@@ -62,27 +64,27 @@
                             <small>Pastikan data yang diisi telah sesuai</small>
                         </div>
                         <div class="modal-body">
-                          <form class="form-horizontal">
+                          <form id="form" class="form-horizontal">
                           <div class="form-group">
                             <label>Pilih Gedung: <span style="color:red;">*</span></label>
-                            <select class="form-control" required>
-                              <option value="0" selected disabled>-Pilih Gedung-</option>
-                              <option value="1">Gedung A</option>
-                              <option value="2">Gedung B</option>
-                              <option value="3">Gedung C</option>
+                            <select name="gedung" class="form-control" required>
+                              <option selected disabled>-Pilih Gedung-</option>
+                              <?php foreach ($gedung->result() as $row){
+                                echo "<option value='$row->id'>$row->kode - $row->nama</option>";
+                              }?>
                             </select>
                           </div>
                           <div class="form-group">
-                            <label>Kode Ruangan: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Kode Ruangan" required>
+                            <label>Kode Ruangan: <span style="color:red;">*</span></label><small> Kode ruangan otomatis mengikuti kode gedung</small>
+                            <input type="text" name="kode" class="form-control" placeholder="Masukkan Kode Ruangan" required>
                           </div>
                           <div class="form-group">
                             <label>Nama Ruangan: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Ruangan" required>
+                            <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama Ruangan" required>
                           </div>
                           <div class="form-group">
                             <label for="nohp">Daya Tampung:</label>
-                            <input type="number" min="0" class="form-control" placeholder="Masukkan Daya Tampung Ruangan">
+                            <input type="number" min="0" name="kapasitas" class="form-control" placeholder="Masukkan Daya Tampung Ruangan" required>
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -102,22 +104,27 @@
                             <small>Pastikan data yang diisi telah sesuai</small>
                         </div>
                         <div class="modal-body">
-                          <form class="form-horizontal">
+                          <form id="formEdit" class="form-horizontal">
                           <div class="form-group">
-                            <label>Nama Gedung: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Gedung" required>
+                            <label>Pilih Gedung: <span style="color:red;">*</span></label>
+                            <select name="gedung" id="gedung" class="form-control" required>
+                              <option selected disabled>-Pilih Gedung-</option>
+                              <?php foreach ($gedung->result() as $row){
+                                echo "<option value='$row->id'>$row->kode - $row->nama</option>";
+                              }?>
+                            </select>
                           </div>
                           <div class="form-group">
-                            <label>Kode Ruangan: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Kode Ruangan" required>
+                            <label>Kode Ruangan: <span style="color:red;">*</span></label><small> Kode ruangan otomatis mengikuti kode gedung</small>
+                            <input type="text" name="kode" id="kode" class="form-control" placeholder="Masukkan Kode Ruangan" required>
                           </div>
                           <div class="form-group">
                             <label>Nama Ruangan: <span style="color:red;">*</span></label>
-                            <input type="text" class="form-control" placeholder="Masukkan Nama Ruangan" required>
+                            <input type="text" name="nama" id="nama" class="form-control" placeholder="Masukkan Nama Ruangan" required>
                           </div>
                           <div class="form-group">
                             <label for="nohp">Daya Tampung:</label>
-                            <input type="number" min="0" class="form-control" placeholder="Masukkan Daya Tampung Ruangan">
+                            <input type="number" min="0" id="kapasitas" name="kapasitas" class="form-control" placeholder="Masukkan Daya Tampung Ruangan" required>
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -130,30 +137,204 @@
             </div>
 
             <script type="text/javascript">
-            $(document).ready(function(){
-                  $('.datatabelruangan').DataTable({
-                      pageLength: 25,
-                      responsive: true,
-                      dom: 'lTfgitp',
-                      buttons: [
-                          { extend: 'copy'},
-                          {extend: 'csv'},
-                          {extend: 'excel', title: 'ExampleFile'},
-                          {extend: 'pdf', title: 'ExampleFile'},
+            var id_gedung = 0,id_ruangan;
+            $('#id_gedung').change(function(){
+              id_gedung = $(this).val();
+              loadData();
+            });
+            loadData();
+            function loadData(){
+              $('#mytable').DataTable().destroy();
+              $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
+                        {
+                            return {
+                                "iStart": oSettings._iDisplayStart,
+                                "iEnd": oSettings.fnDisplayEnd(),
+                                "iLength": oSettings._iDisplayLength,
+                                "iTotal": oSettings.fnRecordsTotal(),
+                                "iFilteredTotal": oSettings.fnRecordsDisplay(),
+                                "iPage": Math.ceil(oSettings._iDisplayStart / oSettings._iDisplayLength),
+                                "iTotalPages": Math.ceil(oSettings.fnRecordsDisplay() / oSettings._iDisplayLength)
+                            };
+                        };
 
-                          {extend: 'print',
-                           customize: function (win){
-                                  $(win.document.body).addClass('white-bg');
-                                  $(win.document.body).css('font-size', '10px');
+                        t = $("#mytable").dataTable({
+                            initComplete: function() {
+                                var api = this.api();
+                                $('#mytable_filter input')
+                                        .off('.DT')
+                                        .on('keyup.DT', function(e) {
+                                            if (e.keyCode == 13) {
+                                                api.search(this.value).draw();
+                                    }
+                                });
+                            },
+                            oLanguage: {
+                                sProcessing: "loading..."
+                            },
+                            processing: true,
+                            serverSide: true,
+                            ajax: {"url": "<?php echo base_url("admin/Dataruangan/json");?>", "type": "POST","data":{
 
-                                  $(win.document.body).find('table')
-                                          .addClass('compact')
-                                          .css('font-size', 'inherit');
-                          }
-                          }
-                      ]
+                            "id_gedung":id_gedung,
+                          }},
+                            "columnDefs": [
+                {
+                    "targets": [ -1 ], //last column
+                    "orderable": false, //set not orderable
+                },
+                ],
+                            columns: [
+                                {
+                                    "data": "id",
+                                    "orderable": false
+                                },
+                                {"data": "kode"},
+                                {"data": "nama"},
+                                {"data": "kapasitas"},
+                                {"data": "gedung"},
+                                {"data": "view"}
+                            ],
+                            order: [[1, 'asc']],
+                            rowCallback: function(row, data, iDisplayIndex) {
+                                var info = this.fnPagingInfo();
+                                var page = info.iPage;
+                                var length = info.iLength;
+                                var index = page * length + (iDisplayIndex + 1);
+                                $('td:eq(0)', row).html(index);
+                            }
+                        });
+            };
+            function edit(id){
+              id_ruangan=id;
 
-                  });
+              $.ajax({
+                 url : "<?php echo site_url('admin/Dataruangan/get')?>",
+                 type: "POST",
+                 data: {"id":id},
+                 dataType: "JSON",
+                 success: function(data)
+                 {
+                   if (data.status=='berhasil') {
+                     $('#gedung').val(data.data.id_gedung);
+                     $('#nama').val(data.data.nama);
+                     $('#kode').val(data.data.kode);
+                     $('#kapasitas').val(data.data.kapasitas);
+                     $('#editModal').modal();
+                   }else {
+                     swal("Gagal!", data.message, "error");
+                   }
+                   console.log();
+                 },
+                     error: function (jqXHR, textStatus, errorThrown)
+                     {
+                       console.log(jqXHR);
+                 console.log(textStatus);
+                 console.log(errorThrown);
+                     }
+               });
+            }
+            function hapus(id){
+              swal({
+                      title: "Anda yakin?",
+                      text: "Ruangan akan dihapus",
+                      type: "warning",
+                      showCancelButton: true,
+                      confirmButtonColor: "#1ab394",
+                      confirmButtonText: "Ya, hapus!",
+                      closeOnConfirm: false
+                  }, function () {
+              $.ajax({
+                 url : "<?php echo site_url('admin/Dataruangan/delete')?>",
+                 type: "POST",
+                 data: {"id":id},
+                 dataType: "JSON",
+                 success: function(data)
+                 {
+                   if (data.status=='berhasil') {
+                    swal("Berhasil!", data.message, "success");
+                    reload_table();
+                   }else {
+                     swal("Gagal!", data.message, "error");
+                   }
+                   console.log();
+                 },
+                     error: function (jqXHR, textStatus, errorThrown)
+                     {
+                       console.log(jqXHR);
+                 console.log(textStatus);
+                 console.log(errorThrown);
+                     }
+                   });
+               });
+            }
+            $('#form').submit(function(){
+                        var form = $('#form')[0]; // You need to use standart javascript object here
+                        var formData = new FormData(form);
+                        $.ajax({
+                          url: '<?php echo base_url("admin/Dataruangan/insert");?>',
+                          data: formData,
+                          type: 'POST',
+                          // THIS MUST BE DONE FOR FILE UPLOADING
+                          contentType: false,
+                          processData: false,
+                          dataType: "JSON",
+                          success: function(data){
+                            if (data.status=='berhasil') {
+                              swal("Berhasil!", data.message, "success");
+                              $('#form')[0].reset();
+                              $('#addModal').modal('hide');
+                              reload_table();
+                            }else {
+                              swal("Gagal!", data.message, "error");
+                            }
+                          },
+                              error: function(jqXHR, textStatus, errorThrown)
+                              {
+                          console.log(jqXHR);
+                          console.log(textStatus);
+                          console.log(errorThrown);
+                          alert('gagal');
+                        }
+                        })
 
-              });
+                        return false;
+                    });
+                    $('#formEdit').submit(function(){
+                                var form = $('#formEdit')[0]; // You need to use standart javascript object here
+                                var formData = new FormData(form);
+                                formData.append('id',id_ruangan);
+                                $.ajax({
+                                  url: '<?php echo base_url("admin/Dataruangan/update");?>',
+                                  data: formData,
+                                  type: 'POST',
+                                  // THIS MUST BE DONE FOR FILE UPLOADING
+                                  contentType: false,
+                                  processData: false,
+                                  dataType: "JSON",
+                                  success: function(data){
+                                    if (data.status=='berhasil') {
+                                      swal("Berhasil!", data.message, "success");
+                                      $('#formEdit')[0].reset();
+                                      $('#editModal').modal('hide');
+                                      reload_table();
+                                    }else {
+                                      swal("Gagal!", data.message, "error");
+                                    }
+                                  },
+                                      error: function(jqXHR, textStatus, errorThrown)
+                                      {
+                                  console.log(jqXHR);
+                                  console.log(textStatus);
+                                  console.log(errorThrown);
+                                  alert('gagal');
+                                }
+                                })
+
+                                return false;
+                            });
+                    function reload_table()
+                  {
+                      $('#mytable').DataTable().ajax.reload(null,false); //reload datatable ajax
+                  }
             </script>
