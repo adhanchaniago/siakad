@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2018 at 09:00 AM
+-- Generation Time: May 09, 2018 at 11:56 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -1561,6 +1561,19 @@ INSERT INTO `t_role_kaprodi` (`id`, `id_kajur`, `id_role`, `id_jurusan`, `id_sta
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `t_role_rektor`
+--
+
+CREATE TABLE `t_role_rektor` (
+  `id` int(11) NOT NULL,
+  `id_rektor` int(11) NOT NULL,
+  `id_role` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `t_ruangan`
 --
 
@@ -1847,6 +1860,29 @@ CREATE TABLE `t_tipe_kaprodi` (
 INSERT INTO `t_tipe_kaprodi` (`id`, `nama`) VALUES
 (1, 'KETUA JURUSAN'),
 (2, 'SEKRETARIS JURUSAN');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_tipe_rektor`
+--
+
+CREATE TABLE `t_tipe_rektor` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_tipe_rektor`
+--
+
+INSERT INTO `t_tipe_rektor` (`id`, `nama`) VALUES
+(1, 'Rektor'),
+(2, 'Pembantu Rektor I'),
+(3, 'Pembantu Rektor II'),
+(4, 'Pembantu Rektor III'),
+(5, 'Pembantu Rektor IV'),
+(6, 'Pembantu Rektor V');
 
 -- --------------------------------------------------------
 
@@ -2183,6 +2219,15 @@ ALTER TABLE `t_role_kaprodi`
   ADD KEY `id_status` (`id_status`);
 
 --
+-- Indexes for table `t_role_rektor`
+--
+ALTER TABLE `t_role_rektor`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_rektor` (`id_rektor`),
+  ADD KEY `id_role` (`id_role`),
+  ADD KEY `id_status` (`id_status`);
+
+--
 -- Indexes for table `t_ruangan`
 --
 ALTER TABLE `t_ruangan`
@@ -2271,6 +2316,12 @@ ALTER TABLE `t_tipe_dekan`
 -- Indexes for table `t_tipe_kaprodi`
 --
 ALTER TABLE `t_tipe_kaprodi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `t_tipe_rektor`
+--
+ALTER TABLE `t_tipe_rektor`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2494,6 +2545,12 @@ ALTER TABLE `t_role_kaprodi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
+-- AUTO_INCREMENT for table `t_role_rektor`
+--
+ALTER TABLE `t_role_rektor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `t_ruangan`
 --
 ALTER TABLE `t_ruangan`
@@ -2558,6 +2615,12 @@ ALTER TABLE `t_tipe_dekan`
 --
 ALTER TABLE `t_tipe_kaprodi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `t_tipe_rektor`
+--
+ALTER TABLE `t_tipe_rektor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `t_tipe_sekolah`
@@ -2742,6 +2805,14 @@ ALTER TABLE `t_role_kaprodi`
   ADD CONSTRAINT `t_role_kaprodi_ibfk_2` FOREIGN KEY (`id_jurusan`) REFERENCES `t_jurusan` (`id`),
   ADD CONSTRAINT `t_role_kaprodi_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `t_tipe_kaprodi` (`id`),
   ADD CONSTRAINT `t_role_kaprodi_ibfk_4` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
+
+--
+-- Constraints for table `t_role_rektor`
+--
+ALTER TABLE `t_role_rektor`
+  ADD CONSTRAINT `t_role_rektor_ibfk_1` FOREIGN KEY (`id_rektor`) REFERENCES `t_rektor` (`id`),
+  ADD CONSTRAINT `t_role_rektor_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `t_role_rektor` (`id`),
+  ADD CONSTRAINT `t_role_rektor_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 
 --
 -- Constraints for table `t_ruangan`
