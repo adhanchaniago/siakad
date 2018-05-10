@@ -134,7 +134,7 @@ class LoginModel extends CI_Model {
       $this->db->from($this->tablepegawai.' p');
       $this->db->join('t_dekan d','p.id = d.id_pegawai');
       $this->db->join('t_role_dekan r','r.id_dekan = d.id');
-
+      $parameter['r.id_status'] = 1;
       $this->db->where($parameter);
       return $this->db->get();
     }
@@ -142,6 +142,7 @@ class LoginModel extends CI_Model {
       $this->db->select('p.id,d.id as id_rektor,p.nip,p.nama');
       $this->db->from($this->tablepegawai.' p');
       $this->db->join('t_rektor d','p.id = d.id_pegawai');
+      //$parameter['d.id_status'] = 1;
       $this->db->where($parameter);
       return $this->db->get();
     }
@@ -152,6 +153,7 @@ class LoginModel extends CI_Model {
       $this->db->join($this->tableadmin.' a','p.id = a.id_pegawai');
       $this->db->join('t_role_admin tr','a.id = tr.id_admin');
       $parameter['tr.id_role'] = 1;
+      $parameter['tr.id_status'] = 1;
       $this->db->where($parameter);
       return $this->db->get();
     }

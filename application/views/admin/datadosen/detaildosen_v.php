@@ -1,4 +1,4 @@
-
+<link href="<?php echo base_url()."assets" ?>/css/tabs_style.css" rel="stylesheet">
   <!-- content -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
@@ -17,34 +17,7 @@
                         <a href="" class="btn btn-primary" data-toggle="modal" data-target="#myModal4"><i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                 </div> -->
-                <style media="screen">
-                  .nav-tabs{
-                    border: 0px !important;
-                  }
-                  .panel-body{
-                    border-top-color: rgb(231, 234, 236) !important;
-                    border-top-style: solid !important;
-                    border-top-width: 1px !important;
-                  }
-                  .tabs-container .nav-tabs > button.active{
-                    background-color: #1ab394 !important;
-                  }
 
-                  @media only screen and (max-width: 767px) {
-
-                      .desktop{
-                        display: none !important;
-                        visibility: hidden !important;
-                      }
-                  }
-                  @media only screen and (min-width: 768px) {
-
-                      .phone{
-                        display: none !important;
-                        visibility: hidden !important;
-                      }
-                  }
-                </style>
             </div>
             <div class="wrapper wrapper-content">
             <div class="row">
@@ -53,7 +26,7 @@
                       <h2>Form</h2>
                       <div class="hr-line-dashed"></div>
                       <div class="tabs-container">
-                         <div class="nav nav-tabs desktop">
+                         <div class="nav nav-tabs2 desktop">
                              <div class="btn-group " data-toggle="buttons">
                                 <button class="btn btn-primary active" data-toggle="tab" href="#tab-1"> <input type="radio" name="options" id="option1" autocomplete="off"> Data Induk</button>
                                 <button class="btn btn-primary" data-toggle="tab" href="#tab-2"> <input class="desktop" type="radio" name="options" id="option2" autocomplete="off"> Data Pribadi</button>

@@ -14,9 +14,9 @@
                 </div>
                 <div class="col-sm-8">
                     <div class="title-action">
-                      <a href="" class="btn btn-sm btn-info" data-toggle="modal" data-target="#addModal"><i class="fa fa-cloud-download"></i> Import</a>
+                      <a href="" class="btn btn-sm btn-info"><i class="fa fa-cloud-download"></i> Import</a>
                       <a href="" class="btn btn-sm btn-warning"><i class="fa fa-cloud-upload"></i> Export</a>
-                        <a href="" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a href="<?php echo base_url()."admin/datamahasiswa/add" ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
             <div class="wrapper wrapper-content">
               <div class="ibox-title">
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
                       <label class="control-label">Filter Prodi:</label>
                         <div><select type="text" class="form-control">
@@ -50,6 +50,35 @@
                           </optgroup>
                         </select></div>
                       </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label class="control-label">Kelas:</label>
+                      <div>
+                        <select class="form-control" name="...">
+                          <option value="0">SEMUA</option>
+                          <option value="1">REGULER</option>
+                          <option value="2">PROGRAM KHUSUS KAJIAN KEISLAMAN</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="form-group">
+                      <label class="control-label">Status:</label>
+                      <div>
+                        <select class="form-control" name="...">
+                          <option value="0">SEMUA</option>
+                          <option value="1">AKTIF</option>
+                          <option value="2">CUTI</option>
+                          <option value="3">DROP OUT</option>
+                          <option value="4">KELUAR</option>
+                          <option value="5">LULUS</option>
+                          <option value="6">NON-AKTIF</option>
+                          <option value="7">PINDAH JURUSAN</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
                   <div class="col-md-2">
                     <div class="form-group">
@@ -82,12 +111,15 @@
                 <table class="table table-striped table-bordered table-hover datatabelmhs" >
                 <thead>
                 <tr>
-                    <th>No</th>
+                    <th width="5%">No</th>
                     <th>NIM</th>
                     <th>Nama Lengkap</th>
+                    <th>Kelas</th>
+                    <th>Status</th>
+                    <th>Alamat</th>
                     <th>Kontak</th>
-                    <th>Jurusan</th>
-                    <th>Action</th>
+                    <th>Prodi</th>
+                    <th width="15%">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -95,6 +127,9 @@
                     <td>1</td>
                     <td>12398</td>
                     <td>Sintia Wati</td>
+                    <td>(R)</td>
+                    <td>AKTIF</td>
+                    <td>JL. Example No. 09 Kota A Provinsi B, 90191</td>
                     <td>0851908198</td>
                     <td>Kedokteran</td>
                     <td>

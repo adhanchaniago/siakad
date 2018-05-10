@@ -9,7 +9,20 @@ class Datamahasiswa extends CI_Controller {
 		if ($cek == 'admin'){
 			$array=array('page'=>'234');
 		$this->load->view('header_v',$array);
-		$this->load->view('admin/datamhs_v');
+		$this->load->view('admin/datamahasiswa/datamhs_v');
+		$this->load->view('footer_v');
+		}else{
+			header("location:".base_url());
+		}
+	}
+
+	public function add()
+	{
+		$cek = $this->session->userdata('status');
+		if ($cek == 'admin'){
+			$array=array('page'=>'234');
+		$this->load->view('header_v',$array);
+		$this->load->view('admin/datamahasiswa/tambahmhs_v');
 		$this->load->view('footer_v');
 		}else{
 			header("location:".base_url());

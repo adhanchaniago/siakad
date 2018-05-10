@@ -1,4 +1,3 @@
-
   <!-- content -->
     <style media="screen">
       .icon-size{
@@ -72,7 +71,85 @@
                       </div>
                 </div>
               <div class="row">
-                      <div class="col-lg-6">
+                <div class="col-lg-6">
+                  <div class="ibox float-e-margins" id="ibox1">
+                      <div class="ibox-title">
+                          <h5>BERITA DAN PENGUMUMAN</h5>
+                      </div>
+                    <div class="ibox-content">
+                      <div class="sk-spinner sk-spinner-double-bounce">
+                        <div class="sk-double-bounce1"></div>
+                        <div class="sk-double-bounce2"></div>
+                      </div>
+                      <input type="text" class="form-control input-sm m-b-xs" id="filter"
+                           placeholder="Cari Pengumuman...">
+                      <table class="footable table table-stripped" data-page-size="4" data-filter=#filter>
+                          <thead>
+                          <tr>
+                          </tr>
+                          </thead>
+                          <tbody>
+                            <tr class="gradeX">
+                                <td>
+                                  <div style="width:100px;height:100px;overflow:hidden">
+                                  <img src="<?php echo base_url()."assets"?>/img/thumbnail-file.png" alt="news-img" style="width:100%;height:185%;"/>
+                                </div>
+                                </td>
+                                <td> <a data-toggle="modal" data-target="#modalberita">PEMBEKALAN PENGAWAS UJIAN TENGAH SEMESTER (UTS) SEMESTER GENAP 2017/2018 FAKULTAS TEKNIK SIPIL</a> <br ><small>date: 27-01-2018</small></td>
+                            </tr>
+                            <tr class="gradeX">
+                                <td>
+                                  <div style="width:100px;height:100px;overflow:hidden">
+                                  <img src="<?php echo base_url()."assets"?>/img/thumbnail-file.png" alt="news-img" style="width:100%;height:185%;"/>
+                                </div>
+                                </td>
+                                <td> <a href="#">PEMBEKALAN PENGAWAS UJIAN TENGAH SEMESTER (UTS) SEMESTER GENAP 2017/2018 FAKULTAS HUKUM</a> <br ><small>date: 27-01-2018</small></td>
+                            </tr>
+                            <tr class="gradeX">
+                                <td>
+                                  <div style="width:100px;height:100px;overflow:hidden">
+                                  <img src="<?php echo base_url()."assets"?>/img/thumbnail-file.png" alt="news-img" style="width:100%;height:185%;"/>
+                                </div>
+                                </td>
+                                <td> <a href="#">PEMBEKALAN PENGAWAS UJIAN TENGAH SEMESTER (UTS) SEMESTER GENAP 2017/2018 FAKULTAS KEDOKTERAN</a> <br ><small>date: 27-01-2018</small></td>
+                            </tr>
+                            <tr class="gradeX">
+                                <td>
+                                  <div style="width:100px;height:100px;overflow:hidden">
+                                  <img src="<?php echo base_url()."assets"?>/img/thumbnail-file.png" alt="news-img" style="width:100%;height:185%;"/>
+                                </div>
+                                </td>
+                                <td> <a href="#">PEMBEKALAN PENGAWAS UJIAN TENGAH SEMESTER (UTS) SEMESTER GENAP 2017/2018 FAKULTAS SENI</a> <br ><small>date: 27-01-2018</small></td>
+                            </tr>
+                            <tr class="gradeX">
+                                <td>
+                                  <div style="width:100px;height:100px;overflow:hidden">
+                                  <img src="<?php echo base_url()."assets"?>/img/thumbnail-file.png" alt="news-img" style="width:100%;height:185%;"/>
+                                </div>
+                                </td>
+                                <td> <a href="#">PEMBEKALAN PENGAWAS UJIAN TENGAH SEMESTER (UTS) SEMESTER GENAP 2017/2018 FAKULTAS BISNIS ADMINISTRASI</a> <br ><small>date: 27-01-2018</small></td>
+                            </tr>
+                            <tr class="gradeX">
+                                <td>
+                                  <div style="width:100px;height:100px;overflow:hidden">
+                                  <img src="<?php echo base_url()."assets"?>/img/thumbnail-file.png" alt="news-img" style="width:100%;height:185%;"/>
+                                </div>
+                                </td>
+                                <td> <a href="#">PENGUMUMAN PENTING TERKAIT ATURAN UTS SEMESTER GANJIL TAHUN AKADEMIK 2017/2018</a> <br ><small>date: 27-01-2018</small></td>
+                            </tr>
+                          </tbody>
+                          <tfoot>
+                          <tr>
+                              <td colspan="5">
+                                  <ul class="pagination pull-right"></ul>
+                              </td>
+                          </tr>
+                          </tfoot>
+                      </table>
+                  </div>
+                </div>
+                </div>
+                      <div class="col-lg-3">
                           <div class="ibox float-e-margins">
                               <div class="ibox-title">
                                   <h5>Terakhir Login</h5>
@@ -89,27 +166,27 @@
                                       <tbody>
                                       <tr>
                                           <td><small>Dosen</small> </td>
-                                          <td><i class="fa fa-clock-o"></i> 12:01am</td>
+                                          <td>12:01am</td>
                                           <td>11223</td>
                                       </tr>
                                       <tr>
                                           <td><small>Mahasiswa</small> </td>
-                                          <td><i class="fa fa-clock-o"></i> 11:24am</td>
+                                          <td>11:24am</td>
                                           <td>112245</td>
                                       </tr>
                                       <tr>
                                           <td><small>Mahasiswa</small> </td>
-                                          <td><i class="fa fa-clock-o"></i> 10:38am</td>
+                                          <td>10:38am</td>
                                           <td>112239</td>
                                       </tr>
                                       <tr>
                                           <td><small>Mahasiswa</small> </td>
-                                          <td><i class="fa fa-clock-o"></i> 08:13am</td>
+                                          <td>08:13am</td>
                                           <td>112334</td>
                                       </tr>
                                       <tr>
                                           <td><small>Mahasiswa</small> </td>
-                                          <td><i class="fa fa-clock-o"></i> 11:39pm</td>
+                                          <td>11:39pm</td>
                                           <td>112299</td>
                                       </tr>
                                       </tbody>
@@ -134,7 +211,7 @@
                                       <tbody>
                                       <tr>
                                           <td><small>Dosen</small> </td>
-                                          <td><i class="fa fa-clock-o"></i> 12:01am</td>
+                                          <td>12:01am</td>
                                           <td>11223</td>
                                           <td>
                                                 <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
@@ -143,7 +220,7 @@
                                       </tr>
                                       <tr>
                                           <td><small>Dosen</small> </td>
-                                          <td><i class="fa fa-clock-o"></i> 12:01am</td>
+                                          <td>12:01am</td>
                                           <td>11223</td>
                                           <td>
                                             <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
@@ -152,7 +229,7 @@
                                       </tr>
                                       <tr>
                                           <td><small>Dosen</small> </td>
-                                          <td><i class="fa fa-clock-o"></i> 12:01am</td>
+                                          <td>12:01am</td>
                                           <td>11223</td>
                                           <td>
                                             <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
@@ -161,7 +238,7 @@
                                       </tr>
                                       <tr>
                                           <td><small>Dosen</small> </td>
-                                          <td><i class="fa fa-clock-o"></i> 12:01am</td>
+                                          <td>12:01am</td>
                                           <td>11223</td>
                                           <td>
                                             <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
@@ -170,7 +247,7 @@
                                       </tr>
                                       <tr>
                                           <td><small>Dosen</small> </td>
-                                          <td><i class="fa fa-clock-o"></i> 12:01am</td>
+                                          <td>12:01am</td>
                                           <td>11223</td>
                                           <td>
                                             <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
@@ -179,7 +256,7 @@
                                       </tr>
                                       <tr>
                                           <td><small>Dosen</small> </td>
-                                          <td><i class="fa fa-clock-o"></i> 12:01am</td>
+                                          <td>12:01am</td>
                                           <td>11223</td>
                                           <td>
                                             <a class='btn btn-primary btn-xs' title='Lihat Data' href='#'><span class='fa fa-eye'></span></a>
@@ -192,7 +269,63 @@
                               </div>
                           </div>
                       </div>
-                      <div class="col-lg-6">
+                      <div class="col-lg-3">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Akun</h5>
+                            </div>
+                            <div class="ibox-content sidebar-collapse">
+                              <ul id="navigation" class="nav metismenu akunlist">
+                                <li>
+                                    <a href="#" class=""><i class="fa fa-user"></i> <span class="nav-label">Admin SMB</span></a>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-parent="#accordion1" href="#firstLink"><i class="fa fa-user"></i> <span class="nav-label">Admin Prodi</span><span class="fa arrow"></span></a>
+                                    <ul id="firstLink" class="nav akun-second collapse">
+                                      <li>
+                                        <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Admin Prodi A</span></a>
+                                      </li>
+                                      <li>
+                                        <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Admin Prodi B</span></a>
+                                      </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="active" data-toggle="collapse" data-parent="#accordion1" href="#secondLink"><i class="fa fa-user"></i> <span class="nav-label">Admin Dekan</span><span class="fa arrow"></span></a>
+                                    <ul id="secondLink" class="nav akun-second">
+                                      <li>
+                                        <a href="#" class="active"><i class="fa fa-user"></i> <span class="nav-label">Admin Dekan A</span></a>
+                                      </li>
+                                      <li>
+                                        <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Admin Dekan B</span></a>
+                                      </li>
+                                    </ul>
+                                </li>
+                              </ul>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-3">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Semester</h5>
+                            </div>
+                            <div class="ibox-content">
+                              <ul id="navsmt" class="nav metismenu smtlist">
+                                <li>
+                                    <a class="active" href="#"><span class="nav-label">2017/2018 - Ganjil</span></a>
+                                </li>
+                                <li>
+                                    <a href="#"><span class="nav-label">2017/2018 - Genap</span></a>
+                                </li>
+                                <li>
+                                    <a href="#"><span class="nav-label">2018/2019 - Ganjil</span></a>
+                                </li>
+                              </ul>
+                            </div>
+                        </div>
+                      </div>
+                      <!-- <div class="col-lg-6">
                           <div class="ibox float-e-margins">
                               <div class="ibox-title">
                                   <h5>Kalender Akademik </h5>
@@ -201,6 +334,17 @@
                                   <div id="calendar"></div>
                               </div>
                           </div>
-                      </div>
+                      </div> -->
                 </div>
             </div>
+
+  <script>
+      $('#ibox1').children('.ibox-content').toggleClass('sk-loading');
+      setTimeout(function () {
+        $('#ibox1').children('.ibox-content').toggleClass('sk-loading').visible();
+      }, 10000);
+        // $(function(){
+            // $('#toggleSpinners').on('click', function(){
+            // })
+        // })
+  </script>

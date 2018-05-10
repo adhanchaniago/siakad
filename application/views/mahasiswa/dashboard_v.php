@@ -131,50 +131,106 @@
                         </div>
                       </div>
                   </div>
+                </div>
+                <div class="col-lg-3">
                   <div class="ibox float-e-margins">
+                      <div class="ibox-title">
+                          <h5>Terakhir Login</h5>
+                      </div>
+                      <div class="ibox-content">
+                          <table class="table table-hover no-margins">
+                              <thead>
+                              <tr>
+                                  <th>Akun</th>
+                                  <th>Date</th>
+                                  <th>User</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr>
+                                  <td><small>Dosen</small> </td>
+                                  <td>12:01am</td>
+                                  <td>11223</td>
+                              </tr>
+                              <tr>
+                                  <td><small>Mahasiswa</small> </td>
+                                  <td>11:24am</td>
+                                  <td>112245</td>
+                              </tr>
+                              <tr>
+                                  <td><small>Mahasiswa</small> </td>
+                                  <td>10:38am</td>
+                                  <td>112239</td>
+                              </tr>
+                              <tr>
+                                  <td><small>Mahasiswa</small> </td>
+                                  <td>08:13am</td>
+                                  <td>112334</td>
+                              </tr>
+                              <tr>
+                                  <td><small>Mahasiswa</small> </td>
+                                  <td>11:39pm</td>
+                                  <td>112299</td>
+                              </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Terakhir Login</h5>
+                            <h5>Akun</h5>
                         </div>
-                        <div class="ibox-content">
-                            <table class="table table-hover no-margins">
-                                <thead>
-                                <tr>
-                                    <th>Akun</th>
-                                    <th>Date</th>
-                                    <th>User</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td><small>Dosen</small> </td>
-                                    <td><i class="fa fa-clock-o"></i> 12:01am</td>
-                                    <td>11223</td>
-                                </tr>
-                                <tr>
-                                    <td><small>Mahasiswa</small> </td>
-                                    <td><i class="fa fa-clock-o"></i> 11:24am</td>
-                                    <td>112245</td>
-                                </tr>
-                                <tr>
-                                    <td><small>Mahasiswa</small> </td>
-                                    <td><i class="fa fa-clock-o"></i> 10:38am</td>
-                                    <td>112239</td>
-                                </tr>
-                                <tr>
-                                    <td><small>Mahasiswa</small> </td>
-                                    <td><i class="fa fa-clock-o"></i> 08:13am</td>
-                                    <td>112334</td>
-                                </tr>
-                                <tr>
-                                    <td><small>Mahasiswa</small> </td>
-                                    <td><i class="fa fa-clock-o"></i> 11:39pm</td>
-                                    <td>112299</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <div class="ibox-content sidebar-collapse">
+                          <ul id="navigation" class="nav metismenu akunlist">
+                            <li>
+                                <a href="#" class=""><i class="fa fa-user"></i> <span class="nav-label">Admin SMB</span></a>
+                            </li>
+                            <li>
+                                <a data-toggle="collapse" data-parent="#accordion1" href="#firstLink"><i class="fa fa-user"></i> <span class="nav-label">Admin Prodi</span><span class="fa arrow"></span></a>
+                                <ul id="firstLink" class="nav akun-second collapse">
+                                  <li>
+                                    <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Admin Prodi A</span></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Admin Prodi B</span></a>
+                                  </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="active" data-toggle="collapse" data-parent="#accordion1" href="#secondLink"><i class="fa fa-user"></i> <span class="nav-label">Admin Dekan</span><span class="fa arrow"></span></a>
+                                <ul id="secondLink" class="nav akun-second">
+                                  <li>
+                                    <a href="#" class="active"><i class="fa fa-user"></i> <span class="nav-label">Admin Dekan A</span></a>
+                                  </li>
+                                  <li>
+                                    <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Admin Dekan B</span></a>
+                                  </li>
+                                </ul>
+                            </li>
+                          </ul>
                         </div>
                     </div>
-                </div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Semester</h5>
+                        </div>
+                        <div class="ibox-content">
+                          <ul id="navsmt" class="nav metismenu smtlist">
+                            <li>
+                                <a class="active" href="#"><span class="nav-label">2017/2018 - Ganjil</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="nav-label">2017/2018 - Genap</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><span class="nav-label">2018/2019 - Ganjil</span></a>
+                            </li>
+                          </ul>
+                        </div>
+                    </div>
+                  </div>
                 </div>
             </div>
 
