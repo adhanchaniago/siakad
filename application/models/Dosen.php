@@ -93,7 +93,8 @@ class Dosen extends CI_Model {
         $this->datatables->join($this->tabledosen.' d',' p.id = d.id_pegawai');
         $this->datatables->join('m_tipe_dosen t', 'd.id_tipe = t.id','left');
         $this->datatables->where('d.id_status',1);
-        $this->datatables->add_column('view', '<center><button class=\'btn btn-success btn-xs\' onclick=\'edit($1)\' title=\'Edit Data\' data-toggle="modal"><span class=\'glyphicon glyphicon-edit\'></span></button></center>', 'id');
+        $url = base_url()."admin/datadosen/detail?id=";
+        $this->datatables->add_column('view', "<center><button class='btn btn-success btn-xs' onclick='edit($1)' title='Edit Data' data-toggle='modal'><span class='glyphicon glyphicon-edit'></span></button> <a class='btn btn-info btn-xs' href='$url$1' onclick='edit($1)' title='Detail' data-toggle='modal'\><span class='fa fa-list'></span></a></center>", 'id');
         return $this->datatables->generate();
     }
 }
