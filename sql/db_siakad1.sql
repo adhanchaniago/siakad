@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2018 at 11:56 AM
+-- Generation Time: May 12, 2018 at 06:45 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.11
 
@@ -109,18 +109,20 @@ INSERT INTO `m_unit_kerja` (`id`, `nama`) VALUES
 
 CREATE TABLE `t_admin` (
   `id` int(11) NOT NULL,
-  `id_pegawai` int(11) NOT NULL
+  `id_pegawai` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_admin`
 --
 
-INSERT INTO `t_admin` (`id`, `id_pegawai`) VALUES
-(1, 3),
-(4, 4),
-(2, 6),
-(3, 8);
+INSERT INTO `t_admin` (`id`, `id_pegawai`, `id_status`) VALUES
+(1, 3, 1),
+(2, 6, 1),
+(3, 8, 1),
+(4, 4, 1),
+(5, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -133,6 +135,13 @@ CREATE TABLE `t_admin_fakultas` (
   `id_admin` int(11) NOT NULL,
   `id_fakultas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_admin_fakultas`
+--
+
+INSERT INTO `t_admin_fakultas` (`id`, `id_admin`, `id_fakultas`) VALUES
+(3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -151,6 +160,7 @@ CREATE TABLE `t_admin_jurusan` (
 --
 
 INSERT INTO `t_admin_jurusan` (`id`, `id_admin`, `id_jurusan`) VALUES
+(5, 1, 11),
 (4, 2, 1),
 (2, 2, 9),
 (3, 2, 10);
@@ -194,14 +204,15 @@ CREATE TABLE `t_akun` (
 
 INSERT INTO `t_akun` (`id`, `username`, `password`) VALUES
 (1, 'adminku', '$2y$10$Jz5eXfsBgPkc5jGmFW6tMuPRD3DxJXr0kMbGT1N7JBkEHjvYl4Deu'),
-(2, 'dosenku', '$2y$10$1eilaJke0OlE5aIkQSm/6.N5RcyVupAFoiDiYcL/NCjI2OKH/ErQO'),
+(2, 'dosenku', '$2y$10$kjoVdv8311uC/vRO6jHW/.MIes0yzDWNXbhCFXbzUlQ/cXfZoMNni'),
 (3, 'mahasiswa', '$2y$10$ycjeCTs.yZrF1PaRkluvBOdjEmMikiP9u0mHdcAIeuENO3v3FkrHq'),
-(4, 'dekanku', '$2y$10$VEL1FkFbf/Mpo.suE2/r1.mM0FpM4k85jNz7RpdiPwp4k69oBlN/2'),
+(4, 'dekanku', '$2y$10$QUXlp3YnVQV4ivA1Aws6nehcmPPxIagJWJ1EgwLq0BhERbC4jIExO'),
 (5, 'rektorku', '$2y$10$BEqDmi.nf.C/YiiTH1vbTeGGaYP.meOzSIHozoad1KKRCpT4YBtfC'),
 (6, 'agusagus', '$2y$10$HduBsU.K0M/grc10HVeXB.ONWNSD9jDDX7vf3iyXlytMBrFHPduGq'),
 (7, 'adminsmbb', '$2y$10$vu1yUPcK8RUe5s5uX6Nx8u2HW0r/QOj3vnF1RowpDFm/ztZncpCPy'),
 (9, 'ahmaadmuflih', '$2y$10$rTVFkwH0uZ4beb6Q2jDeP.bdZiu886aAbd6nbuAg64/RhEEm7mXMi'),
-(10, 'assaas', '$2y$10$hjNRi8USnU.Gf/B.wbkJ9.9NpHAkxpoJE1iE9XRobuow2J7aB8guC');
+(10, 'assaas', '$2y$10$hjNRi8USnU.Gf/B.wbkJ9.9NpHAkxpoJE1iE9XRobuow2J7aB8guC'),
+(11, 'superadmin', '$2y$10$/VKTOFzZ74vADOxHeAaxxuOVVM94uDcjltkK0KUsX3NPRlreRuC9m');
 
 -- --------------------------------------------------------
 
@@ -332,7 +343,7 @@ CREATE TABLE `t_dekan` (
 --
 
 INSERT INTO `t_dekan` (`id`, `id_pegawai`, `id_status`) VALUES
-(1, 4, 0),
+(1, 4, 1),
 (5, 1, 1),
 (6, 2, 1),
 (7, 3, 1),
@@ -399,7 +410,8 @@ INSERT INTO `t_detail_lkd` (`id`, `jam_awal`, `jam_akhir`, `id_kegiatan`, `id_lk
 (54, '02:00', '15:00', 2, 41, '2018-03-22 14:07:27', '2018-03-22 14:07:27'),
 (55, '08:00', '11:00', 2, 42, '2018-03-22 14:12:35', '2018-03-22 14:12:35'),
 (56, '12:00', '15:00', 2, 42, '2018-03-22 14:12:35', '2018-03-22 14:12:35'),
-(57, '00:00', '13:00', 1, 43, '2018-05-05 13:08:17', '2018-05-05 13:08:17');
+(57, '00:00', '13:00', 1, 43, '2018-05-05 13:08:17', '2018-05-05 13:08:17'),
+(58, '07:00', '09:00', 3, 44, '2018-05-12 15:23:02', '2018-05-12 15:23:02');
 
 -- --------------------------------------------------------
 
@@ -448,11 +460,12 @@ CREATE TABLE `t_fakultas` (
 --
 
 INSERT INTO `t_fakultas` (`id`, `kode`, `nama`) VALUES
-(1, '', 'Fakultas Syariah'),
-(2, '', 'Fakultas Tarbiyah'),
+(1, '12', 'FAKULTAS SYARIAH'),
+(2, '13', 'FAKULTAS TARBIYAH'),
 (5, '33', 'USLUHUDDIN DAN HUMANIORA'),
 (6, '55', 'EKONOMI DAN BISNIS ISLAM'),
-(7, '444', 'FAKULTAS DAKWAH DAN ILMU KOMUNIKASII');
+(7, '444', 'FAKULTAS DAKWAH DAN ILMU KOMUNIKASII'),
+(10, '44', 'SASA');
 
 -- --------------------------------------------------------
 
@@ -1217,7 +1230,8 @@ INSERT INTO `t_lkd_harian` (`id`, `tanggal`, `id_pengajuan`, `created_at`, `upda
 (40, '2018-02-05', 21, '2018-03-22 14:06:43', '2018-03-22 14:06:43'),
 (41, '2018-02-08', 21, '2018-03-22 14:07:27', '2018-03-22 14:07:27'),
 (42, '2018-03-15', 22, '2018-03-22 14:12:35', '2018-03-22 14:12:35'),
-(43, '2018-05-03', 23, '2018-05-05 13:08:17', '2018-05-05 13:08:17');
+(43, '2018-05-03', 23, '2018-05-05 13:08:17', '2018-05-05 13:08:17'),
+(44, '2018-05-10', 24, '2018-05-12 15:23:02', '2018-05-12 15:23:02');
 
 -- --------------------------------------------------------
 
@@ -1272,7 +1286,8 @@ INSERT INTO `t_pegawai` (`id`, `nip`, `nama`, `email`, `no_telp`, `ttd`, `id_aku
 (5, '88888888', 'Prof. Dr. Mujiburrahman, MA', 'rektor@gmail.com', '02030303', 'assets/images/signatures/e4da3b7fbbce2345d7772b0674a318d51.png', 5, 1),
 (6, '00000121', 'Pak Admin PMB', 'admin@pmb.com', '12121212', '', 7, 1),
 (7, '1233', 'Labaco', 'ahmadbaso97@gmail.com', '', '', 9, 1),
-(8, '12333', 'A', '', '', '', 10, 1);
+(8, '12333', 'A', '', '', '', 10, 1),
+(9, '029292', 'Super Admin', 'superadmin@gmail.com', '121221', '', 11, 1);
 
 -- --------------------------------------------------------
 
@@ -1336,7 +1351,8 @@ INSERT INTO `t_pengajuan_lkd` (`id`, `waktu_pengajuan`, `id_periode`, `id_dosen`
 (20, '2018-03-22 08:10:11', 1, 10, 1, 2, '2018-03-22 14:01:06', '2018-03-22 14:11:10'),
 (21, '2018-03-22 08:10:20', 8, 10, 1, 18, '2018-03-22 14:02:47', '2018-03-22 14:11:10'),
 (22, '0000-00-00 00:00:00', 4, 10, -1, 0, '2018-03-22 14:12:35', '2018-03-22 14:12:35'),
-(23, '0000-00-00 00:00:00', 11, 2, -1, 0, '2018-05-05 13:08:17', '2018-05-05 13:08:17');
+(23, '0000-00-00 00:00:00', 11, 2, -1, 0, '2018-05-05 13:08:17', '2018-05-05 13:08:17'),
+(24, '2018-05-12 10:23:16', 12, 2, 1, 2, '2018-05-12 15:23:02', '2018-05-12 15:25:27');
 
 -- --------------------------------------------------------
 
@@ -1364,7 +1380,8 @@ INSERT INTO `t_periode_lkd` (`id`, `tanggal_awal`, `tanggal_akhir`) VALUES
 (3, '2018-03-05', '2018-03-11'),
 (4, '2018-03-12', '2018-03-18'),
 (10, '2018-03-19', '2018-03-25'),
-(11, '2018-04-30', '2018-05-06');
+(11, '2018-04-30', '2018-05-06'),
+(12, '2018-05-07', '2018-05-13');
 
 -- --------------------------------------------------------
 
@@ -1425,15 +1442,16 @@ INSERT INTO `t_provinsi` (`id`, `nama`) VALUES
 
 CREATE TABLE `t_rektor` (
   `id` int(11) NOT NULL,
-  `id_pegawai` int(11) DEFAULT NULL
+  `id_pegawai` int(11) DEFAULT NULL,
+  `id_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_rektor`
 --
 
-INSERT INTO `t_rektor` (`id`, `id_pegawai`) VALUES
-(1, 5);
+INSERT INTO `t_rektor` (`id`, `id_pegawai`, `id_status`) VALUES
+(1, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -1467,19 +1485,23 @@ CREATE TABLE `t_role_admin` (
 --
 
 INSERT INTO `t_role_admin` (`id_admin`, `id_role`, `id_status`) VALUES
-(2, 6, 0),
-(4, 1, 0),
-(4, 2, 0),
 (4, 3, 0),
 (4, 4, 0),
 (4, 5, 0),
-(4, 6, 0),
 (1, 1, 1),
+(1, 2, 1),
+(1, 3, 1),
+(1, 6, 1),
 (2, 1, 1),
 (2, 2, 1),
 (2, 3, 1),
 (2, 4, 1),
-(2, 5, 1);
+(2, 5, 1),
+(2, 6, 1),
+(4, 1, 1),
+(4, 2, 1),
+(4, 6, 1),
+(5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1505,7 +1527,12 @@ INSERT INTO `t_role_dekan` (`id`, `id_dekan`, `id_role`, `id_fakultas`, `id_stat
 (4, 10, 2, 7, 1),
 (11, 5, 3, 7, 1),
 (29, 13, 4, 7, 1),
-(30, 6, 1, 5, 1);
+(30, 6, 1, 5, 1),
+(31, 6, 1, 7, 1),
+(34, 7, 1, 1, 1),
+(35, 7, 2, 5, 1),
+(36, 1, 2, 6, 1),
+(39, 7, 1, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -1570,6 +1597,13 @@ CREATE TABLE `t_role_rektor` (
   `id_role` int(11) NOT NULL,
   `id_status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_role_rektor`
+--
+
+INSERT INTO `t_role_rektor` (`id`, `id_rektor`, `id_role`, `id_status`) VALUES
+(1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1829,6 +1863,7 @@ INSERT INTO `t_tipe_admin` (`id`, `kode`, `nama`) VALUES
 
 CREATE TABLE `t_tipe_dekan` (
   `id` int(11) NOT NULL,
+  `kode` varchar(10) NOT NULL,
   `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1836,11 +1871,11 @@ CREATE TABLE `t_tipe_dekan` (
 -- Dumping data for table `t_tipe_dekan`
 --
 
-INSERT INTO `t_tipe_dekan` (`id`, `nama`) VALUES
-(1, 'Dekan'),
-(2, 'Wakil Dekan Akademik'),
-(3, 'Wakil Dekan Keuangan'),
-(4, 'Wakil Dekan Kemahasiswaan');
+INSERT INTO `t_tipe_dekan` (`id`, `kode`, `nama`) VALUES
+(1, 'dekan', 'Dekan'),
+(2, 'wadek1', 'Wakil Dekan Akademik'),
+(3, 'wadek2', 'Wakil Dekan Keuangan'),
+(4, 'wadek3', 'Wakil Dekan Kemahasiswaan');
 
 -- --------------------------------------------------------
 
@@ -1850,6 +1885,7 @@ INSERT INTO `t_tipe_dekan` (`id`, `nama`) VALUES
 
 CREATE TABLE `t_tipe_kaprodi` (
   `id` int(11) NOT NULL,
+  `kode` varchar(10) NOT NULL,
   `nama` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1857,9 +1893,9 @@ CREATE TABLE `t_tipe_kaprodi` (
 -- Dumping data for table `t_tipe_kaprodi`
 --
 
-INSERT INTO `t_tipe_kaprodi` (`id`, `nama`) VALUES
-(1, 'KETUA JURUSAN'),
-(2, 'SEKRETARIS JURUSAN');
+INSERT INTO `t_tipe_kaprodi` (`id`, `kode`, `nama`) VALUES
+(1, 'kaprodi', 'KETUA JURUSAN'),
+(2, 'sekprodi', 'SEKRETARIS JURUSAN');
 
 -- --------------------------------------------------------
 
@@ -1869,6 +1905,7 @@ INSERT INTO `t_tipe_kaprodi` (`id`, `nama`) VALUES
 
 CREATE TABLE `t_tipe_rektor` (
   `id` int(11) NOT NULL,
+  `kode` varchar(10) NOT NULL,
   `nama` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1876,13 +1913,13 @@ CREATE TABLE `t_tipe_rektor` (
 -- Dumping data for table `t_tipe_rektor`
 --
 
-INSERT INTO `t_tipe_rektor` (`id`, `nama`) VALUES
-(1, 'Rektor'),
-(2, 'Pembantu Rektor I'),
-(3, 'Pembantu Rektor II'),
-(4, 'Pembantu Rektor III'),
-(5, 'Pembantu Rektor IV'),
-(6, 'Pembantu Rektor V');
+INSERT INTO `t_tipe_rektor` (`id`, `kode`, `nama`) VALUES
+(1, 'rektor', 'Rektor'),
+(2, 'warek1', 'Pembantu Rektor I'),
+(3, 'warek2', 'Pembantu Rektor II'),
+(4, 'warek3', 'Pembantu Rektor III'),
+(5, 'warek4', 'Pembantu Rektor IV'),
+(6, 'warek5', 'Pembantu Rektor V');
 
 -- --------------------------------------------------------
 
@@ -1959,7 +1996,8 @@ ALTER TABLE `m_unit_kerja`
 --
 ALTER TABLE `t_admin`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `t_admin_ibfk_1` (`id_pegawai`);
+  ADD KEY `t_admin_ibfk_1` (`id_pegawai`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Indexes for table `t_admin_fakultas`
@@ -2171,7 +2209,8 @@ ALTER TABLE `t_provinsi`
 --
 ALTER TABLE `t_rektor`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_pegawai` (`id_pegawai`);
+  ADD KEY `id_pegawai` (`id_pegawai`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Indexes for table `t_riwayat_login`
@@ -2368,19 +2407,19 @@ ALTER TABLE `m_unit_kerja`
 -- AUTO_INCREMENT for table `t_admin`
 --
 ALTER TABLE `t_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `t_admin_fakultas`
 --
 ALTER TABLE `t_admin_fakultas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `t_admin_jurusan`
 --
 ALTER TABLE `t_admin_jurusan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `t_akreditasi_sekolah`
@@ -2392,7 +2431,7 @@ ALTER TABLE `t_akreditasi_sekolah`
 -- AUTO_INCREMENT for table `t_akun`
 --
 ALTER TABLE `t_akun`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `t_akun_pmb`
@@ -2428,7 +2467,7 @@ ALTER TABLE `t_dekan`
 -- AUTO_INCREMENT for table `t_detail_lkd`
 --
 ALTER TABLE `t_detail_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `t_dosen`
@@ -2440,7 +2479,7 @@ ALTER TABLE `t_dosen`
 -- AUTO_INCREMENT for table `t_fakultas`
 --
 ALTER TABLE `t_fakultas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `t_gedung`
@@ -2488,7 +2527,7 @@ ALTER TABLE `t_kelas_jurusan`
 -- AUTO_INCREMENT for table `t_lkd_harian`
 --
 ALTER TABLE `t_lkd_harian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `t_mahasiswa`
@@ -2500,7 +2539,7 @@ ALTER TABLE `t_mahasiswa`
 -- AUTO_INCREMENT for table `t_pegawai`
 --
 ALTER TABLE `t_pegawai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `t_pengajuan_bulanan_lkd`
@@ -2512,13 +2551,13 @@ ALTER TABLE `t_pengajuan_bulanan_lkd`
 -- AUTO_INCREMENT for table `t_pengajuan_lkd`
 --
 ALTER TABLE `t_pengajuan_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `t_periode_lkd`
 --
 ALTER TABLE `t_periode_lkd`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `t_rektor`
@@ -2530,7 +2569,7 @@ ALTER TABLE `t_rektor`
 -- AUTO_INCREMENT for table `t_role_dekan`
 --
 ALTER TABLE `t_role_dekan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `t_role_jurusan`
@@ -2548,7 +2587,7 @@ ALTER TABLE `t_role_kaprodi`
 -- AUTO_INCREMENT for table `t_role_rektor`
 --
 ALTER TABLE `t_role_rektor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `t_ruangan`
@@ -2636,7 +2675,8 @@ ALTER TABLE `t_tipe_sekolah`
 -- Constraints for table `t_admin`
 --
 ALTER TABLE `t_admin`
-  ADD CONSTRAINT `t_admin_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `t_admin_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_admin_ibfk_2` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 
 --
 -- Constraints for table `t_admin_fakultas`
@@ -2763,7 +2803,8 @@ ALTER TABLE `t_pengajuan_lkd`
 -- Constraints for table `t_rektor`
 --
 ALTER TABLE `t_rektor`
-  ADD CONSTRAINT `t_rektor_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `t_rektor_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `t_pegawai` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_rektor_ibfk_2` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 
 --
 -- Constraints for table `t_riwayat_login`
@@ -2811,7 +2852,7 @@ ALTER TABLE `t_role_kaprodi`
 --
 ALTER TABLE `t_role_rektor`
   ADD CONSTRAINT `t_role_rektor_ibfk_1` FOREIGN KEY (`id_rektor`) REFERENCES `t_rektor` (`id`),
-  ADD CONSTRAINT `t_role_rektor_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `t_role_rektor` (`id`),
+  ADD CONSTRAINT `t_role_rektor_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `t_tipe_rektor` (`id`),
   ADD CONSTRAINT `t_role_rektor_ibfk_3` FOREIGN KEY (`id_status`) REFERENCES `t_status_user` (`id`);
 
 --
