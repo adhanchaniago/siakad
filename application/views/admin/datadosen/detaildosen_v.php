@@ -445,8 +445,8 @@
 
                 <br >
                 <center>
-                  <button type="button" class="btn btn-w-m btn-danger" name="button" onClick="history.go(-1); return false;"><i class="fa fa-arrow-left"></i> Kembali</button>
                   <button type="submit" class="btn btn-w-m btn-primary" name="button"><i class="fa fa-save"></i> Simpan</button>
+                  <button type="button" class="btn btn-w-m btn-danger" name="button" onClick="history.go(-1); return false;"><i class="fa fa-arrow-left"></i> Kembali</button>
                 </center>
               </form>
               </div>

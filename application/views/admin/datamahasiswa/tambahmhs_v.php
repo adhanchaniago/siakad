@@ -210,22 +210,434 @@
                             </div>
                             <div id="tab-2" class="tab-pane">
                                 <div class="panel-body">
+                                  <h4>Bagi Mahasiswa Pindahan, isilah data berikut</h4>
                                   <div class="form-group">
-                                    <label class="col-lg-2 control-label">Kode Fakultas:</label>
-                                      <div class="col-lg-6"><input type="number" name="kode" class="form-control" placeholder="Masukkan Kode Fakultas" value="#" required></div>
+                                    <label class="col-lg-2 control-label">NIM Asal:</label>
+                                      <div class="col-lg-6"><input type="number" name="nim_asal" class="form-control" placeholder="Masukkan NIM Asal" required></div>
                                     </div>
+                                  <div class="form-group">
+                                    <label class="col-lg-2 control-label">Kode P.T. Asal:</label>
+                                      <div class="col-lg-6"><input type="text" name="kodept_asal" class="form-control" placeholder="Masukkan Kode Perguruan Tinggi Asal" required></div>
+                                    </div>
+                                  <div class="form-group">
+                                    <label class="col-lg-2 control-label">Pindahan Dari Asing:</label>
+                                      <div class="col-lg-6"><select id="pindahan" class="form-control" required>
+                                        <option value="0" selected disabled>-Pilih-</option>
+                                        <option value="1">YA</option>
+                                        <option value="2">TIDAK</option>
+                                      </select>
+                                      </div>
+                                    </div><br>
+                                    <div id="pilih1" class="hidden">
+                                      <h4>Mahasiswa Pindahan Asing</h4>
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label">Nama P.T. Asal:</label>
+                                          <div class="col-lg-6"><input type="text" name="namapt_asal" class="form-control" placeholder="Masukkan Nama Perguruan Tinggi Asal" required></div>
+                                        </div>
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label">Nama Prodi Asal:</label>
+                                          <div class="col-lg-6"><input type="text" name="namaprodi_asal" class="form-control" placeholder="Masukkan Nama Program Studi Asal" required></div>
+                                        </div>
+                                    </div>
+
+                                    <div id="pilih2" class="hidden">
+                                      <h4>Mahasiswa Pindahan Dalam Negeri</h4>
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label">Kode Jenjang Asal:</label>
+                                          <div class="col-lg-6"><select name="kodejenjang_asal" class="form-control" required>
+                                            <option value="0" selected disabled>-Pilih-</option>
+                                            <option value="1">S3</option>
+                                            <option value="2">S2</option>
+                                            <option value="3">S1</option>
+                                            <option value="4">SP-1</option>
+                                            <option value="5">SP-2</option>
+                                            <option value="6">D4</option>
+                                            <option value="7">D3</option>
+                                            <option value="8">D2</option>
+                                            <option value="9">D1</option>
+                                            <option value="10">PROFESI</option>
+                                            <option value="11">NON-AKADEMIK</option>
+                                          </select></div>
+                                        </div>
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label">Kode Prodi Asal:</label>
+                                          <div class="col-lg-6"><input type="text" name="namaprodi_asal" class="form-control" placeholder="Masukkan Nama Program Studi Asal" required></div>
+                                        </div>
+                                      <div class="form-group">
+                                        <label class="col-lg-2 control-label">SKS Diakui:</label>
+                                          <div class="col-lg-6"><input type="number" min="0" name="sksdiakui" class="form-control" placeholder="Masukkan Jumlah SKS yang Diakui/Disetarakan" required></div>
+                                        </div>
+                                      </div>
                                 </div>
                             </div>
+                            <div id="tab-3" class="tab-pane">
+                              <div class="panel-body">
+                                <h4>Data NO. Registrasi Pendaftaran Calon Mahasiswa</h4>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">No. Registrasi Pendaftaran:</label>
+                                    <div class="col-lg-6"><input type="number" name="no_regist" class="form-control" value="000000000" required></div>
+                                  </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">No. NISN:</label>
+                                    <div class="col-lg-6"><input type="number" name="no_nisn" class="form-control" value="000000000" required></div>
+                                  </div>
+                              </div>
+                            </div>
+                            <div id="tab-4" class="tab-pane">
+                              <div class="panel-body">
+                                <h4>Data Pribadi Mahasiswa</h4>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Agama:</label>
+                                    <div class="col-lg-6"><select class="form-control" required>
+                                      <option value="0" selected disabled>-Pilih-</option>
+                                      <option value="1">BUDHA</option>
+                                      <option value="2">HINDU</option>
+                                      <option value="3">ISLAM</option>
+                                      <option value="4">KATOLIK</option>
+                                      <option value="5">PROTESTAN</option>
+                                      <option value="6">LAIN-LAIN</option>
+                                    </select>
+                                    </div>
+                                  </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">No. KTP:</label>
+                                    <div class="col-lg-6"><input type="number" name="no_ktp" class="form-control" placeholder="Masukkan Nomor KTP" required></div>
+                                  </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">NIK KK:</label>
+                                    <div class="col-lg-6"><input type="number" name="nik_kk" class="form-control" placeholder="Masukkan NIK KK" required></div>
+                                  </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">No. KPS:</label>
+                                    <div class="col-lg-6"><input type="number" name="no_kps" class="form-control" placeholder="Masukkan Nomor KPS" >
+                                      <small>Nomor Kartu Perlindungan Sosial (Opsional)</small>
+                                    </div>
+                                  </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Alamat:</label>
+                                    <div class="col-lg-6">
+                                      <label><small>Provinsi</small></label><select class="form-control" required>
+                                        <option value="0" selected disabled>-Pilih Provinsi-</option>
+                                        <option value="1">JAWA BARAT</option>
+                                      </select><br>
+                                       <label><small>Kabupaten/Kota</small></label><select class="form-control" required>
+                                         <option value="0" selected disabled>-Pilih Kabupaten/Kota-</option>
+                                         <option value="1">BANDUNG KABUPATEN</option>
+                                       </select><br>
+                                      <label><small>Desa/Kelurahan & Kecamatan</small></label><input value='#' type="text" name="desa" class="form-control" required><br>
+                                       <label><small>Jalan & Nomor</small></label><input value='#' type="text" name="jalan" class="form-control" required>
+                                    </div>
+                                </div>
+                              <div class="form-group">
+                                <label class="col-lg-2 control-label">Kode POS:</label>
+                                  <div class="col-lg-6"><input value='#' type="number" min="0" name="pos" class="form-control" required></div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Kewarganegaraan:</label>
+                                    <div class="col-lg-6"><select class="form-control" required>
+                                      <option value="0" selected disabled>-Pilih-</option>
+                                      <option value="1">WNI</option>
+                                      <option value="2">WNA</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">No. Telepon:</label>
+                                    <div class="col-lg-6"><input value='0' type="number" min="0" name="telp" class="form-control" required></div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Email:</label>
+                                    <div class="col-lg-6"><input type="Email" name="email" class="form-control" placeholder="Masukkan Email" required></div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Tinggi Badan (Cm):</label>
+                                    <div class="col-lg-6"><input value='0' type="number" min="0" name="tinggi_badan" class="form-control" required></div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Berat Badan (Kg):</label>
+                                    <div class="col-lg-6"><input value='0' type="number" min="0" name="berat_badan" class="form-control" required></div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Gol. Darah:</label>
+                                    <div class="col-lg-6"><select class="form-control" required>
+                                      <option value="0" selected disabled>-Pilih-</option>
+                                      <option value="1">A</option>
+                                      <option value="2">B</option>
+                                      <option value="3">AB</option>
+                                      <option value="4">O</option>
+                                    </select>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div id="tab-5" class="tab-pane">
+                              <div class="panel-body">
+                                <h4>Data Orang Tua / Wali</h4>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Nama Ortu/Wali:</label>
+                                    <div class="col-lg-6">
+                                      <label><small>Nama Ayah</small></label><input value='#' type="text" name="nama_ayah" class="form-control" required><br>
+                                       <label><small>Nama Ibu</small></label><input value='#' type="text" name="nama_ibu" class="form-control" required><br>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Tgl Lahir Ortu/Wali:</label>
+                                    <div class="col-lg-6">
+                                      <label><small>Tgl Lahir Ayah</small></label><input value='#' id="datepicker4" type="text" name="tgl_ayah" class="form-control" required><br>
+                                       <label><small>Tgl Lahir Ibu</small></label><input value='#' id="datepicker5" type="text" name="tgl_ibu" class="form-control" required><br>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Pekerjaan Ortu/Wali:</label>
+                                    <div class="col-lg-6">
+                                      <label><small>Pekerjaan Ayah</small></label><select class="form-control" required>
+                                        <option value="0" selected disabled>-Pilih-</option>
+                                        <option value="1">BURUH</option>
+                                        <option value="2">PEDAGANG</option>
+                                        <option value="3">NELAYAN</option>
+                                        <option value="4">PENGUSAHA/WIRAUSAHA</option>
+                                        <option value="5">PNS NON-GURU</option>
+                                        <option value="6">TNI/POLRI</option>
+                                        <option value="7">PNS GURU/DOSEN</option>
+                                        <option value="8">KARYAWAN SWASTA</option>
+                                        <option value="9">PETANI</option>
+                                        <option value="10">LAINNYA</option>
+                                      </select><br>
+                                       <label><small>Pekerjaan Ibu</small></label><select class="form-control" required>
+                                         <option value="0" selected disabled>-Pilih-</option>
+                                         <option value="1">BURUH</option>
+                                         <option value="2">PEDAGANG</option>
+                                         <option value="3">NELAYAN</option>
+                                         <option value="4">PENGUSAHA/WIRAUSAHA</option>
+                                         <option value="5">PNS NON-GURU</option>
+                                         <option value="6">TNI/POLRI</option>
+                                         <option value="7">PNS GURU/DOSEN</option>
+                                         <option value="8">KARYAWAN SWASTA</option>
+                                         <option value="9">PETANI</option>
+                                         <option value="10">LAINNYA</option>
+                                       </select><br>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Pendidikan Ortu/Wali:</label>
+                                    <div class="col-lg-6">
+                                      <label><small>Pendidikan Ayah</small></label><select class="form-control" required>
+                                        <option value="0" selected disabled>-Pilih-</option>
+                                        <option value="1">=&lt;SMA</option>
+                                        <option value="2">DIPLOMA</option>
+                                        <option value="3">S1</option>
+                                        <option value="4">S2</option>
+                                        <option value="5">S3</option>
+                                      </select><br>
+                                       <label><small>Pendidikan Ibu</small></label><select class="form-control" required>
+                                         <option value="0" selected disabled>-Pilih-</option>
+                                         <option value="1">=&lt;SMA</option>
+                                         <option value="2">DIPLOMA</option>
+                                         <option value="3">S1</option>
+                                         <option value="4">S2</option>
+                                         <option value="5">S3</option>
+                                       </select><br>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Penghasilan Ortu/Wali:</label>
+                                    <div class="col-lg-6">
+                                      <label><small>Penghasilan Ayah</small></label><select class="form-control" required>
+                                        <option value="0" selected disabled>-Pilih-</option>
+                                        <option value="1">&lt;1.000.000</option>
+                                        <option value="2">1.000.001&lt;2.000.000</option>
+                                        <option value="3">2.000.001&lt;4.000.000</option>
+                                        <option value="4">4.000.001&lt;6.000.000</option>
+                                        <option value="5">6.000.000&lt;</option>
+                                      </select><br>
+                                       <label><small>Penghasilan Ibu</small></label><select class="form-control" required>
+                                         <option value="0" selected disabled>-Pilih-</option>
+                                         <option value="1">=&lt;SMA</option>
+                                         <option value="2">DIPLOMA</option>
+                                         <option value="3">S1</option>
+                                         <option value="4">S2</option>
+                                         <option value="5">S3</option>
+                                       </select><br>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">Alamat Ortu/Wali:</label>
+                                    <div class="col-lg-6">
+                                      <label><small>Provinsi</small></label><select class="form-control" required>
+                                        <option value="0" selected disabled>-Pilih Provinsi-</option>
+                                        <option value="1">JAWA BARAT</option>
+                                      </select><br>
+                                       <label><small>Kabupaten/Kota</small></label><select class="form-control" required>
+                                         <option value="0" selected disabled>-Pilih Kabupaten/Kota-</option>
+                                         <option value="1">BANDUNG KABUPATEN</option>
+                                       </select><br>
+                                      <label><small>Desa/Kelurahan & Kecamatan</small></label><input value='#' type="text" name="desa" class="form-control" required><br>
+                                       <label><small>Jalan & Nomor</small></label><input value='#' type="text" name="jalan" class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-2 control-label">No. Telepon:</label>
+                                    <div class="col-lg-6"><input value='0' type="number" min="0" name="telp" class="form-control" required></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div id="tab-6" class="tab-pane">
+                                <div class="panel-body">
+                                  <h4>Data Pendidikan</h4>
+                                  <div class="form-group">
+                                    <label class="col-lg-2 control-label">Kelas:</label>
+                                      <div class="col-lg-6"><input type="text" name="kelas" class="form-control" placeholder="Masukkan Kelas" required></div>
+                                    </div>
+                                  <div class="form-group">
+                                    <label class="col-lg-2 control-label">Jurusan:</label>
+                                      <div class="col-lg-6"><select class="form-control" required>
+                                        <option value="0" selected disabled>-Pilih-</option>
+                                        <option value="1">IPA</option>
+                                        <option value="2">IPS</option>
+                                        <option value="3">BAHASA</option>
+                                        <option value="4">KEAGAMAAN</option>
+                                        <option value="5">LAINNYA</option>
+                                      </select></div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label">Pend. Terakhir:</label>
+                                        <div class="col-lg-6"><select class="form-control" required>
+                                          <option value="0" selected disabled>-Pilih-</option>
+                                          <option value="1">SMU</option>
+                                          <option value="2">SMK</option>
+                                          <option value="3">MA/MAN</option>
+                                          <option value="4">LAIN-LAIN</option>
+                                        </select></div>
+                                      </div>
+                                  <div class="form-group">
+                                    <label class="col-lg-2 control-label">Nilai Ujian Akhir (UNAS):</label>
+                                      <div class="col-lg-6"><input type="number" min="0" name="unas" class="form-control" placeholder="0" required></div>
+                                    </div><br>
+                                  <h4>Data Sekolah</h4>
+                                  <div class="form-group">
+                                    <label class="col-lg-2 control-label">Nama Sekolah:</label>
+                                      <div class="col-lg-6"><input type="text" name="nama_sekolah" class="form-control" placeholder="Masukkan Nama Sekolah" required></div>
+                                    </div>
+                                  <div class="form-group">
+                                    <label class="col-lg-2 control-label">Alamat Sekolah:</label>
+                                      <div class="col-lg-6">
+                                        <label><small>Provinsi</small></label><select class="form-control" required>
+                                          <option value="0" selected disabled>-Pilih Provinsi-</option>
+                                          <option value="1">JAWA BARAT</option>
+                                        </select><br>
+                                         <label><small>Kabupaten/Kota</small></label><select class="form-control" required>
+                                           <option value="0" selected disabled>-Pilih Kabupaten/Kota-</option>
+                                           <option value="1">BANDUNG KABUPATEN</option>
+                                         </select><br>
+                                        <label><small>Desa/Kelurahan & Kecamatan</small></label><input value='#' type="text" name="desa" class="form-control" required><br>
+                                         <label><small>Jalan & Nomor</small></label><input value='#' type="text" name="jalan" class="form-control" required>
+                                      </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="col-lg-2 control-label">Kode POS:</label>
+                                      <div class="col-lg-6"><input type="number" min="0" name="pos" class="form-control" placeholder="0" required></div>
+                                    </div>
+                                </div>
+                              </div>
+                            <div id="tab-7" class="tab-pane">
+                                <div class="panel-body">
+                                  <h4>Kebutuhan Khusus</h4>
+                                  <div class="form-group">
+                                    <label class="col-lg-2 control-label">Mahasiswa:</label>
+                                      <div class="col-lg-6"><select class="form-control" multiple="">
+                                        <option value="1">INDIGO</option>
+                                        <option value="2">NARKOBA</option>
+                                        <option value="3">KESULITAN BELAJAR</option>
+                                        <option value="4">BAKAT ISTIMEWA</option>
+                                        <option value="5">CERDAS ISTIMEWA</option>
+                                        <option value="6">HIPERAKTIF</option>
+                                        <option value="7">TUNA WICARA</option>
+                                        <option value="8">TUNA LARAS</option>
+                                        <option value="9">TUNA DAKSA SEDANG</option>
+                                        <option value="10">TUNA DAKSA RINGAN</option>
+                                        <option value="11">TUNA GRAHITA RINGAN</option>
+                                        <option value="12">TUNA GRAHITA</option>
+                                        <option value="13">TUNA RUNGU</option>
+                                        <option value="14">DOWN SYNDROME</option>
+                                        <option value="15">AUTIS</option>
+                                         <option value="16">TUNA NETRA</option>
+                                      </select>
+                                      <small><p>bisa pilih lebih dari 1</p> </small>
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label">Ayah:</label>
+                                        <div class="col-lg-6"><select class="form-control" multiple="">
+                                          <option value="1">INDIGO</option>
+                                          <option value="2">NARKOBA</option>
+                                          <option value="3">KESULITAN BELAJAR</option>
+                                          <option value="4">BAKAT ISTIMEWA</option>
+                                          <option value="5">CERDAS ISTIMEWA</option>
+                                          <option value="6">HIPERAKTIF</option>
+                                          <option value="7">TUNA WICARA</option>
+                                          <option value="8">TUNA LARAS</option>
+                                          <option value="9">TUNA DAKSA SEDANG</option>
+                                          <option value="10">TUNA DAKSA RINGAN</option>
+                                          <option value="11">TUNA GRAHITA RINGAN</option>
+                                          <option value="12">TUNA GRAHITA</option>
+                                          <option value="13">TUNA RUNGU</option>
+                                          <option value="14">DOWN SYNDROME</option>
+                                          <option value="15">AUTIS</option>
+                                           <option value="16">TUNA NETRA</option>
+                                        </select>
+                                        <small><p>bisa pilih lebih dari 1</p> </small>
+                                        </div>
+                                      </div>
+                                    <div class="form-group">
+                                      <label class="col-lg-2 control-label">Ibu:</label>
+                                        <div class="col-lg-6"><select class="form-control" multiple="">
+                                          <option value="1">INDIGO</option>
+                                          <option value="2">NARKOBA</option>
+                                          <option value="3">KESULITAN BELAJAR</option>
+                                          <option value="4">BAKAT ISTIMEWA</option>
+                                          <option value="5">CERDAS ISTIMEWA</option>
+                                          <option value="6">HIPERAKTIF</option>
+                                          <option value="7">TUNA WICARA</option>
+                                          <option value="8">TUNA LARAS</option>
+                                          <option value="9">TUNA DAKSA SEDANG</option>
+                                          <option value="10">TUNA DAKSA RINGAN</option>
+                                          <option value="11">TUNA GRAHITA RINGAN</option>
+                                          <option value="12">TUNA GRAHITA</option>
+                                          <option value="13">TUNA RUNGU</option>
+                                          <option value="14">DOWN SYNDROME</option>
+                                          <option value="15">AUTIS</option>
+                                           <option value="16">TUNA NETRA</option>
+                                        </select>
+                                        <small><p>bisa pilih lebih dari 1</p> </small>
+                                        </div>
+                                      </div>
+                                </div>
+                              </div>
                         </div>
                     </div>
                       <!-- </div> -->
 
                 <br >
                 <center>
-                  <button type="submit" class="btn btn-w-m btn-primary" name="button"><i class="fa fa-send"></i> Save</button>
-                  <button type="button" class="btn btn-w-m btn-warning" name="button" onclick="goBack()"><i class="fa fa-mail-reply"></i> Kembali</button>
+                  <button type="submit" class="btn btn-w-m btn-primary" name="button"><i class="fa fa-save"></i> Simpan</button>
+                  <button type="button" class="btn btn-w-m btn-danger" name="button" onClick="history.go(-1); return false;"><i class="fa fa-arrow-left"></i> Kembali</button>
                 </center>
               </form>
               </div>
             </div> <br >
           </div>
+
+<script type="text/javascript">
+    pindahan=0;
+    $('#pindahan').change(function(){
+    pindahan = $('#pindahan').val();
+    if(pindahan=='1'){
+      $('#pilih1').removeClass('hidden');
+      $('#pilih2').addClass('hidden');
+    }
+    else{
+      $('#pilih1').addClass('hidden');
+      $('#pilih2').removeClass('hidden');
+    }
+    });
+</script>
