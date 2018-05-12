@@ -63,6 +63,10 @@
 
                                       </select></div>
                               </div>
+                              <div class="form-group">
+                                <label class="col-lg-2 control-label">Operator Fakultas:</label>
+                                  <div class="col-lg-6"><select type="text" name="operator" id="operator" class="select2_demo_1 standart form-control"></select></div>
+                                </div>
                 <br >
                 <center>
                   <button type="submit" class="btn btn-w-m btn-primary" name="button"><i class="fa fa-send"></i> Submit</button>
@@ -135,7 +139,21 @@
         }
       });
     });
-
+    $('#operator').select2({
+      placeholder: 'Pilih Operator Fakultas',
+      allowClear:true,
+      ajax: {
+        url: '<?php echo base_url()."admin/Datafakultas/getOperator"?>',
+        dataType: 'json',
+        delay: 250,
+        processResults: function (data) {
+          return {
+            results: data
+          };
+        },
+        cache: true
+      }
+    });
     function goBack() {
     window.history.back();
   }
@@ -172,4 +190,5 @@
 
               return false;
           });
+
 </script>

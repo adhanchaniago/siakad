@@ -34,6 +34,7 @@ class Role extends CI_Model {
       }
 
 
+
     // public function insert($arraydata = array() )
     // {
     //   $this->db->insert($this->tablefakultas, $arraydata);
@@ -66,15 +67,25 @@ class Role extends CI_Model {
     public function getRoleDekan($id_pegawai){
       return $this->db->query("select * from t_dekan k where id_pegawai = $id_pegawai and id_status = 1");
     }
+    public function getDetailRoleKaprodi($id_pegawai){
+      return $this->db->query("SELECT * from t_tipe_kaprodi where id in (select id_role from t_kaprodi a join t_role_kaprodi tr on a.id = tr.id_kajur WHERE tr.id_status=1 AND id_pegawai=$id_pegawai)");
+    }
+    public function getDetailRoleDekan($id_pegawai){
+      return $this->db->query("SELECT * from t_tipe_dekan where id in (select id_role from t_dekan a join t_role_dekan tr on a.id = tr.id_dekan WHERE tr.id_status=1 AND id_pegawai=$id_pegawai)");
+    }
+    public function getDetailRoleRektor($id_pegawai){
+      return $this->db->query("SELECT * from t_tipe_rektor where id in (select id_role from t_rektor a join t_role_rektor tr on a.id = tr.id_rektor WHERE tr.id_status=1 AND id_pegawai=$id_pegawai)");
+    }
     public function getRoleDosen($id_pegawai){
       return $this->db->query("select * from t_dosen k where id_pegawai = $id_pegawai and id_status = 1");
     }
+    public function getRoleRektor($id_pegawai){
+      return $this->db->query("select * from t_rektor k where id_pegawai = $id_pegawai and id_status = 1");
+    }
     public function getNonRoleAdmin($id_pegawai){
-      // SELECT * from t_tipe_admin where id not in (select id_role from t_admin a join t_role_admin tr on a.id = tr.id_admin WHERE tr.id_status=1 AND id_pegawai=3)
       return $this->db->query("SELECT * from t_tipe_admin where id not in (select id_role from t_admin a join t_role_admin tr on a.id = tr.id_admin WHERE tr.id_status=1 AND id_pegawai=$id_pegawai)");
     }
     public function getRoleAdmin($id_pegawai){
-      // SELECT * from t_tipe_admin where id not in (select id_role from t_admin a join t_role_admin tr on a.id = tr.id_admin WHERE tr.id_status=1 AND id_pegawai=3)
       return $this->db->query("SELECT * from t_tipe_admin where id in (select id_role from t_admin a join t_role_admin tr on a.id = tr.id_admin WHERE tr.id_status=1 AND id_pegawai=$id_pegawai)");
     }
 }

@@ -276,11 +276,50 @@
                             </div>
                             <div class="ibox-content sidebar-collapse">
                               <ul id="navigation" class="nav metismenu akunlist">
-                                <li>
+
+                                <?php
+                                $i=0;
+                                foreach ($_SESSION['roles'] as $key => $value){
+                                    $i++;
+                                    $id = "link$i";
+                                    if($value['status'] == $_SESSION['status']){
+                                      $class = "";$data="";
+                                      if($_SESSION['data']['tipe'] == $value['data']['tipe'])
+                                        $class="class='active'";
+                                      if(!is_null($value['data']['list']))
+                                        $data = "data-toggle='collapse' href='#$id'";
+                                      else
+                                        $data = "href='#' onclick='return selectRole(\"$key\",null)'";
+
+                                    echo "\n<li><a $class $data><i class='fa fa-user'></i><span class='nav-label'>".$value['data']['tipe']."</span></a>";
+                                    if(!is_null($value['data']['list'])){
+                                      echo "\n<ul id='$id' class='nav akun-second'>";
+                                      $n=0;
+                                      foreach ($value['data']['list'] as $row) {
+                                        $class="";
+                                        if(isset($row['nama_fakultas']))
+                                          $nama = $row['nama_fakultas'];
+                                        else
+                                          $nama = $row['nama_jurusan'];
+                                        if($_SESSION['data']['id_list'] == $n && $_SESSION['data']['tipe'] == $value['data']['tipe'])
+                                          $class="class='active'";
+                                        echo "<li>
+                                            <a href='#' $class onclick='return selectRole(\"$key\",$n)'><i class='fa fa-user'></i> <span class='nav-label'>".$nama."</span></a>
+                                          </li>";
+                                          $n++;
+                                      }
+                                      echo "</ul>";
+                                    }
+                                    echo "</li>";
+                                    }
+                                }?>
+
+                              </ul>
+                                <!-- <li>
                                     <a href="#" class=""><i class="fa fa-user"></i> <span class="nav-label">Admin SMB</span></a>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-parent="#accordion1" href="#firstLink"><i class="fa fa-user"></i> <span class="nav-label">Admin Prodi</span><span class="fa arrow"></span></a>
+                                    <a data-toggle="collapse" href="#firstLink"><i class="fa fa-user"></i> <span class="nav-label">Admin Prodi</span><span class="fa arrow"></span></a>
                                     <ul id="firstLink" class="nav akun-second collapse">
                                       <li>
                                         <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Admin Prodi A</span></a>
@@ -291,7 +330,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a class="active" data-toggle="collapse" data-parent="#accordion1" href="#secondLink"><i class="fa fa-user"></i> <span class="nav-label">Admin Dekan</span><span class="fa arrow"></span></a>
+                                    <a class="active" data-toggle="collapse"  href="#secondLink"><i class="fa fa-user"></i> <span class="nav-label">Admin Dekan</span><span class="fa arrow"></span></a>
                                     <ul id="secondLink" class="nav akun-second">
                                       <li>
                                         <a href="#" class="active"><i class="fa fa-user"></i> <span class="nav-label">Admin Dekan A</span></a>
@@ -300,8 +339,8 @@
                                         <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Admin Dekan B</span></a>
                                       </li>
                                     </ul>
-                                </li>
-                              </ul>
+                                </li> -->
+
                             </div>
                         </div>
                       </div>
@@ -347,4 +386,27 @@
             // $('#toggleSpinners').on('click', function(){
             // })
         // })
+        function selectRole(kode,index){
+              $.ajax({
+                url: '<?php echo base_url("Login/selectRole/");?>'+kode+'/'+index,
+                type: 'POST',
+                // THIS MUST BE DONE FOR FILE UPLOADING
+                contentType: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data){
+                  if(data.status=='berhasil')
+                    location.reload();
+                  else
+                    alert(data.message);
+                },
+              error: function(jqXHR, textStatus, errorThrown)
+              {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+              }
+                    });
+
+        }
   </script>

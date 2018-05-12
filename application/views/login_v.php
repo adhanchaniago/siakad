@@ -13,6 +13,8 @@
 
     <link href="<?php echo base_url(). "assets/css/animate.css" ?>" rel="stylesheet">
     <link href="<?php echo base_url(). "assets/css/style.css" ?>" rel="stylesheet">
+    <link href="<?php echo base_url()."assets" ?>/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+  <script src="<?php echo base_url()."assets" ?>/js/plugins/sweetalert/sweetalert.min.js"></script>
 
 </head>
 <body class="gray-bg">
@@ -116,7 +118,7 @@
         if(data.status=='berhasil')
           location.reload();
         else
-          alert(data.message);
+          swal("Gagal!", data.message, "error");
       },
     error: function(jqXHR, textStatus, errorThrown)
     {

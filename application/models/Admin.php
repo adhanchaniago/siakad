@@ -59,4 +59,20 @@ class Admin extends CI_Model {
         $last_recore = $this->db->insert_id();
         return $last_recore;
       }
+      public function updateAdminFakultas($parameterfilter=array(), $arraydata=array() )
+        {
+            $this->db->where($parameterfilter);
+            $this->db->update('t_admin_fakultas', $arraydata);
+            return $this->db->affected_rows();
+        }
+        public function deleteAdminFakultas($parameter=array())
+        {
+            $this->db->delete('t_admin_fakultas', $parameter );
+            return $this->db->affected_rows();
+        }
+        public function getAdminFakultas($parameterfilter=array()){
+          if($parameterfilter!=null)
+          $this->db->where($parameterfilter);
+          return $this->db->get('t_admin_fakultas');
+        }
 }

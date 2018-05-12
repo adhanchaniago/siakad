@@ -169,6 +169,14 @@ class Akunpegawai extends CI_Controller {
 					$options .= "<option value='prodi'>Pimpinan Jurusan</option>";
 				}
 
+				$rektor = $this->Role->getRoleRektor($id_pegawai);
+				if($rektor->num_rows()>0){
+					$table .= "<tr><td>".$i++."</td><td>Pimpinan Kampus</td><td><center> <button type='button' onclick='hapusRole(\"rektor\")' class='btn btn-xs btn-danger'><span class='fa fa-remove'></span></button></center></td></tr>";
+				}
+				else{
+					$options .= "<option value='rektor'>Pimpinan Kampus</option>";
+				}
+
 				$dekan = $this->Role->getRoleDekan($id_pegawai);
 				if($dekan->num_rows()>0){
 					$table .= "<tr><td>".$i++."</td><td>Pimpinan Fakultas</td><td><center> <button type='button' onclick='hapusRole(\"dekan\")' class='btn btn-xs btn-danger'><span class='fa fa-remove'></span></button></center></td></tr>";
@@ -176,6 +184,8 @@ class Akunpegawai extends CI_Controller {
 				else{
 					$options .= "<option value='dekan'>Pimpinan Fakultas</option>";
 				}
+
+
 				$dosen = $this->Role->getRoleDosen($id_pegawai);
 				if($dosen->num_rows()>0){
 					$table .= "<tr><td>".$i++."</td><td>Dosen</td><td><center> <button type='button' onclick='hapusRole(\"dosen\")' class='btn btn-xs btn-danger'><span class='fa fa-remove'></span></button></center></td></tr>";
@@ -183,6 +193,7 @@ class Akunpegawai extends CI_Controller {
 				else{
 					$options .= "<option value='dosen'>Dosen</option>";
 				}
+
 				$data['pegawai'] = $this->Pegawai->get(array('id'=>$id_pegawai))->row();
 				$data['not_selected'] = $options;
 				$data['selected'] = $table;
@@ -274,6 +285,11 @@ class Akunpegawai extends CI_Controller {
 				else if($kode=='prodi'){
 					$cek = $this->Kaprodi->get(array('id_pegawai'=>$id_pegawai));
 					$this->Kaprodi->update(array('id_pegawai'=>$id_pegawai),array('id_status'=>0));
+					echo json_encode(array('status'=>'berhasil','message'=>'Role berhasil diedit!'));
+				}
+				else if($kode=='rektor'){
+					$cek = $this->Rektor->get(array('id_pegawai'=>$id_pegawai));
+					$this->Rektor->update(array('id_pegawai'=>$id_pegawai),array('id_status'=>0));
 					echo json_encode(array('status'=>'berhasil','message'=>'Role berhasil diedit!'));
 				}
 			}

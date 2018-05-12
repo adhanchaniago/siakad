@@ -184,7 +184,46 @@
                           </div>
                           <div class="ibox-content sidebar-collapse">
                             <ul id="navigation" class="nav metismenu akunlist">
-                              <li>
+
+                              <?php
+                              $i=0;
+                              foreach ($_SESSION['roles'] as $key => $value){
+                                  $i++;
+                                  $id = "link$i";
+                                  if($value['status'] == $_SESSION['status']){
+                                    $class = "";$data="";
+                                    if($_SESSION['data']['tipe'] == $value['data']['tipe'])
+                                      $class="class='active'";
+                                    if(!is_null($value['data']['list']))
+                                      $data = "data-toggle='collapse' href='#$id'";
+                                    else
+                                      $data = "href='#' onclick='return selectRole(\"$key\",null)'";
+
+                                  echo "\n<li><a $class $data><i class='fa fa-user'></i><span class='nav-label'>".$value['data']['tipe']."</span></a>";
+                                  if(!is_null($value['data']['list'])){
+                                    echo "\n<ul id='$id' class='nav akun-second'>";
+                                    $n=0;
+                                    foreach ($value['data']['list'] as $row) {
+                                      $class="";
+                                      if(isset($row['nama_fakultas']))
+                                        $nama = $row['nama_fakultas'];
+                                      else
+                                        $nama = $row['nama_jurusan'];
+                                      if($_SESSION['data']['id_list'] == $n && $_SESSION['data']['tipe'] == $value['data']['tipe'])
+                                        $class="class='active'";
+                                      echo "<li>
+                                          <a href='#' $class onclick='return selectRole(\"$key\",$n)'><i class='fa fa-user'></i> <span class='nav-label'>".$nama."</span></a>
+                                        </li>";
+                                        $n++;
+                                    }
+                                    echo "</ul>";
+                                  }
+                                  echo "</li>";
+                                  }
+                              }?>
+
+                            </ul>
+                              <!-- <li>
                                   <a href="#" class=""><i class="fa fa-user"></i> <span class="nav-label">Admin SMB</span></a>
                               </li>
                               <li>
@@ -208,8 +247,8 @@
                                       <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Admin Dekan B</span></a>
                                     </li>
                                   </ul>
-                              </li>
-                            </ul>
+                              </li> -->
+
                           </div>
                       </div>
                       <div class="ibox float-e-margins">
@@ -262,4 +301,27 @@
             // $('#toggleSpinners').on('click', function(){
             // })
         // })
+        function selectRole(kode,index){
+              $.ajax({
+                url: '<?php echo base_url("Login/selectRole/");?>'+kode+'/'+index,
+                type: 'POST',
+                // THIS MUST BE DONE FOR FILE UPLOADING
+                contentType: false,
+                processData: false,
+                dataType: "JSON",
+                success: function(data){
+                  if(data.status=='berhasil')
+                    location.reload();
+                  else
+                    alert(data.message);
+                },
+              error: function(jqXHR, textStatus, errorThrown)
+              {
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+              }
+                    });
+
+        }
     </script>

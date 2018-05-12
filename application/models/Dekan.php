@@ -56,11 +56,28 @@ class Dekan extends CI_Model {
           $this->db->order_by("id_role","ASC");
           return $this->db->get();
         }
+        public function getAdmin($parameterfilter=array()){
+          $this->db->select("a.id,CONCAT(p.nip,' - ',p.nama) as text");
+          $this->db->from("t_admin_fakultas af");
+          $this->db->join("t_admin a","a.id=af.id_admin");
+          $this->db->join("t_pegawai p","p.id = a.id_pegawai");
+          $this->db->where($parameterfilter);
+          return $this->db->get();
+        }
       public function getCalon($like){
         $this->db->select("d.id, CONCAT(p.nip,' - ',p.nama) as text");
         $this->db->from($this->tabledekan." d");
         $this->db->join('t_pegawai p','d.id_pegawai = p.id');
         $this->db->where("(p.nip LIKE '%$like%' OR p.nama LIKE '%$like%' ) AND d.id_status=1");
+        //$this->db->or_like($like);
+        return $this->db->get();
+      }
+      public function getOperator($like){
+        $this->db->select("a.id, CONCAT(p.nip,' - ',p.nama) as text");
+        $this->db->from("t_admin a");
+        $this->db->join('t_pegawai p','a.id_pegawai = p.id');
+        $this->db->join('t_role_admin r','r.id_admin = a.id');
+        $this->db->where("(p.nip LIKE '%$like%' OR p.nama LIKE '%$like%' ) AND r.id_role=5 AND r.id_status=1");
         //$this->db->or_like($like);
         return $this->db->get();
       }
