@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 
     <meta charset="utf-8">
@@ -151,10 +150,29 @@
             </li>
             <li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user-circle-o"></i>  <span class="label label-primary">8</span>
+                    <i class="fa fa-user-circle-o"></i>  <span class="label label-primary" id="num"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
-                    <li>
+                    <?php
+                    $arr = array();
+                    foreach ($_SESSION['roles'] as $key => $value) {
+                      if(!in_array($value['status'],$arr)){
+                        array_push($arr,$value['status']);
+                        echo "<li>
+                            <a href='javascript:void(0)' id='".$key."' class='role";
+                        if($value['status'] == $_SESSION['status'])
+                          echo " choose";
+                        echo "'>
+                                <div>
+                                    <i class='fa fa-user fa-fw'></i> ".$value['status_name']."
+                                </div>
+                            </a>
+                        </li>
+                        <li class='divider'></li>";
+                      }
+                      echo "<script>$('#num').html(".count($arr).")</script>";
+                    } ?>
+                    <!-- <li>
                         <a href="mailbox.html" class="choose">
                             <div>
                                 <i class="fa fa-user fa-fw"></i> Super Admin
@@ -177,7 +195,7 @@
                             </div>
                         </a>
                     </li>
-                    <li class="divider"></li>
+                    <li class="divider"></li> -->
                 </ul>
               </li>
             <li class="dropdown">
@@ -242,3 +260,28 @@
 
     </nav>
     </div>
+<script type="text/javascript">
+  $('.role').on("click", function(){
+    var type = $(this).attr('id');
+    $.ajax({
+      url: '<?php echo base_url("Login/selectRole/");?>'+type+'/0',
+      type: 'POST',
+      // THIS MUST BE DONE FOR FILE UPLOADING
+      contentType: false,
+      processData: false,
+      dataType: "JSON",
+      success: function(data){
+        if(data.status=='berhasil')
+          location.reload();
+        else
+          alert(data.message);
+      },
+    error: function(jqXHR, textStatus, errorThrown)
+    {
+      console.log(jqXHR);
+      console.log(textStatus);
+      console.log(errorThrown);
+    }
+          });
+  });
+</script>

@@ -39,9 +39,11 @@ class Datafakultas extends CI_Controller {
 			$this->load->model(array('Dekan','Fakultas'));
 			$role = $this->Dekan->getRole(array('id_fakultas'=>$id));
 			$fakultas = $this->Fakultas->get(array('id'=>$id));
+			$admin = $this->Dekan->getAdmin(array('id_fakultas'=>$id));
 			if($fakultas->num_rows()>0){
 			$data['fakultas'] = $fakultas->row();
 			$data['role'] = $role;
+			$data['admin'] = $admin->row();
 		$this->load->view('header_v',$array);
 		$this->load->view('admin/datafakultas/editfakultas_v',$data);
 		$this->load->view('footer_v');
@@ -75,6 +77,8 @@ class Datafakultas extends CI_Controller {
 				$pimpinan['wadek_keuangan'] = $_POST['wadek_keuangan'];
 			if(isset($_POST['wadek_kemahasiswaan']))
 				$pimpinan['wadek_kemahasiswaan'] = $_POST['wadek_kemahasiswaan'];
+			if(isset($_POST['operator']))
+				$admin = $_POST['operator'];
 
 			if(isset($pimpinan)){
 				$count = array_count_values($pimpinan);
@@ -90,7 +94,7 @@ class Datafakultas extends CI_Controller {
 				'kode' => $_POST['kode'],
 				'nama' => strtoupper($_POST['nama'])
 			);
-			$this->load->model(array('Fakultas','Dekan'));
+			$this->load->model(array('Fakultas','Dekan','Admin'));
 			$id_fakultas = $this->Fakultas->insert($fakultas);
 
 			if(isset($_POST['dekan'])){
@@ -129,6 +133,13 @@ class Datafakultas extends CI_Controller {
 				);
 				$this->Dekan->insertRole($wadek3);
 			}
+			if(isset($_POST['operator'])){
+				$operator = array(
+					'id_admin' => $admin,
+					'id_fakultas' => $id_fakultas
+				);
+				$this->Admin->insertAdminFakultas($operator);
+			}
 			echo json_encode(array('status'=>'berhasil','message'=>'Fakultas berhasil dibuat!'));
 		}
 	}
@@ -141,6 +152,8 @@ class Datafakultas extends CI_Controller {
 			$pimpinan['wadek_keuangan'] = $_POST['wadek_keuangan'];
 		if(isset($_POST['wadek_kemahasiswaan']))
 			$pimpinan['wadek_kemahasiswaan'] = $_POST['wadek_kemahasiswaan'];
+		if(isset($_POST['operator']))
+			$admin = $_POST['operator'];
 
 		if(isset($pimpinan)){
 			$count = array_count_values($pimpinan);
@@ -156,7 +169,7 @@ class Datafakultas extends CI_Controller {
 			'kode' => $_POST['kode'],
 			'nama' => strtoupper($_POST['nama'])
 		);
-		$this->load->model(array('Fakultas','Dekan'));
+		$this->load->model(array('Fakultas','Dekan','Admin'));
 		$id_fakultas = $_POST['id'];
 		$this->Fakultas->update(array('id'=>$id_fakultas),$fakultas);
 
@@ -242,10 +255,34 @@ class Datafakultas extends CI_Controller {
 		else{
 			$this->Dekan->deleteRole($wadek3);
 		}
+		$operator = array(
+			'id_fakultas' => $id_fakultas
+		);
+		if(isset($_POST['operator'])){
+			$data = array(
+				'id_admin' => $admin
+			);
+
+			$cek = $this->Admin->getAdminFakultas($operator)->num_rows();
+			if($cek>0){
+				$cek = $this->Admin->updateAdminFakultas($operator,$data);
+			}
+			else{
+				$operator['id_admin'] = $admin;
+				$this->Admin->insertAdminFakultas($operator);
+			}
+
+		}else{
+			$this->Admin->deleteAdminFakultas($operator);
+		}
 
 
 		echo json_encode(array('status'=>'berhasil','message'=>'Fakultas berhasil diedit!'));
 
 	}
-
+	public function getOperator(){
+		$this->load->model('Dekan');
+		$admin = $this->Dekan->getOperator($_GET['q']);
+		echo json_encode($admin->result());
+	}
 }

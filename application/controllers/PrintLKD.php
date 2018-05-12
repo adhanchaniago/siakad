@@ -300,7 +300,7 @@ $unit_kerja = $unit_kerja->row();
 					<td style="width:200px">Penanggung Jawab</td>
 				</tr>
 				<tr>
-					<td>Atasan Langsung</td>
+					<td>Dekan</td>
 					<td></td>
 					<td>Rekapitulasi Kehadiran,</td>
 				</tr>
@@ -430,7 +430,7 @@ $unit_kerja = $unit_kerja->row();
 				<td style="width:200px">Penanggung Jawab</td>
 			</tr>
 			<tr>
-				<td>Atasan Langsung</td>
+				<td>Dekan</td>
 				<td></td>
 				<td>Rekapitulasi Kehadiran,</td>
 			</tr>
