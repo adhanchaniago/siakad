@@ -75,43 +75,17 @@ class Akunpegawai extends CI_Controller {
 				if($cek->num_rows() > 0){
 					echo json_encode(array('status'=>'gagal','message'=>'NIP telah digunakan!'));
 				}
-				else{
-					$akun['password'] = password_hash($akun['username'], PASSWORD_BCRYPT);
-					$id_akun = $this->Pegawai->insertAkun($akun);
-					$pegawai['id_akun'] = $id_akun;
-					$this->Pegawai->insert($pegawai);
-					echo json_encode(array('status'=>'berhasil','message'=>'Akun pegawai berhasil dibuat!'));
-				}
-				}
-			}
 	}
-	function update(){
-		$cek = $this->session->userdata('status');
-		if ($cek == 'admin'){
-			$this->load->model('Pegawai');
-			$pegawai = array(
-				'nip' => $_POST['nip'],
-				'nama' => $_POST['nama'],
-				'id_status' => 1
-			);
-			$id = $_POST['id'];
-			if(isset($_POST['email']))
-				$pegawai['email'] = $_POST['email'];
-			if(isset($_POST['no_telp']))
-				$pegawai['no_telp'] = $_POST['no_telp'];
-			$akun = array(
-				'username' => trim($_POST['username']),
-				'id !=' => $id
-			);
-			$cek = $this->Pegawai->getAkun($akun);
-			if($cek->num_rows() > 0){
-				echo json_encode(array('status'=>'gagal','message'=>'Username telah digunakan!'));
-		}
-		else{
-			$cek = $this->Pegawai->get(array('nip' => $pegawai['nip'],'id_akun !=' => $id));
-			if($cek->num_rows() > 0){
-				echo json_encode(array('status'=>'gagal','message'=>'NIP telah digunakan!'));
 			}
+		}
+	}
+}
+function update(){
+	$cek = $this->session->userdata('status');
+	if ($cek == 'admin'){
+		$this->load->model('Pegawai');
+		$pegawai = array(
+			'nip' => $_POST['nip'],
 			else{
 				$upd = array(
 					'username' => $_POST['username'],
@@ -120,9 +94,26 @@ class Akunpegawai extends CI_Controller {
 				$this->Pegawai->update(array('id_akun'=>$id),$pegawai);
 				echo json_encode(array('status'=>'berhasil','message'=>'Akun pegawai berhasil diupdate!'));
 				}
+				'nama' => $_POST['nama'],
+				'id_status' => 1
+			);
+			$id = $_POST['id'];
+			if(isset($_POST['email']))
+			$pegawai['email'] = $_POST['email'];
+			if(isset($_POST['no_telp']))
+			$pegawai['no_telp'] = $_POST['no_telp'];
+			$akun = array(
+				'username' => trim($_POST['username']),
+				'id !=' => $id
+			);
+			$cek = $this->Pegawai->getAkun($akun);
+			if($cek->num_rows() > 0){
+				echo json_encode(array('status'=>'gagal','message'=>'Username telah digunakan!'));
 			}
-		}
-	}
+			else{
+				$cek = $this->Pegawai->get(array('nip' => $pegawai['nip'],'id_akun !=' => $id));
+				if($cek->num_rows() > 0){
+					echo json_encode(array('status'=>'gagal','message'=>'NIP telah digunakan!'));
 	function resetPassword(){
 		$cek = $this->session->userdata('status');
 		if ($cek == 'admin' && isset($_POST['id_akun'])){
@@ -257,6 +248,36 @@ class Akunpegawai extends CI_Controller {
 			else{
 				echo json_encode(array('status'=>'gagal','message'=>'Role gagal ditambah!'));
 			}
+			$cek = $this->Role->cekRoleAdmin($id_pegawai,$kode);
+			$id_role = $this->Role->get('t_tipe_admin', array('kode'=>$kode))->row()->id;
+			$id_admin = $cek->row()->id;
+			$this->Role->updateRoleAdmin(array('id_admin'=>$id_admin,'id_role'=>$id_role),array('id_status'=>0));
+			echo json_encode(array('status'=>'berhasil','message'=>'Role berhasil diedit!'));
+		}
+		else if($kode=='dosen'){
+			$cek = $this->Dosen->get(array('id_pegawai'=>$id_pegawai));
+			$this->Dosen->update(array('id_pegawai'=>$id_pegawai),array('id_status'=>0));
+			echo json_encode(array('status'=>'berhasil','message'=>'Role berhasil diedit!'));
+		}
+		else if($kode=='dekan'){
+			$cek = $this->Dekan->get(array('id_pegawai'=>$id_pegawai));
+			$this->Dekan->update(array('id_pegawai'=>$id_pegawai),array('id_status'=>0));
+			echo json_encode(array('status'=>'berhasil','message'=>'Role berhasil diedit!'));
+		}
+		else if($kode=='prodi'){
+			$cek = $this->Kaprodi->get(array('id_pegawai'=>$id_pegawai));
+			$this->Kaprodi->update(array('id_pegawai'=>$id_pegawai),array('id_status'=>0));
+			echo json_encode(array('status'=>'berhasil','message'=>'Role berhasil diedit!'));
+		}
+		else if($kode=='rektor'){
+			$cek = $this->Rektor->get(array('id_pegawai'=>$id_pegawai));
+			$this->Rektor->update(array('id_pegawai'=>$id_pegawai),array('id_status'=>0));
+			echo json_encode(array('status'=>'berhasil','message'=>'Role berhasil diedit!'));
+		}
+	}
+	else{
+		echo json_encode(array('status'=>'gagal','message'=>'Role gagal ditambah!'));
+	}
 	}
 
 	function deleteRole(){
@@ -266,35 +287,5 @@ class Akunpegawai extends CI_Controller {
 				$id_pegawai = $_POST['id_pegawai'];
 				$kode = $_POST['kode'];
 				if($kode == 'super' ||$kode == 'sisfo' ||$kode == 'smb' ||$kode == 'keuangan' ||$kode == 'fakultas' || $kode == 'jurusan'){
-					$cek = $this->Role->cekRoleAdmin($id_pegawai,$kode);
-					$id_role = $this->Role->get('t_tipe_admin', array('kode'=>$kode))->row()->id;
-					$id_admin = $cek->row()->id;
-					$this->Role->updateRoleAdmin(array('id_admin'=>$id_admin,'id_role'=>$id_role),array('id_status'=>0));
-					echo json_encode(array('status'=>'berhasil','message'=>'Role berhasil diedit!'));
-				}
-				else if($kode=='dosen'){
-					$cek = $this->Dosen->get(array('id_pegawai'=>$id_pegawai));
-					$this->Dosen->update(array('id_pegawai'=>$id_pegawai),array('id_status'=>0));
-					echo json_encode(array('status'=>'berhasil','message'=>'Role berhasil diedit!'));
-				}
-				else if($kode=='dekan'){
-					$cek = $this->Dekan->get(array('id_pegawai'=>$id_pegawai));
-					$this->Dekan->update(array('id_pegawai'=>$id_pegawai),array('id_status'=>0));
-					echo json_encode(array('status'=>'berhasil','message'=>'Role berhasil diedit!'));
-				}
-				else if($kode=='prodi'){
-					$cek = $this->Kaprodi->get(array('id_pegawai'=>$id_pegawai));
-					$this->Kaprodi->update(array('id_pegawai'=>$id_pegawai),array('id_status'=>0));
-					echo json_encode(array('status'=>'berhasil','message'=>'Role berhasil diedit!'));
-				}
-				else if($kode=='rektor'){
-					$cek = $this->Rektor->get(array('id_pegawai'=>$id_pegawai));
-					$this->Rektor->update(array('id_pegawai'=>$id_pegawai),array('id_status'=>0));
-					echo json_encode(array('status'=>'berhasil','message'=>'Role berhasil diedit!'));
-				}
-			}
-			else{
-				echo json_encode(array('status'=>'gagal','message'=>'Role gagal ditambah!'));
-			}
 	}
 }

@@ -16,14 +16,14 @@ class Login extends CI_Controller {
 			$st = $this->session->userdata('status');
 			if ($st == 'admin')
 					header("location:".base_url().'admin/home');
-			else if($st == 'rektor')
-					header("location:".base_url().'rektor/home');
-			else if($st == 'dekan')
-					header("location:".base_url().'dekan/home');
-			else if($st == 'dosen')
-					header("location:".base_url().'dosen/home');
-			else if($st == 'mahasiswa')
-					header("location:".base_url().'mahasiswa/home');
+			else if($st == 'rek')
+					header("location:".base_url().'pakrek/home');
+			else if($st == 'dek')
+					header("location:".base_url().'pakdek/home');
+			else if($st == 'dosn')
+					header("location:".base_url().'pakdos/home');
+			else if($st == 'mhs')
+					header("location:".base_url().'mhs/home');
 			else
 				header('location:'.base_url());
 		}
